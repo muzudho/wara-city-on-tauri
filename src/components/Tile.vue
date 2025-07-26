@@ -1,10 +1,16 @@
 <template>
-    <!--<div class="tile" :style="tileStyle"></div>-->
+    ぺぺぺ
+    <!--
+    -->
+    <div class="tile" :style="tileStyle"></div>
+    ぺぺぺ
+    <!--
     タイル<div class="tile" :style="tileStyle"></div>たいる。
     <div style="width: 32px; height: 32px;
         background-image: url('/public/img/tiles/tilemap1.png');
         background-position: -32px 0px;
         background-repeat: no-repeat;"></div>
+    -->
 </template>
 
 <script setup>
@@ -25,8 +31,9 @@
         backgroundPosition: `${-props.tileX * props.tileSize}px ${-props.tileY * props.tileSize}px`,
         backgroundRepeat: 'no-repeat',
     }));
-    */
+    // */
 
+    //*
     const tileStyle = computed(() => ({
         width: `32px`,
         height: `32px`,
@@ -34,7 +41,9 @@
         backgroundPosition: `-32px 0px`,
         backgroundRepeat: 'no-repeat',
     }));
+    // */
 
+    /*
     // const tileStyle = computed(() => ({
     //     width: `${props.tileSize}px`,
     //     height: `${props.tileSize}px`,
@@ -42,6 +51,7 @@
     //     backgroundPosition: `${-props.tileX * props.tileSize}px ${-props.tileY * props.tileSize}px`,
     //     backgroundRepeat: 'no-repeat',
     // }));
+    // */
 </script>
 
 <style scoped>
