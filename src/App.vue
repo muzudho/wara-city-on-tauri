@@ -10,7 +10,10 @@
                 </v-row>
                 <v-container>
                     か
-                    き。
+                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    き
+                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    く。
                     <!--
                     あ
                     <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
@@ -173,7 +176,7 @@
     import { ref } from "vue";
     import Tile from './components/Tile.vue';
 
-    //const tilemap1VM = ref('/public/img/tiles/tilemap1.png')
+    const tilemap1VM = ref('/public/img/tiles/tilemap1.png')
     const currentTileX = ref(1);
     const currentTileY = ref(0);
 
