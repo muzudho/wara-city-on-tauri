@@ -16,7 +16,7 @@
 <script setup lang="ts">
     import { computed } from 'vue';
 
-    /*
+    //*
     interface TileArgs {
         tileX: { type: Number, required: true }, // タイルのX座標（グリッド）
         tileY: { type: Number, required: true }, // タイルのY座標（グリッド）
@@ -36,7 +36,7 @@
     }));
     // */
 
-    /*
+    //*
     const tileStyle = computed(() => ({
         width: `${props.tileSize}px`,
         height: `${props.tileSize}px`,
@@ -46,7 +46,7 @@
     }));
     // */
 
-    //*
+    /*
     const tileStyle = computed(() => ({
         width: `32px`,
         height: `32px`,
