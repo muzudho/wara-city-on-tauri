@@ -8,6 +8,12 @@
                     <v-col cols="2"><v-btn block v-on:click="onRefreshButtonClicked" class="pa-0">Refresh</v-btn></v-col>
                     <v-col cols="2"><v-btn block v-on:click="onWriteButtonClicked" class="pa-0">Write</v-btn></v-col>
                 </v-row>
+                <v-container>
+                    あ。
+                    <div style="width: 32px; height: 32px; background-image: url('/public/img/tiles/tilemap1.png'); background-position: -32px 0px; background-repeat: no-repeat;"></div>
+                    <!--<img alt="荒地" src="/public/img/tiles/tilemap1.png" style="width: 32px; height: 32px; background-position: 0px 0px; background-repeat: no-repeat;"></img>-->
+                    をん。
+                </v-container>
                 <v-container class="pa-0" style="position:relative; width:320px; height:320px; overflow: hidden; background-color:black;">
                     <v-img src="/public/img/tiles/wasteland.png" width="32" height="32" class="ma-0" aspect-ratio="1" style="position:absolute; top:0px; left:0px;" no-gutters></v-img>
                     <v-img src="/public/img/tiles/sea.png" width="32" height="32" class="ma-0" aspect-ratio="1" style="position:absolute; top:0px; left:32px;" no-gutters></v-img>
