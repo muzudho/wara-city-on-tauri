@@ -40,7 +40,7 @@
     const tileStyle = computed(() => ({
         width: `${props.tileSize}px`,
         height: `${props.tileSize}px`,
-        backgroundImage: `url('/public/img/tiles/tilemap1.png')`,
+        backgroundImage: `url('${props.tilemapUrl}')`,
         backgroundPosition: `-32px 0px`,
         backgroundRepeat: 'no-repeat',
     }));
