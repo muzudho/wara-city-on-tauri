@@ -9,6 +9,13 @@
                     <v-col cols="2"><v-btn block v-on:click="onWriteButtonClicked" class="pa-0">Write</v-btn></v-col>
                 </v-row>
                 <v-container>
+                    <!--
+                    あ
+                    <Tile tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    い
+                    <Tile tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    をん。
+                    -->
                     あい。
                     <div style="width: 32px; height: 32px;
                         background-image: url('/public/img/tiles/tilemap1.png');
@@ -164,6 +171,7 @@
     import { ref } from "vue";
     import Tile from './components/Tile.vue';
 
+    const tilemap1VM = ref('/public/img/tiles/tilemap1.png')
     const currentTileX = ref(1);
     const currentTileY = ref(0);
 

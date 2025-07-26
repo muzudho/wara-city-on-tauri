@@ -1,4 +1,5 @@
 <template>
+    <!--<div class="tile" :style="tileStyle"></div>-->
     タイル<div class="tile" :style="tileStyle"></div>たいる。
     <div style="width: 32px; height: 32px;
         background-image: url('/public/img/tiles/tilemap1.png');
@@ -15,6 +16,16 @@
         tileSize: { type: Number, default: 32 }, // タイルの幅と高さ（px）
         tilemapUrl: { type: String, required: true }, // タイルマップ画像のURL
     });
+
+    /*
+    const tileStyle = computed(() => ({
+        width: `${props.tileSize}px`,
+        height: `${props.tileSize}px`,
+        backgroundImage: `url('${props.tilemapUrl}')`,
+        backgroundPosition: `${-props.tileX * props.tileSize}px ${-props.tileY * props.tileSize}px`,
+        backgroundRepeat: 'no-repeat',
+    }));
+    */
 
     const tileStyle = computed(() => ({
         width: `32px`,
