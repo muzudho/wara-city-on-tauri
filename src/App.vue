@@ -11,9 +11,9 @@
                 <!-- 単純に敷き詰めているだけ。 -->
                 <v-container class="pa-0" style="width:320px; line-height: 0;">
                     <!-- [0]行目 -->
-                    <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :srcLeft="srcTileListVM[0].srcLeft" :srcTop="srcTileListVM[0].srcTop" :srcWidth="srcTileListVM[0].srcWidth" :srcHeight="srcTileListVM[0].srcHeight" :tilemapUrl="tilemap1VM"/>
+                    <Tile :srcLeft="srcTileListVM[1].srcLeft" :srcTop="srcTileListVM[1].srcTop" :srcWidth="srcTileListVM[1].srcWidth" :srcHeight="srcTileListVM[1].srcHeight" :tilemapUrl="tilemap1VM"/>
+                    <Tile :srcLeft="srcTileListVM[2].srcLeft" :srcTop="srcTileListVM[2].srcTop" :srcWidth="srcTileListVM[2].srcWidth" :srcHeight="srcTileListVM[2].srcHeight" :tilemapUrl="tilemap1VM"/>
                     <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
                     <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
                     <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
@@ -159,6 +159,11 @@
     import Tile from './components/Tile.vue';
 
     const tilemap1VM = ref('/public/img/tiles/tilemap1.png')
+    const srcTileListVM = ref([
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+    ])
     // const currentTileX = ref(1);
     // const currentTileY = ref(0);
 
