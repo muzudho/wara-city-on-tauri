@@ -328,7 +328,14 @@
         //alert(`［Execute］ボタンを押したぜ。 selectedItemVM.value=${selectedItemVM.value}`)
 
         if (selectedItemVM.value == 'マップJSON出力1'){
-            textVM.value = "テスト１";
+
+            let jsonText = "{ 'tileList': [\n"
+            srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
+                jsonText += `'${tileKey}',\n`;
+            });
+            jsonText += "] }"
+
+            textVM.value = jsonText;
         } else {
             textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
         }
