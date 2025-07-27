@@ -154,9 +154,131 @@
         'wasteland': {srcTop:7*32, srcLeft:6*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},    // 荒地
     } as TileDict;
 
+    const srcTileKeyListVM = ref<Array<string>>([
+        // [0]行目
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [1]行目
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [2]行目
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [3]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [4]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [5]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [6]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [7]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+
+        // [8]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+
+        // [9]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+    ]);
+
     const srcTileListVM = ref([
         // [0]行目
-        srcTileDict['wasteland'],
+        srcTileDict[srcTileKeyListVM.value[0]],
         srcTileDict['sea_0'],
         srcTileDict['sea_0'],
         srcTileDict['sea_0'],
