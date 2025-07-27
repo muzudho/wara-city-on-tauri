@@ -34,10 +34,8 @@
                         Tile palette
                     </div>
                     <div style="padding-left: 4px; padding-top: 4px;">
-                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"
-                                @click="onClick()"
-                                />
-                        <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
+                        <Tile :srcLeft="0"  :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'" @click="onSrcTileClick('sea')"/>
+                        <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'" @click="onSrcTileClick('wasteland')"/>
                     </div>
                 </vue-draggable-resizable>
                 <!--
@@ -272,8 +270,8 @@
         return resultStr;
     }
 
-    function onClick() {
-        alert("クリック")
+    function onSrcTileClick(name: string) {
+        alert(`ソースタイルをクリックした： name=${name}`)
     }
 </script>
 
