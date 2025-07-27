@@ -35,8 +35,11 @@
                         Tile palette
                     </div>
                     <div style="padding-left: 4px; padding-top: 4px;">
-                        <Tile :srcLeft="0"  :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'" @click="onSrcTileClick('sea_0')"/>
-                        <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'" @click="onSrcTileClick('wasteland')"/>
+                        <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
+                        <!--
+                            <Tile :srcLeft="0"  :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'" @click="onSrcTileClick('sea_0')"/>
+                            <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'" @click="onSrcTileClick('wasteland')"/>
+                        -->
                     </div>
                 </vue-draggable-resizable>
                 <!--
@@ -76,9 +79,12 @@
 
     import Tile from './components/Tile.vue';
 
+    /*
     interface TileDict {
         [key: string]: TileItem;
     }
+    */
+    type TileDict = Record<string, TileItem>;
 
     interface TileItem {
         srcLeft: number;    // 切り抜く矩形のX座標（px）
