@@ -14,7 +14,8 @@
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
                     -->
-                    <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"/>
+                    <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"
+                            @click="onMapTileClick(index)"/>
                 </v-container>
                 <!--
                     TODO パレット・ウィンドウを置きたい。
@@ -214,6 +215,8 @@
         srcTileDict['wasteland'],
     ]);
 
+    const penVM = ref("sea")
+
     interface IOption {
         key: string;
         value: string;
@@ -270,8 +273,15 @@
         return resultStr;
     }
 
+    function onMapTileClick(index: number) {
+        alert(`マップタイルをクリックした： index=${index}`)
+        // マップタイルを更新
+        srcTileListVM.value[index] = srcTileDict[penVM.value]
+    }
+
     function onSrcTileClick(name: string) {
         alert(`ソースタイルをクリックした： name=${name}`)
+        penVM.value = name
     }
 </script>
 
