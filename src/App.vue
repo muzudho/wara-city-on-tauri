@@ -34,7 +34,9 @@
                         Tile palette
                     </div>
                     <div style="padding-left: 4px; padding-top: 4px;">
-                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
+                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"
+                                @click="onClick()"
+                                />
                         <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
                     </div>
                 </vue-draggable-resizable>
@@ -268,6 +270,10 @@
     async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
         const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
         return resultStr;
+    }
+
+    function onClick() {
+        alert("クリック")
     }
 </script>
 
