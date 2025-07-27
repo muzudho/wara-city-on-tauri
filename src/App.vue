@@ -34,7 +34,7 @@
                     <div style="color: black; background-color: lightgray; height: 32px;">
                         Tile palette
                     </div>
-                    <div style="padding-left: 4px; padding-top: 4px;">
+                    <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
                         <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
                         <!--
                             <Tile :srcLeft="0"  :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'" @click="onSrcTileClick('sea_0')"/>
@@ -95,7 +95,7 @@
     }
 
     const srcTileDict = {
-        'sea': {srcTop:0*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        //'sea': {srcTop:0*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
         'sea_0': {srcTop:0*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
         'sea_1': {srcTop:0*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
         'sea_2': {srcTop:0*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
