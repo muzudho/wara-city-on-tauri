@@ -12,9 +12,9 @@
                 <v-container class="pa-0" style="width:320px; line-height: 0;">
                     <!--
                         例えば、以下のようなタグをリピート。
-                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="/public/img/tiles/tilemap1.png"/>
                     -->
-                    <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="tilemap1VM"/>
+                    <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"/>
                 </v-container>
                 <v-row no-gutters>
                     <v-textarea v-model="textVM"></v-textarea>
@@ -44,127 +44,143 @@
     import { ref } from "vue";
     import Tile from './components/Tile.vue';
 
-    const tilemap1VM = ref('/public/img/tiles/tilemap1.png');
+    interface TileDict {
+        [key: string]: TileItem;
+    }
+
+    interface TileItem {
+        srcLeft: number;    // 切り抜く矩形のX座標（px）
+        srcTop: number;     // 切り抜く矩形のY座標（px）
+        srcWidth: number;   // 切り抜く矩形の横幅（px）
+        srcHeight: number;  // 切り抜く矩形の縦幅（px）
+        tilemapUrl: string; // タイルマップ画像のURL
+    }
+
+    const tileDict = {
+        'sea': {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},       // 海
+        'wasteland': {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'}, // 荒地
+    } as TileDict;
+
     const srcTileListVM = ref([
         // [0]行目
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        tileDict['wasteland'],
+        tileDict['sea'],
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [1]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [2]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [3]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [4]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [5]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [6]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [7]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [8]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
 
         // [9]行目
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32},
-        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:0, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
+        {srcLeft:32, srcTop:0, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap1.png'},
     ]);
 
     interface IOption {
