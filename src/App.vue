@@ -14,8 +14,12 @@
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
+                    <Tile v-for="(key, index) in srcTileKeyListVM" :key="index" :srcLeft="srcTileDict[key].srcLeft" :srcTop="srcTileDict[key].srcTop" :srcWidth="srcTileDict[key].srcWidth" :srcHeight="srcTileDict[key].srcHeight" :tilemapUrl="srcTileDict[key].tilemapUrl"
+                            @click="onMapTileClick(index)"/>
+                    <!--
                     <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"
                             @click="onMapTileClick(index)"/>
+                    -->
                 </v-container>
                 <!--
                     TODO パレット・ウィンドウを置きたい。
@@ -276,128 +280,6 @@
         'wasteland',
     ]);
 
-    const srcTileListVM = ref([
-        // [0]行目
-        srcTileDict[srcTileKeyListVM.value[0]],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [1]行目
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [2]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [3]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [4]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [5]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [6]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [7]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-
-        // [8]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-        srcTileDict['sea_0'],
-
-        // [9]行目
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['sea_0'],
-        srcTileDict['wasteland'],
-    ]);
-
     const penVM = ref('')
 
     interface IOption {
@@ -465,7 +347,7 @@
             return;
         }
         // マップタイルを更新
-        srcTileListVM.value[index] = srcTileDict[penVM.value]
+        srcTileKeyListVM.value[index] = penVM.value
     }
 
     function onSrcTileClick(name: string) {
