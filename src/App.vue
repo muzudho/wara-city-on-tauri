@@ -16,6 +16,29 @@
                     -->
                     <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"/>
                 </v-container>
+                <!--
+                    TODO パレット・ウィンドウを置きたい。
+                -->
+                <vue-draggable-resizable
+                    :w="200"
+                    :h="100"
+                    :x="30"
+                    :y="60"
+                    :draggable="true"
+                    :resizable="false"
+                    :parent="true"
+                    class-name="panel"
+                    style="background-color: aqua;"
+                    >
+                    <div>
+                        あいう。
+                    </div>
+                </vue-draggable-resizable>
+                <!--
+                    @dragging="(x, y) => updatePosition(key, x, y)"
+                    @resizing="(x, y, w, h) => updateSize(key, x, y, w, h)"
+                -->
+
                 <v-row no-gutters>
                     <v-textarea v-model="textVM"></v-textarea>
                 </v-row>
@@ -42,6 +65,10 @@
     import { open } from '@tauri-apps/plugin-dialog';
     import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
     import { ref } from "vue";
+
+    import VueDraggableResizable from 'vue-draggable-resizable';
+    import 'vue-draggable-resizable/style.css';
+
     import Tile from './components/Tile.vue';
 
     interface TileDict {
