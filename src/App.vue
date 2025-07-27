@@ -22,19 +22,18 @@
                     -->
                 </v-container>
                 <!--
-                    TODO パレット・ウィンドウを置きたい。
+                    タイル・パレット・ウィンドウ
                 -->
                 <vue-draggable-resizable
-                    :w="200"
-                    :h="100"
-                    :x="30"
-                    :y="60"
-                    :draggable="true"
-                    :resizable="false"
-                    :parent="false"
-                    class-name="panel"
-                    style="background-color: aliceblue;"
-                    >
+                        :w="200"
+                        :h="100"
+                        :x="30"
+                        :y="60"
+                        :draggable="true"
+                        :resizable="false"
+                        :parent="false"
+                        class-name="panel"
+                        style="background-color: aliceblue;">
                     <div style="color: black; background-color: lightgray; height: 32px;">
                         Tile palette
                     </div>
@@ -50,23 +49,40 @@
                     @dragging="(x, y) => updatePosition(key, x, y)"
                     @resizing="(x, y, w, h) => updateSize(key, x, y, w, h)"
                 -->
+                <!--
+                    ターミナル・ウィンドウ
+                -->
+                <vue-draggable-resizable
+                        :w="200"
+                        :h="100"
+                        :x="30"
+                        :y="60"
+                        :draggable="true"
+                        :resizable="true"
+                        :parent="false"
+                        class-name="panel"
+                        style="background-color: aliceblue;">
+                    <div style="color: black; background-color: lightgray; height: 32px;">
+                        Terminal
+                    </div>
+                    <v-row no-gutters>
+                        <v-textarea v-model="textVM"></v-textarea>
+                    </v-row>
+                    <v-row no-gutters>
+                        <v-col class="pa-0">
+                            <v-select
+                                    v-model="selectedItemVM"
+                                    v-bind:items="optionsVM"
+                                    label="機能"
+                                    item-title="value"
+                                    item-value="key"
+                                    class="ma-0">
+                            </v-select>
+                        </v-col>
+                        <v-col cols="2"><v-btn block v-on:click="onExecuteButtonClicked" class="pa-0">Execute</v-btn></v-col>
+                    </v-row>
+                </vue-draggable-resizable>
 
-                <v-row no-gutters>
-                    <v-textarea v-model="textVM"></v-textarea>
-                </v-row>
-                <v-row no-gutters>
-                    <v-col class="pa-0">
-                        <v-select
-                                v-model="selectedItemVM"
-                                v-bind:items="optionsVM"
-                                label="機能"
-                                item-title="value"
-                                item-value="key"
-                                class="ma-0">
-                        </v-select>
-                    </v-col>
-                    <v-col cols="2"><v-btn block v-on:click="onExecuteButtonClicked" class="pa-0">Execute</v-btn></v-col>
-                </v-row>
             </v-container>
         </v-main>
     </v-app>    
