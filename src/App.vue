@@ -26,10 +26,13 @@
                     :y="60"
                     :draggable="true"
                     :resizable="false"
-                    :parent="true"
+                    :parent="false"
                     class-name="panel"
-                    style="background-color: aqua;"
+                    style="background-color: aliceblue;"
                     >
+                    <div style="color: black; background-color: lightgray; height: 32px;">
+                        Tile palette
+                    </div>
                     <div>
                         あいう。
                     </div>
