@@ -62,9 +62,9 @@
                         :parent="false"
                         class-name="panel"
                         style="background-color: aliceblue;">
-                    <div style="color: black; background-color: lightgray; height: 32px;">
+                    <v-row style="color: black; background-color: lightgray;" no-gutters>
                         Terminal
-                    </div>
+                    </v-row>
                     <v-row no-gutters>
                         <v-textarea v-model="textVM"></v-textarea>
                     </v-row>
@@ -308,6 +308,7 @@
         {key: "", value: ""},
         {key: "都道府県スプリット1", value: "都道府県スプリット"},
         {key: "マップJSON出力1", value: "マップJSON出力"},
+        {key: "マップJSON入力1", value: "マップJSON入力（未実装）"},
     ]
     const selectedItemVM = ref<string>("")
     const textVM = ref()
@@ -345,13 +346,32 @@
 
         if (selectedItemVM.value == 'マップJSON出力1'){
 
-            let jsonText = "{ 'tileList': [\n"
+            let jsonText = '{ "tileList": [\n'
             srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
-                jsonText += `'${tileKey}',\n`;
+                jsonText += `"${tileKey}",\n`;
             });
-            jsonText += "] }"
+            jsonText += '""'; // 番兵
+            jsonText += "] }"; //
 
             textVM.value = jsonText;
+
+        } else if (selectedItemVM.value == 'マップJSON入力1'){
+
+            // TODO マップJSON入力
+            //const jsonString = '{"tile1": {"srcLeft": 10, "srcTop": 20}}';
+            const jsonString = textVM.value;
+            let result;
+            //let srcTileKeyList2VM = Array<string>;
+            try {
+                result = JSON.parse(jsonString);// as TileMap;
+                alert(`result=${result}`);
+                srcTileKeyListVM.value = result["tileList"];    // 配列
+            } catch (error) {
+                alert(`エラー：${error}`);
+            }
+
+            textVM.value = JSON.stringify(result, null, '    ');
+
         } else {
             textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
         }
