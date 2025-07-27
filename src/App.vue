@@ -11,124 +11,124 @@
                 <!-- 単純に敷き詰めているだけ。 -->
                 <v-container class="pa-0" style="width:320px; line-height: 0;">
                     <!-- [0]行目 -->
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
                     
                     <!-- [1]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [2]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [3]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [4]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [5]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [6]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [7]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [8]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
 
                     <!-- [9]行目 -->
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="0" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
-                    <Tile :tileX="1" :tileY="0" :tileSize="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="0" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
+                    <Tile :tileX="1" :tileY="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="tilemap1VM"/>
                 </v-container>
                 <v-row no-gutters>
                     <v-textarea v-model="textVM"></v-textarea>
