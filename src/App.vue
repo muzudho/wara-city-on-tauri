@@ -12,7 +12,7 @@
                 <v-container class="pa-0" style="width:320px; line-height: 0;">
                     <!--
                         例えば、以下のようなタグをリピート。
-                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="/public/img/tiles/tilemap1.png"/>
+                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
                     -->
                     <Tile v-for="(item, index) in srcTileListVM" :key="index" :srcLeft="item.srcLeft" :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"/>
                 </v-container>
@@ -33,8 +33,9 @@
                     <div style="color: black; background-color: lightgray; height: 32px;">
                         Tile palette
                     </div>
-                    <div>
-                        あいう。
+                    <div style="padding-left: 4px; padding-top: 4px;">
+                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
+                        <Tile :srcLeft="32" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap1.png'"/>
                     </div>
                 </vue-draggable-resizable>
                 <!--
