@@ -287,6 +287,7 @@
     const optionsVM = <Array<IOption>>[
         {key: "", value: ""},
         {key: "都道府県スプリット1", value: "都道府県スプリット"},
+        {key: "マップJSON出力1", value: "マップJSON出力"},
     ]
     const selectedItemVM = ref<string>("")
     const textVM = ref()
@@ -320,11 +321,13 @@
     }
 
     async function onExecuteButtonClicked() {
-        console.log("［Execute］ボタンを押したぜ。")
-        //textVM.value = "［Execute］ボタンを押したぜ。"
-        //textVM.value = selectedItemVM
-        //textVM.value = selectedItemVM.value
-        textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
+        //alert(`［Execute］ボタンを押したぜ。 selectedItemVM.value=${selectedItemVM.value}`)
+
+        if (selectedItemVM.value == 'マップJSON出力1'){
+            textVM.value = "テスト１";
+        } else {
+            textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
+        }
     }
 
     // Tauriのコマンドを呼び出し。
