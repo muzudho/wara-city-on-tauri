@@ -21,6 +21,8 @@
                     タイル・パレット・ウィンドウ
                     TODO コンポーネント化したい
                 -->
+                <TilePalette v-on:selectTile="onSrcTile2Click"></TilePalette>
+                <!--
                 <vue-draggable-resizable
                         :w="200"
                         :h="100"
@@ -38,6 +40,7 @@
                         <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
                     </div>
                 </vue-draggable-resizable>
+                -->
                 <!--
                     @dragging="(x, y) => updatePosition(key, x, y)"
                     @resizing="(x, y, w, h) => updateSize(key, x, y, w, h)"
@@ -90,7 +93,12 @@
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
+    // 型
+    import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
+
+    // コンポーネント
     import Tile from './components/Tile.vue';
+    import TilePalette from './components/TilePalette.vue';
 
     const boardWidthVM = ref(10);
     const boardHeight = 10;
@@ -104,8 +112,9 @@
         }
     );
 
-    type TileDict = Record<string, TileItem>;
+    //type TileDict = Record<string, TileItem>;
 
+    /*
     interface TileItem {
         srcLeft: number;    // 切り抜く矩形のX座標（px）
         srcTop: number;     // 切り抜く矩形のY座標（px）
@@ -113,6 +122,7 @@
         srcHeight: number;  // 切り抜く矩形の縦幅（px）
         tilemapUrl: string; // タイルマップ画像のURL
     }
+    */
 
     const tilemapFilepathDict = {
         'sea': '/public/img/tiles/tilemap_sea.png',
@@ -408,6 +418,11 @@
 
     function onSrcTileClick(name: string) {
         //alert(`ソースタイルをクリックした： name=${name}`)
+        penVM.value = name
+    }
+
+    function onSrcTile2Click(name: string) {
+        //alert(`ソースタイル２をクリックした： name=${name}`)
         penVM.value = name
     }
 </script>
