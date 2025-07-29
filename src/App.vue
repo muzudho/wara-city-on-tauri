@@ -9,7 +9,7 @@
                     <v-col cols="2"><v-btn block v-on:click="onWriteButtonClicked" class="pa-0">Write</v-btn></v-col>
                 </v-row>
                 <!-- 単純に敷き詰めているだけ。 -->
-                <v-container class="pa-0" style="width:320px; line-height: 0;">
+                <v-container class="pa-0" :style="'width:' + (boardWidth * cellWidth) + 'px; line-height: 0;'">
                     <!--
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
@@ -99,6 +99,11 @@
 
     import Tile from './components/Tile.vue';
 
+    const boardWidth = 10;
+    const cellWidth = 32;
+    const cellHeight = 32;
+    const boardArea = 100;
+
     /*
     interface TileDict {
         [key: string]: TileItem;
@@ -116,62 +121,62 @@
 
     const srcTileDict = {
         //'sea': {srcTop:0*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_0': {srcTop:0*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_1': {srcTop:0*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_2': {srcTop:0*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_3': {srcTop:0*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_3_1': {srcTop:0*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_0': {srcTop:0*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_1': {srcTop:0*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_2': {srcTop:0*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_3': {srcTop:0*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_3_1': {srcTop:0*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_4': {srcTop:1*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_5': {srcTop:1*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_6': {srcTop:1*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_6_2': {srcTop:1*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_7': {srcTop:1*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_7_1': {srcTop:1*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_4': {srcTop:1*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_5': {srcTop:1*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_6': {srcTop:1*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_6_2': {srcTop:1*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_7': {srcTop:1*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_7_1': {srcTop:1*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_7_2': {srcTop:2*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_7_3': {srcTop:2*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_8': {srcTop:2*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_9': {srcTop:2*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_9_8': {srcTop:2*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_10': {srcTop:2*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_7_2': {srcTop:2*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_7_3': {srcTop:2*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_8': {srcTop:2*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_9': {srcTop:2*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_9_8': {srcTop:2*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_10': {srcTop:2*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_11': {srcTop:3*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_11_1': {srcTop:3*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_11_8': {srcTop:3*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_11_9': {srcTop:3*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_12': {srcTop:3*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_12_8': {srcTop:3*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_11': {srcTop:3*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_11_1': {srcTop:3*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_11_8': {srcTop:3*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_11_9': {srcTop:3*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_12': {srcTop:3*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_12_8': {srcTop:3*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_13': {srcTop:4*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_13_1': {srcTop:4*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_13_8': {srcTop:4*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_13_9': {srcTop:4*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_14': {srcTop:4*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_14_2': {srcTop:4*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_13': {srcTop:4*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_13_1': {srcTop:4*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_13_8': {srcTop:4*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_13_9': {srcTop:4*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_14': {srcTop:4*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_14_2': {srcTop:4*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_14_4': {srcTop:5*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_14_6': {srcTop:5*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15': {srcTop:5*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_1': {srcTop:5*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_2': {srcTop:5*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_3': {srcTop:5*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_14_4': {srcTop:5*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_14_6': {srcTop:5*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15': {srcTop:5*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_1': {srcTop:5*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_2': {srcTop:5*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_3': {srcTop:5*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_15_4': {srcTop:6*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_5': {srcTop:6*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_6': {srcTop:6*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_7': {srcTop:6*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_8': {srcTop:6*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_9': {srcTop:6*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_4': {srcTop:6*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_5': {srcTop:6*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_6': {srcTop:6*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_7': {srcTop:6*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_8': {srcTop:6*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_9': {srcTop:6*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'sea_15_10': {srcTop:7*32, srcLeft:0*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_11': {srcTop:7*32, srcLeft:1*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_12': {srcTop:7*32, srcLeft:2*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_13': {srcTop:7*32, srcLeft:3*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_14': {srcTop:7*32, srcLeft:4*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
-        'sea_15_15': {srcTop:7*32, srcLeft:5*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_10': {srcTop:7*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_11': {srcTop:7*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_12': {srcTop:7*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_13': {srcTop:7*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_14': {srcTop:7*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
+        'sea_15_15': {srcTop:7*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},
 
-        'wasteland': {srcTop:7*32, srcLeft:6*32, srcWidth:32, srcHeight:32, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},    // 荒地
+        'wasteland': {srcTop:7*cellHeight, srcLeft:6*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:'/public/img/tiles/tilemap_sea.png'},    // 荒地
     } as TileDict;
 
     const srcTileKeyListVM = ref<Array<string>>([
@@ -365,7 +370,11 @@
             try {
                 result = JSON.parse(jsonString);// as TileMap;
                 alert(`result=${result}`);
-                srcTileKeyListVM.value = result["tileList"];    // 配列
+
+                // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
+                for(let i=0; i<boardArea; i+=1){
+                    srcTileKeyListVM.value[i] = result["tileList"][i];    // 配列
+                }
             } catch (error) {
                 alert(`エラー：${error}`);
             }
