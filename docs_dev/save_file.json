@@ -1,4 +1,9 @@
-{ "tileList": [
+{
+    "boardWidth": 10,
+    "boardHeight": 10,
+    "cellWidth": 32,
+    "cellHeight": 32,
+     "tileList": [
 "sea_0",
 "sea_0",
 "sea_0",

@@ -9,7 +9,7 @@
                     <v-col cols="2"><v-btn block v-on:click="onWriteButtonClicked" class="pa-0">Write</v-btn></v-col>
                 </v-row>
                 <!-- 単純に敷き詰めているだけ。 -->
-                <v-container class="pa-0" :style="'width:' + (boardWidth * cellWidth) + 'px; line-height: 0;'">
+                <v-container class="pa-0" :style="boardStyle">
                     <!--
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
@@ -92,23 +92,25 @@
     import { invoke } from "@tauri-apps/api/core";
     import { open } from '@tauri-apps/plugin-dialog';
     import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
-    import { ref } from "vue";
+    import { computed, ref } from "vue";
 
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
     import Tile from './components/Tile.vue';
 
-    const boardWidth = 10;
+    const boardWidthVM = ref(10);
+    const boardHeight = 10;
+    const boardArea = boardWidthVM.value * boardHeight;
     const cellWidth = 32;
     const cellHeight = 32;
-    const boardArea = 100;
 
-    /*
-    interface TileDict {
-        [key: string]: TileItem;
-    }
-    */
+    const boardStyle = computed(
+        function(): string {
+            return 'width:' + (boardWidthVM.value * cellWidth) + 'px; line-height: 0;'
+        }
+    );
+
     type TileDict = Record<string, TileItem>;
 
     interface TileItem {
@@ -311,9 +313,9 @@
     const filePathVM = ref("C:\\Users\\muzud\\OneDrive\\ドキュメント\\temp\\temp.csv");
     const optionsVM = <Array<IOption>>[
         {key: "", value: ""},
-        {key: "都道府県スプリット1", value: "都道府県スプリット"},
         {key: "マップJSON出力1", value: "マップJSON出力"},
-        {key: "マップJSON入力1", value: "マップJSON入力（未実装）"},
+        {key: "マップJSON入力1", value: "マップJSON入力"},
+        {key: "都道府県スプリット1", value: "都道府県スプリット"},
     ]
     const selectedItemVM = ref<string>("")
     const textVM = ref()
@@ -351,12 +353,18 @@
 
         if (selectedItemVM.value == 'マップJSON出力1'){
 
-            let jsonText = '{ "tileList": [\n'
+            let jsonText = '{\n'
+            jsonText += `    "boardWidth": ${boardWidthVM.value},\n`;
+            jsonText += `    "boardHeight": ${boardHeight},\n`;
+            jsonText += `    "cellWidth": ${cellWidth},\n`;
+            jsonText += `    "cellHeight": ${cellHeight},\n`;
+            jsonText += '    "tileList": [\n';
             srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
-                jsonText += `"${tileKey}",\n`;
+                jsonText += `        "${tileKey}",\n`;
             });
-            jsonText += '""'; // 番兵
-            jsonText += "] }"; //
+            jsonText += '        ""'; // 番兵
+            jsonText += '    ]';
+            jsonText += "}"; //
 
             textVM.value = jsonText;
 
