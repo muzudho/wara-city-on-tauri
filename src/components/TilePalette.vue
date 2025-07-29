@@ -12,17 +12,8 @@
         <div style="color: black; background-color: lightgray; height: 32px;">
             Tile palette
         </div>
+        <!-- タイルを敷き詰めるだけ -->
         <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
-            <div>
-                <!-- ↓このタグはOK -->
-                <!--
-                <div class="tile" style="width:32px; height:32px; background-image:url('/public/img/tiles/tilemap_sea.png'); background-position:-64px 0px; background-repeat:no-repeat"></div>
-                -->
-                <!-- ↓このタグはFailed -->
-                <!--
-                <Tile :srcLeft="64" :srcTop="0" :srcWidth="32" :srcHeight="32" tilemapUrl="/public/img/tiles/tilemap_sea.png"/>
-                -->
-            </div>
             <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
         </div>
     </vue-draggable-resizable>

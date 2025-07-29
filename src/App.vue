@@ -19,32 +19,8 @@
                 </v-container>
                 <!--
                     タイル・パレット・ウィンドウ
-                    TODO コンポーネント化したい
                 -->
-                <TilePalette v-on:selectTile="onSrcTile2Click"></TilePalette>
-                <!--
-                <vue-draggable-resizable
-                        :w="200"
-                        :h="100"
-                        :x="30"
-                        :y="60"
-                        :draggable="true"
-                        :resizable="false"
-                        :parent="false"
-                        class-name="panel"
-                        style="background-color: aliceblue;">
-                    <div style="color: black; background-color: lightgray; height: 32px;">
-                        Tile palette
-                    </div>
-                    <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
-                        <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
-                    </div>
-                </vue-draggable-resizable>
-                -->
-                <!--
-                    @dragging="(x, y) => updatePosition(key, x, y)"
-                    @resizing="(x, y, w, h) => updateSize(key, x, y, w, h)"
-                -->
+                <TilePalette v-on:selectTile="onSrcTileClick"></TilePalette>
                 <!--
                     ターミナル・ウィンドウ
                 -->
@@ -111,18 +87,6 @@
             return 'width:' + (boardWidthVM.value * cellWidth) + 'px; line-height: 0;'
         }
     );
-
-    //type TileDict = Record<string, TileItem>;
-
-    /*
-    interface TileItem {
-        srcLeft: number;    // 切り抜く矩形のX座標（px）
-        srcTop: number;     // 切り抜く矩形のY座標（px）
-        srcWidth: number;   // 切り抜く矩形の横幅（px）
-        srcHeight: number;  // 切り抜く矩形の縦幅（px）
-        tilemapUrl: string; // タイルマップ画像のURL
-    }
-    */
 
     const tilemapFilepathDict = {
         'sea': '/public/img/tiles/tilemap_sea.png',
@@ -417,11 +381,6 @@
     }
 
     function onSrcTileClick(name: string) {
-        //alert(`ソースタイルをクリックした： name=${name}`)
-        penVM.value = name
-    }
-
-    function onSrcTile2Click(name: string) {
         //alert(`ソースタイル２をクリックした： name=${name}`)
         penVM.value = name
     }
