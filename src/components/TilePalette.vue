@@ -29,7 +29,8 @@
     import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 
     // コンポーネント
-    import Tile from '../components/Tile.vue';
+    //import Tile from '../components/Tile.vue';  // [2025-07-29_Tue] @のエイリアスが使えない
+    import Tile from '@/components/Tile.vue';  // [2025-07-29_Tue] @のエイリアスが使えない
 
     const cellWidth = 32;
     const cellHeight = 32;

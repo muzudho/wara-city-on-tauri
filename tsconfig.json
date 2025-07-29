@@ -1,6 +1,6 @@
 {
-  "compilerOptions": {
-        /* 2025-07-29 追加。import 文で types フォルダーをインポートするために */
+    "compilerOptions": {
+        /* [2025-07-29_Tue] 追加。import 文で types フォルダーをインポートするために */
         "baseUrl": "src",
         "paths": {
             "@/*": ["./*"]
@@ -25,6 +25,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
+    },
+    "vueCompilerOptions": {
+        "extensions": [".ts", ".tsx", ".js", ".jsx", ".vue"] // [2025-07-29_Tue] .vueを明示。 import 文で @ を使えるようにするために
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [{ "path": "./tsconfig.node.json" }]
