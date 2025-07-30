@@ -1,6 +1,6 @@
 {
-    "boardWidth": 10,
-    "boardHeight": 10,
+    "widthCells": 10,
+    "heightCells": 10,
     "cellWidth": 32,
     "cellHeight": 32,
      "tileList": [

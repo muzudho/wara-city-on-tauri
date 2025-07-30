@@ -22,6 +22,7 @@
 <script setup lang="ts">
     import { ref } from "vue";
 
+    // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
@@ -29,8 +30,7 @@
     import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 
     // コンポーネント
-    //import Tile from '../components/Tile.vue';  // [2025-07-29_Tue] @のエイリアスが使えない
-    import Tile from '@/components/Tile.vue';  // [2025-07-29_Tue] @のエイリアスが使えない
+    import Tile from '@/components/Tile.vue';
 
     const cellWidth = 32;
     const cellHeight = 32;

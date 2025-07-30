@@ -1,0 +1,35 @@
+import { ref, computed, Ref, ComputedRef } from 'vue';
+
+// ボードの設定を管理する型
+interface Board {
+    widthCells: Ref<number>;
+    heightCells: Ref<number>;
+    cellWidth: Ref<number>;
+    cellHeight: Ref<number>;
+    areaCells: ComputedRef<number>;
+    widthPixels: Ref<number>;
+    heightPixels: Ref<number>;
+    areaPixels: ComputedRef<number>;
+}
+
+export function getBoard(): Board {
+    const widthCells: Ref<number> = ref(10);
+    const heightCells: Ref<number> = ref(10);
+    const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);
+    const cellWidth: Ref<number> = ref(32);
+    const cellHeight: Ref<number> = ref(32);
+    const widthPixels: ComputedRef<number> = computed(() => widthCells.value * cellWidth.value);
+    const heightPixels: ComputedRef<number> = computed(() => heightCells.value * cellHeight.value);
+    const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * cellWidth.value) * (heightCells.value * cellHeight.value));
+
+    return {
+        widthCells,
+        heightCells,
+        cellWidth,
+        cellHeight,
+        areaCells,
+        widthPixels,
+        heightPixels,
+        areaPixels,
+    };
+}
