@@ -34,7 +34,7 @@ export function getBoard(): Board {
         'sea': '/public/img/tiles/tilemap_sea.png',
     };
 
-    const srcTileDict = ref({
+    const srcTileDict = ref<TileDict>({
         'sea_0': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
         'sea_1': {srcTop:0*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
         'sea_2': {srcTop:0*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
@@ -91,7 +91,7 @@ export function getBoard(): Board {
         'sea_15_15': {srcTop:7*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
 
         'wasteland': {srcTop:7*cellHeight.value, srcLeft:6*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},    // 荒地
-    }) as Ref<TileDict>;
+    });
 
     return {
         widthCells,
