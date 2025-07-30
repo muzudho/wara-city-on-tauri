@@ -18,6 +18,7 @@ export interface Board {
     areaPixels: ComputedRef<number>;
     tilemapFilepathDict: Dict;  // 変更がないデータ。
     srcTileDict: Ref<TileDict>;
+    srcTileKeyList: Ref<Array<string>>;
 }
 
 export function getBoard(): Board {
@@ -93,6 +94,128 @@ export function getBoard(): Board {
         'wasteland': {srcTop:7*cellHeight.value, srcLeft:6*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},    // 荒地
     });
 
+    const srcTileKeyList = ref<Array<string>>([
+        // [0]行目
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [1]行目
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [2]行目
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [3]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [4]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [5]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [6]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+
+        // [7]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+        'sea_0',
+
+        // [8]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+        'sea_0',
+
+        // [9]行目
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'sea_0',
+        'wasteland',
+    ]);
+
     return {
         widthCells,
         heightCells,
@@ -104,5 +227,6 @@ export function getBoard(): Board {
         areaPixels,
         tilemapFilepathDict,
         srcTileDict,
+        srcTileKeyList,
     };
 }

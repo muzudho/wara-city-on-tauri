@@ -14,7 +14,7 @@
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
-                    <Tile v-for="(key, index) in srcTileKeyListVM" :key="index" :srcLeft="board.srcTileDict.value[key].srcLeft" :srcTop="board.srcTileDict.value[key].srcTop" :srcWidth="board.srcTileDict.value[key].srcWidth" :srcHeight="board.srcTileDict.value[key].srcHeight" :tilemapUrl="board.srcTileDict.value[key].tilemapUrl"
+                    <Tile v-for="(key, index) in board.srcTileKeyList.value" :key="index" :srcLeft="board.srcTileDict.value[key].srcLeft" :srcTop="board.srcTileDict.value[key].srcTop" :srcWidth="board.srcTileDict.value[key].srcWidth" :srcHeight="board.srcTileDict.value[key].srcHeight" :tilemapUrl="board.srcTileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
                 <!--
@@ -89,128 +89,6 @@
         }
     );
 
-    const srcTileKeyListVM = ref<Array<string>>([
-        // [0]行目
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [1]行目
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [2]行目
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [3]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [4]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [5]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [6]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-
-        // [7]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-        'sea_0',
-
-        // [8]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-        'sea_0',
-
-        // [9]行目
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'sea_0',
-        'wasteland',
-    ]);
-
     const penVM = ref('')
 
     interface IOption {
@@ -267,7 +145,7 @@
             jsonText += `    "cellWidth": ${board.cellWidth},\n`;
             jsonText += `    "cellHeight": ${board.cellHeight},\n`;
             jsonText += '    "tileList": [\n';
-            srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
+            board.srcTileKeyList.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""'; // 番兵
@@ -289,7 +167,7 @@
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
                 for(let i=0; i<board.areaCells.value; i+=1){
-                    srcTileKeyListVM.value[i] = result["tileList"][i];    // 配列
+                    board.srcTileKeyList.value[i] = result["tileList"][i];    // 配列
                 }
             } catch (error) {
                 alert(`エラー：${error}`);
@@ -315,7 +193,7 @@
             return;
         }
         // マップタイルを更新
-        srcTileKeyListVM.value[index] = penVM.value
+        board.srcTileKeyList.value[index] = penVM.value
     }
 
     function onSrcTileClick(name: string) {
