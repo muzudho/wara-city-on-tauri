@@ -10,141 +10,23 @@ export interface Board {
     areaCells: ComputedRef<number>;
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
-    areaPixels: ComputedRef<number>;
     tileKeyArray: Ref<Array<string>>;
 }
 
 export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
-    const widthCells: Ref<number> = ref(10);
-    const heightCells: Ref<number> = ref(10);
+    // FIXME: 初期値どうする？
+    const widthCells: Ref<number> = ref(40);
+    const heightCells: Ref<number> = ref(40);
     const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);
     const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTileRectangles.cellWidth.value);
     const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTileRectangles.cellHeight.value);
-    const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * srcTileRectangles.cellWidth.value) * (heightCells.value * srcTileRectangles.cellHeight.value));
 
-    const tileKeyArray = ref<Array<string>>(
-        [
-            // [0]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
+    const rawArray = <Array<string>>[];
+    for(let i=0; i<areaCells.value; i+=1){
+        rawArray.push('sea_255')
+    }
 
-            // [1]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [2]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [3]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [4]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [5]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [6]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [7]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [8]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-
-            // [9]行目
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-            'sea_255',
-        ]
-    );
+    const tileKeyArray = ref<Array<string>>(rawArray);
 
     return {
         widthCells,
@@ -152,7 +34,6 @@ export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
         areaCells,
         widthPixels,
         heightPixels,
-        areaPixels,
         tileKeyArray,
     };
 }

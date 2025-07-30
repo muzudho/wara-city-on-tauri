@@ -72,7 +72,8 @@
 
     const boardStyle = computed(
         function(): string {
-            return 'width:' + board.widthPixels.value + 'px; line-height: 0;'
+            // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
+            return 'max-width: 16384px; width:' + board.widthPixels.value + 'px; line-height: 0;'
         }
     );
 
