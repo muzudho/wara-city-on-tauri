@@ -8,7 +8,7 @@
                     <!-- 例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
-                    <Tile v-for="(key, index) in board.srcTileKeyList.value" :key="index" :srcLeft="board.srcTileDict.value[key].srcLeft" :srcTop="board.srcTileDict.value[key].srcTop" :srcWidth="board.srcTileDict.value[key].srcWidth" :srcHeight="board.srcTileDict.value[key].srcHeight" :tilemapUrl="board.srcTileDict.value[key].tilemapUrl"
+                    <Tile v-for="(key, index) in board.srcTileKeyList.value" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
@@ -34,11 +34,12 @@
     import Terminal from '@/components/Terminal.vue';
 
     // 型、共有データ等
-    import { createSourceTilemaps } from '@/composables/sourceTilemaps';
+    import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
     import { createBoard } from '@/composables/board';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const board = createBoard(createSourceTilemaps());
+    const srcTilemaps: SourceTilemaps = createSourceTilemaps();
+    const board = createBoard(srcTilemaps);
 
     const boardStyle = computed(
         function(): string {
