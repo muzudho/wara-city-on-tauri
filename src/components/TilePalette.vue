@@ -76,7 +76,6 @@
     const optionsVM = <Array<ListOption>>[
         {key: "", value: ""},
         {key: "sea", value: "海"},
-        {key: "sea2", value: "海2"},
         {key: "land", value: "陸"},
         {key: "wastelandRoad", value: "荒地の道"},
     ]
