@@ -25,7 +25,7 @@
                     ターミナル・ウィンドウ
                     TODO コンポーネント化したい
                 -->
-                <Terminal></Terminal>
+                <Terminal :board="board"></Terminal>
                 <vue-draggable-resizable
                         :w="200"
                         :h="100"

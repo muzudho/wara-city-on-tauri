@@ -7,7 +7,7 @@ import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 type Dict = Record<string, string>;
 
 // ボードの設定を管理する型
-interface Board {
+export interface Board {
     widthCells: Ref<number>;
     heightCells: Ref<number>;
     cellWidth: Ref<number>;

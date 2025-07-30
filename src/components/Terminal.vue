@@ -10,7 +10,7 @@
             class-name="panel"
             style="background-color: aliceblue;">
         <v-row style="color: black; background-color: lightgray;" no-gutters>
-            Terminal
+            Terminal 2
         </v-row>
         <v-row no-gutters>
             <v-textarea v-model="textVM"></v-textarea>
@@ -39,11 +39,14 @@
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
-    const boardWidthVM = ref(10);
-    const boardHeight = 10;
-    const boardArea = boardWidthVM.value * boardHeight;
-    const cellWidth = 32;
-    const cellHeight = 32;
+    // 型
+    import {Board} from '@/composables/board';
+
+    // コンポーネントが受け取る引数
+    interface Props {
+        board: Board;
+    }
+    const props = defineProps<Props>();
 
     // TODO 🌟 コンポーネント外部の変数を変更したい。
     const srcTileKeyListVM = ref<Array<string>>([
@@ -70,10 +73,10 @@
 
             // TODO 🌟 外部からパラメーターを取得したい。
             let jsonText = '{\n'
-            jsonText += `    "boardWidth": ${boardWidthVM.value},\n`;
-            jsonText += `    "boardHeight": ${boardHeight},\n`;
-            jsonText += `    "cellWidth": ${cellWidth},\n`;
-            jsonText += `    "cellHeight": ${cellHeight},\n`;
+            jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
+            jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;
+            jsonText += `    "cellWidth": ${props.board.cellWidth.value},\n`;
+            jsonText += `    "cellHeight": ${props.board.cellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
             srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
@@ -96,7 +99,7 @@
                 alert(`result=${result}`);
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
-                for(let i=0; i<boardArea; i+=1){
+                for(let i=0; i<props.board.areaCells.value; i+=1){
                     srcTileKeyListVM.value[i] = result["tileList"][i];    // 配列
                 }
             } catch (error) {
