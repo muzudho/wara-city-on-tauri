@@ -2,6 +2,9 @@
     <v-app>
         <v-main>
             <v-container class="pa-1">
+                <!--
+                    配列length:{{ board.tileKeyArray.value.length }}<br/>
+                -->
 
                 <!-- 単純にタイルを敷き詰めているだけ。 -->
                 <v-container class="pa-0" :style="boardStyle">
@@ -19,15 +22,14 @@
                                 key: {{ key }}<br/>
                         </container>
                     -->
-                    
                     <Tile
                             v-for="(key, index) in board.tileKeyArray.value"
-                            :key="key"
+                            :key="index"
                             :srcLeft="srcTileRectangles.tileDict.value[key].srcLeft"
                             :srcTop="srcTileRectangles.tileDict.value[key].srcTop"
                             :srcWidth="srcTileRectangles.tileDict.value[key].srcWidth"
                             :srcHeight="srcTileRectangles.tileDict.value[key].srcHeight"
-                            :tilemapUrl="srcTileRectangles.tilemapFilepathDict[selectedTilemapKey]"
+                            :tilemapUrl="srcTileRectangles.tileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
@@ -75,12 +77,6 @@
     );
 
     const selectedTilemapKeyVM = ref('sea')     // TODO 初期値どうする？
-    const selectedTilemapKey = computed(
-        function(): string {
-            return selectedTilemapKeyVM.value
-        }
-    );
-
     const penVM = ref('')
 
     function onMapTileClick(index: number) {
