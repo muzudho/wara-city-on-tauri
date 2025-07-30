@@ -1,13 +1,11 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
 // 型
+import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 
 // 共有データ
 import { getSourceTilemaps } from '@/composables/sourceTilemaps';
-
-// 辞書の型（例：キーがstring、値がstring）
-type Dict = Record<string, string>;
 
 // ボードの設定を管理する型
 export interface Board {
@@ -19,7 +17,7 @@ export interface Board {
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
     areaPixels: ComputedRef<number>;
-    tilemapFilepathDict: Dict;  // 変更がないデータ。
+    tilemapFilepathDict: StringDict;  // 変更がないデータ。
     srcTileDict: Ref<TileDict>;
     srcTileKeyList: Ref<Array<string>>;
 }

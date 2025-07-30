@@ -1,13 +1,13 @@
-// 辞書の型（例：キーがstring、値がstring）
-type Dict = Record<string, string>;
+// 型
+import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
-    tilemapFilepathDict: Dict;  // 変更がないデータ
+    tilemapFilepathDict: StringDict;  // 変更がないデータ
 }
 
 // モジュールスコープでインスタンスを1つだけ作る
-const tilemapFilepathDict = <Dict>{
+const tilemapFilepathDict = <StringDict>{
     'sea': '/public/img/tiles/tilemap_sea.png',
     'land': '/public/img/tiles/tilemap_land.png',
 };
