@@ -10,21 +10,19 @@ export interface SourceTilemaps {
     cellHeight: Ref<number>;
 }
 
-// モジュールスコープでインスタンスを1つだけ作る
+// モジュールスコープでインスタンスを1つだけ作る（シングルトン）
 const tilemapFilepathDict = <StringDict>{
     'sea': '/public/img/tiles/tilemap_sea.png',
     'land': '/public/img/tiles/tilemap_land.png',
 };
-const cellWidth: Ref<number> = ref(32);
-const cellHeight: Ref<number> = ref(32);
 
-const sourceTilemaps: SourceTilemaps = {
-    tilemapFilepathDict,
-    cellWidth,
-    cellHeight,
-};
+export function createSourceTilemaps(): SourceTilemaps {
+    const cellWidth: Ref<number> = ref(32);
+    const cellHeight: Ref<number> = ref(32);
 
-// 返すオブジェクトはシングルトン。
-export function getSourceTilemaps(): SourceTilemaps {
-    return sourceTilemaps;
+    return {
+        tilemapFilepathDict,
+        cellWidth,
+        cellHeight,
+    };
 }

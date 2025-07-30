@@ -1,10 +1,8 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
-// 型
+// 型、共有データ等
 import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
-
-// 共有データ
-import { getSourceTilemaps } from '@/composables/sourceTilemaps';
+import { SourceTilemaps } from '@/composables/sourceTilemaps';
 
 // ボードの設定を管理する型
 export interface Board {
@@ -18,8 +16,7 @@ export interface Board {
     srcTileKeyList: Ref<Array<string>>;
 }
 
-export function createBoard(): Board {
-    const srcTilemaps = getSourceTilemaps();
+export function createBoard(srcTilemaps: SourceTilemaps): Board {
     const widthCells: Ref<number> = ref(10);
     const heightCells: Ref<number> = ref(10);
     const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);

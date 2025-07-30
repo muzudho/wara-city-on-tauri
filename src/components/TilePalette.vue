@@ -51,7 +51,7 @@
     import Tile from '@/components/Tile.vue';
 
     // 共有データ
-    import { getSourceTilemaps } from '@/composables/sourceTilemaps';
+    import { createSourceTilemaps } from '@/composables/sourceTilemaps';
 
     // タイル選択リストボックス
     interface ListOption {
@@ -69,7 +69,7 @@
     const cellWidth = 32;
     const cellHeight = 32;
 
-    const {tilemapFilepathDict} = getSourceTilemaps();
+    const {tilemapFilepathDict} = createSourceTilemaps();
 
     const srcTileDict = {
         'sea_0': {srcTop:0*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},

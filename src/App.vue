@@ -33,11 +33,12 @@
     import TilePalette from '@/components/TilePalette.vue';
     import Terminal from '@/components/Terminal.vue';
 
-    // 共有データ
+    // 型、共有データ等
+    import { createSourceTilemaps } from '@/composables/sourceTilemaps';
     import { createBoard } from '@/composables/board';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const board = createBoard();
+    const board = createBoard(createSourceTilemaps());
 
     const boardStyle = computed(
         function(): string {
