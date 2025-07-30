@@ -14,9 +14,9 @@ export interface Board {
 }
 
 export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
-    // FIXME: 初期値どうする？
-    const widthCells: Ref<number> = ref(40);
-    const heightCells: Ref<number> = ref(40);
+    // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
+    const widthCells: Ref<number> = ref(96);
+    const heightCells: Ref<number> = ref(96);
     const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);
     const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTileRectangles.cellWidth.value);
     const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTileRectangles.cellHeight.value);

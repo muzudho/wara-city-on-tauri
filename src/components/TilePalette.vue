@@ -1,33 +1,32 @@
 <template>
     <vue-draggable-resizable
-            :w="208"
+            :w="216"
             :h="100"
-            :x="30"
-            :y="60"
+            :x="0"
+            :y="0"
             :draggable="true"
             :resizable="false"
-            :parent="false"
-            class-name="panel">
+            :parent="false">
+
+        <!-- ウィンドウ・タイトル -->
+        <v-container style="color: black; background-color: lightgray; height: 32px;">
+            Tile palette
+        </v-container>
+
         <v-container class="pa-0" style="background-color: aliceblue;">
-            <!-- ウィンドウ・タイトル -->
-            <v-row no-gutters style="color: black; background-color: lightgray; height: 32px;">
-                Tile palette
-            </v-row>
 
             <!-- タイル選択リスト -->
-            <v-row no-gutters>
-                <v-select
-                        v-model="selectedTilemapKeyVM"
-                        v-bind:items="optionsVM"
-                        label="タイルマップ名"
-                        item-title="value"
-                        item-value="key"
-                        class="ma-0">
-                </v-select>
-            </v-row>
+            <v-select
+                    v-model="selectedTilemapKeyVM"
+                    v-bind:items="optionsVM"
+                    label="タイルマップ名"
+                    item-title="value"
+                    item-value="key"
+                    class="ma-0">
+            </v-select>
 
             <!-- タイルを敷き詰めるだけ -->
-            <div style="padding: 8px; line-height: 0;">
+            <v-container style="padding: 8px; line-height: 0;">
                 <Tile
                         v-for="(item, key) in props.srcTileDictDict[selectedTilemapKey]"
                         :key="key"
@@ -37,7 +36,7 @@
                         :srcHeight="item.srcHeight"
                         :tilemapUrl="item.tilemapUrl"
                         @click="onSrcTileClick(key)"/>
-            </div>            
+            </v-container>            
         </v-container>
     </vue-draggable-resizable>
 </template>
@@ -74,7 +73,7 @@
     }
 
     const optionsVM = <Array<ListOption>>[
-        {key: "", value: ""},
+        //{key: "", value: ""},
         {key: "sea", value: "海"},
         {key: "land", value: "陸"},
         {key: "wastelandRoad", value: "荒地の道"},

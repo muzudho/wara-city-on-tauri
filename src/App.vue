@@ -1,51 +1,48 @@
 <template>
     <v-app>
         <v-main>
-            <v-container class="pa-1">
-                <!--
-                    配列length:{{ board.tileKeyArray.value.length }}<br/>
-                -->
-
+            <v-container class="pa-0" :style="boardStyle">
                 <!-- 単純にタイルを敷き詰めているだけ。 -->
-                <v-container class="pa-0" :style="boardStyle">
-                    <!-- 例えば、以下のようなタグをリピート。
-                        <Tile
-                                :srcLeft="0"
-                                :srcTop="0"
-                                :srcWidth="32"
-                                :srcHeight="32"
-                                :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
-                        selectedTilemapKey: {{ selectedTilemapKey }}<br/>
-                        <container
-                                style="line-height: 12px;"
-                                v-for="key in board.tileKeyArray">
-                                key: {{ key }}<br/>
-                        </container>
-                    -->
+                <!-- 例えば、以下のようなタグをリピート。
                     <Tile
-                            v-for="(key, index) in board.tileKeyArray.value"
-                            :key="index"
-                            :srcLeft="srcTileRectangles.tileDict.value[key].srcLeft"
-                            :srcTop="srcTileRectangles.tileDict.value[key].srcTop"
-                            :srcWidth="srcTileRectangles.tileDict.value[key].srcWidth"
-                            :srcHeight="srcTileRectangles.tileDict.value[key].srcHeight"
-                            :tilemapUrl="srcTileRectangles.tileDict.value[key].tilemapUrl"
-                            @click="onMapTileClick(index)"/>
-                </v-container>
+                            :srcLeft="0"
+                            :srcTop="0"
+                            :srcWidth="32"
+                            :srcHeight="32"
+                            :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
+                    selectedTilemapKey: {{ selectedTilemapKey }}<br/>
+                    <container
+                            style="line-height: 12px;"
+                            v-for="key in board.tileKeyArray">
+                            key: {{ key }}<br/>
+                    </container>
+                -->
+                <Tile
+                        v-for="(key, index) in board.tileKeyArray.value"
+                        :key="index"
+                        :srcLeft="srcTileRectangles.tileDict.value[key].srcLeft"
+                        :srcTop="srcTileRectangles.tileDict.value[key].srcTop"
+                        :srcWidth="srcTileRectangles.tileDict.value[key].srcWidth"
+                        :srcHeight="srcTileRectangles.tileDict.value[key].srcHeight"
+                        :tilemapUrl="srcTileRectangles.tileDict.value[key].tilemapUrl"
+                        @click="onMapTileClick(index)"
+                        style="z-index: 1;"/>
 
                 <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalette
                         :srcTileDictDict="srcTilemaps.tileDictDict.value"
                         v-on:changeTilemap="onTilemapChanged"
-                        v-on:selectTile="onSrcTileClicked"></TilePalette>
+                        v-on:selectTile="onSrcTileClicked"
+                        style="position:absolute; top:32px; left:32px; z-index: 10;"></TilePalette>
 
                 <!-- ターミナル・ウィンドウ
                 -->
                 <Terminal
                         :srcTileRectangles="srcTileRectangles"
                         :srcTilemaps="srcTilemaps"
-                        :board="board"></Terminal>
+                        :board="board"
+                        style="position:absolute; top:32px; left:256px; z-index: 20;"></Terminal>
 
             </v-container>
         </v-main>
@@ -73,7 +70,7 @@
     const boardStyle = computed(
         function(): string {
             // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
-            return 'max-width: 16384px; width:' + board.widthPixels.value + 'px; line-height: 0;'
+            return 'max-width: 4096px; width:' + board.widthPixels.value + 'px; line-height: 0;'
         }
     );
 

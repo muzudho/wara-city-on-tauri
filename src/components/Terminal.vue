@@ -1,33 +1,35 @@
 <template>
     <vue-draggable-resizable
-            :w="200"
-            :h="100"
-            :x="30"
-            :y="60"
+            :w="400"
+            :x="0"
+            :y="0"
             :draggable="true"
             :resizable="true"
-            :parent="false"
-            class-name="panel"
-            style="background-color: aliceblue;">
-        <v-row style="color: black; background-color: lightgray;" no-gutters>
+            :parent="false">
+        
+        <!-- ウィンドウ・タイトル -->
+        <v-container style="color: black; background-color: lightgray; height: 32px;">
             Terminal
-        </v-row>
-        <v-row no-gutters>
+        </v-container>
+
+        <v-container class="pa-0" style="background-color: aliceblue;">
+
             <v-textarea v-model="textVM"></v-textarea>
-        </v-row>
-        <v-row no-gutters>
-            <v-col class="pa-0">
-                <v-select
-                        v-model="selectedItemVM"
-                        v-bind:items="optionsVM"
-                        label="機能"
-                        item-title="value"
-                        item-value="key"
-                        class="ma-0">
-                </v-select>
-            </v-col>
-            <v-col cols="2"><v-btn block v-on:click="onExecuteButtonClicked" class="pa-0">Execute</v-btn></v-col>
-        </v-row>
+
+            <v-row no-gutters>
+                <v-col class="pa-0">
+                    <v-select
+                            v-model="selectedItemVM"
+                            v-bind:items="optionsVM"
+                            label="機能"
+                            item-title="value"
+                            item-value="key"
+                            class="ma-0">
+                    </v-select>
+                </v-col>
+                <v-col cols="3"><v-btn block v-on:click="onExecuteButtonClicked" class="pa-0">Execute</v-btn></v-col>
+            </v-row>
+        </v-container>
     </vue-draggable-resizable>
 </template>
 
