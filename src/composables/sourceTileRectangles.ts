@@ -28,7 +28,7 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return {srcTop:y*cellHeight.value, srcLeft:x*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict[tilemap]};
     }
 
-    const tileDict = ref<TileDict>({
+    const rawTileDict = <TileDict>{
         // 海、海岸線
         'sea_0': makeTile(0, 1, 'sea'),   // 海
         'sea_1': makeTile(0, 2, 'sea'),   // 海岸線
@@ -87,7 +87,15 @@ export function createSourceTileRectangles(): SourceTileRectangles {
 
         'wasteland': makeTile(0, 0, 'land'),    // 荒地
         'vocantLand': makeTile(0, 1, 'land'),    // 空き地
+    }
 
+    function makeBorderTilemap() {
+        return {
+
+        };
+    }
+
+    Object.assign(rawTileDict, {
         // 荒地の道
         'wastelandRoad_0': makeTile(0, 1, 'wastelandRoad'),   // 海
         'wastelandRoad_16': makeTile(0, 2, 'wastelandRoad'),   // 海岸線
@@ -144,6 +152,8 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         'wastelandRoad_254': makeTile(7, 4, 'wastelandRoad'),
         'wastelandRoad_255': makeTile(7, 5, 'wastelandRoad'),
     });
+
+    const tileDict = ref<TileDict>(rawTileDict);
 
     return {
         tilemapFilepathDict,
