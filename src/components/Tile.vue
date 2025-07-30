@@ -5,7 +5,7 @@
 <script setup lang="ts">
     import { computed } from 'vue';
 
-    interface TileArgs {
+    interface Props {
         srcLeft: number;    // 切り抜く矩形のX座標（px）
         srcTop: number;     // 切り抜く矩形のY座標（px）
         srcWidth: number;   // 切り抜く矩形の横幅（px）
@@ -13,7 +13,7 @@
         tilemapUrl: string; // タイルマップ画像のURL
     }
     // definePropsにデフォルト値を設定
-    const props = withDefaults(defineProps<TileArgs>(), {
+    const props = withDefaults(defineProps<Props>(), {
         srcWidth: 32,
         srcHeight: 32,
     });

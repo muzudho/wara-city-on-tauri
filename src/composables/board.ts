@@ -2,7 +2,6 @@ import { ref, computed, Ref, ComputedRef } from 'vue';
 
 // 型、共有データ等
 import { SourceTilemaps } from '@/composables/sourceTilemaps';
-import { StringArrayDict } from '@/types/string-array-dict'; // @はsrcへのエイリアス
 
 // ボードの設定を管理する型
 export interface Board {
@@ -12,7 +11,7 @@ export interface Board {
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
     areaPixels: ComputedRef<number>;
-    srcTileKeyListDict: Ref<StringArrayDict>;
+    tileKeyArray: Ref<Array<string>>;
 }
 
 export function createBoard(srcTilemaps: SourceTilemaps): Board {
@@ -23,135 +22,128 @@ export function createBoard(srcTilemaps: SourceTilemaps): Board {
     const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTilemaps.cellHeight.value);
     const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * srcTilemaps.cellWidth.value) * (heightCells.value * srcTilemaps.cellHeight.value));
 
-    // TODO 辞書＞配列＞文字列 にしたい。
-    // FIXME 間違いでは？
-    const srcTileKeyListDict = ref<StringArrayDict>(
-        {
-            "land":[
+    const tileKeyArray = ref<Array<string>>(
+        [
+            // [0]行目
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-            ],
-            "sea":[
-                // [0]行目
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [1]行目
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [1]行目
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [2]行目
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [2]行目
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [3]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [3]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [4]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [4]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [5]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [5]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [6]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
+            'sea_0',
 
-                // [6]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
-                'sea_0',
+            // [7]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
+            'sea_0',
 
-                // [7]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-                'sea_0',
+            // [8]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+            'sea_0',
 
-                // [8]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-                'sea_0',
-
-                // [9]行目
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'sea_0',
-                'wasteland',
-            ]
-        }
+            // [9]行目
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'sea_0',
+            'wasteland',
+        ]
     );
 
     return {
@@ -161,6 +153,6 @@ export function createBoard(srcTilemaps: SourceTilemaps): Board {
         widthPixels,
         heightPixels,
         areaPixels,
-        srcTileKeyListDict,
+        tileKeyArray,
     };
 }

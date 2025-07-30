@@ -31,28 +31,36 @@
 
         <!-- タイルを敷き詰めるだけ -->
         <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
-            <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"
-                @click="onSrcTileClick(key)"/>
+            <Tile
+                    v-for="(item, key) in props.srcTileDictDict[selectedTilemapKey]"
+                    :key="key"
+                    :srcLeft="item.srcLeft"
+                    :srcTop="item.srcTop"
+                    :srcWidth="item.srcWidth"
+                    :srcHeight="item.srcHeight"
+                    :tilemapUrl="item.tilemapUrl"
+                    @click="onSrcTileClick(key)"/>
         </div>
 
     </vue-draggable-resizable>
 </template>
 
 <script setup lang="ts">
-    import { ref, watch } from "vue";
+    import { computed, ref, watch } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
-    // 型
-    import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
-
-    // コンポーネント
+    // コンポーネント、型、共有データ等
     import Tile from '@/components/Tile.vue';
+    import { TileDictDict } from '@/types/tile-dict-dict'; // @はsrcへのエイリアス
 
-    // 共有データ
-    import { createSourceTilemaps } from '@/composables/sourceTilemaps';
+    // コンポーネントが受け取る引数
+    interface Props {
+        srcTileDictDict: TileDictDict;
+    }
+    const props = defineProps<Props>();
 
     // カスタムイベントを定義
     interface Emits {
@@ -79,71 +87,11 @@
         // 親に変更を通知
         emit('changeTilemap', selectedTilemapKeyVM.value);
     });
-
-    const cellWidth = 32;
-    const cellHeight = 32;
-
-    const {tilemapFilepathDict} = createSourceTilemaps();
-
-    // TODO string をキーにしたい。
-    const srcTileDict = <TileDict>{
-        'sea_0': {srcTop:0*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_1': {srcTop:0*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_2': {srcTop:0*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_3': {srcTop:0*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_3_1': {srcTop:0*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_4': {srcTop:1*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_5': {srcTop:1*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_6': {srcTop:1*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_6_2': {srcTop:1*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_7': {srcTop:1*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_7_1': {srcTop:1*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_7_2': {srcTop:2*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_7_3': {srcTop:2*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_8': {srcTop:2*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_9': {srcTop:2*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_9_8': {srcTop:2*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_10': {srcTop:2*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_11': {srcTop:3*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_11_1': {srcTop:3*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_11_8': {srcTop:3*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_11_9': {srcTop:3*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_12': {srcTop:3*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_12_8': {srcTop:3*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_13': {srcTop:4*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_13_1': {srcTop:4*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_13_8': {srcTop:4*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_13_9': {srcTop:4*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_14': {srcTop:4*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_14_2': {srcTop:4*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_14_4': {srcTop:5*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_14_6': {srcTop:5*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15': {srcTop:5*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_1': {srcTop:5*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_2': {srcTop:5*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_3': {srcTop:5*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_15_4': {srcTop:6*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_5': {srcTop:6*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_6': {srcTop:6*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_7': {srcTop:6*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_8': {srcTop:6*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_9': {srcTop:6*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'sea_15_10': {srcTop:7*cellHeight, srcLeft:0*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_11': {srcTop:7*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_12': {srcTop:7*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_13': {srcTop:7*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_14': {srcTop:7*cellHeight, srcLeft:4*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-        'sea_15_15': {srcTop:7*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
-
-        'wasteland': {srcTop:7*cellHeight, srcLeft:6*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},    // 荒地
-    };
+    const selectedTilemapKey = computed(
+        function(): string {
+            return selectedTilemapKeyVM.value
+        }
+    );
 
     function onSrcTileClick(name: string) {
         //alert(`ソースタイルをクリックした： name=${name}`)

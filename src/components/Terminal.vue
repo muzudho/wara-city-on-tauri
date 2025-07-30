@@ -40,10 +40,12 @@
     import 'vue-draggable-resizable/style.css';
 
     // 型
-    import {Board} from '@/composables/board';
+    import { Board } from '@/composables/board';
+    import { SourceTilemaps } from "@/composables/sourceTilemaps";
 
     // コンポーネントが受け取る引数
     interface Props {
+        srcTilemaps: SourceTilemaps;
         board: Board;
     }
     const props = defineProps<Props>();
@@ -71,10 +73,10 @@
             let jsonText = '{\n'
             jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
             jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;
-            jsonText += `    "cellWidth": ${props.board.cellWidth.value},\n`;
-            jsonText += `    "cellHeight": ${props.board.cellHeight.value},\n`;
+            jsonText += `    "cellWidth": ${props.srcTilemaps.cellWidth.value},\n`;
+            jsonText += `    "cellHeight": ${props.srcTilemaps.cellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
-            props.board.srcTileKeyList.value.forEach((tileKey: string, _index: number) => {
+            props.board.tileKeyArray.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""'; // 番兵
@@ -96,7 +98,7 @@
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
                 for(let i=0; i<props.board.areaCells.value; i+=1){
-                    props.board.srcTileKeyList.value[i] = result["tileList"][i];    // 配列
+                    props.board.tileKeyArray.value[i] = result["tileList"][i];    // 配列
                 }
             } catch (error) {
                 alert(`エラー：${error}`);

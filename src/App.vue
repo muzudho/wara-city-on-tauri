@@ -6,21 +6,43 @@
                 <!-- 単純にタイルを敷き詰めているだけ。 -->
                 <v-container class="pa-0" :style="boardStyle">
                     <!-- 例えば、以下のようなタグをリピート。
-                        <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
+                        <Tile
+                                :srcLeft="0"
+                                :srcTop="0"
+                                :srcWidth="32"
+                                :srcHeight="32"
+                                :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
+                        selectedTilemapKey: {{ selectedTilemapKey }}<br/>
+                        <container
+                                style="line-height: 12px;"
+                                v-for="key in board.tileKeyArray">
+                                key: {{ key }}<br/>
+                        </container>
                     -->
-                    <Tile v-for="(key, index) in srcTileKeyList" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
+                    
+                    <Tile
+                            v-for="(key, index) in board.tileKeyArray.value"
+                            :key="key"
+                            :srcLeft="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcLeft"
+                            :srcTop="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcTop"
+                            :srcWidth="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcWidth"
+                            :srcHeight="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcHeight"
+                            :tilemapUrl="srcTilemaps.tilemapFilepathDict[selectedTilemapKey]"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
                 <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalette
+                        :srcTileDictDict="srcTilemaps.tileDictDict.value"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"></TilePalette>
 
                 <!-- ターミナル・ウィンドウ
                 -->
-                <Terminal :board="board"></Terminal>
+                <Terminal
+                        :srcTilemaps="srcTilemaps"
+                        :board="board"></Terminal>
 
             </v-container>
         </v-main>
@@ -48,13 +70,14 @@
             return 'width:' + board.widthPixels.value + 'px; line-height: 0;'
         }
     );
-    const srcTileKeyList = computed(
-        function(): string[] {
-            return board.srcTileKeyListDict.value[selectedTilemapKeyVM.value]
+
+    const selectedTilemapKeyVM = ref('sea')     // TODO 初期値どうする？
+    const selectedTilemapKey = computed(
+        function(): string {
+            return selectedTilemapKeyVM.value
         }
     );
 
-    const selectedTilemapKeyVM = ref('sea')     // TODO 初期値どうする？
     const penVM = ref('')
 
     function onMapTileClick(index: number) {
@@ -63,7 +86,7 @@
             return;
         }
         // マップタイルを更新
-        board.srcTileKeyListDict.value[selectedTilemapKeyVM.value][index] = penVM.value
+        board.tileKeyArray.value[index] = penVM.value
     }
 
     function onTilemapChanged(key: string) {
