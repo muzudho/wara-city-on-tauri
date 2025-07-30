@@ -34,10 +34,10 @@
     import Terminal from '@/components/Terminal.vue';
 
     // 共有データ
-    import { getBoard } from '@/composables/board';
+    import { createBoard } from '@/composables/board';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const board = getBoard();
+    const board = createBoard();
 
     const boardStyle = computed(
         function(): string {

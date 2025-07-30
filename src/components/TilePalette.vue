@@ -9,13 +9,31 @@
             :parent="false"
             class-name="panel"
             style="background-color: aliceblue;">
+
+        <!-- ウィンドウ・タイトル -->
         <div style="color: black; background-color: lightgray; height: 32px;">
             Tile palette
         </div>
+
+        <!-- タイル選択リスト -->
+        <v-row no-gutters>
+            <v-col class="pa-0">
+                <v-select
+                        v-model="selectedItemVM"
+                        v-bind:items="optionsVM"
+                        label="タイルマップ名"
+                        item-title="value"
+                        item-value="key"
+                        class="ma-0">
+                </v-select>
+            </v-col>
+        </v-row>
+
         <!-- タイルを敷き詰めるだけ -->
         <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
             <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
         </div>
+
     </vue-draggable-resizable>
 </template>
 
@@ -32,12 +50,26 @@
     // コンポーネント
     import Tile from '@/components/Tile.vue';
 
+    // 共有データ
+    import { getSourceTilemaps } from '@/composables/sourceTilemaps';
+
+    // タイル選択リストボックス
+    interface ListOption {
+        key: string;
+        value: string;
+    }
+
+    const optionsVM = <Array<ListOption>>[
+        {key: "", value: ""},
+        {key: "sea", value: "海"},
+        {key: "land", value: "陸"},
+    ]
+    const selectedItemVM = ref<string>("sea")
+
     const cellWidth = 32;
     const cellHeight = 32;
 
-    const tilemapFilepathDict = {
-        'sea': '/public/img/tiles/tilemap_sea.png',
-    };
+    const {tilemapFilepathDict} = getSourceTilemaps();
 
     const srcTileDict = {
         'sea_0': {srcTop:0*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
