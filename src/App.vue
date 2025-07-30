@@ -14,7 +14,7 @@
                         例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
-                    <Tile v-for="(key, index) in srcTileKeyListVM" :key="index" :srcLeft="srcTileDict[key].srcLeft" :srcTop="srcTileDict[key].srcTop" :srcWidth="srcTileDict[key].srcWidth" :srcHeight="srcTileDict[key].srcHeight" :tilemapUrl="srcTileDict[key].tilemapUrl"
+                    <Tile v-for="(key, index) in srcTileKeyListVM" :key="index" :srcLeft="board.srcTileDict.value[key].srcLeft" :srcTop="board.srcTileDict.value[key].srcTop" :srcWidth="board.srcTileDict.value[key].srcWidth" :srcHeight="board.srcTileDict.value[key].srcHeight" :tilemapUrl="board.srcTileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
                 <!--
@@ -66,14 +66,11 @@
     import { invoke } from "@tauri-apps/api/core";
     import { open } from '@tauri-apps/plugin-dialog';
     import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
-    import { computed, ref, Ref } from "vue";
+    import { computed, ref } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
-
-    // 型
-    import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 
     // コンポーネント
     import Tile from '@/components/Tile.vue';
@@ -91,65 +88,6 @@
             return 'width:' + board.widthPixels.value + 'px; line-height: 0;'
         }
     );
-
-    const srcTileDict = ref({
-        'sea_0': {srcTop:0*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_1': {srcTop:0*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_2': {srcTop:0*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_3': {srcTop:0*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_3_1': {srcTop:0*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_4': {srcTop:1*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_5': {srcTop:1*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_6': {srcTop:1*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_6_2': {srcTop:1*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_7': {srcTop:1*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_7_1': {srcTop:1*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_7_2': {srcTop:2*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_7_3': {srcTop:2*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_8': {srcTop:2*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_9': {srcTop:2*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_9_8': {srcTop:2*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_10': {srcTop:2*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_11': {srcTop:3*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_11_1': {srcTop:3*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_11_8': {srcTop:3*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_11_9': {srcTop:3*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_12': {srcTop:3*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_12_8': {srcTop:3*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_13': {srcTop:4*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_13_1': {srcTop:4*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_13_8': {srcTop:4*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_13_9': {srcTop:4*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_14': {srcTop:4*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_14_2': {srcTop:4*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_14_4': {srcTop:5*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_14_6': {srcTop:5*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15': {srcTop:5*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_1': {srcTop:5*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_2': {srcTop:5*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_3': {srcTop:5*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_15_4': {srcTop:6*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_5': {srcTop:6*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_6': {srcTop:6*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_7': {srcTop:6*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_8': {srcTop:6*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_9': {srcTop:6*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'sea_15_10': {srcTop:7*board.cellHeight.value, srcLeft:0*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_11': {srcTop:7*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_12': {srcTop:7*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_13': {srcTop:7*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_14': {srcTop:7*board.cellHeight.value, srcLeft:4*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-        'sea_15_15': {srcTop:7*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
-
-        'wasteland': {srcTop:7*board.cellHeight.value, srcLeft:6*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},    // 荒地
-    }) as Ref<TileDict>;
 
     const srcTileKeyListVM = ref<Array<string>>([
         // [0]行目
