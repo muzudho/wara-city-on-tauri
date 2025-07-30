@@ -26,6 +26,9 @@
                         :srcHeight="srcTileRectangles.tileDict.value[key].srcHeight"
                         :tilemapUrl="srcTileRectangles.tileDict.value[key].tilemapUrl"
                         @click="onMapTileClick(index)"
+                        @mousedown="onMapTileMouseDown(index)"
+                        @mouseup="onMapTileMouseUp(index)"
+                        @mousemove="onMapTileMouseMove(index)"
                         style="z-index: 1;"/>
 
                 <!-- タイル・パレット・ウィンドウ
@@ -76,12 +79,29 @@
         }
     );
 
-    const selectedTilemapKeyVM = ref('sea')     // TODO 初期値どうする？
-    const penVM = ref('')
+    const selectedTilemapKeyVM = ref('sea');    // TODO 初期値どうする？
+    const penVM = ref('');
+    const mouseDraggingVM = ref(false);
 
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
         if (penVM.value == '') {
+            return;
+        }
+        // マップタイルを更新
+        board.tileKeyArray.value[index] = penVM.value
+    }
+
+    function onMapTileMouseDown(_index: number) {
+        mouseDraggingVM.value = true;
+    }
+
+    function onMapTileMouseUp(_index: number) {
+        mouseDraggingVM.value = false;
+    }
+
+    function onMapTileMouseMove(index: number) {
+        if (! mouseDraggingVM.value) {
             return;
         }
         // マップタイルを更新
