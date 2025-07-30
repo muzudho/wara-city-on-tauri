@@ -69,8 +69,10 @@
 
     const boardStyle = computed(
         function(): string {
-            // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
-            return 'max-width: 4096px; width:' + board.widthPixels.value + 'px; line-height: 0;'
+            return '' + //
+                ' max-width: ' + board.widthPixels.value + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
+                ' width:' + board.widthPixels.value + 'px;' +   // 横幅。
+                ' line-height: 0;'
         }
     );
 
@@ -98,10 +100,15 @@
 </script>
 
 <style>
+html {
+    /* Tauri のウィンドウに横スクロールバーを付ける */
+    overflow-x: scroll !important;
+}
+
 :root {
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
-    line-height: 24px;
+    /*line-height: 24px;*/
     font-weight: 400;
 
     color: #0f0f0f;
@@ -115,7 +122,7 @@
 }
 
 .container {
-    height: 95vh;
+    /*height: 95vh;*/
     margin: 0;
     display: flex;
     flex-direction: column;
