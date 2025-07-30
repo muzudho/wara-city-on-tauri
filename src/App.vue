@@ -23,10 +23,10 @@
                     <Tile
                             v-for="(key, index) in board.tileKeyArray.value"
                             :key="key"
-                            :srcLeft="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcLeft"
-                            :srcTop="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcTop"
-                            :srcWidth="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcWidth"
-                            :srcHeight="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcHeight"
+                            :srcLeft="srcTileRectangles.tileDict.value[key].srcLeft"
+                            :srcTop="srcTileRectangles.tileDict.value[key].srcTop"
+                            :srcWidth="srcTileRectangles.tileDict.value[key].srcWidth"
+                            :srcHeight="srcTileRectangles.tileDict.value[key].srcHeight"
                             :tilemapUrl="srcTileRectangles.tilemapFilepathDict[selectedTilemapKey]"
                             @click="onMapTileClick(index)"/>
                 </v-container>
