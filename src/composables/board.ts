@@ -24,8 +24,12 @@ export function createBoard(srcTilemaps: SourceTilemaps): Board {
     const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * srcTilemaps.cellWidth.value) * (heightCells.value * srcTilemaps.cellHeight.value));
 
     // TODO 辞書＞配列＞文字列 にしたい。
+    // FIXME 間違いでは？
     const srcTileKeyListDict = ref<StringArrayDict>(
         {
+            "land":[
+
+            ],
             "sea":[
                 // [0]行目
                 'wasteland',

@@ -8,7 +8,7 @@
                     <!-- 例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
-                    <Tile v-for="(key, index) in board.srcTileKeyListDict.value['sea']" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
+                    <Tile v-for="(key, index) in srcTileKeyList" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
@@ -48,7 +48,13 @@
             return 'width:' + board.widthPixels.value + 'px; line-height: 0;'
         }
     );
+    const srcTileKeyList = computed(
+        function(): string[] {
+            return board.srcTileKeyListDict.value[selectedTilemapKeyVM.value]
+        }
+    );
 
+    const selectedTilemapKeyVM = ref('sea')     // TODO 初期値どうする？
     const penVM = ref('')
 
     function onMapTileClick(index: number) {
@@ -57,12 +63,12 @@
             return;
         }
         // マップタイルを更新
-        board.srcTileKeyListDict.value['sea'][index] = penVM.value
+        board.srcTileKeyListDict.value[selectedTilemapKeyVM.value][index] = penVM.value
     }
 
     function onTilemapChanged(key: string) {
-        alert(`タイルマップを変更した： key=${key}`)
-        //penVM.value = name
+        //alert(`タイルマップを変更した： key=${key}`)
+        selectedTilemapKeyVM.value = key
     }
 
     function onSrcTileClicked(name: string) {

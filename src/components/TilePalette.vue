@@ -76,8 +76,6 @@
     const selectedTilemapKeyVM = ref<string>("sea")
     // ビューモデルの変更を監視。
     watch(selectedTilemapKeyVM, () => {
-        // TODO 親に変更を通知
-        //alert(`selectedTilemapKeyVM.value=${selectedTilemapKeyVM.value}を選択した。`)
         // 親に変更を通知
         emit('changeTilemap', selectedTilemapKeyVM.value);
     });
@@ -87,7 +85,8 @@
 
     const {tilemapFilepathDict} = createSourceTilemaps();
 
-    const srcTileDict = {
+    // TODO string をキーにしたい。
+    const srcTileDict = <TileDict>{
         'sea_0': {srcTop:0*cellHeight, srcLeft:1*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
         'sea_1': {srcTop:0*cellHeight, srcLeft:2*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
         'sea_2': {srcTop:0*cellHeight, srcLeft:3*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
@@ -144,13 +143,10 @@
         'sea_15_15': {srcTop:7*cellHeight, srcLeft:5*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},
 
         'wasteland': {srcTop:7*cellHeight, srcLeft:6*cellWidth, srcWidth:cellWidth, srcHeight:cellHeight, tilemapUrl:tilemapFilepathDict['sea']},    // 荒地
-    } as TileDict;
-
-    const selectedTileVM = ref('')
+    };
 
     function onSrcTileClick(name: string) {
         //alert(`ソースタイルをクリックした： name=${name}`)
-        selectedTileVM.value = name
         // 親に変更を通知
         emit('selectTile', name);
     }

@@ -21,6 +21,7 @@ const tilemapFilepathDict = <StringDict>{
 export function createSourceTilemaps(): SourceTilemaps {
     const cellWidth: Ref<number> = ref(32);
     const cellHeight: Ref<number> = ref(32);
+
     const tileDict = ref<TileDict>({
         'sea_0': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海
         'sea_1': {srcTop:0*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海岸線
