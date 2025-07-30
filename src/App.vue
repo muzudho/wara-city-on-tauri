@@ -66,7 +66,7 @@
     import { invoke } from "@tauri-apps/api/core";
     import { open } from '@tauri-apps/plugin-dialog';
     import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
-    import { computed, ref } from "vue";
+    import { computed, ref, Ref } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
@@ -92,7 +92,7 @@
         }
     );
 
-    const srcTileDict = {
+    const srcTileDict = ref({
         'sea_0': {srcTop:0*board.cellHeight.value, srcLeft:1*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
         'sea_1': {srcTop:0*board.cellHeight.value, srcLeft:2*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
         'sea_2': {srcTop:0*board.cellHeight.value, srcLeft:3*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
@@ -149,7 +149,7 @@
         'sea_15_15': {srcTop:7*board.cellHeight.value, srcLeft:5*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},
 
         'wasteland': {srcTop:7*board.cellHeight.value, srcLeft:6*board.cellWidth.value, srcWidth:board.cellWidth.value, srcHeight:board.cellHeight.value, tilemapUrl:board.tilemapFilepathDict['sea']},    // 荒地
-    } as TileDict;
+    }) as Ref<TileDict>;
 
     const srcTileKeyListVM = ref<Array<string>>([
         // [0]行目

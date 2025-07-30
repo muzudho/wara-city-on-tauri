@@ -1,5 +1,8 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
+// 型
+import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
+
 // 辞書の型（例：キーがstring、値がstring）
 type Dict = Record<string, string>;
 
@@ -14,6 +17,7 @@ interface Board {
     heightPixels: Ref<number>;
     areaPixels: ComputedRef<number>;
     tilemapFilepathDict: Dict;  // 変更がないデータ。
+    srcTileDict: Ref<TileDict>;
 }
 
 export function getBoard(): Board {
@@ -30,6 +34,9 @@ export function getBoard(): Board {
         'sea': '/public/img/tiles/tilemap_sea.png',
     };
 
+    const srcTileDict = {
+    } as Ref<TileDict>;
+
     return {
         widthCells,
         heightCells,
@@ -40,5 +47,6 @@ export function getBoard(): Board {
         heightPixels,
         areaPixels,
         tilemapFilepathDict,
+        srcTileDict,
     };
 }
