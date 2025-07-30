@@ -17,7 +17,6 @@ export interface Board {
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
     areaPixels: ComputedRef<number>;
-    tilemapFilepathDict: StringDict;  // 変更がないデータ。
     srcTileDict: Ref<TileDict>;
     srcTileKeyList: Ref<Array<string>>;
 }
@@ -224,7 +223,6 @@ export function createBoard(): Board {
         widthPixels,
         heightPixels,
         areaPixels,
-        tilemapFilepathDict,
         srcTileDict,
         srcTileKeyList,
     };
