@@ -19,7 +19,7 @@
         <v-row no-gutters>
             <v-col class="pa-0">
                 <v-select
-                        v-model="selectedItemVM"
+                        v-model="selectedTilemapKeyVM"
                         v-bind:items="optionsVM"
                         label="タイルマップ名"
                         item-title="value"
@@ -31,14 +31,15 @@
 
         <!-- タイルを敷き詰めるだけ -->
         <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
-            <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl" @click="onSrcTileClick(key)"/>
+            <Tile v-for="(item, key) in srcTileDict" :key="key" :srcLeft="item.srcLeft"  :srcTop="item.srcTop" :srcWidth="item.srcWidth" :srcHeight="item.srcHeight" :tilemapUrl="item.tilemapUrl"
+                @click="onSrcTileClick(key)"/>
         </div>
 
     </vue-draggable-resizable>
 </template>
 
 <script setup lang="ts">
-    import { ref } from "vue";
+    import { ref, watch } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
@@ -53,6 +54,14 @@
     // 共有データ
     import { createSourceTilemaps } from '@/composables/sourceTilemaps';
 
+    // カスタムイベントを定義
+    interface Emits {
+        // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
+        (event: 'selectTile', value: string): void;
+        (event: 'changeTilemap', value: string): void;
+    }
+    const emit = defineEmits<Emits>();
+
     // タイル選択リストボックス
     interface ListOption {
         key: string;
@@ -64,7 +73,14 @@
         {key: "sea", value: "海"},
         {key: "land", value: "陸"},
     ]
-    const selectedItemVM = ref<string>("sea")
+    const selectedTilemapKeyVM = ref<string>("sea")
+    // ビューモデルの変更を監視。
+    watch(selectedTilemapKeyVM, () => {
+        // TODO 親に変更を通知
+        //alert(`selectedTilemapKeyVM.value=${selectedTilemapKeyVM.value}を選択した。`)
+        // 親に変更を通知
+        emit('changeTilemap', selectedTilemapKeyVM.value);
+    });
 
     const cellWidth = 32;
     const cellHeight = 32;
@@ -131,13 +147,6 @@
     } as TileDict;
 
     const selectedTileVM = ref('')
-
-    // カスタムイベントを定義
-    interface Emits {
-        // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
-        (event: 'selectTile', value: string): void;
-    }
-    const emit = defineEmits<Emits>();
 
     function onSrcTileClick(name: string) {
         //alert(`ソースタイルをクリックした： name=${name}`)

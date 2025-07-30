@@ -14,7 +14,9 @@
 
                 <!-- タイル・パレット・ウィンドウ
                 -->
-                <TilePalette v-on:selectTile="onSrcTileClick"></TilePalette>
+                <TilePalette
+                        v-on:changeTilemap="onTilemapChanged"
+                        v-on:selectTile="onSrcTileClicked"></TilePalette>
 
                 <!-- ターミナル・ウィンドウ
                 -->
@@ -58,7 +60,12 @@
         board.srcTileKeyListDict.value['sea'][index] = penVM.value
     }
 
-    function onSrcTileClick(name: string) {
+    function onTilemapChanged(key: string) {
+        alert(`タイルマップを変更した： key=${key}`)
+        //penVM.value = name
+    }
+
+    function onSrcTileClicked(name: string) {
         //alert(`ソースタイル２をクリックした： name=${name}`)
         penVM.value = name
     }
