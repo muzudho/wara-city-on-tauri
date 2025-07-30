@@ -16,8 +16,10 @@ export interface SourceTileRectangles {
 const tilemapFilepathDict = <StringDict>{
     // "/public" フォルダー下のパス
     'sea': '/img/tiles/tilemap_sea.png',
+    'seaBorder': '/img/tiles/tilemap_seaBorder.png',
     'land': '/img/tiles/tilemap_land.png',
     'wastelandRoad': '/img/tiles/tilemap_wastelandRoad.png',
+    'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
 };
 
 export function createSourceTileRectangles(): SourceTileRectangles {
@@ -95,8 +97,10 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return rawDict;
     }
 
-    Object.assign(rawTileDict, makeBorderTilemap('wastelandRoad'));
     Object.assign(rawTileDict, makeBorderTilemap('sea'));
+    Object.assign(rawTileDict, makeBorderTilemap('seaBorder'));
+    Object.assign(rawTileDict, makeBorderTilemap('wastelandRoad'));
+    Object.assign(rawTileDict, makeBorderTilemap('wastelandBorder'));
 
     const tileDict = ref<TileDict>(rawTileDict);
 
