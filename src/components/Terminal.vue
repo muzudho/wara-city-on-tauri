@@ -81,9 +81,9 @@
             props.board.tileKeyArray.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
-            jsonText += '        ""'; // 番兵
-            jsonText += '    ]';
-            jsonText += "}"; //
+            jsonText += '        ""\n'; // 番兵
+            jsonText += '    ]\n';
+            jsonText += "}\n"; //
 
             textVM.value = jsonText;
 

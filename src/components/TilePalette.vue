@@ -77,8 +77,9 @@
         {key: "", value: ""},
         {key: "sea", value: "海"},
         {key: "land", value: "陸"},
+        {key: "wastelandRoad", value: "荒地の道"},
     ]
-    const selectedTilemapKeyVM = ref<string>("sea")
+    const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
     // ビューモデルの変更を監視。
     watch(selectedTilemapKeyVM, () => {
         // 親に変更を通知

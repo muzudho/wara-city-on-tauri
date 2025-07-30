@@ -70,7 +70,63 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
             'sea_15_13': srcTileRectangles.tileDict.value["sea_15_13"],
             'sea_15_14': srcTileRectangles.tileDict.value["sea_15_14"],
             'sea_15_15': srcTileRectangles.tileDict.value["sea_15_15"],
-        }
+        },
+        "wastelandRoad" : {
+            'wastelandRoad_0': srcTileRectangles.tileDict.value["wastelandRoad_0"],   // 海
+            'wastelandRoad_16': srcTileRectangles.tileDict.value["wastelandRoad_16"],   // 海岸線
+            'wastelandRoad_32': srcTileRectangles.tileDict.value["wastelandRoad_32"],
+            'wastelandRoad_48': srcTileRectangles.tileDict.value["wastelandRoad_48"],
+            'wastelandRoad_49': srcTileRectangles.tileDict.value["wastelandRoad_49"],
+
+            'wastelandRoad_64': srcTileRectangles.tileDict.value["wastelandRoad_64"],
+            'wastelandRoad_80': srcTileRectangles.tileDict.value["wastelandRoad_80"],
+            'wastelandRoad_96': srcTileRectangles.tileDict.value["wastelandRoad_96"],
+            'wastelandRoad_98': srcTileRectangles.tileDict.value["wastelandRoad_98"],
+            'wastelandRoad_112': srcTileRectangles.tileDict.value["wastelandRoad_112"],
+            'wastelandRoad_113': srcTileRectangles.tileDict.value["wastelandRoad_113"],
+
+            'wastelandRoad_114': srcTileRectangles.tileDict.value["wastelandRoad_114"],
+            'wastelandRoad_115': srcTileRectangles.tileDict.value["wastelandRoad_115"],
+            'wastelandRoad_128': srcTileRectangles.tileDict.value["wastelandRoad_128"],
+            'wastelandRoad_144': srcTileRectangles.tileDict.value["wastelandRoad_144"],
+            'wastelandRoad_152': srcTileRectangles.tileDict.value["wastelandRoad_152"],
+            'wastelandRoad_160': srcTileRectangles.tileDict.value["wastelandRoad_160"],
+
+            'wastelandRoad_176': srcTileRectangles.tileDict.value["wastelandRoad_176"],
+            'wastelandRoad_177': srcTileRectangles.tileDict.value["wastelandRoad_177"],
+            'wastelandRoad_184': srcTileRectangles.tileDict.value["wastelandRoad_184"],
+            'wastelandRoad_185': srcTileRectangles.tileDict.value["wastelandRoad_185"],
+            'wastelandRoad_192': srcTileRectangles.tileDict.value["wastelandRoad_192"],
+            'wastelandRoad_196': srcTileRectangles.tileDict.value["wastelandRoad_196"],
+
+            'wastelandRoad_208': srcTileRectangles.tileDict.value["wastelandRoad_208"],
+            'wastelandRoad_212': srcTileRectangles.tileDict.value["wastelandRoad_212"],
+            'wastelandRoad_216': srcTileRectangles.tileDict.value["wastelandRoad_216"],
+            'wastelandRoad_220': srcTileRectangles.tileDict.value["wastelandRoad_220"],
+            'wastelandRoad_224': srcTileRectangles.tileDict.value["wastelandRoad_224"],
+            'wastelandRoad_226': srcTileRectangles.tileDict.value["wastelandRoad_226"],
+
+            'wastelandRoad_228': srcTileRectangles.tileDict.value["wastelandRoad_228"],
+            'wastelandRoad_230': srcTileRectangles.tileDict.value["wastelandRoad_230"],
+            'wastelandRoad_240': srcTileRectangles.tileDict.value["wastelandRoad_240"],
+            'wastelandRoad_241': srcTileRectangles.tileDict.value["wastelandRoad_241"],
+            'wastelandRoad_242': srcTileRectangles.tileDict.value["wastelandRoad_242"],
+            'wastelandRoad_243': srcTileRectangles.tileDict.value["wastelandRoad_243"],
+
+            'wastelandRoad_244': srcTileRectangles.tileDict.value["wastelandRoad_244"],
+            'wastelandRoad_245': srcTileRectangles.tileDict.value["wastelandRoad_245"],
+            'wastelandRoad_246': srcTileRectangles.tileDict.value["wastelandRoad_246"],
+            'wastelandRoad_247': srcTileRectangles.tileDict.value["wastelandRoad_247"],
+            'wastelandRoad_248': srcTileRectangles.tileDict.value["wastelandRoad_248"],
+            'wastelandRoad_249': srcTileRectangles.tileDict.value["wastelandRoad_249"],
+
+            'wastelandRoad_250': srcTileRectangles.tileDict.value["wastelandRoad_250"],
+            'wastelandRoad_251': srcTileRectangles.tileDict.value["wastelandRoad_251"],
+            'wastelandRoad_252': srcTileRectangles.tileDict.value["wastelandRoad_252"],
+            'wastelandRoad_253': srcTileRectangles.tileDict.value["wastelandRoad_253"],
+            'wastelandRoad_254': srcTileRectangles.tileDict.value["wastelandRoad_254"],
+            'wastelandRoad_255': srcTileRectangles.tileDict.value["wastelandRoad_255"],
+        },
     });
 
     return {
