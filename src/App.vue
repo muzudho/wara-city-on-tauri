@@ -2,60 +2,23 @@
     <v-app>
         <v-main>
             <v-container class="pa-1">
-                <v-row no-gutters>
-                    <v-col><v-text-field v-model="filePathVM" label="File Path" class="pa-0"></v-text-field></v-col>
-                    <v-col cols="2"><v-btn block v-on:click="onOpenButtonClicked" class="pa-0">Open</v-btn></v-col>
-                    <v-col cols="2"><v-btn block v-on:click="onRefreshButtonClicked" class="pa-0">Refresh</v-btn></v-col>
-                    <v-col cols="2"><v-btn block v-on:click="onWriteButtonClicked" class="pa-0">Write</v-btn></v-col>
-                </v-row>
+
                 <!-- 単純にタイルを敷き詰めているだけ。 -->
                 <v-container class="pa-0" :style="boardStyle">
-                    <!--
-                        例えば、以下のようなタグをリピート。
+                    <!-- 例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
                     <Tile v-for="(key, index) in board.srcTileKeyList.value" :key="index" :srcLeft="board.srcTileDict.value[key].srcLeft" :srcTop="board.srcTileDict.value[key].srcTop" :srcWidth="board.srcTileDict.value[key].srcWidth" :srcHeight="board.srcTileDict.value[key].srcHeight" :tilemapUrl="board.srcTileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
-                <!--
-                    タイル・パレット・ウィンドウ
+
+                <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalette v-on:selectTile="onSrcTileClick"></TilePalette>
-                <!--
-                    ターミナル・ウィンドウ
-                    TODO コンポーネント化したい
+
+                <!-- ターミナル・ウィンドウ
                 -->
                 <Terminal :board="board"></Terminal>
-                <vue-draggable-resizable
-                        :w="200"
-                        :h="100"
-                        :x="30"
-                        :y="60"
-                        :draggable="true"
-                        :resizable="true"
-                        :parent="false"
-                        class-name="panel"
-                        style="background-color: aliceblue;">
-                    <v-row style="color: black; background-color: lightgray;" no-gutters>
-                        Terminal
-                    </v-row>
-                    <v-row no-gutters>
-                        <v-textarea v-model="textVM"></v-textarea>
-                    </v-row>
-                    <v-row no-gutters>
-                        <v-col class="pa-0">
-                            <v-select
-                                    v-model="selectedItemVM"
-                                    v-bind:items="optionsVM"
-                                    label="機能"
-                                    item-title="value"
-                                    item-value="key"
-                                    class="ma-0">
-                            </v-select>
-                        </v-col>
-                        <v-col cols="2"><v-btn block v-on:click="onExecuteButtonClicked" class="pa-0">Execute</v-btn></v-col>
-                    </v-row>
-                </vue-draggable-resizable>
 
             </v-container>
         </v-main>
@@ -63,14 +26,7 @@
 </template>
 
 <script setup lang="ts">
-    import { invoke } from "@tauri-apps/api/core";
-    import { open } from '@tauri-apps/plugin-dialog';
-    import { readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
     import { computed, ref } from "vue";
-
-    // ドラッグ可能パネル
-    import VueDraggableResizable from 'vue-draggable-resizable';
-    import 'vue-draggable-resizable/style.css';
 
     // コンポーネント
     import Tile from '@/components/Tile.vue';
@@ -90,102 +46,6 @@
     );
 
     const penVM = ref('')
-
-    interface IOption {
-        key: string;
-        value: string;
-    }
-
-    const filePathVM = ref("C:\\Users\\muzud\\OneDrive\\ドキュメント\\temp\\temp.csv");
-    const optionsVM = <Array<IOption>>[
-        {key: "", value: ""},
-        {key: "マップJSON出力1", value: "マップJSON出力"},
-        {key: "マップJSON入力1", value: "マップJSON入力"},
-        {key: "都道府県スプリット1", value: "都道府県スプリット"},
-    ]
-    const selectedItemVM = ref<string>("")
-    const textVM = ref()
-
-    async function onOpenButtonClicked() {
-        console.log("［Open］ボタンを押したぜ。")
-        // Open a dialog
-        const filePath = await open({
-            multiple: false,
-            directory: false,  // ファイルを開く。
-            defaultPath: filePathVM.value
-        });
-        filePathVM.value = filePath ?? "";  // パスの取得に失敗したら空文字列を入れる。
-        readFile()
-    }
-
-    async function onRefreshButtonClicked() {
-        console.log("［Refresh］ボタンを押したぜ。")
-        readFile()
-    }
-
-    async function onWriteButtonClicked() {
-        console.log("［Write］ボタンを押したぜ。")
-        // 書き込むためには、📄 `src-tauri/capabilities/default.json` ファイルの `permissions` を設定する必要がある。
-        await writeTextFile(filePathVM.value, textVM.value);
-    }
-
-    async function readFile() {
-        const contents = await readTextFile(filePathVM.value);  
-        textVM.value = contents
-    }
-
-    async function onExecuteButtonClicked() {
-        //alert(`［Execute］ボタンを押したぜ。 selectedItemVM.value=${selectedItemVM.value}`)
-
-        if (selectedItemVM.value == 'マップJSON出力1'){
-
-            let jsonText = '{\n'
-            jsonText += `    "widthCells": ${board.widthCells.value},\n`;
-            jsonText += `    "heightCells": ${board.heightCells.value},\n`;
-            jsonText += `    "cellWidth": ${board.cellWidth},\n`;
-            jsonText += `    "cellHeight": ${board.cellHeight},\n`;
-            jsonText += '    "tileList": [\n';
-            board.srcTileKeyList.value.forEach((tileKey: string, _index: number) => {
-                jsonText += `        "${tileKey}",\n`;
-            });
-            jsonText += '        ""'; // 番兵
-            jsonText += '    ]';
-            jsonText += "}"; //
-
-            textVM.value = jsonText;
-
-        } else if (selectedItemVM.value == 'マップJSON入力1'){
-
-            // TODO マップJSON入力
-            //const jsonString = '{"tile1": {"srcLeft": 10, "srcTop": 20}}';
-            const jsonString = textVM.value;
-            let result;
-            //let srcTileKeyList2VM = Array<string>;
-            try {
-                result = JSON.parse(jsonString);// as TileMap;
-                alert(`result=${result}`);
-
-                // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
-                for(let i=0; i<board.areaCells.value; i+=1){
-                    board.srcTileKeyList.value[i] = result["tileList"][i];    // 配列
-                }
-            } catch (error) {
-                alert(`エラー：${error}`);
-            }
-
-            textVM.value = JSON.stringify(result, null, '    ');
-
-        } else {
-            textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
-        }
-    }
-
-    // Tauriのコマンドを呼び出し。
-    // 文字列を渡すと、指定の操作を実施後の文字列を返す。
-    async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
-        const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
-        return resultStr;
-    }
 
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)

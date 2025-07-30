@@ -10,7 +10,7 @@
             class-name="panel"
             style="background-color: aliceblue;">
         <v-row style="color: black; background-color: lightgray;" no-gutters>
-            Terminal 2
+            Terminal
         </v-row>
         <v-row no-gutters>
             <v-textarea v-model="textVM"></v-textarea>
@@ -48,10 +48,6 @@
     }
     const props = defineProps<Props>();
 
-    // TODO 🌟 コンポーネント外部の変数を変更したい。
-    const srcTileKeyListVM = ref<Array<string>>([
-    ]);
-
     interface IOption {
         key: string;
         value: string;
@@ -78,7 +74,7 @@
             jsonText += `    "cellWidth": ${props.board.cellWidth.value},\n`;
             jsonText += `    "cellHeight": ${props.board.cellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
-            srcTileKeyListVM.value.forEach((tileKey: string, _index: number) => {
+            props.board.srcTileKeyList.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""'; // 番兵
@@ -96,11 +92,11 @@
             //let srcTileKeyList2VM = Array<string>;
             try {
                 result = JSON.parse(jsonString);// as TileMap;
-                alert(`result=${result}`);
+                //alert(`result=${result}`);
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
                 for(let i=0; i<props.board.areaCells.value; i+=1){
-                    srcTileKeyListVM.value[i] = result["tileList"][i];    // 配列
+                    props.board.srcTileKeyList.value[i] = result["tileList"][i];    // 配列
                 }
             } catch (error) {
                 alert(`エラー：${error}`);
