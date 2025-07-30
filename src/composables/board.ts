@@ -1,5 +1,8 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
+// 辞書の型（例：キーがstring、値がstring）
+type Dict = Record<string, string>;
+
 // ボードの設定を管理する型
 interface Board {
     widthCells: Ref<number>;
@@ -10,6 +13,7 @@ interface Board {
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
     areaPixels: ComputedRef<number>;
+    tilemapFilepathDict: Dict;  // 変更がないデータ。
 }
 
 export function getBoard(): Board {
@@ -22,6 +26,10 @@ export function getBoard(): Board {
     const heightPixels: ComputedRef<number> = computed(() => heightCells.value * cellHeight.value);
     const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * cellWidth.value) * (heightCells.value * cellHeight.value));
 
+    const tilemapFilepathDict = {
+        'sea': '/public/img/tiles/tilemap_sea.png',
+    };
+
     return {
         widthCells,
         heightCells,
@@ -31,5 +39,6 @@ export function getBoard(): Board {
         widthPixels,
         heightPixels,
         areaPixels,
+        tilemapFilepathDict,
     };
 }
