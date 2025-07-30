@@ -89,69 +89,70 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         'vocantLand': makeTile(0, 1, 'land'),    // 空き地
     }
 
-    function makeBorderTilemap() {
-        return {
+    function makeBorderTilemap(tilemap: string) {
+        // const rawDict = <TileDict>{};
+        // rawDict[`${tilemap}_0`] = makeTile(0, 1, tilemap);  // 海
 
+        return {
+            // 荒地の道
+            'wastelandRoad_0': makeTile(0, 1, tilemap),   // 海
+            'wastelandRoad_16': makeTile(0, 2, tilemap),   // 海岸線
+            'wastelandRoad_32': makeTile(0, 3, tilemap),
+            'wastelandRoad_48': makeTile(0, 4, tilemap),
+            'wastelandRoad_49': makeTile(0, 5, tilemap),
+
+            'wastelandRoad_64': makeTile(1, 0, tilemap),
+            'wastelandRoad_80': makeTile(1, 1, tilemap),
+            'wastelandRoad_96': makeTile(1, 2, tilemap),
+            'wastelandRoad_98': makeTile(1, 3, tilemap),
+            'wastelandRoad_112': makeTile(1, 4, tilemap),
+            'wastelandRoad_113': makeTile(1, 5, tilemap),
+
+            'wastelandRoad_114': makeTile(2, 0, tilemap),
+            'wastelandRoad_115': makeTile(2, 1, tilemap),
+            'wastelandRoad_128': makeTile(2, 2, tilemap),
+            'wastelandRoad_144': makeTile(2, 3, tilemap),
+            'wastelandRoad_152': makeTile(2, 4, tilemap),
+            'wastelandRoad_160': makeTile(2, 5, tilemap),
+
+            'wastelandRoad_176': makeTile(3, 0, tilemap),
+            'wastelandRoad_177': makeTile(3, 1, tilemap),
+            'wastelandRoad_184': makeTile(3, 2, tilemap),
+            'wastelandRoad_185': makeTile(3, 3, tilemap),
+            'wastelandRoad_192': makeTile(3, 4, tilemap),
+            'wastelandRoad_196': makeTile(3, 5, tilemap),
+
+            'wastelandRoad_208': makeTile(4, 0, tilemap),
+            'wastelandRoad_212': makeTile(4, 1, tilemap),
+            'wastelandRoad_216': makeTile(4, 2, tilemap),
+            'wastelandRoad_220': makeTile(4, 3, tilemap),
+            'wastelandRoad_224': makeTile(4, 4, tilemap),
+            'wastelandRoad_226': makeTile(4, 5, tilemap),
+
+            'wastelandRoad_228': makeTile(5, 0, tilemap),
+            'wastelandRoad_230': makeTile(5, 1, tilemap),
+            'wastelandRoad_240': makeTile(5, 2, tilemap),
+            'wastelandRoad_241': makeTile(5, 3, tilemap),
+            'wastelandRoad_242': makeTile(5, 4, tilemap),
+            'wastelandRoad_243': makeTile(5, 5, tilemap),
+
+            'wastelandRoad_244': makeTile(6, 0, tilemap),
+            'wastelandRoad_245': makeTile(6, 1, tilemap),
+            'wastelandRoad_246': makeTile(6, 2, tilemap),
+            'wastelandRoad_247': makeTile(6, 3, tilemap),
+            'wastelandRoad_248': makeTile(6, 4, tilemap),
+            'wastelandRoad_249': makeTile(6, 5, tilemap),
+
+            'wastelandRoad_250': makeTile(7, 0, tilemap),
+            'wastelandRoad_251': makeTile(7, 1, tilemap),
+            'wastelandRoad_252': makeTile(7, 2, tilemap),
+            'wastelandRoad_253': makeTile(7, 3, tilemap),
+            'wastelandRoad_254': makeTile(7, 4, tilemap),
+            'wastelandRoad_255': makeTile(7, 5, tilemap),
         };
     }
 
-    Object.assign(rawTileDict, {
-        // 荒地の道
-        'wastelandRoad_0': makeTile(0, 1, 'wastelandRoad'),   // 海
-        'wastelandRoad_16': makeTile(0, 2, 'wastelandRoad'),   // 海岸線
-        'wastelandRoad_32': makeTile(0, 3, 'wastelandRoad'),
-        'wastelandRoad_48': makeTile(0, 4, 'wastelandRoad'),
-        'wastelandRoad_49': makeTile(0, 5, 'wastelandRoad'),
-
-        'wastelandRoad_64': makeTile(1, 0, 'wastelandRoad'),
-        'wastelandRoad_80': makeTile(1, 1, 'wastelandRoad'),
-        'wastelandRoad_96': makeTile(1, 2, 'wastelandRoad'),
-        'wastelandRoad_98': makeTile(1, 3, 'wastelandRoad'),
-        'wastelandRoad_112': makeTile(1, 4, 'wastelandRoad'),
-        'wastelandRoad_113': makeTile(1, 5, 'wastelandRoad'),
-
-        'wastelandRoad_114': makeTile(2, 0, 'wastelandRoad'),
-        'wastelandRoad_115': makeTile(2, 1, 'wastelandRoad'),
-        'wastelandRoad_128': makeTile(2, 2, 'wastelandRoad'),
-        'wastelandRoad_144': makeTile(2, 3, 'wastelandRoad'),
-        'wastelandRoad_152': makeTile(2, 4, 'wastelandRoad'),
-        'wastelandRoad_160': makeTile(2, 5, 'wastelandRoad'),
-
-        'wastelandRoad_176': makeTile(3, 0, 'wastelandRoad'),
-        'wastelandRoad_177': makeTile(3, 1, 'wastelandRoad'),
-        'wastelandRoad_184': makeTile(3, 2, 'wastelandRoad'),
-        'wastelandRoad_185': makeTile(3, 3, 'wastelandRoad'),
-        'wastelandRoad_192': makeTile(3, 4, 'wastelandRoad'),
-        'wastelandRoad_196': makeTile(3, 5, 'wastelandRoad'),
-
-        'wastelandRoad_208': makeTile(4, 0, 'wastelandRoad'),
-        'wastelandRoad_212': makeTile(4, 1, 'wastelandRoad'),
-        'wastelandRoad_216': makeTile(4, 2, 'wastelandRoad'),
-        'wastelandRoad_220': makeTile(4, 3, 'wastelandRoad'),
-        'wastelandRoad_224': makeTile(4, 4, 'wastelandRoad'),
-        'wastelandRoad_226': makeTile(4, 5, 'wastelandRoad'),
-
-        'wastelandRoad_228': makeTile(5, 0, 'wastelandRoad'),
-        'wastelandRoad_230': makeTile(5, 1, 'wastelandRoad'),
-        'wastelandRoad_240': makeTile(5, 2, 'wastelandRoad'),
-        'wastelandRoad_241': makeTile(5, 3, 'wastelandRoad'),
-        'wastelandRoad_242': makeTile(5, 4, 'wastelandRoad'),
-        'wastelandRoad_243': makeTile(5, 5, 'wastelandRoad'),
-
-        'wastelandRoad_244': makeTile(6, 0, 'wastelandRoad'),
-        'wastelandRoad_245': makeTile(6, 1, 'wastelandRoad'),
-        'wastelandRoad_246': makeTile(6, 2, 'wastelandRoad'),
-        'wastelandRoad_247': makeTile(6, 3, 'wastelandRoad'),
-        'wastelandRoad_248': makeTile(6, 4, 'wastelandRoad'),
-        'wastelandRoad_249': makeTile(6, 5, 'wastelandRoad'),
-
-        'wastelandRoad_250': makeTile(7, 0, 'wastelandRoad'),
-        'wastelandRoad_251': makeTile(7, 1, 'wastelandRoad'),
-        'wastelandRoad_252': makeTile(7, 2, 'wastelandRoad'),
-        'wastelandRoad_253': makeTile(7, 3, 'wastelandRoad'),
-        'wastelandRoad_254': makeTile(7, 4, 'wastelandRoad'),
-        'wastelandRoad_255': makeTile(7, 5, 'wastelandRoad'),
-    });
+    Object.assign(rawTileDict, makeBorderTilemap('wastelandRoad'));
 
     const tileDict = ref<TileDict>(rawTileDict);
 

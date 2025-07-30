@@ -1,6 +1,6 @@
 <template>
     <vue-draggable-resizable
-            :w="200"
+            :w="208"
             :h="100"
             :x="30"
             :y="60"
