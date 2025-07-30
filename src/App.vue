@@ -27,7 +27,7 @@
                             :srcTop="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcTop"
                             :srcWidth="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcWidth"
                             :srcHeight="srcTilemaps.tileDictDict.value[selectedTilemapKey][key].srcHeight"
-                            :tilemapUrl="srcTilemaps.tilemapFilepathDict[selectedTilemapKey]"
+                            :tilemapUrl="srcTileRectangles.tilemapFilepathDict[selectedTilemapKey]"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
@@ -41,6 +41,7 @@
                 <!-- ターミナル・ウィンドウ
                 -->
                 <Terminal
+                        :srcTileRectangles="srcTileRectangles"
                         :srcTilemaps="srcTilemaps"
                         :board="board"></Terminal>
 
@@ -65,7 +66,7 @@
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     const srcTileRectangles = createSourceTileRectangles();
     const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileRectangles);
-    const board = createBoard(srcTilemaps);
+    const board = createBoard(srcTileRectangles);
 
     const boardStyle = computed(
         function(): string {

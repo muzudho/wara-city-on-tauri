@@ -41,10 +41,12 @@
 
     // 型
     import { Board } from '@/composables/board';
+    import { SourceTileRectangles } from "@/composables/sourceTileRectangles";
     import { SourceTilemaps } from "@/composables/sourceTilemaps";
 
     // コンポーネントが受け取る引数
     interface Props {
+        srcTileRectangles: SourceTileRectangles;
         srcTilemaps: SourceTilemaps;
         board: Board;
     }
@@ -73,8 +75,8 @@
             let jsonText = '{\n'
             jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
             jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;
-            jsonText += `    "cellWidth": ${props.srcTilemaps.cellWidth.value},\n`;
-            jsonText += `    "cellHeight": ${props.srcTilemaps.cellHeight.value},\n`;
+            jsonText += `    "cellWidth": ${props.srcTileRectangles.cellWidth.value},\n`;
+            jsonText += `    "cellHeight": ${props.srcTileRectangles.cellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
             props.board.tileKeyArray.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;

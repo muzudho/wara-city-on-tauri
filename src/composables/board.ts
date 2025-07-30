@@ -1,7 +1,7 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
 // 型、共有データ等
-import { SourceTilemaps } from '@/composables/sourceTilemaps';
+import { SourceTileRectangles } from "@/composables/sourceTileRectangles";
 
 // ボードの設定を管理する型
 export interface Board {
@@ -14,13 +14,13 @@ export interface Board {
     tileKeyArray: Ref<Array<string>>;
 }
 
-export function createBoard(srcTilemaps: SourceTilemaps): Board {
+export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
     const widthCells: Ref<number> = ref(10);
     const heightCells: Ref<number> = ref(10);
     const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);
-    const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTilemaps.cellWidth.value);
-    const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTilemaps.cellHeight.value);
-    const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * srcTilemaps.cellWidth.value) * (heightCells.value * srcTilemaps.cellHeight.value));
+    const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTileRectangles.cellWidth.value);
+    const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTileRectangles.cellHeight.value);
+    const areaPixels: ComputedRef<number> = computed(() => (widthCells.value * srcTileRectangles.cellWidth.value) * (heightCells.value * srcTileRectangles.cellHeight.value));
 
     const tileKeyArray = ref<Array<string>>(
         [

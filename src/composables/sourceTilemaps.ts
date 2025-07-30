@@ -1,28 +1,15 @@
 import { ref, Ref } from 'vue';
 
 // 型、共有データ等
-import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 import { TileDictDict } from '@/types/tile-dict-dict'; // @はsrcへのエイリアス
 import { SourceTileRectangles } from '@/composables/sourceTileRectangles';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
-    tilemapFilepathDict: StringDict;  // 変更がないデータ
-    cellWidth: Ref<number>;
-    cellHeight: Ref<number>;
     tileDictDict: Ref<TileDictDict>;
 }
 
-// モジュールスコープでインスタンスを1つだけ作る（シングルトン）
-const tilemapFilepathDict = <StringDict>{
-    'sea': '/public/img/tiles/tilemap_sea.png',
-    'land': '/public/img/tiles/tilemap_land.png',
-};
-
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
-    const cellWidth: Ref<number> = ref(32);
-    const cellHeight: Ref<number> = ref(32);
-
     const tileDictDict = ref<TileDictDict>({
         "land" : {
             // FIXME ダミーデータ
@@ -144,9 +131,6 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
     });
 
     return {
-        tilemapFilepathDict,
-        cellWidth,
-        cellHeight,
         tileDictDict,
     };
 }
