@@ -71,6 +71,62 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
             'sea_15_14': srcTileRectangles.tileDict.value["sea_15_14"],
             'sea_15_15': srcTileRectangles.tileDict.value["sea_15_15"],
         },
+        "sea2" : {
+            'sea2_0': srcTileRectangles.tileDict.value["sea2_0"],   // 海
+            'sea2_16': srcTileRectangles.tileDict.value["sea2_16"],   // 海岸線
+            'sea2_32': srcTileRectangles.tileDict.value["sea2_32"],
+            'sea2_48': srcTileRectangles.tileDict.value["sea2_48"],
+            'sea2_49': srcTileRectangles.tileDict.value["sea2_49"],
+
+            'sea2_64': srcTileRectangles.tileDict.value["sea2_64"],
+            'sea2_80': srcTileRectangles.tileDict.value["sea2_80"],
+            'sea2_96': srcTileRectangles.tileDict.value["sea2_96"],
+            'sea2_98': srcTileRectangles.tileDict.value["sea2_98"],
+            'sea2_112': srcTileRectangles.tileDict.value["sea2_112"],
+            'sea2_113': srcTileRectangles.tileDict.value["sea2_113"],
+
+            'sea2_114': srcTileRectangles.tileDict.value["sea2_114"],
+            'sea2_115': srcTileRectangles.tileDict.value["sea2_115"],
+            'sea2_128': srcTileRectangles.tileDict.value["sea2_128"],
+            'sea2_144': srcTileRectangles.tileDict.value["sea2_144"],
+            'sea2_152': srcTileRectangles.tileDict.value["sea2_152"],
+            'sea2_160': srcTileRectangles.tileDict.value["sea2_160"],
+
+            'sea2_176': srcTileRectangles.tileDict.value["sea2_176"],
+            'sea2_177': srcTileRectangles.tileDict.value["sea2_177"],
+            'sea2_184': srcTileRectangles.tileDict.value["sea2_184"],
+            'sea2_185': srcTileRectangles.tileDict.value["sea2_185"],
+            'sea2_192': srcTileRectangles.tileDict.value["sea2_192"],
+            'sea2_196': srcTileRectangles.tileDict.value["sea2_196"],
+
+            'sea2_208': srcTileRectangles.tileDict.value["sea2_208"],
+            'sea2_212': srcTileRectangles.tileDict.value["sea2_212"],
+            'sea2_216': srcTileRectangles.tileDict.value["sea2_216"],
+            'sea2_220': srcTileRectangles.tileDict.value["sea2_220"],
+            'sea2_224': srcTileRectangles.tileDict.value["sea2_224"],
+            'sea2_226': srcTileRectangles.tileDict.value["sea2_226"],
+
+            'sea2_228': srcTileRectangles.tileDict.value["sea2_228"],
+            'sea2_230': srcTileRectangles.tileDict.value["sea2_230"],
+            'sea2_240': srcTileRectangles.tileDict.value["sea2_240"],
+            'sea2_241': srcTileRectangles.tileDict.value["sea2_241"],
+            'sea2_242': srcTileRectangles.tileDict.value["sea2_242"],
+            'sea2_243': srcTileRectangles.tileDict.value["sea2_243"],
+
+            'sea2_244': srcTileRectangles.tileDict.value["sea2_244"],
+            'sea2_245': srcTileRectangles.tileDict.value["sea2_245"],
+            'sea2_246': srcTileRectangles.tileDict.value["sea2_246"],
+            'sea2_247': srcTileRectangles.tileDict.value["sea2_247"],
+            'sea2_248': srcTileRectangles.tileDict.value["sea2_248"],
+            'sea2_249': srcTileRectangles.tileDict.value["sea2_249"],
+
+            'sea2_250': srcTileRectangles.tileDict.value["sea2_250"],
+            'sea2_251': srcTileRectangles.tileDict.value["sea2_251"],
+            'sea2_252': srcTileRectangles.tileDict.value["sea2_252"],
+            'sea2_253': srcTileRectangles.tileDict.value["sea2_253"],
+            'sea2_254': srcTileRectangles.tileDict.value["sea2_254"],
+            'sea2_255': srcTileRectangles.tileDict.value["sea2_255"],
+        },
         "wastelandRoad" : {
             'wastelandRoad_0': srcTileRectangles.tileDict.value["wastelandRoad_0"],   // 海
             'wastelandRoad_16': srcTileRectangles.tileDict.value["wastelandRoad_16"],   // 海岸線
