@@ -59,10 +59,12 @@
 
     // 型、共有データ等
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
+    import { createSourceTileRectangles } from '@/composables/sourceTileRectangles';
     import { createBoard } from '@/composables/board';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const srcTilemaps: SourceTilemaps = createSourceTilemaps();
+    const srcTileRectangles = createSourceTileRectangles();
+    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileRectangles);
     const board = createBoard(srcTilemaps);
 
     const boardStyle = computed(

@@ -3,6 +3,7 @@ import { ref, Ref } from 'vue';
 // 型、共有データ等
 import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 import { TileDictDict } from '@/types/tile-dict-dict'; // @はsrcへのエイリアス
+import { SourceTileRectangles } from '@/composables/sourceTileRectangles';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
@@ -18,127 +19,127 @@ const tilemapFilepathDict = <StringDict>{
     'land': '/public/img/tiles/tilemap_land.png',
 };
 
-export function createSourceTilemaps(): SourceTilemaps {
+export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
     const cellWidth: Ref<number> = ref(32);
     const cellHeight: Ref<number> = ref(32);
 
     const tileDictDict = ref<TileDictDict>({
         "land" : {
             // FIXME ダミーデータ
-            'sea_0': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海
-            'sea_1': {srcTop:0*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海岸線
-            'sea_2': {srcTop:0*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_3': {srcTop:0*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_3_1': {srcTop:0*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_0': srcTileRectangles.tileDictDict.value["land"]["sea_0"],   // 海
+            'sea_1': srcTileRectangles.tileDictDict.value["land"]["sea_1"],   // 海岸線
+            'sea_2': srcTileRectangles.tileDictDict.value["land"]["sea_2"],
+            'sea_3': srcTileRectangles.tileDictDict.value["land"]["sea_3"],
+            'sea_3_1': srcTileRectangles.tileDictDict.value["land"]["sea_3_1"],
 
-            'sea_4': {srcTop:1*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_5': {srcTop:1*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_6': {srcTop:1*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_6_2': {srcTop:1*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7': {srcTop:1*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7_1': {srcTop:1*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_4': srcTileRectangles.tileDictDict.value["land"]["sea_4"],
+            'sea_5': srcTileRectangles.tileDictDict.value["land"]["sea_5"],
+            'sea_6': srcTileRectangles.tileDictDict.value["land"]["sea_6"],
+            'sea_6_2': srcTileRectangles.tileDictDict.value["land"]["sea_6_2"],
+            'sea_7': srcTileRectangles.tileDictDict.value["land"]["sea_7"],
+            'sea_7_1': srcTileRectangles.tileDictDict.value["land"]["sea_7_1"],
 
-            'sea_7_2': {srcTop:2*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7_3': {srcTop:2*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_8': {srcTop:2*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_9': {srcTop:2*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_9_8': {srcTop:2*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_10': {srcTop:2*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_7_2': srcTileRectangles.tileDictDict.value["land"]["sea_7_2"],
+            'sea_7_3': srcTileRectangles.tileDictDict.value["land"]["sea_7_3"],
+            'sea_8': srcTileRectangles.tileDictDict.value["land"]["sea_8"],
+            'sea_9': srcTileRectangles.tileDictDict.value["land"]["sea_9"],
+            'sea_9_8': srcTileRectangles.tileDictDict.value["land"]["sea_9_8"],
+            'sea_10': srcTileRectangles.tileDictDict.value["land"]["sea_10"],
 
-            'sea_11': {srcTop:3*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_1': {srcTop:3*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_8': {srcTop:3*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_9': {srcTop:3*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_12': {srcTop:3*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_12_8': {srcTop:3*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_11': srcTileRectangles.tileDictDict.value["land"]["sea_11"],
+            'sea_11_1': srcTileRectangles.tileDictDict.value["land"]["sea_11_1"],
+            'sea_11_8': srcTileRectangles.tileDictDict.value["land"]["sea_11_8"],
+            'sea_11_9': srcTileRectangles.tileDictDict.value["land"]["sea_11_9"],
+            'sea_12': srcTileRectangles.tileDictDict.value["land"]["sea_12"],
+            'sea_12_8': srcTileRectangles.tileDictDict.value["land"]["sea_12_8"],
 
-            'sea_13': {srcTop:4*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_1': {srcTop:4*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_8': {srcTop:4*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_9': {srcTop:4*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14': {srcTop:4*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14_2': {srcTop:4*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_13': srcTileRectangles.tileDictDict.value["land"]["sea_13"],
+            'sea_13_1': srcTileRectangles.tileDictDict.value["land"]["sea_13_1"],
+            'sea_13_8': srcTileRectangles.tileDictDict.value["land"]["sea_13_8"],
+            'sea_13_9': srcTileRectangles.tileDictDict.value["land"]["sea_13_9"],
+            'sea_14': srcTileRectangles.tileDictDict.value["land"]["sea_14"],
+            'sea_14_2': srcTileRectangles.tileDictDict.value["land"]["sea_14_2"],
 
-            'sea_14_4': {srcTop:5*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14_6': {srcTop:5*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15': {srcTop:5*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_1': {srcTop:5*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_2': {srcTop:5*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_3': {srcTop:5*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_14_4': srcTileRectangles.tileDictDict.value["land"]["sea_14_4"],
+            'sea_14_6': srcTileRectangles.tileDictDict.value["land"]["sea_14_6"],
+            'sea_15': srcTileRectangles.tileDictDict.value["land"]["sea_15"],
+            'sea_15_1': srcTileRectangles.tileDictDict.value["land"]["sea_15_1"],
+            'sea_15_2': srcTileRectangles.tileDictDict.value["land"]["sea_15_2"],
+            'sea_15_3': srcTileRectangles.tileDictDict.value["land"]["sea_15_3"],
 
-            'sea_15_4': {srcTop:6*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_5': {srcTop:6*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_6': {srcTop:6*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_7': {srcTop:6*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_8': {srcTop:6*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_9': {srcTop:6*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_15_4': srcTileRectangles.tileDictDict.value["land"]["sea_15_4"],
+            'sea_15_5': srcTileRectangles.tileDictDict.value["land"]["sea_15_5"],
+            'sea_15_6': srcTileRectangles.tileDictDict.value["land"]["sea_15_6"],
+            'sea_15_7': srcTileRectangles.tileDictDict.value["land"]["sea_15_7"],
+            'sea_15_8': srcTileRectangles.tileDictDict.value["land"]["sea_15_8"],
+            'sea_15_9': srcTileRectangles.tileDictDict.value["land"]["sea_15_9"],
 
-            'sea_15_10': {srcTop:7*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_11': {srcTop:7*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_12': {srcTop:7*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_13': {srcTop:7*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_14': {srcTop:7*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_15': {srcTop:7*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_15_10': srcTileRectangles.tileDictDict.value["land"]["sea_15_10"],
+            'sea_15_11': srcTileRectangles.tileDictDict.value["land"]["sea_15_11"],
+            'sea_15_12': srcTileRectangles.tileDictDict.value["land"]["sea_15_12"],
+            'sea_15_13': srcTileRectangles.tileDictDict.value["land"]["sea_15_13"],
+            'sea_15_14': srcTileRectangles.tileDictDict.value["land"]["sea_15_14"],
+            'sea_15_15': srcTileRectangles.tileDictDict.value["land"]["sea_15_15"],
 
-            'vocantLand': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['land']},    // 空き地
+            'vocantLand': srcTileRectangles.tileDictDict.value["land"]["vocantLand"],    // 空き地
         },
         "sea" : {
-            'sea_0': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海
-            'sea_1': {srcTop:0*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},   // 海岸線
-            'sea_2': {srcTop:0*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_3': {srcTop:0*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_3_1': {srcTop:0*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_0': srcTileRectangles.tileDictDict.value["sea"]["sea_0"],   // 海
+            'sea_1': srcTileRectangles.tileDictDict.value["sea"]["sea_1"],   // 海岸線
+            'sea_2': srcTileRectangles.tileDictDict.value["sea"]["sea_2"],
+            'sea_3': srcTileRectangles.tileDictDict.value["sea"]["sea_3"],
+            'sea_3_1': srcTileRectangles.tileDictDict.value["sea"]["sea_3_1"],
 
-            'sea_4': {srcTop:1*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_5': {srcTop:1*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_6': {srcTop:1*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_6_2': {srcTop:1*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7': {srcTop:1*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7_1': {srcTop:1*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_4': srcTileRectangles.tileDictDict.value["sea"]["sea_4"],
+            'sea_5': srcTileRectangles.tileDictDict.value["sea"]["sea_5"],
+            'sea_6': srcTileRectangles.tileDictDict.value["sea"]["sea_6"],
+            'sea_6_2': srcTileRectangles.tileDictDict.value["sea"]["sea_6_2"],
+            'sea_7': srcTileRectangles.tileDictDict.value["sea"]["sea_7"],
+            'sea_7_1': srcTileRectangles.tileDictDict.value["sea"]["sea_7_1"],
 
-            'sea_7_2': {srcTop:2*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_7_3': {srcTop:2*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_8': {srcTop:2*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_9': {srcTop:2*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_9_8': {srcTop:2*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_10': {srcTop:2*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_7_2': srcTileRectangles.tileDictDict.value["sea"]["sea_7_2"],
+            'sea_7_3': srcTileRectangles.tileDictDict.value["sea"]["sea_7_3"],
+            'sea_8': srcTileRectangles.tileDictDict.value["sea"]["sea_8"],
+            'sea_9': srcTileRectangles.tileDictDict.value["sea"]["sea_9"],
+            'sea_9_8': srcTileRectangles.tileDictDict.value["sea"]["sea_9_8"],
+            'sea_10': srcTileRectangles.tileDictDict.value["sea"]["sea_10"],
 
-            'sea_11': {srcTop:3*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_1': {srcTop:3*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_8': {srcTop:3*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_11_9': {srcTop:3*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_12': {srcTop:3*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_12_8': {srcTop:3*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_11': srcTileRectangles.tileDictDict.value["sea"]["sea_11"],
+            'sea_11_1': srcTileRectangles.tileDictDict.value["sea"]["sea_11_1"],
+            'sea_11_8': srcTileRectangles.tileDictDict.value["sea"]["sea_11_8"],
+            'sea_11_9': srcTileRectangles.tileDictDict.value["sea"]["sea_11_9"],
+            'sea_12': srcTileRectangles.tileDictDict.value["sea"]["sea_12"],
+            'sea_12_8': srcTileRectangles.tileDictDict.value["sea"]["sea_12_8"],
 
-            'sea_13': {srcTop:4*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_1': {srcTop:4*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_8': {srcTop:4*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_13_9': {srcTop:4*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14': {srcTop:4*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14_2': {srcTop:4*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_13': srcTileRectangles.tileDictDict.value["sea"]["sea_13"],
+            'sea_13_1': srcTileRectangles.tileDictDict.value["sea"]["sea_13_1"],
+            'sea_13_8': srcTileRectangles.tileDictDict.value["sea"]["sea_13_8"],
+            'sea_13_9': srcTileRectangles.tileDictDict.value["sea"]["sea_13_9"],
+            'sea_14': srcTileRectangles.tileDictDict.value["sea"]["sea_14"],
+            'sea_14_2': srcTileRectangles.tileDictDict.value["sea"]["sea_14_2"],
 
-            'sea_14_4': {srcTop:5*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_14_6': {srcTop:5*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15': {srcTop:5*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_1': {srcTop:5*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_2': {srcTop:5*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_3': {srcTop:5*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_14_4': srcTileRectangles.tileDictDict.value["sea"]["sea_14_4"],
+            'sea_14_6': srcTileRectangles.tileDictDict.value["sea"]["sea_14_6"],
+            'sea_15': srcTileRectangles.tileDictDict.value["sea"]["sea_15"],
+            'sea_15_1': srcTileRectangles.tileDictDict.value["sea"]["sea_15_1"],
+            'sea_15_2': srcTileRectangles.tileDictDict.value["sea"]["sea_15_2"],
+            'sea_15_3': srcTileRectangles.tileDictDict.value["sea"]["sea_15_3"],
 
-            'sea_15_4': {srcTop:6*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_5': {srcTop:6*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_6': {srcTop:6*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_7': {srcTop:6*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_8': {srcTop:6*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_9': {srcTop:6*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_15_4': srcTileRectangles.tileDictDict.value["sea"]["sea_15_4"],
+            'sea_15_5': srcTileRectangles.tileDictDict.value["sea"]["sea_15_5"],
+            'sea_15_6': srcTileRectangles.tileDictDict.value["sea"]["sea_15_6"],
+            'sea_15_7': srcTileRectangles.tileDictDict.value["sea"]["sea_15_7"],
+            'sea_15_8': srcTileRectangles.tileDictDict.value["sea"]["sea_15_8"],
+            'sea_15_9': srcTileRectangles.tileDictDict.value["sea"]["sea_15_9"],
 
-            'sea_15_10': {srcTop:7*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_11': {srcTop:7*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_12': {srcTop:7*cellHeight.value, srcLeft:2*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_13': {srcTop:7*cellHeight.value, srcLeft:3*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_14': {srcTop:7*cellHeight.value, srcLeft:4*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
-            'sea_15_15': {srcTop:7*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
+            'sea_15_10': srcTileRectangles.tileDictDict.value["sea"]["sea_15_10"],
+            'sea_15_11': srcTileRectangles.tileDictDict.value["sea"]["sea_15_11"],
+            'sea_15_12': srcTileRectangles.tileDictDict.value["sea"]["sea_15_12"],
+            'sea_15_13': srcTileRectangles.tileDictDict.value["sea"]["sea_15_13"],
+            'sea_15_14': srcTileRectangles.tileDictDict.value["sea"]["sea_15_14"],
+            'sea_15_15': srcTileRectangles.tileDictDict.value["sea"]["sea_15_15"],
 
-            'wasteland': {srcTop:0*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['land']},    // 荒地
+            'wasteland': srcTileRectangles.tileDictDict.value["sea"]["wasteland"],    // 荒地
         }
     });
 
