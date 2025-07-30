@@ -14,8 +14,9 @@ export interface SourceTileRectangles {
 
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
 const tilemapFilepathDict = <StringDict>{
-    'sea': '/public/img/tiles/tilemap_sea.png',
-    'land': '/public/img/tiles/tilemap_land.png',
+    // "/public" フォルダー下のパス
+    'sea': '/img/tiles/tilemap_sea.png',
+    'land': '/img/tiles/tilemap_land.png',
 };
 
 export function createSourceTileRectangles(): SourceTileRectangles {

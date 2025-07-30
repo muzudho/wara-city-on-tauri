@@ -7,17 +7,15 @@
             :draggable="true"
             :resizable="false"
             :parent="false"
-            class-name="panel"
-            style="background-color: aliceblue;">
+            class-name="panel">
+        <v-container class="pa-0" style="background-color: aliceblue;">
+            <!-- ウィンドウ・タイトル -->
+            <v-row no-gutters style="color: black; background-color: lightgray; height: 32px;">
+                Tile palette
+            </v-row>
 
-        <!-- ウィンドウ・タイトル -->
-        <div style="color: black; background-color: lightgray; height: 32px;">
-            Tile palette
-        </div>
-
-        <!-- タイル選択リスト -->
-        <v-row no-gutters>
-            <v-col class="pa-0">
+            <!-- タイル選択リスト -->
+            <v-row no-gutters>
                 <v-select
                         v-model="selectedTilemapKeyVM"
                         v-bind:items="optionsVM"
@@ -26,22 +24,21 @@
                         item-value="key"
                         class="ma-0">
                 </v-select>
-            </v-col>
-        </v-row>
+            </v-row>
 
-        <!-- タイルを敷き詰めるだけ -->
-        <div style="padding-left: 4px; padding-top: 4px; line-height: 0;">
-            <Tile
-                    v-for="(item, key) in props.srcTileDictDict[selectedTilemapKey]"
-                    :key="key"
-                    :srcLeft="item.srcLeft"
-                    :srcTop="item.srcTop"
-                    :srcWidth="item.srcWidth"
-                    :srcHeight="item.srcHeight"
-                    :tilemapUrl="item.tilemapUrl"
-                    @click="onSrcTileClick(key)"/>
-        </div>
-
+            <!-- タイルを敷き詰めるだけ -->
+            <div style="padding: 8px; line-height: 0;">
+                <Tile
+                        v-for="(item, key) in props.srcTileDictDict[selectedTilemapKey]"
+                        :key="key"
+                        :srcLeft="item.srcLeft"
+                        :srcTop="item.srcTop"
+                        :srcWidth="item.srcWidth"
+                        :srcHeight="item.srcHeight"
+                        :tilemapUrl="item.tilemapUrl"
+                        @click="onSrcTileClick(key)"/>
+            </div>            
+        </v-container>
     </vue-draggable-resizable>
 </template>
 
