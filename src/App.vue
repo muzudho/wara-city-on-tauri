@@ -8,7 +8,7 @@
                     <!-- 例えば、以下のようなタグをリピート。
                         <Tile :srcLeft="0" :srcTop="0" :srcWidth="32" :srcHeight="32" :tilemapUrl="'/public/img/tiles/tilemap_sea.png'"/>
                     -->
-                    <Tile v-for="(key, index) in board.srcTileKeyList.value" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
+                    <Tile v-for="(key, index) in board.srcTileKeyListDict.value['sea']" :key="index" :srcLeft="srcTilemaps.tileDict.value[key].srcLeft" :srcTop="srcTilemaps.tileDict.value[key].srcTop" :srcWidth="srcTilemaps.tileDict.value[key].srcWidth" :srcHeight="srcTilemaps.tileDict.value[key].srcHeight" :tilemapUrl="srcTilemaps.tileDict.value[key].tilemapUrl"
                             @click="onMapTileClick(index)"/>
                 </v-container>
 
@@ -55,7 +55,7 @@
             return;
         }
         // マップタイルを更新
-        board.srcTileKeyList.value[index] = penVM.value
+        board.srcTileKeyListDict.value['sea'][index] = penVM.value
     }
 
     function onSrcTileClick(name: string) {

@@ -78,6 +78,7 @@ export function createSourceTilemaps(): SourceTilemaps {
         'sea_15_15': {srcTop:7*cellHeight.value, srcLeft:5*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['sea']},
 
         'wasteland': {srcTop:0*cellHeight.value, srcLeft:0*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['land']},    // 荒地
+        'vocantLand': {srcTop:0*cellHeight.value, srcLeft:1*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict['land']},    // 空き地
     });
 
     return {
