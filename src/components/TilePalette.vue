@@ -26,9 +26,22 @@
             </v-select>
 
             <!-- タイルを敷き詰めるだけ -->
+            <!--
             <v-container style="padding: 8px; line-height: 0;">
                 <Tile
                         v-for="(item, key) in props.srcTilemaps.getTileDictByName(selectedTilemapKey)"
+                        :key="key"
+                        :srcLeft="item.srcLeft"
+                        :srcTop="item.srcTop"
+                        :srcWidth="item.srcWidth"
+                        :srcHeight="item.srcHeight"
+                        :tilemapUrl="item.tilemapUrl"
+                        @click="onSrcTileClick(key)"/>
+            </v-container>            
+            -->
+            <v-container style="padding: 8px; line-height: 0;">
+                <Tile
+                        v-for="(item, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
                         :key="key"
                         :srcLeft="item.srcLeft"
                         :srcTop="item.srcTop"
