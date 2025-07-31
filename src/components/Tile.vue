@@ -14,7 +14,7 @@
     }
     // definePropsにデフォルト値を設定
     const props = withDefaults(defineProps<Props>(), {
-        srcWidth: 32,
+        srcWidth: 32,   // FIXME: サイズは固定でいい？
         srcHeight: 32,
     });
 

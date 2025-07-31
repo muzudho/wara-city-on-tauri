@@ -3,6 +3,7 @@ import { ref, Ref } from 'vue';
 // 型、共有データ等
 import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
+import { TileItem } from '@/interfaces/tile-item'; // @はsrcへのエイリアス
 
 // タイルマップの元画像を管理する型
 export interface SourceTileRectangles {
@@ -10,6 +11,8 @@ export interface SourceTileRectangles {
     cellWidth: Ref<number>;
     cellHeight: Ref<number>;
     tileDict: Ref<TileDict>;
+
+    getTileByName: (name: string) => TileItem;
 }
 
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
@@ -20,6 +23,7 @@ const tilemapFilepathDict = <StringDict>{
     'outBorder': '/img/tiles/tilemap_outBorder.png',
     'sea': '/img/tiles/tilemap_sea.png',
     'seaBorder': '/img/tiles/tilemap_seaBorder.png',
+    'system': '/img/tiles/tilemap_system.png',
     'wastelandRoad': '/img/tiles/tilemap_wastelandRoad.png',
     'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
 };
@@ -33,6 +37,7 @@ export function createSourceTileRectangles(): SourceTileRectangles {
     }
 
     const rawTileDict = <TileDict>{
+        'noImage': makeTile(0, 1, 'land'),    // 画像無しマーク
         'wasteland': makeTile(0, 0, 'land'),    // 荒地
         'vocantLand': makeTile(0, 1, 'land'),    // 空き地
     }
@@ -140,5 +145,8 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         cellWidth,
         cellHeight,
         tileDict,
+        getTileByName: (name: string)=>{
+            return rawTileDict[name];
+        },
     };
 }

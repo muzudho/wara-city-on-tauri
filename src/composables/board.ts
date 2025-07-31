@@ -24,7 +24,7 @@ export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
     // 海で埋め尽くす。
     const rawArray = <Array<string>>[];
     for(let i=0; i<areaCells.value; i+=1){
-        rawArray.push('sea_255')
+        rawArray.push('sea_255')    // FIXME: デフォルト画像はどうする？
     }
 
     const tileKeyArray = ref<Array<string>>(rawArray);

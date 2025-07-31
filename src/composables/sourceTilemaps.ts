@@ -16,6 +16,9 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
             'wasteland': srcTileRectangles.tileDict.value["wasteland"],    // 荒地
             'vocantLand': srcTileRectangles.tileDict.value["vocantLand"],    // 空き地
         },
+        "system": {
+            'noImage': srcTileRectangles.tileDict.value["noImage"],    // 画像無しマーク
+        },
     });
 
     // ８方向タイル（無印）を切り抜く
@@ -111,6 +114,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
     tileDictDict.value["outBorder"] = cropFourDirectoryTiles('outBorder');
     tileDictDict.value["sea"] = cropEightDirectionTiles('sea');
     tileDictDict.value["seaBorder"] = cropFourDirectoryTiles('seaBorder');
+    tileDictDict.value["system"] = cropEightDirectionTiles('system');
     tileDictDict.value["wastelandRoad"] = cropEightDirectionTiles('wastelandRoad');
     tileDictDict.value["wastelandBorder"] = cropFourDirectoryTiles('wastelandBorder');
 
