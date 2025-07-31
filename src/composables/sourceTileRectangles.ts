@@ -36,7 +36,7 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return {srcTop:y*cellHeight.value, srcLeft:x*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict[tilemap]};
     }
 
-    const rawTileDict = <TileDict>{
+    const flatTileDict = <TileDict>{
         // 旧仕様
         'land_wasteland': makeTile(0, 0, 'land'),    // 荒地
         'land_vocantLand': makeTile(0, 1, 'land'),    // 空き地
@@ -134,14 +134,14 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return rawDict;
     }
 
-    Object.assign(rawTileDict, makeEightBorderTilemap('out'));
-    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('outBorder'));
-    Object.assign(rawTileDict, makeEightBorderTilemap('sea'));
-    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('seaBorder'));
-    Object.assign(rawTileDict, makeEightBorderTilemap('wastelandRoad'));
-    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('wastelandBorder'));
+    Object.assign(flatTileDict, makeEightBorderTilemap('out'));
+    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('outBorder'));
+    Object.assign(flatTileDict, makeEightBorderTilemap('sea'));
+    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('seaBorder'));
+    Object.assign(flatTileDict, makeEightBorderTilemap('wastelandRoad'));
+    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('wastelandBorder'));
 
-    const tileDict = ref<TileDict>(rawTileDict);
+    const tileDict = ref<TileDict>(flatTileDict);
 
     return {
         tilemapFilepathDict,
@@ -149,10 +149,10 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         cellHeight,
         tileDict,
         getTileByName: (name: string)=>{
-            if (name in rawTileDict) {
-                return rawTileDict[name];
+            if (name in flatTileDict) {
+                return flatTileDict[name];
             }
-            return rawTileDict['system_noImage'];   // 画像無しマーク画像
+            return flatTileDict['system_noImage'];   // 画像無しマーク画像
         },
     };
 }

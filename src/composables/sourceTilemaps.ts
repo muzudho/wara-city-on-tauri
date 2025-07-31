@@ -141,11 +141,6 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         "paletteWidth": 128,
         "paletteHeight": 128,
     };
-    tilemapDict.value["system"] = {
-        "tileDict": cropEightDirectionTileDict('system'),
-        "paletteWidth": 128,
-        "paletteHeight": 128,
-    };
     tilemapDict.value["wastelandRoad"] = {
         "tileDict": cropEightDirectionTileDict('wastelandRoad'),
         "paletteWidth": 192,
