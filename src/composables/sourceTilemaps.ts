@@ -8,16 +8,18 @@ import { TileDictDict } from '@/types/tile-dict-dict';
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
     tileDictDict: Ref<TileDictDict>;
+
+    getTileDictByName: (name: string) => TileDict;
 }
 
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
     const tileDictDict = ref<TileDictDict>({
-        "land" : {
+        "land" : {  // FIXME: 旧仕様
             'wasteland': srcTileRectangles.tileDict.value["wasteland"],    // 荒地
             'vocantLand': srcTileRectangles.tileDict.value["vocantLand"],    // 空き地
         },
         "system": {
-            'noImage': srcTileRectangles.tileDict.value["noImage"],    // 画像無しマーク
+            'noImage': srcTileRectangles.tileDict.value["system_noImage"],    // 画像無しマーク
         },
     });
 
@@ -120,5 +122,14 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
 
     return {
         tileDictDict,
+        getTileDictByName: (name: string)=>{
+            if (name in tileDictDict.value) {
+                //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)
+                return tileDictDict.value[name];
+            }
+
+            alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
+            return <TileDict>{};
+        },
     };
 }
