@@ -15,11 +15,11 @@ export interface SourceTilemaps {
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
     const tileDictDict = ref<TileDictDict>({
         "land" : {  // FIXME: 旧仕様
-            'wasteland': srcTileRectangles.tileDict.value["wasteland"],    // 荒地
-            'vocantLand': srcTileRectangles.tileDict.value["vocantLand"],    // 空き地
+            'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],    // 荒地
+            'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],    // 空き地
         },
         "system": {
-            'noImage': srcTileRectangles.tileDict.value["system_noImage"],    // 画像無しマーク
+            'system_noImage': srcTileRectangles.tileDict.value["system_noImage"],    // 画像無しマーク
         },
     });
 
