@@ -1,15 +1,15 @@
 <template>
     <vue-draggable-resizable
             :w="216"
-            :h="100"
             :x="0"
             :y="0"
             :draggable="true"
             :resizable="true"
-            :parent="false">
+            :parent="false"
+            :style="panelStyle">
 
         <!-- ウィンドウ・タイトル -->
-        <v-container style="color: black; background-color: lightgray; height: 32px;">
+        <v-container :style="titlebarStyle">
             Tile palette
         </v-container>
 
@@ -22,7 +22,8 @@
                     label="タイルマップ名"
                     item-title="value"
                     item-value="key"
-                    class="ma-0">
+                    class="ma-0"
+                    :style="listboxStyle">
             </v-select>
 
             <!-- タイルを敷き詰めるだけ -->
@@ -96,13 +97,40 @@
         }
     );
 
+    const titlebarHeight = 32;
+    const listboxHeight = 64;
+    const tileAreaHeight = computed(
+        function(): number {
+            const bottomMargin = 8;
+            return tileAreaHeight.value + bottomMargin;
+        }
+    );
+
+    const titlebarStyle = computed(
+        function(): string {
+            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+        }
+    );
+
+    const listboxStyle = computed(
+        function(): string {
+            return `"height: ${listboxHeight}px;`;
+        }
+    );
+
+    const panelStyle = computed(
+        function(): string {
+            const height = titlebarHeight + listboxHeight + tileAreaHeight.value;
+            return `height: ${height}`;   // 横幅。
+        }
+    );
+
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
                 ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteWidth + 'px;' +   // 横幅。
                 ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteHeight + 8) + 'px;' +   // 横幅。
-                ' padding: 0; line-height: 0;'
-                // margin: 8px;
+                ' padding: 0; line-height: 0;';
         }
     );
 
