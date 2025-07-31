@@ -5,35 +5,28 @@ import { SourceTileRectangles } from '@/composables/sourceTileRectangles';
 import { TilemapData } from '@/interfaces/tilemap-data';
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
-import { TileDictDict } from '@/types/tile-dict-dict';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
-    tileDictDict: Ref<TileDictDict>;    // タイルの辞書。
     tilemapDict: Ref<TilemapDict>;
 
-    getTileDictByName: (name: string) => TileDict;
     getTilemapByName: (name: string) => TilemapData;
 }
 
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
-    const tileDictDict = ref<TileDictDict>({
-        "land" : {
-            'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],    // 荒地
-            'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],    // 空き地
-        },
-        "system": {
-            'system_noImage': srcTileRectangles.tileDict.value["system_noImage"],    // 画像無しマーク
-        },
-    });
     const tilemapDict = ref<TilemapDict>({
         "land" : {
-            "tileDict": tileDictDict.value["land"],
+            "tileDict": {
+                'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
+                'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
+            },
             "paletteWidth": 128,
             "paletteHeight": 128,
         },
         "system": {
-            "tileDict": tileDictDict.value["system"],
+            "tileDict": {
+                'system_noImage': srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
+            },
             "paletteWidth": 128,
             "paletteHeight": 128,
         },
@@ -128,14 +121,6 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         return tileDict;
     }
 
-    tileDictDict.value["out"] = cropEightDirectionTileDict('out');
-    tileDictDict.value["outBorder"] = cropFourDirectoryTileDict('outBorder');
-    tileDictDict.value["sea"] = cropEightDirectionTileDict('sea');
-    tileDictDict.value["seaBorder"] = cropFourDirectoryTileDict('seaBorder');
-    tileDictDict.value["system"] = cropEightDirectionTileDict('system');
-    tileDictDict.value["wastelandRoad"] = cropEightDirectionTileDict('wastelandRoad');
-    tileDictDict.value["wastelandBorder"] = cropFourDirectoryTileDict('wastelandBorder');
-
     tilemapDict.value["out"] = {
         "tileDict": cropEightDirectionTileDict('out'),
         "paletteWidth": 192,
@@ -173,17 +158,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
     };
 
     return {
-        tileDictDict,
         tilemapDict,
-        getTileDictByName: (name: string)=>{
-            if (name in tileDictDict.value) {
-                //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)
-                return tileDictDict.value[name];
-            }
-
-            alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
-            return <TileDict>{};
-        },
         getTilemapByName: (name: string)=>{
             if (name in tilemapDict.value) {
                 //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)

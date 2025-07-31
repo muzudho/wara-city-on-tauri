@@ -26,20 +26,7 @@
             </v-select>
 
             <!-- タイルを敷き詰めるだけ -->
-            <!--
-            <v-container style="padding: 8px; line-height: 0;">
-                <Tile
-                        v-for="(item, key) in props.srcTilemaps.getTileDictByName(selectedTilemapKey)"
-                        :key="key"
-                        :srcLeft="item.srcLeft"
-                        :srcTop="item.srcTop"
-                        :srcWidth="item.srcWidth"
-                        :srcHeight="item.srcHeight"
-                        :tilemapUrl="item.tilemapUrl"
-                        @click="onSrcTileClick(key)"/>
-            </v-container>            
-            -->
-            <v-container style="padding: 8px; line-height: 0;">
+            <v-container :style="tileAreaStyle">
                 <Tile
                         v-for="(item, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
                         :key="key"
@@ -106,6 +93,16 @@
     const selectedTilemapKey = computed(
         function(): string {
             return selectedTilemapKeyVM.value
+        }
+    );
+
+    const tileAreaStyle = computed(
+        function(): string {
+            return '' + //
+                ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteWidth + 'px;' +   // 横幅。
+                ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteHeight + 8) + 'px;' +   // 横幅。
+                ' padding: 0; line-height: 0;'
+                // margin: 8px;
         }
     );
 
