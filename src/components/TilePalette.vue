@@ -28,7 +28,7 @@
             <!-- タイルを敷き詰めるだけ -->
             <v-container style="padding: 8px; line-height: 0;">
                 <Tile
-                        v-for="(item, key) in props.srcTileDictDict[selectedTilemapKey]"
+                        v-for="(item, key) in props.srcTilemaps.tileDictDict.value[selectedTilemapKey]"
                         :key="key"
                         :srcLeft="item.srcLeft"
                         :srcTop="item.srcTop"
@@ -48,13 +48,13 @@
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
-    // コンポーネント、型、共有データ等
+    // コンポーネント、型、共有データ等。 @はsrcへのエイリアス
+    import { SourceTilemaps } from '@/composables/sourceTilemaps';
     import Tile from '@/components/Tile.vue';
-    import { TileDictDict } from '@/types/tile-dict-dict'; // @はsrcへのエイリアス
 
     // コンポーネントが受け取る引数
     interface Props {
-        srcTileDictDict: TileDictDict;
+        srcTilemaps: SourceTilemaps;
     }
     const props = defineProps<Props>();
 
@@ -74,6 +74,7 @@
 
     const optionsVM = <Array<ListOption>>[
         //{key: "", value: ""},
+        // アルファベット順ではなく、使いやすい順に並べる。
         {key: "sea", value: "海"},
         {key: "seaBorder", value: "海の境界線"},
         {key: "land", value: "陸"},
@@ -81,9 +82,10 @@
         {key: "wastelandBorder", value: "荒地の境界線"},
         {key: "out", value: "外"},
         {key: "outBorder", value: "外の境界線"},
+        {key: "system", value: "システム"},
     ]
     const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
-    // ビューモデルの変更を監視。
+    // ［タイルマップ名］の変更を監視。
     watch(selectedTilemapKeyVM, () => {
         // 親に変更を通知
         emit('changeTilemap', selectedTilemapKeyVM.value);

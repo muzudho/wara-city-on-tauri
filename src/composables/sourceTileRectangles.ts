@@ -146,7 +146,10 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         cellHeight,
         tileDict,
         getTileByName: (name: string)=>{
-            return rawTileDict[name];
+            if (name in rawTileDict) {
+                return rawTileDict[name];
+            }
+            return rawTileDict['system_noImage'];   // 画像無しマーク画像
         },
     };
 }

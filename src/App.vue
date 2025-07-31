@@ -34,7 +34,7 @@
                 <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalette
-                        :srcTileDictDict="srcTilemaps.tileDictDict.value"
+                        :srcTilemaps="srcTilemaps"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
                         style="position:fixed; top:32px; left:32px; z-index: 10;"></TilePalette>
@@ -79,7 +79,7 @@
         }
     );
 
-    const selectedTilemapKeyVM = ref('sea');    // TODO 初期値どうする？
+    //const selectedTilemapKeyVM = ref('sea');    // TODO 初期値どうする？
     const penVM = ref('');
     const mouseDraggingVM = ref(false);
 
@@ -110,7 +110,7 @@
 
     function onTilemapChanged(key: string) {
         //alert(`タイルマップを変更した： key=${key}`)
-        selectedTilemapKeyVM.value = key
+        //selectedTilemapKeyVM.value = key
     }
 
     function onSrcTileClicked(name: string) {
