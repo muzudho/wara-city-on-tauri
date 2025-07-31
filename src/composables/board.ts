@@ -21,6 +21,7 @@ export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
     const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTileRectangles.cellWidth.value);
     const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTileRectangles.cellHeight.value);
 
+    // 海で埋め尽くす。
     const rawArray = <Array<string>>[];
     for(let i=0; i<areaCells.value; i+=1){
         rawArray.push('sea_255')

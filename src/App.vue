@@ -37,7 +37,7 @@
                         :srcTileDictDict="srcTilemaps.tileDictDict.value"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
-                        style="position:absolute; top:32px; left:32px; z-index: 10;"></TilePalette>
+                        style="position:fixed; top:32px; left:32px; z-index: 10;"></TilePalette>
 
                 <!-- ターミナル・ウィンドウ
                 -->
@@ -45,7 +45,7 @@
                         :srcTileRectangles="srcTileRectangles"
                         :srcTilemaps="srcTilemaps"
                         :board="board"
-                        style="position:absolute; top:32px; left:256px; z-index: 20;"></Terminal>
+                        style="position:fixed; top:32px; left:256px; z-index: 20;"></Terminal>
 
             </v-container>
         </v-main>

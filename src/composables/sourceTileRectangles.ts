@@ -15,6 +15,8 @@ export interface SourceTileRectangles {
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
 const tilemapFilepathDict = <StringDict>{
     // "/public" フォルダー下のパス
+    'out': '/img/tiles/tilemap_out.png',
+    'outBorder': '/img/tiles/tilemap_outBorder.png',
     'sea': '/img/tiles/tilemap_sea.png',
     'seaBorder': '/img/tiles/tilemap_seaBorder.png',
     'land': '/img/tiles/tilemap_land.png',
@@ -97,6 +99,8 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return rawDict;
     }
 
+    Object.assign(rawTileDict, makeBorderTilemap('out'));
+    Object.assign(rawTileDict, makeBorderTilemap('outBorder'));
     Object.assign(rawTileDict, makeBorderTilemap('sea'));
     Object.assign(rawTileDict, makeBorderTilemap('seaBorder'));
     Object.assign(rawTileDict, makeBorderTilemap('wastelandRoad'));

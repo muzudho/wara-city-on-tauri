@@ -79,6 +79,8 @@
         {key: "land", value: "陸"},
         {key: "wastelandRoad", value: "荒地の道"},
         {key: "wastelandBorder", value: "荒地の境界線"},
+        {key: "out", value: "外"},
+        {key: "outBorder", value: "外の境界線"},
     ]
     const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
     // ビューモデルの変更を監視。
