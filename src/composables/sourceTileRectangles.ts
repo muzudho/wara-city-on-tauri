@@ -15,17 +15,17 @@ export interface SourceTileRectangles {
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
 const tilemapFilepathDict = <StringDict>{
     // "/public" フォルダー下のパス
+    'land': '/img/tiles/tilemap_land.png',
     'out': '/img/tiles/tilemap_out.png',
     'outBorder': '/img/tiles/tilemap_outBorder.png',
     'sea': '/img/tiles/tilemap_sea.png',
     'seaBorder': '/img/tiles/tilemap_seaBorder.png',
-    'land': '/img/tiles/tilemap_land.png',
     'wastelandRoad': '/img/tiles/tilemap_wastelandRoad.png',
     'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
 };
 
 export function createSourceTileRectangles(): SourceTileRectangles {
-    const cellWidth: Ref<number> = ref(32);
+    const cellWidth: Ref<number> = ref(32);     // FIXME: タイルサイズの初期値どうする？
     const cellHeight: Ref<number> = ref(32);
 
     function makeTile(y: number, x: number, tilemap: string) {
@@ -37,12 +37,12 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         'vocantLand': makeTile(0, 1, 'land'),    // 空き地
     }
 
-    function makeBorderTilemap(tilemap: string) {
+    // ８方向タイル（無印）
+    function makeEightBorderTilemap(tilemap: string) {
         const rawDict = <TileDict>{};
 
-        // 荒地の道
-        rawDict[`${tilemap}_0`] = makeTile(0, 1, tilemap);      // 海
-        rawDict[`${tilemap}_16`] = makeTile(0, 2, tilemap);     // 海岸線
+        rawDict[`${tilemap}_0`] = makeTile(0, 1, tilemap);
+        rawDict[`${tilemap}_16`] = makeTile(0, 2, tilemap);
         rawDict[`${tilemap}_32`] = makeTile(0, 3, tilemap);
         rawDict[`${tilemap}_48`] = makeTile(0, 4, tilemap);
         rawDict[`${tilemap}_49`] = makeTile(0, 5, tilemap);
@@ -99,12 +99,39 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         return rawDict;
     }
 
-    Object.assign(rawTileDict, makeBorderTilemap('out'));
-    Object.assign(rawTileDict, makeBorderTilemap('outBorder'));
-    Object.assign(rawTileDict, makeBorderTilemap('sea'));
-    Object.assign(rawTileDict, makeBorderTilemap('seaBorder'));
-    Object.assign(rawTileDict, makeBorderTilemap('wastelandRoad'));
-    Object.assign(rawTileDict, makeBorderTilemap('wastelandBorder'));
+        // ４方向タイル（Aタイプ）
+    function makeFourDirectionBorderTilemap(tilemap: string) {
+        const rawDict = <TileDict>{};
+
+        rawDict[`${tilemap}_A0`] = makeTile(0, 0, tilemap);
+        rawDict[`${tilemap}_A16`] = makeTile(0, 1, tilemap);
+        rawDict[`${tilemap}_A32`] = makeTile(0, 2, tilemap);
+        rawDict[`${tilemap}_A48`] = makeTile(0, 3, tilemap);
+
+        rawDict[`${tilemap}_A64`] = makeTile(1, 0, tilemap);
+        rawDict[`${tilemap}_A80`] = makeTile(1, 1, tilemap);
+        rawDict[`${tilemap}_A96`] = makeTile(1, 2, tilemap);
+        rawDict[`${tilemap}_A112`] = makeTile(1, 3, tilemap);
+
+        rawDict[`${tilemap}_A128`] = makeTile(2, 0, tilemap);
+        rawDict[`${tilemap}_A144`] = makeTile(2, 1, tilemap);
+        rawDict[`${tilemap}_A160`] = makeTile(2, 2, tilemap);
+        rawDict[`${tilemap}_A176`] = makeTile(2, 3, tilemap);
+
+        rawDict[`${tilemap}_A192`] = makeTile(3, 0, tilemap);
+        rawDict[`${tilemap}_A208`] = makeTile(3, 1, tilemap);
+        rawDict[`${tilemap}_A224`] = makeTile(3, 2, tilemap);
+        rawDict[`${tilemap}_A240`] = makeTile(3, 3, tilemap);
+
+        return rawDict;
+    }
+
+    Object.assign(rawTileDict, makeEightBorderTilemap('out'));
+    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('outBorder'));
+    Object.assign(rawTileDict, makeEightBorderTilemap('sea'));
+    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('seaBorder'));
+    Object.assign(rawTileDict, makeEightBorderTilemap('wastelandRoad'));
+    Object.assign(rawTileDict, makeFourDirectionBorderTilemap('wastelandBorder'));
 
     const tileDict = ref<TileDict>(rawTileDict);
 

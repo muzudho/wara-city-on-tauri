@@ -5,7 +5,7 @@
             :x="0"
             :y="0"
             :draggable="true"
-            :resizable="false"
+            :resizable="true"
             :parent="false">
 
         <!-- ウィンドウ・タイトル -->

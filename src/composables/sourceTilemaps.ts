@@ -18,10 +18,10 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         },
     });
 
-    function makeTiles(tilemap: string) {
+    // ８方向タイル（無印）を切り抜く
+    function cropEightDirectionTiles(tilemap: string) {
         const rawDict = <TileDict>{};
 
-        // 荒地の道
         rawDict[`${tilemap}_0`] = srcTileRectangles.tileDict.value[`${tilemap}_0`];
         rawDict[`${tilemap}_16`] = srcTileRectangles.tileDict.value[`${tilemap}_16`];
         rawDict[`${tilemap}_32`] = srcTileRectangles.tileDict.value[`${tilemap}_32`];
@@ -80,12 +80,39 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         return rawDict;
     }
 
-    tileDictDict.value["out"] = makeTiles('out');
-    tileDictDict.value["outBorder"] = makeTiles('outBorder');
-    tileDictDict.value["sea"] = makeTiles('sea');
-    tileDictDict.value["seaBorder"] = makeTiles('seaBorder');
-    tileDictDict.value["wastelandRoad"] = makeTiles('wastelandRoad');
-    tileDictDict.value["wastelandBorder"] = makeTiles('wastelandBorder');
+    // ４方向タイル（A型）を切り抜く
+    function cropFourDirectoryTiles(tilemap: string) {
+        const rawDict = <TileDict>{};
+
+        rawDict[`${tilemap}_A0`] = srcTileRectangles.tileDict.value[`${tilemap}_A0`];
+        rawDict[`${tilemap}_A16`] = srcTileRectangles.tileDict.value[`${tilemap}_A16`];
+        rawDict[`${tilemap}_A32`] = srcTileRectangles.tileDict.value[`${tilemap}_A32`];
+        rawDict[`${tilemap}_A48`] = srcTileRectangles.tileDict.value[`${tilemap}_A48`];
+
+        rawDict[`${tilemap}_A64`] = srcTileRectangles.tileDict.value[`${tilemap}_A64`];
+        rawDict[`${tilemap}_A80`] = srcTileRectangles.tileDict.value[`${tilemap}_A80`];
+        rawDict[`${tilemap}_A96`] = srcTileRectangles.tileDict.value[`${tilemap}_A96`];
+        rawDict[`${tilemap}_A112`] = srcTileRectangles.tileDict.value[`${tilemap}_A112`];
+
+        rawDict[`${tilemap}_A128`] = srcTileRectangles.tileDict.value[`${tilemap}_A128`];
+        rawDict[`${tilemap}_A144`] = srcTileRectangles.tileDict.value[`${tilemap}_A144`];
+        rawDict[`${tilemap}_A160`] = srcTileRectangles.tileDict.value[`${tilemap}_A160`];
+        rawDict[`${tilemap}_A176`] = srcTileRectangles.tileDict.value[`${tilemap}_A176`];
+
+        rawDict[`${tilemap}_A192`] = srcTileRectangles.tileDict.value[`${tilemap}_A192`];
+        rawDict[`${tilemap}_A208`] = srcTileRectangles.tileDict.value[`${tilemap}_A208`];
+        rawDict[`${tilemap}_A224`] = srcTileRectangles.tileDict.value[`${tilemap}_A224`];
+        rawDict[`${tilemap}_A240`] = srcTileRectangles.tileDict.value[`${tilemap}_A240`];
+
+        return rawDict;
+    }
+
+    tileDictDict.value["out"] = cropEightDirectionTiles('out');
+    tileDictDict.value["outBorder"] = cropFourDirectoryTiles('outBorder');
+    tileDictDict.value["sea"] = cropEightDirectionTiles('sea');
+    tileDictDict.value["seaBorder"] = cropFourDirectoryTiles('seaBorder');
+    tileDictDict.value["wastelandRoad"] = cropEightDirectionTiles('wastelandRoad');
+    tileDictDict.value["wastelandBorder"] = cropFourDirectoryTiles('wastelandBorder');
 
     return {
         tileDictDict,
