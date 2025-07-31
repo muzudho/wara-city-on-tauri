@@ -1,3 +1,3 @@
-import { TileItem } from '@/interfaces/tile-item'; // @はsrcへのエイリアス
+import { TileData } from '@/interfaces/tile-data'; // @はsrcへのエイリアス
 
-export type TileDict = Record<string, TileItem>;
+export type TileDict = Record<string, TileData>;

@@ -3,7 +3,7 @@ import { ref, Ref } from 'vue';
 // 型、共有データ等
 import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
 import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
-import { TileItem } from '@/interfaces/tile-item'; // @はsrcへのエイリアス
+import { TileData } from '@/interfaces/tile-data'; // @はsrcへのエイリアス
 
 // タイルマップの元画像を管理する型
 export interface SourceTileRectangles {
@@ -12,7 +12,7 @@ export interface SourceTileRectangles {
     cellHeight: Ref<number>;
     tileDict: Ref<TileDict>;
 
-    getTileByName: (name: string) => TileItem;
+    getTileByName: (name: string) => TileData;
 }
 
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）

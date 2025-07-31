@@ -7,7 +7,7 @@ import { TileDictDict } from '@/types/tile-dict-dict';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemaps {
-    tileDictDict: Ref<TileDictDict>;
+    tileDictDict: Ref<TileDictDict>;    // タイルの辞書。
 
     getTileDictByName: (name: string) => TileDict;
 }
