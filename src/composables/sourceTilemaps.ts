@@ -16,7 +16,7 @@ export interface SourceTilemaps {
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
     const tilemapDict = ref<TilemapDict>({});
 
-    tilemapDict.value["land"] = {
+    tilemapDict.value["land"] = <TilemapData>{
         tileDict: {
             'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
             'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
@@ -29,7 +29,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteHeight: 128,
     };
 
-    tilemapDict.value["system"] = {
+    tilemapDict.value["system"] = <TilemapData>{
         tileDict: {
             system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
         },
@@ -130,7 +130,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         return tileDict;
     }
 
-    tilemapDict.value["out"] = {
+    tilemapDict.value["out"] = <TilemapData>{
         tileDict: cropEightDirectionTileDict('out'),
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -139,7 +139,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteWidth: 192,
         paletteHeight: 256,
     };
-    tilemapDict.value["outBorder"] = {
+    tilemapDict.value["outBorder"] = <TilemapData>{
         tileDict: cropFourDirectoryTileDict('outBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -148,7 +148,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteWidth: 128,
         paletteHeight: 128,
     };
-    tilemapDict.value["sea"] = {
+    tilemapDict.value["sea"] = <TilemapData>{
         tileDict: cropEightDirectionTileDict('sea'),
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -157,7 +157,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteWidth: 192,
         paletteHeight: 256,
     };
-    tilemapDict.value["seaBorder"] = {
+    tilemapDict.value["seaBorder"] = <TilemapData>{
         tileDict: cropFourDirectoryTileDict('seaBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -166,7 +166,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteWidth: 128,
         paletteHeight: 128,
     };
-    tilemapDict.value["wastelandRoad"] = {
+    tilemapDict.value["wastelandRoad"] = <TilemapData>{
         tileDict: cropEightDirectionTileDict('wastelandRoad'),
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -175,7 +175,7 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         paletteWidth: 192,
         paletteHeight: 256,
     };
-    tilemapDict.value["wastelandBorder"] = {
+    tilemapDict.value["wastelandBorder"] = <TilemapData>{
         tileDict: cropFourDirectoryTileDict('wastelandBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
