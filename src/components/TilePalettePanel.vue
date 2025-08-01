@@ -76,6 +76,7 @@
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
     // ++++++++++++++++++++++++++++++++++++
+    import { ListOption } from '@/interfaces/list-option';
     import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
     import { TileData } from '@/interfaces/tile-data';
 
@@ -145,15 +146,9 @@
         }
     );
 
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // + クライアント領域　＞　タイルマップ・リストボックス +
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // タイル選択リストボックス
-    interface ListOption {
-        key: string;
-        value: string;
-    }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイルマップ選択リストボックス +
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     const optionsVM = <Array<ListOption>>[
         //{key: "", value: ""},
@@ -167,6 +162,7 @@
         {key: "outBorder", value: "外の境界線"},
         {key: "system", value: "システム"},
     ];
+    const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
 
     const listboxHeight = 64;
 
@@ -183,7 +179,6 @@
     // + クライアント領域　＞　タイルエリア +
     // ++++++++++++++++++++++++++++++++++++++
 
-    const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
     /**
      * ［タイルマップ名］の変更を監視。
      */

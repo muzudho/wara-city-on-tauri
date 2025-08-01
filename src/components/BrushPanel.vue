@@ -24,6 +24,18 @@
                     :srcHeight="props.selectedTileData.srcHeight"
                     :tilemapUrl="props.selectedTileData.tilemapUrl"
                     :style="selectedTileStyle"/>
+            
+            <!-- 描き方選択リスト -->
+            <v-select
+                    v-bind:items="optionsVM"
+                    v-model="selectedDrawingNameVM"                    
+                    label="描き方"
+                    item-title="value"
+                    item-value="key"
+                    class="ma-0"
+                    :style="listboxStyle">
+            </v-select>
+            
         </v-container>
     </vue-draggable-resizable>
 </template>
@@ -33,7 +45,7 @@
     // ##############
     // # インポート #
     // ##############
-    import { computed } from "vue";
+    import { computed, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
     // + インポート　＞　ドラッグ可能パネル +
@@ -52,6 +64,7 @@
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
     // ++++++++++++++++++++++++++++++++++++
+    import { ListOption } from '@/interfaces/list-option';
     import { TileData } from '@/interfaces/tile-data';
 
     // ################################
@@ -101,7 +114,8 @@
 
     const clientAreaHeight = computed(
         function(): number {
-            return selectedTileHeight + 2*selectedTileMargin;
+            return selectedTileHeight + 2*selectedTileMargin + // 選択タイル
+                listboxHeight;  // 描き方選択リストボックス
         }
     );
 
@@ -133,6 +147,28 @@
                 ` height: ${selectedTileHeight}px;` + //
                 ` margin: ${selectedTileMargin}px;` + //
                 ' padding: 0; line-height: 0; background-color: aliceblue;';
+        }
+    );
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　描き方選択リストボックス +
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    const optionsVM = <Array<ListOption>>[
+        // アルファベット順ではなく、使いやすい順に並べる。
+        {key: "dot", value: "１マスずつ"},
+        {key: "fill", value: "塗り潰し"},
+    ];
+    const selectedDrawingNameVM = ref<string>("dot")     // FIXME: 初期値どうする？
+
+    const listboxHeight = 64;
+
+    /**
+     * リストボックス・スタイル
+     */
+    const listboxStyle = computed(
+        function(): string {
+            return `"height: ${listboxHeight}px;`;
         }
     );
 

@@ -45,7 +45,7 @@
                         :srcTilemapCollection="srcTilemaps"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
-                        style="position:fixed; top:112px; left:16px; z-index: 10;"/>
+                        style="position:fixed; top:170px; left:16px; z-index: 10;"/>
 
                 <!-- ターミナル・ウィンドウ
                 -->
