@@ -204,16 +204,30 @@
      * @param tileIndex クリックしたタイルのインデックス
      */
     async function callPaint(drawingName: string, tileIndex: number): Promise<string> {
-        // マップタイルを更新
-        board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
+        // TODO: マップタイルを更新。処理をRustへ移行したい。
+        //board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
 
-        const indexAndTilepathDict : Record<number, string> = await invoke<string>('paintRs', {drawingName: drawingName, tileIndex: tileIndex});
-        let text = "";
-        text += `描き方: ${drawingName}, インデックス1: ${tileIndex}\n`;
+        // TODO: 新メソッド
+        const indexAndTilepathDict : Record<number, string> = await invoke<Record<number, string>>('paintRs',
+            {
+                drawingName: drawingName,
+                tileIndex: tileIndex,
+                selectedTilepath: selectedTilePathVM.value,
+            });
+        
+        // // デバッグ表示
+        // let text = "";
+        // text += `描き方: ${drawingName}, インデックス1: ${tileIndex}\n`;
+        // Object.entries(indexAndTilepathDict).forEach(([tileIndex2, tilepath]) => {
+        //     text += `インデックス2: ${tileIndex2}, タイルパス: ${tilepath}\n`;
+        // });
+        // alert(text);
+
+        // 処理
         Object.entries(indexAndTilepathDict).forEach(([tileIndex2, tilepath]) => {
-            text += `インデックス2: ${tileIndex2}, タイルパス: ${tilepath}\n`;
+            const tileIndex3 = Number(tileIndex2);
+            board.tileKeyArray.value[tileIndex3] = tilepath;
         });
-        alert(text);
 
         return "";
     }

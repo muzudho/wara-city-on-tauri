@@ -70,12 +70,12 @@ fn translateRs(sourceStr:&str, commandName: &str) -> String {
 
 #[tauri::command]
 #[allow(non_snake_case)]
-fn paintRs(drawingName:&str, tileIndex:i64) -> HashMap<i64, String> {
+fn paintRs(drawingName:&str, tileIndex:i64, selectedTilepath:&str) -> HashMap<i64, String> {
     let mut dict = HashMap::new();
     if drawingName == "dot" {
-        dict.insert(tileIndex, String::from("sea_0"));
+        dict.insert(tileIndex, String::from(selectedTilepath));
     } else {
-        dict.insert(tileIndex, String::from("sea_16"));
+        dict.insert(tileIndex, String::from(selectedTilepath)); // FIXME: 作りかけ
     }
     dict
 }
