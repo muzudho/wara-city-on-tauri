@@ -91,7 +91,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
     // 塗り潰し
     } else if drawingName == "fill" {
 
-        let checkboard : Vec<bool> = vec![false; board.tilepath_array.len()];
+        let mut checkboard : Vec<bool> = vec![false; board.tilepath_array.len()];
 
         //*
         let target_tilepath = board.tilepath_array[tileIndex as usize].clone();
@@ -104,16 +104,16 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         dict = fill_4_sides(
             tileIndex,
             selectedTilepath,
-            board,
-            checkboard,
-            target_tilepath,
+            &board,
+            &mut checkboard,
+            target_tilepath.as_str(),
             dict);
     }
 
     dict
 }
 
-fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:Board, mut checkboard : Vec<bool>, target_tilepath: String, mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
+fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard : &mut Vec<bool>, target_tilepath: &str, mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
     // 右のタイルが同じなら塗り潰し
     let right_index = tile_index + 1;
     if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
@@ -122,7 +122,7 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:Board, mut checkbo
             dict.insert(right_index, String::from(selected_tilepath));
             checkboard[right_index as usize] = true;
 
-            /*
+            //*
             // TODO 上下左右にある同じタイルは塗りつぶす
             dict = fill_4_sides(
                 tile_index,
@@ -131,7 +131,7 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:Board, mut checkbo
                 checkboard,
                 target_tilepath,
                 dict);
-             */
+            // */
         }        
     }
 
