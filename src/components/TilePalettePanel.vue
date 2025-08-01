@@ -33,7 +33,7 @@
                 <div :style="tileCursorStyle"></div>
 
                 <Tile
-                        v-for="(tile, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
+                        v-for="(tile, key) in props.srcTilemapCollection.getTilemapByName(selectedTilemapKey).tileDict"
                         :key="key"
                         :srcLeft="tile.srcLeft"
                         :srcTop="tile.srcTop"
@@ -70,6 +70,7 @@
     // ++++++++++++++++++++++++++++++++
     // + インポート　＞　コンポーザル +
     // ++++++++++++++++++++++++++++++++
+    import { SourceTileCollection } from '@/composables/source-tile-collection';
     import { SourceTilemapCollection } from '@/composables/source-tilemap-collection';
 
     // ++++++++++++++++++++++++++++++++++++
@@ -81,7 +82,8 @@
     // # このコンポーネントが受け取る引数 #
     // ####################################
     interface Props {
-        srcTilemaps: SourceTilemapCollection;
+        srcTileCollection: SourceTileCollection;
+        srcTilemapCollection: SourceTilemapCollection;
     }
     const props = defineProps<Props>();
 
@@ -196,7 +198,7 @@
     const tileAreaHeight = computed(
         function(): number {
             const bottomMargin = 8;
-            return props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + bottomMargin;
+            return props.srcTilemapCollection.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + bottomMargin;
         }
     );
 
@@ -206,7 +208,7 @@
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
-                ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
+                ' width:' + props.srcTilemapCollection.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
                 ' height:' + tileAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0;';
         }
@@ -218,8 +220,10 @@
      */
     function onSrcTileClick(tilePath: string, tile: TileData) {
         // カーソルの位置を再設定。
-        selectedTileLeft.value = tile.srcLeft - cursorLeftBorderWidth;
-        selectedTileTop.value = tile.srcTop - cursorTopBorderHeight;
+        selectedTileHorizontalCells.value = tile.srcLeft / props.srcTileCollection.unitCellWidth.value;
+        selectedTileVerticalCells.value = tile.srcTop / props.srcTileCollection.unitCellHeight.value;
+        // selectedTileLeft.value = tile.srcLeft - cursorLeftBorderWidth;
+        // selectedTileTop.value = tile.srcTop - cursorTopBorderHeight;
 
         //alert(`ソースタイルをクリックした： name=${name} selectedTileLeft=${selectedTileLeft.value} selectedTileTop=${selectedTileTop.value}`)
 
@@ -233,11 +237,22 @@
     // + クライアント領域　＞　タイルカーソル +
     // ++++++++++++++++++++++++++++++++++++++++
 
+    // TODO 選択しているタイルマップ毎に位置を記憶したい。
+
     const cursorLeftBorderWidth = 4;
     const cursorTopBorderHeight = 4;
-    const selectedTileLeft = ref(0 - cursorLeftBorderWidth);
-    const selectedTileTop = ref(0 - cursorTopBorderHeight);
-
+    const selectedTileHorizontalCells = ref(0);
+    const selectedTileVerticalCells = ref(0);
+    const selectedTileLeft = computed(
+        function(): number {
+            return selectedTileHorizontalCells.value * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
+        }
+    );
+    const selectedTileTop = computed(
+        function(): number{
+            return selectedTileVerticalCells.value * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
+        }
+    );
     const tileCursorStyle = computed(
         function(): string {
             return `position:absolute; top:${selectedTileTop.value}px; left:${selectedTileLeft.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;

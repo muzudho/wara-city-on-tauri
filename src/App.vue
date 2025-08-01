@@ -41,7 +41,8 @@
                 <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalettePanel
-                        :srcTilemaps="srcTilemaps"
+                        :srcTileCollection="srcTileCollection"
+                        :srcTilemapCollection="srcTilemaps"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
                         style="position:fixed; top:112px; left:16px; z-index: 10;"/>
