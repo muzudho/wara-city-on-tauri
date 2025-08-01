@@ -18,18 +18,18 @@
 
             <!-- 選択タイル -->
             <Tile
-                    :srcLeft="selectedTileDataVM.srcLeft"
-                    :srcTop="selectedTileDataVM.srcTop"
-                    :srcWidth="selectedTileDataVM.srcWidth"
-                    :srcHeight="selectedTileDataVM.srcHeight"
-                    :tilemapUrl="selectedTileDataVM.tilemapUrl"
+                    :srcLeft="props.selectedTileData.srcLeft"
+                    :srcTop="props.selectedTileData.srcTop"
+                    :srcWidth="props.selectedTileData.srcWidth"
+                    :srcHeight="props.selectedTileData.srcHeight"
+                    :tilemapUrl="props.selectedTileData.tilemapUrl"
                     :style="selectedTileStyle"/>
         </v-container>
     </vue-draggable-resizable>
 </template>
 
 <script setup lang="ts">
-    import { computed, ref } from "vue";
+    import { computed } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
@@ -39,13 +39,13 @@
     import Tile from '@/components/Tile.vue';
     import { TileData } from '@/interfaces/tile-data';
 
-    const selectedTileDataVM = ref<TileData>({
-        srcLeft: 0,
-        srcTop: 0,
-        srcWidth: 32,
-        srcHeight: 32,
-        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
-    });
+    // ################################
+    // # コンポーネントが受け取る引数 #
+    // ################################
+    interface Props {
+        selectedTileData: TileData;
+    }
+    const props = defineProps<Props>();
 
     // ##########
     // # パネル #

@@ -34,6 +34,7 @@
                 <!-- ブラシ・ウィンドウ
                 -->
                 <BrushPanel
+                        :selectedTileData="selectedTileDataVM"
                         style="position:fixed; top:16px; left:16px; z-index: 30;"/>
 
                 <!-- タイル・パレット・ウィンドウ
@@ -66,10 +67,13 @@
     import TerminalPanel from '@/components/TerminalPanel.vue';
     import BrushPanel from '@/components/BrushPanel.vue';
 
-    // 型、共有データ等
+    // コンポーザブル
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
     import { createSourceTileRectangles } from '@/composables/sourceTileRectangles';
     import { createBoard } from '@/composables/board';
+
+    // インターフェース
+    import { TileData } from '@/interfaces/tile-data';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     const srcTileRectangles = createSourceTileRectangles();
@@ -88,6 +92,14 @@
     //const selectedTilemapKeyVM = ref('sea');    // TODO 初期値どうする？
     const penVM = ref('');
     const mouseDraggingVM = ref(false);
+
+    const selectedTileDataVM = ref<TileData>({
+        srcLeft: 0,
+        srcTop: 32,
+        srcWidth: 32,
+        srcHeight: 32,
+        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
+    });
 
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
