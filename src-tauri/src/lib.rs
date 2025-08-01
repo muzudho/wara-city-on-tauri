@@ -92,26 +92,92 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
     } else if drawingName == "fill" {
 
         let mut checkboard : Vec<bool> = vec![false; board.tilepath_array.len()];
-        let mut tileIndexBuffer : Vec<i32> = vec![tileIndex; 1];
+        let mut tile_index_buffer : Vec<i32> = vec![];
 
         //*
         let target_tilepath = board.tilepath_array[tileIndex as usize].clone();
-
         dict.insert(tileIndex, String::from(selectedTilepath));
 
         // FIXME: 🌟 作りかけ
+        add_4_sides(
+                tileIndex,
+                &mut tile_index_buffer,
+                &board,
+                &mut checkboard,
+                target_tilepath.as_str());
 
+        for (loop_counter, tile_index) in tile_index_buffer.iter().enumerate() {
+            println!("loop_counter: {}, tile_index: {}", loop_counter, tile_index);
+
+            dict.insert(*tile_index, String::from(selectedTilepath));
+            checkboard[*tile_index as usize] = true;
+        }
+
+        /*
         // TODO 上下左右にある同じタイルは塗りつぶす
         dict = fill_4_sides(
-            &mut tileIndexBuffer,
-            selectedTilepath,
-            &board,
-            &mut checkboard,
-            target_tilepath.as_str(),
-            dict);
+                &mut tile_index_buffer,
+                selectedTilepath,
+                &board,
+                &mut checkboard,
+                target_tilepath.as_str(),
+                dict);
+        */
     }
 
     dict
+}
+
+fn add_4_sides(
+        tile_index: i32,
+        tile_index_buffer: &mut Vec<i32>,
+        board:&Board,
+        checkboard : &mut Vec<bool>,
+        target_tilepath: &str
+) {
+
+    // 上のタイルが同じなら塗り潰し
+    let up_index = tile_index - board.width_cells;
+    if 0 <= up_index && !checkboard[up_index as usize] {
+        let up_tilepath = board.tilepath_array[up_index as usize].clone();
+        if up_tilepath == target_tilepath {
+            tile_index_buffer.push(up_index);
+        }
+    }
+
+    // 右のタイルが同じなら塗り潰し
+    if tile_index%board.width_cells != (board.width_cells-1) {
+        let right_index = tile_index + 1;
+        if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
+            let right_tilepath = board.tilepath_array[right_index as usize].clone();
+            if right_tilepath == target_tilepath {
+                tile_index_buffer.push(right_index);
+            }
+        }
+    }
+
+    // 左のタイルが同じなら塗り潰し
+    if tile_index%board.width_cells!=0 {
+        let left_index = tile_index - 1;
+        if !checkboard[left_index as usize] {
+            let left_tilepath = board.tilepath_array[left_index as usize].clone();
+            if left_tilepath == target_tilepath {
+                tile_index_buffer.push(left_index);
+            }
+        }
+    }
+
+    // 下のタイルが同じなら塗り潰し
+    if tile_index%board.height_cells != (board.height_cells-1) {
+        let down_index = tile_index + board.width_cells;
+        if (down_index as usize) < board.tilepath_array.len() && !checkboard[down_index as usize] {
+            let down_tilepath = board.tilepath_array[down_index as usize].clone();
+            if down_tilepath == target_tilepath {
+                tile_index_buffer.push(down_index);
+            }
+        }
+    }
+
 }
 
 // FIXME: 再起関数は、スタックをオーバーフローしてしまう。
