@@ -92,6 +92,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
     } else if drawingName == "fill" {
 
         let mut checkboard : Vec<bool> = vec![false; board.tilepath_array.len()];
+        let mut tileIndexBuffer : Vec<i32> = vec![tileIndex; 1];
 
         //*
         let target_tilepath = board.tilepath_array[tileIndex as usize].clone();
@@ -102,7 +103,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
 
         // TODO 上下左右にある同じタイルは塗りつぶす
         dict = fill_4_sides(
-            tileIndex,
+            &mut tileIndexBuffer,
             selectedTilepath,
             &board,
             &mut checkboard,
@@ -114,7 +115,16 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
 }
 
 // FIXME: 再起関数は、スタックをオーバーフローしてしまう。
-fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard : &mut Vec<bool>, target_tilepath: &str, mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
+fn fill_4_sides(
+        tileIndexBuffer : &mut Vec<i32>,
+        selected_tilepath:&str,
+        board:&Board,
+        checkboard : &mut Vec<bool>,
+        target_tilepath: &str,
+        mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
+
+    let tile_index : i32 = tileIndexBuffer[0];
+    tileIndexBuffer.remove(0);
 
     //*
     // 上のタイルが同じなら塗り潰し
@@ -125,8 +135,9 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
             dict.insert(up_index, String::from(selected_tilepath));
             checkboard[up_index as usize] = true;
 
+            tileIndexBuffer.push(up_index);
             dict = fill_4_sides(    // 再帰
-                up_index,
+                tileIndexBuffer,
                 selected_tilepath,
                 board,
                 checkboard,
@@ -146,8 +157,9 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
                 dict.insert(right_index, String::from(selected_tilepath));
                 checkboard[right_index as usize] = true;
 
+                tileIndexBuffer.push(right_index);
                 dict = fill_4_sides(    // 再帰
-                    right_index,
+                    tileIndexBuffer,
                     selected_tilepath,
                     board,
                     checkboard,
@@ -168,8 +180,9 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
                 dict.insert(left_index, String::from(selected_tilepath));
                 checkboard[left_index as usize] = true;
 
+                tileIndexBuffer.push(left_index);
                 dict = fill_4_sides(    // 再帰
-                    left_index,
+                    tileIndexBuffer,
                     selected_tilepath,
                     board,
                     checkboard,
@@ -190,8 +203,9 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
                 dict.insert(down_index, String::from(selected_tilepath));
                 checkboard[down_index as usize] = true;
 
+                tileIndexBuffer.push(down_index);
                 dict = fill_4_sides(    // 再帰
-                    down_index,
+                    tileIndexBuffer,
                     selected_tilepath,
                     board,
                     checkboard,
