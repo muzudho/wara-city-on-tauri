@@ -31,13 +31,18 @@
                         @mousemove="onMapTileMouseMove(index)"
                         style="z-index: 1;"/>
 
+                <!-- ブラシ・ウィンドウ
+                -->
+                <BrushPanel
+                        style="position:fixed; top:16px; left:16px; z-index: 30;"></BrushPanel>
+
                 <!-- タイル・パレット・ウィンドウ
                 -->
                 <TilePalette
                         :srcTilemaps="srcTilemaps"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
-                        style="position:fixed; top:32px; left:32px; z-index: 10;"></TilePalette>
+                        style="position:fixed; top:144px; left:16px; z-index: 10;"></TilePalette>
 
                 <!-- ターミナル・ウィンドウ
                 -->
@@ -45,7 +50,7 @@
                         :srcTileRectangles="srcTileRectangles"
                         :srcTilemaps="srcTilemaps"
                         :board="board"
-                        style="position:fixed; top:32px; left:256px; z-index: 20;"></Terminal>
+                        style="position:fixed; top:16px; left:240px; z-index: 20;"></Terminal>
 
             </v-container>
         </v-main>
@@ -59,6 +64,7 @@
     import Tile from '@/components/Tile.vue';
     import TilePalette from '@/components/TilePalette.vue';
     import Terminal from '@/components/Terminal.vue';
+    import BrushPanel from '@/components/BrushPanel.vue';
 
     // 型、共有データ等
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';

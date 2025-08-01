@@ -90,8 +90,14 @@
         {key: "system", value: "システム"},
     ]
     const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
-    // ［タイルマップ名］の変更を監視。
+    /**
+     * ［タイルマップ名］の変更を監視。
+     */
     watch(selectedTilemapKeyVM, () => {
+        // TODO タイルカーソルの位置を復元したい。
+
+        // 
+
         // 親に変更を通知
         emit('changeTilemap', selectedTilemapKeyVM.value);
     });
