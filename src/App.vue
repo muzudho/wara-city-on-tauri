@@ -197,7 +197,7 @@
         // マップタイルを更新
         board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
 
-        //const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
+        //const resultStr = await invoke<string>('translateRs', {sourceStr: sourceStr, commandName: commandName});
         return "";
     }
 

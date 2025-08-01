@@ -4,6 +4,7 @@
 use csv::Reader;
 use serde::{Deserialize, Serialize};
 use std::fs::File;
+use std::collections::HashMap;
 //use tauri::command;
 
 
@@ -16,13 +17,14 @@ struct CsvRow {
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
-fn greet(name: &str) -> String {
+#[allow(non_snake_case)]
+fn greetRs(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
 #[tauri::command]
 #[allow(non_snake_case)]
-fn read_csv(file_path: String) -> Result<Vec<CsvRow>, String> {
+fn readCsvRs(file_path: String) -> Result<Vec<CsvRow>, String> {
     let file = File::open(&file_path).map_err(|e| e.to_string())?;
     let mut rdr = Reader::from_reader(file);
     let mut rows = Vec::new();
@@ -45,7 +47,7 @@ fn read_csv(file_path: String) -> Result<Vec<CsvRow>, String> {
 //      ついでに、#[tauri::command] の関数名自体もスネークケース推奨だぜ。キャメルケースの関数名でも動くけど、Tauri のドキュメントや慣習ではスネークケースが一般的だから、統一すると読みやすいよ。
 #[tauri::command]
 #[allow(non_snake_case)]
-fn translate(sourceStr:&str, commandName: &str) -> String {
+fn translateRs(sourceStr:&str, commandName: &str) -> String {
     if commandName == "都道府県スプリット1" {
         let mut s = String::from("");
         let lines: Vec<&str> = sourceStr.lines().collect();
@@ -64,6 +66,18 @@ fn translate(sourceStr:&str, commandName: &str) -> String {
         return s
     }
     sourceStr.to_string()
+}
+
+#[tauri::command]
+#[allow(non_snake_case)]
+fn paintRs(drawingName:&str, tileIndex:i64) -> HashMap<i64, String> {
+    let mut dict = HashMap::new();
+    if drawingName == "dot" {
+        dict.insert(tileIndex, String::from("sea_0"));
+    } else {
+        dict.insert(tileIndex, String::from("sea_16"));
+    }
+    dict
 }
 
 pub fn get_pref(line: &str) -> &'static str {
@@ -94,9 +108,10 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
-            greet,
-            translate,
-            read_csv
+            greetRs,
+            translateRs,
+            paintRs,
+            readCsvRs
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

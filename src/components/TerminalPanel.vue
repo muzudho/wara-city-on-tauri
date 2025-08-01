@@ -156,7 +156,7 @@
      * @param commandName 
      */
     async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
-        const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
+        const resultStr = await invoke<string>('translateRs', {sourceStr: sourceStr, commandName: commandName});
         return resultStr;
     }
 </script>
