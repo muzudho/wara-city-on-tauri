@@ -1,7 +1,7 @@
 import { reactive, ref, Ref } from 'vue';
 
 // 型、共有データ等。 @はsrcへのエイリアス
-import { SourceTilesCollection } from '@/composables/source-tiles-collection';
+import { SourceTileCollection } from '@/composables/source-tile-collection';
 import { TilemapData } from '@/interfaces/tilemap-data';
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
@@ -13,7 +13,7 @@ export interface SourceTilemaps {
     getTilemapByName: (name: string) => TilemapData;
 }
 
-export function createSourceTilemaps(srcTilesCollection: SourceTilesCollection): SourceTilemaps {
+export function createSourceTilemaps(srcTileCollection: SourceTileCollection): SourceTilemaps {
     const tilemapDict = ref<TilemapDict>({});
 
     // メソッド定義
@@ -28,60 +28,60 @@ export function createSourceTilemaps(srcTilesCollection: SourceTilesCollection):
     function cropEightDirectionTileDict(tilemap: string) {
         const tileDict = <TileDict>{};
 
-        tileDict[`${tilemap}_0`] = srcTilesCollection.tileDict.value[`${tilemap}_0`];
-        tileDict[`${tilemap}_16`] = srcTilesCollection.tileDict.value[`${tilemap}_16`];
-        tileDict[`${tilemap}_32`] = srcTilesCollection.tileDict.value[`${tilemap}_32`];
-        tileDict[`${tilemap}_48`] = srcTilesCollection.tileDict.value[`${tilemap}_48`];
-        tileDict[`${tilemap}_49`] = srcTilesCollection.tileDict.value[`${tilemap}_49`];
+        tileDict[`${tilemap}_0`] = srcTileCollection.tileDict.value[`${tilemap}_0`];
+        tileDict[`${tilemap}_16`] = srcTileCollection.tileDict.value[`${tilemap}_16`];
+        tileDict[`${tilemap}_32`] = srcTileCollection.tileDict.value[`${tilemap}_32`];
+        tileDict[`${tilemap}_48`] = srcTileCollection.tileDict.value[`${tilemap}_48`];
+        tileDict[`${tilemap}_49`] = srcTileCollection.tileDict.value[`${tilemap}_49`];
 
-        tileDict[`${tilemap}_64`] = srcTilesCollection.tileDict.value[`${tilemap}_64`];
-        tileDict[`${tilemap}_80`] = srcTilesCollection.tileDict.value[`${tilemap}_80`];
-        tileDict[`${tilemap}_96`] = srcTilesCollection.tileDict.value[`${tilemap}_96`];
-        tileDict[`${tilemap}_98`] = srcTilesCollection.tileDict.value[`${tilemap}_98`];
-        tileDict[`${tilemap}_112`] = srcTilesCollection.tileDict.value[`${tilemap}_112`];
-        tileDict[`${tilemap}_113`] = srcTilesCollection.tileDict.value[`${tilemap}_113`];
+        tileDict[`${tilemap}_64`] = srcTileCollection.tileDict.value[`${tilemap}_64`];
+        tileDict[`${tilemap}_80`] = srcTileCollection.tileDict.value[`${tilemap}_80`];
+        tileDict[`${tilemap}_96`] = srcTileCollection.tileDict.value[`${tilemap}_96`];
+        tileDict[`${tilemap}_98`] = srcTileCollection.tileDict.value[`${tilemap}_98`];
+        tileDict[`${tilemap}_112`] = srcTileCollection.tileDict.value[`${tilemap}_112`];
+        tileDict[`${tilemap}_113`] = srcTileCollection.tileDict.value[`${tilemap}_113`];
 
-        tileDict[`${tilemap}_114`] = srcTilesCollection.tileDict.value[`${tilemap}_114`];
-        tileDict[`${tilemap}_115`] = srcTilesCollection.tileDict.value[`${tilemap}_115`];
-        tileDict[`${tilemap}_128`] = srcTilesCollection.tileDict.value[`${tilemap}_128`];
-        tileDict[`${tilemap}_144`] = srcTilesCollection.tileDict.value[`${tilemap}_144`];
-        tileDict[`${tilemap}_152`] = srcTilesCollection.tileDict.value[`${tilemap}_152`];
-        tileDict[`${tilemap}_160`] = srcTilesCollection.tileDict.value[`${tilemap}_160`];
+        tileDict[`${tilemap}_114`] = srcTileCollection.tileDict.value[`${tilemap}_114`];
+        tileDict[`${tilemap}_115`] = srcTileCollection.tileDict.value[`${tilemap}_115`];
+        tileDict[`${tilemap}_128`] = srcTileCollection.tileDict.value[`${tilemap}_128`];
+        tileDict[`${tilemap}_144`] = srcTileCollection.tileDict.value[`${tilemap}_144`];
+        tileDict[`${tilemap}_152`] = srcTileCollection.tileDict.value[`${tilemap}_152`];
+        tileDict[`${tilemap}_160`] = srcTileCollection.tileDict.value[`${tilemap}_160`];
 
-        tileDict[`${tilemap}_176`] = srcTilesCollection.tileDict.value[`${tilemap}_176`];
-        tileDict[`${tilemap}_177`] = srcTilesCollection.tileDict.value[`${tilemap}_177`];
-        tileDict[`${tilemap}_184`] = srcTilesCollection.tileDict.value[`${tilemap}_184`];
-        tileDict[`${tilemap}_185`] = srcTilesCollection.tileDict.value[`${tilemap}_185`];
-        tileDict[`${tilemap}_192`] = srcTilesCollection.tileDict.value[`${tilemap}_192`];
-        tileDict[`${tilemap}_196`] = srcTilesCollection.tileDict.value[`${tilemap}_196`];
+        tileDict[`${tilemap}_176`] = srcTileCollection.tileDict.value[`${tilemap}_176`];
+        tileDict[`${tilemap}_177`] = srcTileCollection.tileDict.value[`${tilemap}_177`];
+        tileDict[`${tilemap}_184`] = srcTileCollection.tileDict.value[`${tilemap}_184`];
+        tileDict[`${tilemap}_185`] = srcTileCollection.tileDict.value[`${tilemap}_185`];
+        tileDict[`${tilemap}_192`] = srcTileCollection.tileDict.value[`${tilemap}_192`];
+        tileDict[`${tilemap}_196`] = srcTileCollection.tileDict.value[`${tilemap}_196`];
 
-        tileDict[`${tilemap}_208`] = srcTilesCollection.tileDict.value[`${tilemap}_208`];
-        tileDict[`${tilemap}_212`] = srcTilesCollection.tileDict.value[`${tilemap}_212`];
-        tileDict[`${tilemap}_216`] = srcTilesCollection.tileDict.value[`${tilemap}_216`];
-        tileDict[`${tilemap}_220`] = srcTilesCollection.tileDict.value[`${tilemap}_220`];
-        tileDict[`${tilemap}_224`] = srcTilesCollection.tileDict.value[`${tilemap}_224`];
-        tileDict[`${tilemap}_226`] = srcTilesCollection.tileDict.value[`${tilemap}_226`];
+        tileDict[`${tilemap}_208`] = srcTileCollection.tileDict.value[`${tilemap}_208`];
+        tileDict[`${tilemap}_212`] = srcTileCollection.tileDict.value[`${tilemap}_212`];
+        tileDict[`${tilemap}_216`] = srcTileCollection.tileDict.value[`${tilemap}_216`];
+        tileDict[`${tilemap}_220`] = srcTileCollection.tileDict.value[`${tilemap}_220`];
+        tileDict[`${tilemap}_224`] = srcTileCollection.tileDict.value[`${tilemap}_224`];
+        tileDict[`${tilemap}_226`] = srcTileCollection.tileDict.value[`${tilemap}_226`];
 
-        tileDict[`${tilemap}_228`] = srcTilesCollection.tileDict.value[`${tilemap}_228`];
-        tileDict[`${tilemap}_230`] = srcTilesCollection.tileDict.value[`${tilemap}_230`];
-        tileDict[`${tilemap}_240`] = srcTilesCollection.tileDict.value[`${tilemap}_240`];
-        tileDict[`${tilemap}_241`] = srcTilesCollection.tileDict.value[`${tilemap}_241`];
-        tileDict[`${tilemap}_242`] = srcTilesCollection.tileDict.value[`${tilemap}_242`];
-        tileDict[`${tilemap}_243`] = srcTilesCollection.tileDict.value[`${tilemap}_243`];
+        tileDict[`${tilemap}_228`] = srcTileCollection.tileDict.value[`${tilemap}_228`];
+        tileDict[`${tilemap}_230`] = srcTileCollection.tileDict.value[`${tilemap}_230`];
+        tileDict[`${tilemap}_240`] = srcTileCollection.tileDict.value[`${tilemap}_240`];
+        tileDict[`${tilemap}_241`] = srcTileCollection.tileDict.value[`${tilemap}_241`];
+        tileDict[`${tilemap}_242`] = srcTileCollection.tileDict.value[`${tilemap}_242`];
+        tileDict[`${tilemap}_243`] = srcTileCollection.tileDict.value[`${tilemap}_243`];
 
-        tileDict[`${tilemap}_244`] = srcTilesCollection.tileDict.value[`${tilemap}_244`];
-        tileDict[`${tilemap}_245`] = srcTilesCollection.tileDict.value[`${tilemap}_245`];
-        tileDict[`${tilemap}_246`] = srcTilesCollection.tileDict.value[`${tilemap}_246`];
-        tileDict[`${tilemap}_247`] = srcTilesCollection.tileDict.value[`${tilemap}_247`];
-        tileDict[`${tilemap}_248`] = srcTilesCollection.tileDict.value[`${tilemap}_248`];
-        tileDict[`${tilemap}_249`] = srcTilesCollection.tileDict.value[`${tilemap}_249`];
+        tileDict[`${tilemap}_244`] = srcTileCollection.tileDict.value[`${tilemap}_244`];
+        tileDict[`${tilemap}_245`] = srcTileCollection.tileDict.value[`${tilemap}_245`];
+        tileDict[`${tilemap}_246`] = srcTileCollection.tileDict.value[`${tilemap}_246`];
+        tileDict[`${tilemap}_247`] = srcTileCollection.tileDict.value[`${tilemap}_247`];
+        tileDict[`${tilemap}_248`] = srcTileCollection.tileDict.value[`${tilemap}_248`];
+        tileDict[`${tilemap}_249`] = srcTileCollection.tileDict.value[`${tilemap}_249`];
 
-        tileDict[`${tilemap}_250`] = srcTilesCollection.tileDict.value[`${tilemap}_250`];
-        tileDict[`${tilemap}_251`] = srcTilesCollection.tileDict.value[`${tilemap}_251`];
-        tileDict[`${tilemap}_252`] = srcTilesCollection.tileDict.value[`${tilemap}_252`];
-        tileDict[`${tilemap}_253`] = srcTilesCollection.tileDict.value[`${tilemap}_253`];
-        tileDict[`${tilemap}_254`] = srcTilesCollection.tileDict.value[`${tilemap}_254`];
-        tileDict[`${tilemap}_255`] = srcTilesCollection.tileDict.value[`${tilemap}_255`];
+        tileDict[`${tilemap}_250`] = srcTileCollection.tileDict.value[`${tilemap}_250`];
+        tileDict[`${tilemap}_251`] = srcTileCollection.tileDict.value[`${tilemap}_251`];
+        tileDict[`${tilemap}_252`] = srcTileCollection.tileDict.value[`${tilemap}_252`];
+        tileDict[`${tilemap}_253`] = srcTileCollection.tileDict.value[`${tilemap}_253`];
+        tileDict[`${tilemap}_254`] = srcTileCollection.tileDict.value[`${tilemap}_254`];
+        tileDict[`${tilemap}_255`] = srcTileCollection.tileDict.value[`${tilemap}_255`];
 
         return tileDict;
     }
@@ -90,33 +90,33 @@ export function createSourceTilemaps(srcTilesCollection: SourceTilesCollection):
     function cropFourDirectoryTileDict(tilemap: string) {
         const tileDict = <TileDict>{};
 
-        tileDict[`${tilemap}_A0`] = srcTilesCollection.tileDict.value[`${tilemap}_A0`];
-        tileDict[`${tilemap}_A16`] = srcTilesCollection.tileDict.value[`${tilemap}_A16`];
-        tileDict[`${tilemap}_A32`] = srcTilesCollection.tileDict.value[`${tilemap}_A32`];
-        tileDict[`${tilemap}_A48`] = srcTilesCollection.tileDict.value[`${tilemap}_A48`];
+        tileDict[`${tilemap}_A0`] = srcTileCollection.tileDict.value[`${tilemap}_A0`];
+        tileDict[`${tilemap}_A16`] = srcTileCollection.tileDict.value[`${tilemap}_A16`];
+        tileDict[`${tilemap}_A32`] = srcTileCollection.tileDict.value[`${tilemap}_A32`];
+        tileDict[`${tilemap}_A48`] = srcTileCollection.tileDict.value[`${tilemap}_A48`];
 
-        tileDict[`${tilemap}_A64`] = srcTilesCollection.tileDict.value[`${tilemap}_A64`];
-        tileDict[`${tilemap}_A80`] = srcTilesCollection.tileDict.value[`${tilemap}_A80`];
-        tileDict[`${tilemap}_A96`] = srcTilesCollection.tileDict.value[`${tilemap}_A96`];
-        tileDict[`${tilemap}_A112`] = srcTilesCollection.tileDict.value[`${tilemap}_A112`];
+        tileDict[`${tilemap}_A64`] = srcTileCollection.tileDict.value[`${tilemap}_A64`];
+        tileDict[`${tilemap}_A80`] = srcTileCollection.tileDict.value[`${tilemap}_A80`];
+        tileDict[`${tilemap}_A96`] = srcTileCollection.tileDict.value[`${tilemap}_A96`];
+        tileDict[`${tilemap}_A112`] = srcTileCollection.tileDict.value[`${tilemap}_A112`];
 
-        tileDict[`${tilemap}_A128`] = srcTilesCollection.tileDict.value[`${tilemap}_A128`];
-        tileDict[`${tilemap}_A144`] = srcTilesCollection.tileDict.value[`${tilemap}_A144`];
-        tileDict[`${tilemap}_A160`] = srcTilesCollection.tileDict.value[`${tilemap}_A160`];
-        tileDict[`${tilemap}_A176`] = srcTilesCollection.tileDict.value[`${tilemap}_A176`];
+        tileDict[`${tilemap}_A128`] = srcTileCollection.tileDict.value[`${tilemap}_A128`];
+        tileDict[`${tilemap}_A144`] = srcTileCollection.tileDict.value[`${tilemap}_A144`];
+        tileDict[`${tilemap}_A160`] = srcTileCollection.tileDict.value[`${tilemap}_A160`];
+        tileDict[`${tilemap}_A176`] = srcTileCollection.tileDict.value[`${tilemap}_A176`];
 
-        tileDict[`${tilemap}_A192`] = srcTilesCollection.tileDict.value[`${tilemap}_A192`];
-        tileDict[`${tilemap}_A208`] = srcTilesCollection.tileDict.value[`${tilemap}_A208`];
-        tileDict[`${tilemap}_A224`] = srcTilesCollection.tileDict.value[`${tilemap}_A224`];
-        tileDict[`${tilemap}_A240`] = srcTilesCollection.tileDict.value[`${tilemap}_A240`];
+        tileDict[`${tilemap}_A192`] = srcTileCollection.tileDict.value[`${tilemap}_A192`];
+        tileDict[`${tilemap}_A208`] = srcTileCollection.tileDict.value[`${tilemap}_A208`];
+        tileDict[`${tilemap}_A224`] = srcTileCollection.tileDict.value[`${tilemap}_A224`];
+        tileDict[`${tilemap}_A240`] = srcTileCollection.tileDict.value[`${tilemap}_A240`];
 
         return tileDict;
     }
 
     tilemapDict.value["land"] = reactive<TilemapData>({
         tileDict: {
-            'land_wasteland': srcTilesCollection.tileDict.value["land_wasteland"],       // 荒地
-            'land_vocantLand': srcTilesCollection.tileDict.value["land_vocantLand"],     // 空き地
+            'land_wasteland': srcTileCollection.tileDict.value["land_wasteland"],       // 荒地
+            'land_vocantLand': srcTileCollection.tileDict.value["land_vocantLand"],     // 空き地
         },
         unitCellWidth: 32,
         unitCellHeight: 32,
@@ -128,7 +128,7 @@ export function createSourceTilemaps(srcTilesCollection: SourceTilesCollection):
 
     tilemapDict.value["system"] = reactive<TilemapData>({
         tileDict: {
-            system_noImage: srcTilesCollection.tileDict.value["system_noImage"],   // 画像無しマーク
+            system_noImage: srcTileCollection.tileDict.value["system_noImage"],   // 画像無しマーク
         },
         unitCellWidth: 32,
         unitCellHeight: 32,

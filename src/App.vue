@@ -20,11 +20,11 @@
                 <Tile
                         v-for="(tilePath, index) in board.tileKeyArray.value"
                         :key="index"
-                        :srcLeft="srcTilesCollection.getTileByPath(tilePath).srcLeft"
-                        :srcTop="srcTilesCollection.getTileByPath(tilePath).srcTop"
-                        :srcWidth="srcTilesCollection.getTileByPath(tilePath).srcWidth"
-                        :srcHeight="srcTilesCollection.getTileByPath(tilePath).srcHeight"
-                        :tilemapUrl="srcTilesCollection.getTileByPath(tilePath).tilemapUrl"
+                        :srcLeft="srcTileCollection.getTileByPath(tilePath).srcLeft"
+                        :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
+                        :srcWidth="srcTileCollection.getTileByPath(tilePath).srcWidth"
+                        :srcHeight="srcTileCollection.getTileByPath(tilePath).srcHeight"
+                        :tilemapUrl="srcTileCollection.getTileByPath(tilePath).tilemapUrl"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
                         @mouseup="onMapTileMouseUp(index)"
@@ -48,7 +48,7 @@
                 <!-- ターミナル・ウィンドウ
                 -->
                 <TerminalPanel
-                        :srcTilesCollection="srcTilesCollection"
+                        :srcTileCollection="srcTileCollection"
                         :srcTilemaps="srcTilemaps"
                         :board="board"
                         style="position:fixed; top:16px; left:240px; z-index: 20;"/>
@@ -69,16 +69,16 @@
 
     // コンポーザブル
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
-    import { createSourceTilesCollection } from '@/composables/source-tiles-collection';
+    import { createSourceTilesCollection } from '@/composables/source-tile-collection';
     import { createBoard } from '@/composables/board';
 
     // インターフェース
     import { TileData } from '@/interfaces/tile-data';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const srcTilesCollection = createSourceTilesCollection();
-    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTilesCollection);
-    const board = createBoard(srcTilesCollection);
+    const srcTileCollection = createSourceTilesCollection();
+    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileCollection);
+    const board = createBoard(srcTileCollection);
 
     const boardStyle = computed(
         function(): string {

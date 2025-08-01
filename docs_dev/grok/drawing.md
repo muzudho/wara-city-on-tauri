@@ -44,11 +44,11 @@
           <Tile
             v-for="(key, index) in board.tileKeyArray.value"
             :key="index"
-            :srcLeft="srcTilesCollection.tileDict.value[key].srcLeft"
-            :srcTop="srcTilesCollection.tileDict.value[key].srcTop"
-            :srcWidth="srcTilesCollection.tileDict.value[key].srcWidth"
-            :srcHeight="srcTilesCollection.tileDict.value[key].srcHeight"
-            :tilemapUrl="srcTilesCollection.tileDict.value[key].tilemapUrl"
+            :srcLeft="srcTileCollection.tileDict.value[key].srcLeft"
+            :srcTop="srcTileCollection.tileDict.value[key].srcTop"
+            :srcWidth="srcTileCollection.tileDict.value[key].srcWidth"
+            :srcHeight="srcTileCollection.tileDict.value[key].srcHeight"
+            :tilemapUrl="srcTileCollection.tileDict.value[key].tilemapUrl"
             style="z-index: 1; display: inline-block;"
           />
         </div>
@@ -63,7 +63,7 @@
 
         <!-- ターミナル -->
         <TerminalPanel
-          :srcTilesCollection="srcTilesCollection"
+          :srcTileCollection="srcTileCollection"
           :srcTilemaps="srcTilemaps"
           :board="board"
           style="z-index: 10;"
@@ -90,7 +90,7 @@ export default defineComponent({
       board: {
         tileKeyArray: { value: Array(40 * 10).fill('sea') }, // 40×10 のボード例
       },
-      srcTilesCollection: {
+      srcTileCollection: {
         tileDict: {
           value: {
             sea: { srcLeft: 0, srcTop: 0, srcWidth: 32, srcHeight: 32, tilemapUrl: '/public/img/tiles/tilemap_sea.png' },

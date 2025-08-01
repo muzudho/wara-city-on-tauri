@@ -11,16 +11,15 @@ import { TileDict } from '@/types/tile-dict';
 import { TileData } from '@/interfaces/tile-data';
 
 // タイルマップの元画像を管理する型
-export interface SourceTilesCollection {
-    // ファイルパス毎に分割するのではなく、フラットにしたい。
+export interface SourceTileCollection {
     unitCellWidth: Ref<number>;     // 単位セルの横幅
     unitCellHeight: Ref<number>;    // 単位セルの縦幅
-    tileDict: Ref<TileDict>;
+    tileDict: Ref<TileDict>;        // フラットにタイルが入っている辞書
 
     getTileByPath: (tilePath: string) => TileData;
 }
 
-export function createSourceTilesCollection(): SourceTilesCollection {
+export function createSourceTilesCollection(): SourceTileCollection {
     const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: Ref<number> = ref(32);
 
