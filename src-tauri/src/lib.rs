@@ -7,7 +7,6 @@ use std::fs::File;
 use std::collections::HashMap;
 //use tauri::command;
 
-/*
 // マップ・データ
 #[derive(Debug, Deserialize)]
 struct Board {
@@ -18,7 +17,6 @@ struct Board {
     height_pixels: i32,      // number -> i32
     tilepath_array: Vec<String>, // string[] -> Vec<String>
 }
-*/
 
 #[derive(Serialize, Deserialize)]
 struct CsvRow {
