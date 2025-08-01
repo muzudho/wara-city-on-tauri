@@ -211,7 +211,7 @@
                 drawingName: drawingName,
                 tileIndex: tileIndex,
                 selectedTilepath: selectedTilePathVM.value,
-                //board: toPlainBoard(board),
+                board: toPlainBoard(board),
             });
         
         // // デバッグ表示

@@ -9,6 +9,7 @@ use std::collections::HashMap;
 
 // マップ・データ
 #[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct Board {
     width_cells: i32,        // number -> i32
     height_cells: i32,       // number -> i32
@@ -80,9 +81,7 @@ fn translateRs(sourceStr:&str, commandName: &str) -> String {
 
 #[tauri::command]
 #[allow(non_snake_case)]
-fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str
-    //, board:Board
-) -> HashMap<i32, String> {
+fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) -> HashMap<i32, String> {
     let mut dict = HashMap::new();
 
     // １マスずつ
