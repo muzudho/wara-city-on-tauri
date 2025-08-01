@@ -66,6 +66,7 @@
     // # インポート #
     // ##############
 
+    import { invoke } from "@tauri-apps/api/core";
     import { computed, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++
@@ -138,7 +139,9 @@
         // }
 
         // マップタイルを更新
-        callPaint(index);
+        callPaint(
+            "dot", // FIXME: 🌟
+            index);
     }
 
     function onMapTileMouseDown(_index: number) {
@@ -155,7 +158,9 @@
         }
 
         // マップタイルを更新
-        callPaint(index);
+        callPaint(
+            "dot", // FIXME: 🌟
+            index);
         // // マップタイルを更新
         // board.tileKeyArray.value[index] = selectedTilePathVM.value
     }
@@ -198,11 +203,18 @@
      * 文字列を渡すと、指定の操作を実施後の文字列を返す。
      * @param tileIndex クリックしたタイルのインデックス
      */
-    async function callPaint(tileIndex: number): Promise<string> {
+    async function callPaint(drawingName: string, tileIndex: number): Promise<string> {
         // マップタイルを更新
         board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
 
-        //const resultStr = await invoke<string>('translateRs', {sourceStr: sourceStr, commandName: commandName});
+        const indexAndTilepathDict : Record<number, string> = await invoke<string>('paintRs', {drawingName: drawingName, tileIndex: tileIndex});
+        let text = "";
+        text += `描き方: ${drawingName}, インデックス1: ${tileIndex}\n`;
+        Object.entries(indexAndTilepathDict).forEach(([tileIndex2, tilepath]) => {
+            text += `インデックス2: ${tileIndex2}, タイルパス: ${tilepath}\n`;
+        });
+        alert(text);
+
         return "";
     }
 
