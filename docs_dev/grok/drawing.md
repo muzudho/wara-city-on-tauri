@@ -42,7 +42,7 @@
         <!-- タイルをラップ -->
         <div style="width: 1280px; display: block;">
           <Tile
-            v-for="(key, index) in board.tileKeyArray.value"
+            v-for="(key, index) in board.tilepathArray.value"
             :key="index"
             :srcLeft="srcTileCollection.tileDict.value[key].srcLeft"
             :srcTop="srcTileCollection.tileDict.value[key].srcTop"
@@ -88,7 +88,7 @@ export default defineComponent({
         land: '/public/img/tiles/tilemap_land.png',
       } as Record<string, string>,
       board: {
-        tileKeyArray: { value: Array(40 * 10).fill('sea') }, // 40×10 のボード例
+        tilepathArray: { value: Array(40 * 10).fill('sea') }, // 40×10 のボード例
       },
       srcTileCollection: {
         tileDict: {
@@ -142,7 +142,7 @@ export default defineComponent({
       const index = row * tilesPerRow + col;
 
       // インデックスが有効かチェック
-      if (index >= 0 && index < this.board.tileKeyArray.value.length) {
+      if (index >= 0 && index < this.board.tilepathArray.value.length) {
         this.onMapTileClick(index);
       }
     },
@@ -150,9 +150,9 @@ export default defineComponent({
       // タイルをクリック（またはドラッグ）したときの処理
       console.log(`Tile clicked: ${index}`);
       // 例：選択中のタイルキー（selectedTileKey）でボードを更新
-      this.board.tileKeyArray.value[index] = this.selectedTileKey;
+      this.board.tilepathArray.value[index] = this.selectedTileKey;
       // Vue のリアクティビティをトリガー
-      this.board.tileKeyArray.value = [...this.board.tileKeyArray.value];
+      this.board.tilepathArray.value = [...this.board.tilepathArray.value];
     },
     onTilemapSelected() {
       console.log('Tilemap selected');
@@ -194,7 +194,7 @@ html, body {
 
 3. **タイルの更新**：
    - `onMapTileClick` で、指定されたインデックスのタイルを `selectedTileKey`（タイルパレットで選んだキー）で更新。
-   - `board.tileKeyArray.value` をリアクティブに更新（`[...]` で新配列を作って Vue の変更検知をトリガー）。
+   - `board.tilepathArray.value` をリアクティブに更新（`[...]` で新配列を作って Vue の変更検知をトリガー）。
 
 4. **タイルパレットとの連携**：
    - `onSrcTileClicked` で `selectedTileKey` を更新（例：`sea` → `land`）。
@@ -223,7 +223,7 @@ export default {
   data() {
     return {
       selectedTileKey: 'land',
-      tileKeyArray: Array(40 * 10).fill('sea'), // 40×10 のボード
+      tilepathArray: Array(40 * 10).fill('sea'), // 40×10 のボード
     };
   },
   mounted() {
@@ -244,7 +244,7 @@ export default {
       const tilesPerRow = 40;
 
       // タイルマップの描画（仮）
-      this.tileKeyArray.forEach((key: string, index: number) => {
+      this.tilepathArray.forEach((key: string, index: number) => {
         const col = index % tilesPerRow;
         const row = Math.floor(index / tilesPerRow);
         this.add.image(col * tileWidth, row * tileWidth, key).setOrigin(0);
@@ -275,8 +275,8 @@ export default {
       const row = Math.floor(pointer.y / tileWidth);
       const index = row * tilesPerRow + col;
 
-      if (index >= 0 && index < this.tileKeyArray.length) {
-        this.tileKeyArray[index] = this.selectedTileKey;
+      if (index >= 0 && index < this.tilepathArray.length) {
+        this.tilepathArray[index] = this.selectedTileKey;
         this.scene.restart(); // シーンを更新（簡易的な例）
       }
     },
@@ -288,7 +288,7 @@ export default {
 - **ポイント**：
   - Phaser の `pointerdown`, `pointermove`, `pointerup`, `pointerout` を使ってドラッグを検知。
   - マウス座標（`pointer.x`, `pointer.y`）からタイルのインデックスを計算。
-  - `tileKeyArray` を更新し、シーンを再描画（`scene.restart`）。
+  - `tilepathArray` を更新し、シーンを再描画（`scene.restart`）。
 
 ---
 

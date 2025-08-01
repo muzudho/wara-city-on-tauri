@@ -7,6 +7,18 @@ use std::fs::File;
 use std::collections::HashMap;
 //use tauri::command;
 
+/*
+// マップ・データ
+#[derive(Debug, Deserialize)]
+struct Board {
+    width_cells: i32,        // number -> i32
+    height_cells: i32,       // number -> i32
+    area_cells: i32,         // number -> i32
+    width_pixels: i32,       // number -> i32
+    height_pixels: i32,      // number -> i32
+    tilepath_array: Vec<String>, // string[] -> Vec<String>
+}
+*/
 
 #[derive(Serialize, Deserialize)]
 struct CsvRow {
@@ -70,13 +82,32 @@ fn translateRs(sourceStr:&str, commandName: &str) -> String {
 
 #[tauri::command]
 #[allow(non_snake_case)]
-fn paintRs(drawingName:&str, tileIndex:i64, selectedTilepath:&str) -> HashMap<i64, String> {
+fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str
+    //, board:Board
+) -> HashMap<i32, String> {
     let mut dict = HashMap::new();
+
+    // １マスずつ
     if drawingName == "dot" {
         dict.insert(tileIndex, String::from(selectedTilepath));
-    } else {
-        dict.insert(tileIndex, String::from(selectedTilepath)); // FIXME: 作りかけ
+    
+    // 塗り潰し
+    } else if drawingName == "fill" {
+        /*
+        let targetTilepath = board.tilepath_array[tileIndex as usize].clone();
+
+        dict.insert(tileIndex, String::from(selectedTilepath));
+
+        // FIXME: 作りかけ
+        // TODO 上下左右にある同じタイルは塗りつぶす
+        let downIndex = tileIndex+board.width_cells;
+        let downTilepath = board.tilepath_array[downIndex as usize].clone();
+        if downTilepath == targetTilepath {
+            dict.insert(downIndex, String::from(selectedTilepath));
+        }        
+         */
     }
+
     dict
 }
 

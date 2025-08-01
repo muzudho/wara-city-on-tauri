@@ -14,12 +14,12 @@
                     selectedTilemapKey: {{ selectedTilemapKey }}<br/>
                     <container
                             style="line-height: 12px;"
-                            v-for="tilePath in board.tileKeyArray">
+                            v-for="tilePath in board.tilepathArray">
                             tilePath: {{ tilePath }}<br/>
                     </container>
                 -->
                 <Tile
-                        v-for="(tilePath, index) in board.tileKeyArray.value"
+                        v-for="(tilePath, index) in board.tilepathArray.value"
                         :key="index"
                         :srcLeft="srcTileCollection.getTileByPath(tilePath).srcLeft"
                         :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
@@ -87,7 +87,7 @@
 
     import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { createSourceTilesCollection } from '@/composables/source-tile-collection';
-    import { createBoard } from '@/composables/board';
+    import { createBoard, toPlainBoard } from '@/composables/board';
 
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
@@ -162,7 +162,7 @@
             "dot", // FIXME: 🌟
             index);
         // // マップタイルを更新
-        // board.tileKeyArray.value[index] = selectedTilePathVM.value
+        // board.tilepathArray.value[index] = selectedTilePathVM.value
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++
@@ -179,7 +179,7 @@
     });
 
     function onTilemapSelected(_tilemapName: string, tilePath: string, tile: TileData) {
-        alert(`タイルマップを変更した： タイルマップ名：${_tilemapName} タイルパス=${tilePath} タイル：${tile.srcLeft} ${tile.srcTop}`)
+        //alert(`タイルマップを変更した： タイルマップ名：${_tilemapName} タイルパス=${tilePath} タイル：${tile.srcLeft} ${tile.srcTop}`)
         selectedTilePathVM.value = tilePath;
         selectedTileDataVM.value = tile;
     }
@@ -204,15 +204,14 @@
      * @param tileIndex クリックしたタイルのインデックス
      */
     async function callPaint(drawingName: string, tileIndex: number): Promise<string> {
-        // TODO: マップタイルを更新。処理をRustへ移行したい。
-        //board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
 
-        // TODO: 新メソッド
+        // 更新のレシピを返す。
         const indexAndTilepathDict : Record<number, string> = await invoke<Record<number, string>>('paintRs',
             {
                 drawingName: drawingName,
                 tileIndex: tileIndex,
                 selectedTilepath: selectedTilePathVM.value,
+                //board: toPlainBoard(board),
             });
         
         // // デバッグ表示
@@ -223,10 +222,10 @@
         // });
         // alert(text);
 
-        // 処理
+        // レシピ通り更新。
         Object.entries(indexAndTilepathDict).forEach(([tileIndex2, tilepath]) => {
             const tileIndex3 = Number(tileIndex2);
-            board.tileKeyArray.value[tileIndex3] = tilepath;
+            board.tilepathArray.value[tileIndex3] = tilepath;
         });
 
         return "";

@@ -10,7 +10,19 @@ export interface Board {
     areaCells: ComputedRef<number>;
     widthPixels: Ref<number>;
     heightPixels: Ref<number>;
-    tileKeyArray: Ref<Array<string>>;
+    tilepathArray: Ref<Array<string>>;
+}
+
+// Tauriコマンドに渡せるよう、Ref の中身を取り出す。
+export function toPlainBoard(board: Board) {
+    return {
+        widthCells: board.widthCells.value, // number
+        heightCells: board.heightCells.value, // number
+        areaCells: board.areaCells.value, // number
+        widthPixels: board.widthPixels.value, // number
+        heightPixels: board.heightPixels.value, // number
+        tilepathArray: board.tilepathArray.value, // string[]
+    };
 }
 
 export function createBoard(srcTileCollection: SourceTileCollection): Board {
@@ -27,7 +39,7 @@ export function createBoard(srcTileCollection: SourceTileCollection): Board {
         rawArray.push('sea_255')    // FIXME: デフォルト画像はどうする？
     }
 
-    const tileKeyArray = ref<Array<string>>(rawArray);
+    const tilepathArray = ref<Array<string>>(rawArray);
 
     return {
         widthCells,
@@ -35,6 +47,6 @@ export function createBoard(srcTileCollection: SourceTileCollection): Board {
         areaCells,
         widthPixels,
         heightPixels,
-        tileKeyArray,
+        tilepathArray,
     };
 }

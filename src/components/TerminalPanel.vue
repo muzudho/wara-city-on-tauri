@@ -109,7 +109,7 @@
             jsonText += `    "unitCellWidth": ${props.srcTileCollection.unitCellWidth.value},\n`;
             jsonText += `    "unitCellHeight": ${props.srcTileCollection.unitCellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
-            props.board.tileKeyArray.value.forEach((tileKey: string, _index: number) => {
+            props.board.tilepathArray.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""\n'; // 番兵
@@ -131,7 +131,7 @@
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
                 for(let i=0; i<props.board.areaCells.value; i+=1){
-                    props.board.tileKeyArray.value[i] = result["tileList"][i];    // 配列から、タイルのキー名を取り出し、代入
+                    props.board.tilepathArray.value[i] = result["tileList"][i];    // 配列から、タイルのキー名を取り出し、代入
                 }
             } catch (error) {
                 alert(`エラー：${error}`);
