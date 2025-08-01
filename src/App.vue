@@ -20,11 +20,11 @@
                 <Tile
                         v-for="(key, index) in board.tileKeyArray.value"
                         :key="index"
-                        :srcLeft="srcTileRectangles.getTileByName(key).srcLeft"
-                        :srcTop="srcTileRectangles.getTileByName(key).srcTop"
-                        :srcWidth="srcTileRectangles.getTileByName(key).srcWidth"
-                        :srcHeight="srcTileRectangles.getTileByName(key).srcHeight"
-                        :tilemapUrl="srcTileRectangles.getTileByName(key).tilemapUrl"
+                        :srcLeft="srcTileRectangles.getTileByPath(key).srcLeft"
+                        :srcTop="srcTileRectangles.getTileByPath(key).srcTop"
+                        :srcWidth="srcTileRectangles.getTileByPath(key).srcWidth"
+                        :srcHeight="srcTileRectangles.getTileByPath(key).srcHeight"
+                        :tilemapUrl="srcTileRectangles.getTileByPath(key).tilemapUrl"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
                         @mouseup="onMapTileMouseUp(index)"
@@ -69,14 +69,14 @@
 
     // コンポーザブル
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
-    import { createSourceTileRectangles } from '@/composables/sourceTileRectangles';
+    import { createSourceTilesCollection } from '@/composables/sourceTilesCollection';
     import { createBoard } from '@/composables/board';
 
     // インターフェース
     import { TileData } from '@/interfaces/tile-data';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const srcTileRectangles = createSourceTileRectangles();
+    const srcTileRectangles = createSourceTilesCollection();
     const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileRectangles);
     const board = createBoard(srcTileRectangles);
 
@@ -89,8 +89,7 @@
         }
     );
 
-    //const selectedTilemapKeyVM = ref('sea');    // TODO 初期値どうする？
-    const penVM = ref('');
+    const selectedTileFlatNameVM = ref('');
     const mouseDraggingVM = ref(false);
 
     const selectedTileDataVM = ref<TileData>({
@@ -103,11 +102,11 @@
 
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
-        if (penVM.value == '') {
+        if (selectedTileFlatNameVM.value == '') {
             return;
         }
         // マップタイルを更新
-        board.tileKeyArray.value[index] = penVM.value
+        board.tileKeyArray.value[index] = selectedTileFlatNameVM.value
     }
 
     function onMapTileMouseDown(_index: number) {
@@ -123,7 +122,7 @@
             return;
         }
         // マップタイルを更新
-        board.tileKeyArray.value[index] = penVM.value
+        board.tileKeyArray.value[index] = selectedTileFlatNameVM.value
     }
 
     function onTilemapChanged(_key: string) {
@@ -133,7 +132,7 @@
 
     function onSrcTileClicked(name: string) {
         //alert(`ソースタイル２をクリックした： name=${name}`)
-        penVM.value = name
+        selectedTileFlatNameVM.value = name
     }
 </script>
 

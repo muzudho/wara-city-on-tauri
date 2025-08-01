@@ -6,13 +6,14 @@ import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 import { TileData } from '@/interfaces/tile-data'; // @はsrcへのエイリアス
 
 // タイルマップの元画像を管理する型
-export interface SourceTileRectangles {
+export interface SourceTilesCollection {
+    // ファイルパス毎に分割するのではなく、フラットにしたい。
     tilemapFilepathDict: StringDict;  // 変更がないデータ
     cellWidth: Ref<number>;
     cellHeight: Ref<number>;
     tileDict: Ref<TileDict>;
 
-    getTileByName: (name: string) => TileData;
+    getTileByPath: (path: string) => TileData;
 }
 
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
@@ -28,7 +29,7 @@ const tilemapFilepathDict = <StringDict>{
     'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
 };
 
-export function createSourceTileRectangles(): SourceTileRectangles {
+export function createSourceTilesCollection(): SourceTilesCollection {
     const cellWidth: Ref<number> = ref(32);     // FIXME: タイルサイズの初期値どうする？
     const cellHeight: Ref<number> = ref(32);
 
@@ -148,7 +149,7 @@ export function createSourceTileRectangles(): SourceTileRectangles {
         cellWidth,
         cellHeight,
         tileDict,
-        getTileByName: (name: string)=>{
+        getTileByPath: (name: string)=>{
             if (name in flatTileDict) {
                 return flatTileDict[name];
             }

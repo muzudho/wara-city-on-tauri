@@ -1,7 +1,7 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
 // 型、共有データ等
-import { SourceTileRectangles } from "@/composables/sourceTileRectangles";
+import { SourceTilesCollection } from "@/composables/sourceTilesCollection";
 
 // ボードの設定を管理する型
 export interface Board {
@@ -13,7 +13,7 @@ export interface Board {
     tileKeyArray: Ref<Array<string>>;
 }
 
-export function createBoard(srcTileRectangles: SourceTileRectangles): Board {
+export function createBoard(srcTileRectangles: SourceTilesCollection): Board {
     // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
     const widthCells: Ref<number> = ref(96);
     const heightCells: Ref<number> = ref(96);

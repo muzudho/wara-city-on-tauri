@@ -43,12 +43,12 @@
 
     // 型
     import { Board } from '@/composables/board';
-    import { SourceTileRectangles } from "@/composables/sourceTileRectangles";
+    import { SourceTilesCollection } from "@/composables/sourceTilesCollection";
     import { SourceTilemaps } from "@/composables/sourceTilemaps";
 
     // コンポーネントが受け取る引数
     interface Props {
-        srcTileRectangles: SourceTileRectangles;
+        srcTileRectangles: SourceTilesCollection;
         srcTilemaps: SourceTilemaps;
         board: Board;
     }

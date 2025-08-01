@@ -1,7 +1,7 @@
 import { reactive, ref, Ref } from 'vue';
 
 // 型、共有データ等。 @はsrcへのエイリアス
-import { SourceTileRectangles } from '@/composables/sourceTileRectangles';
+import { SourceTilesCollection } from '@/composables/sourceTilesCollection';
 import { TilemapData } from '@/interfaces/tilemap-data';
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
@@ -13,7 +13,7 @@ export interface SourceTilemaps {
     getTilemapByName: (name: string) => TilemapData;
 }
 
-export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
+export function createSourceTilemaps(srcTileRectangles: SourceTilesCollection): SourceTilemaps {
     const tilemapDict = ref<TilemapDict>({});
 
     // メソッド定義
