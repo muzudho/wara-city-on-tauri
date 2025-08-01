@@ -9,7 +9,7 @@
 - **目標**：マウスをドラッグして `<Tile>` コンポーネント上をなぞると、ドラッグが通過したタイルに対して `@click` イベント（`onMapTileClick`）を連続的に発火させるか、同等の処理を行う。
 - **文脈**：
   - `<Tile>` は 32px × 32px のタイルで、1280px 幅のボード（32px × 40）に敷き詰められてる。
-  - `<TilePalette>` で選択したタイルを、ドラッグでボードのタイルに適用したい（例：`sea` を `land` に変更）。
+  - `<TilePalettePanel>` で選択したタイルを、ドラッグでボードのタイルに適用したい（例：`sea` を `land` に変更）。
   - Tauri + Vuetify 環境で、横スクロールバーや `z-index` の話があったので、WebView ベースのアプリ。
 - **イメージ**：ペイントツールのブラシや、ゲームマップエディタ（Tiled や RPG ツクール）みたいに、ドラッグでなぞったタイルを連続で更新。
 
@@ -54,7 +54,7 @@
         </div>
 
         <!-- タイルパレット -->
-        <TilePalette
+        <TilePalettePanel
           :srcTileDictDict="srcTilemaps.tileDictDict.value"
           v-on:changeTilemap="onTilemapChanged"
           v-on:selectTile="onSrcTileClicked"
@@ -62,7 +62,7 @@
         />
 
         <!-- ターミナル -->
-        <Terminal
+        <TerminalPanel
           :srcTileRectangles="srcTileRectangles"
           :srcTilemaps="srcTilemaps"
           :board="board"
@@ -76,11 +76,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Tile from './Tile.vue';
-import TilePalette from './TilePalette.vue';
-import Terminal from './Terminal.vue';
+import TilePalettePanel from './TilePalettePanel.vue';
+import TerminalPanel from './TerminalPanel.vue';
 
 export default defineComponent({
-  components: { Tile, TilePalette, Terminal },
+  components: { Tile, TilePalettePanel, TerminalPanel },
   data() {
     return {
       tilemapFilepathDict: {
@@ -297,7 +297,7 @@ export default {
    - ドラッグ中に `onMapTileClick` が頻繁に呼ばれるので、重い処理（例：API 呼び出し）はデバウンスや制限を検討。
    - 例：同じタイルを連続で処理しないように、インデックスを記録。
 2. **タイルパレットの干渉**：
-   - `<TilePalette>` は `z-index: 10` で前面にあるので、ドラッグがパレットに当たるとタイルの処理が止まる。`pointer-events: none` を一時的に設定するのも手：
+   - `<TilePalettePanel>` は `z-index: 10` で前面にあるので、ドラッグがパレットに当たるとタイルの処理が止まる。`pointer-events: none` を一時的に設定するのも手：
      ```css
      .tile-palette.dragging {
        pointer-events: none;

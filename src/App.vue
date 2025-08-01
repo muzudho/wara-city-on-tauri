@@ -34,23 +34,23 @@
                 <!-- ブラシ・ウィンドウ
                 -->
                 <BrushPanel
-                        style="position:fixed; top:16px; left:16px; z-index: 30;"></BrushPanel>
+                        style="position:fixed; top:16px; left:16px; z-index: 30;"/>
 
                 <!-- タイル・パレット・ウィンドウ
                 -->
-                <TilePalette
+                <TilePalettePanel
                         :srcTilemaps="srcTilemaps"
                         v-on:changeTilemap="onTilemapChanged"
                         v-on:selectTile="onSrcTileClicked"
-                        style="position:fixed; top:144px; left:16px; z-index: 10;"></TilePalette>
+                        style="position:fixed; top:112px; left:16px; z-index: 10;"/>
 
                 <!-- ターミナル・ウィンドウ
                 -->
-                <Terminal
+                <TerminalPanel
                         :srcTileRectangles="srcTileRectangles"
                         :srcTilemaps="srcTilemaps"
                         :board="board"
-                        style="position:fixed; top:16px; left:240px; z-index: 20;"></Terminal>
+                        style="position:fixed; top:16px; left:240px; z-index: 20;"/>
 
             </v-container>
         </v-main>
@@ -62,8 +62,8 @@
 
     // コンポーネント
     import Tile from '@/components/Tile.vue';
-    import TilePalette from '@/components/TilePalette.vue';
-    import Terminal from '@/components/Terminal.vue';
+    import TilePalettePanel from '@/components/TilePalettePanel.vue';
+    import TerminalPanel from '@/components/TerminalPanel.vue';
     import BrushPanel from '@/components/BrushPanel.vue';
 
     // 型、共有データ等

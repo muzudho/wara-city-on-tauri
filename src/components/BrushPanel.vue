@@ -5,35 +5,109 @@
             :y="0"
             :draggable="true"
             :resizable="true"
-            :parent="false">
+            :parent="false"
+            :style="panelStyle">
 
         <!-- ウィンドウ・タイトル -->
-        <v-container>
+        <v-container :style="titlebarStyle">
             Brush
         </v-container>
 
-        <v-container class="pa-0" style="background-color: aliceblue;">
+        <!-- クライアント領域 -->
+        <v-container class="pa-0" :style="clientAreaStyle">
 
-            <!-- タイルを敷き詰めるだけ -->
-            <v-container style="position: relative;">
-                <Tile
-                        :srcLeft="0"
-                        :srcTop="0"
-                        :srcWidth="32"
-                        :srcHeight="32"
-                        :tilemapUrl="'sea'"/>
-            </v-container>            
+            <!-- 選択タイル -->
+            <Tile
+                    :srcLeft="0"
+                    :srcTop="0"
+                    :srcWidth="32"
+                    :srcHeight="32"
+                    :tilemapUrl="'/img/tiles/tilemap_sea.png'"
+                    :style="selectedTileStyle"/>
         </v-container>
     </vue-draggable-resizable>
 </template>
 
 <script setup lang="ts">
+    import { computed } from "vue";
+
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
     // コンポーネント、型、共有データ等。 @はsrcへのエイリアス
     import Tile from '@/components/Tile.vue';
+
+    // ##########
+    // # パネル #
+    // ##########
+
+    /**
+     * パネル・スタイル
+     */
+    const panelStyle = computed(
+        function(): string {
+            const height = titlebarHeight + clientAreaHeight.value;
+            return `height: ${height}`;   // 横幅。
+        }
+    );
+
+    // ################
+    // # タイトルバー #
+    // ################
+
+    const titlebarHeight = 32;
+
+    /**
+     * タイトルバー・スタイル
+     */
+    const titlebarStyle = computed(
+        function(): string {
+            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+        }
+    );
+
+    // ####################
+    // # クライアント領域 #
+    // ####################
+
+    const clientAreaHeight = computed(
+        function(): number {
+            return selectedTileHeight + 2*selectedTileMargin;
+        }
+    );
+
+    /**
+     * クライアント領域スタイル
+     */
+    const clientAreaStyle = computed(
+        function(): string {
+            return '' + //
+                ' height:' + clientAreaHeight.value + 'px;' +   // 縦幅。
+                ' padding: 0; line-height: 0; background-color: aliceblue;';
+        }
+    );
+
+    // ##############
+    // # 選択タイル #
+    // ##############
+
+    const selectedTileHeight = 32;
+    const selectedTileMargin = 8;
+
+    /**
+     * 選択タイル・スタイル
+     */
+    const selectedTileStyle = computed(
+        function(): string {
+            return '' + //
+                ` width: 32px;` + //
+                ` height: ${selectedTileHeight}px;` + //
+                ` margin: ${selectedTileMargin}px;` + //
+                ' padding: 0; line-height: 0; background-color: aliceblue;';
+        }
+    );
+
 </script>
 
 <style scoped>

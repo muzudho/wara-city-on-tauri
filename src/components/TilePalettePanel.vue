@@ -13,7 +13,8 @@
             Tile palette
         </v-container>
 
-        <v-container class="pa-0" style="background-color: aliceblue;">
+        <!-- クライアント領域 -->
+        <v-container class="pa-0" :style="clientAreaStyle">
 
             <!-- タイル選択リスト -->
             <v-select
@@ -112,7 +113,7 @@
     const tileAreaHeight = computed(
         function(): number {
             const bottomMargin = 8;
-            return tileAreaHeight.value + bottomMargin;
+            return props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + bottomMargin;
         }
     );
     
@@ -121,18 +122,9 @@
     const selectedTileLeft = ref(0 - cursorLeftBorderWidth);
     const selectedTileTop = ref(0 - cursorTopBorderHeight);
 
-    const titlebarStyle = computed(
-        function(): string {
-            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
-        }
-    );
-
-    const listboxStyle = computed(
-        function(): string {
-            return `"height: ${listboxHeight}px;`;
-        }
-    );
-
+    /**
+     * パネル・スタイル
+     */
     const panelStyle = computed(
         function(): string {
             const height = titlebarHeight + listboxHeight + tileAreaHeight.value;
@@ -140,11 +132,41 @@
         }
     );
 
+    /**
+     * タイトルバー・スタイル
+     */
+    const titlebarStyle = computed(
+        function(): string {
+            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+        }
+    );
+
+    /**
+     * クライアント領域スタイル
+     */
+    const clientAreaStyle = computed(
+        function(): string {
+            return "background-color: aliceblue;";
+        }
+    );
+
+    /**
+     * リストボックス・スタイル
+     */
+    const listboxStyle = computed(
+        function(): string {
+            return `"height: ${listboxHeight}px;`;
+        }
+    );
+
+    /**
+     * タイルエリア・スタイル
+     */
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
                 ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
-                ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + 8) + 'px;' +   // 横幅。
+                ' height:' + tileAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0;';
         }
     );
