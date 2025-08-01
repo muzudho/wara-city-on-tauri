@@ -98,10 +98,9 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         tile_index_buffer.push(tileIndex);
         let target_tilepath = board.tilepath_array[tileIndex as usize].clone();
 
-        // FIXME: 🌟 作りかけ
-        let mut limit : i32 = 0;    // FIXME: ループ回数が 30 ぐらい多くなると応答がなくなってしまう。
+        // FIXME: 🌟 Rust は高速でも、TypeScript の方が高速ではない？ JSON受け渡しが遅い？
         loop {
-            if tile_index_buffer.is_empty() || 20 < limit {
+            if tile_index_buffer.is_empty() || 500 < dict.len() {   // 500 までは速い
                 break;
             }
 
@@ -125,8 +124,6 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
             // 入れ替え
             tile_index_buffer.clear();
             tile_index_buffer.extend(next_tile_index_buffer.iter().cloned()); // コピーして追加
-
-            limit += 1;
         }
 
         /*
@@ -155,8 +152,7 @@ fn add_4_sides(
     // 上のタイルが同じなら塗り潰し
     let up_index = tile_index - board.width_cells;
     if 0 <= up_index && !checkboard[up_index as usize] {
-        let up_tilepath = board.tilepath_array[up_index as usize].clone();
-        if up_tilepath == target_tilepath {
+        if target_tilepath == board.tilepath_array[up_index as usize] {
             next_tile_index_buffer.push(up_index);
         }
     }
@@ -165,8 +161,7 @@ fn add_4_sides(
     if tile_index%board.width_cells != (board.width_cells-1) {
         let right_index = tile_index + 1;
         if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
-            let right_tilepath = board.tilepath_array[right_index as usize].clone();
-            if right_tilepath == target_tilepath {
+            if target_tilepath == board.tilepath_array[right_index as usize] {
                 next_tile_index_buffer.push(right_index);
             }
         }
@@ -176,8 +171,7 @@ fn add_4_sides(
     if tile_index%board.width_cells!=0 {
         let left_index = tile_index - 1;
         if !checkboard[left_index as usize] {
-            let left_tilepath = board.tilepath_array[left_index as usize].clone();
-            if left_tilepath == target_tilepath {
+            if target_tilepath == board.tilepath_array[left_index as usize] {
                 next_tile_index_buffer.push(left_index);
             }
         }
@@ -187,8 +181,7 @@ fn add_4_sides(
     if tile_index%board.height_cells != (board.height_cells-1) {
         let down_index = tile_index + board.width_cells;
         if (down_index as usize) < board.tilepath_array.len() && !checkboard[down_index as usize] {
-            let down_tilepath = board.tilepath_array[down_index as usize].clone();
-            if down_tilepath == target_tilepath {
+            if target_tilepath == board.tilepath_array[down_index as usize] {
                 next_tile_index_buffer.push(down_index);
             }
         }
