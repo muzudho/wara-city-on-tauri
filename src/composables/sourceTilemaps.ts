@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue';
+import { reactive, ref, Ref } from 'vue';
 
 // 型、共有データ等。 @はsrcへのエイリアス
 import { SourceTileRectangles } from '@/composables/sourceTileRectangles';
@@ -16,7 +16,7 @@ export interface SourceTilemaps {
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
     const tilemapDict = ref<TilemapDict>({});
 
-    tilemapDict.value["land"] = <TilemapData>{
+    tilemapDict.value["land"] = reactive<TilemapData>({
         tileDict: {
             'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
             'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
@@ -25,11 +25,15 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
-        paletteWidth: 128,
-        paletteHeight: 128,
-    };
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
 
-    tilemapDict.value["system"] = <TilemapData>{
+    tilemapDict.value["system"] = reactive<TilemapData>({
         tileDict: {
             system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
         },
@@ -37,9 +41,13 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
-        paletteWidth: 128,
-        paletteHeight: 128,
-    };
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
 
     // ８方向タイル（無印）を切り抜く
     function cropEightDirectionTileDict(tilemap: string) {
@@ -130,60 +138,84 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         return tileDict;
     }
 
-    tilemapDict.value["out"] = <TilemapData>{
+    tilemapDict.value["out"] = reactive<TilemapData>({
         tileDict: cropEightDirectionTileDict('out'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
-        paletteWidth: 192,
-        paletteHeight: 256,
-    };
-    tilemapDict.value["outBorder"] = <TilemapData>{
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
+    tilemapDict.value["outBorder"] = reactive<TilemapData>({
         tileDict: cropFourDirectoryTileDict('outBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
-        paletteWidth: 128,
-        paletteHeight: 128,
-    };
-    tilemapDict.value["sea"] = <TilemapData>{
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
+    tilemapDict.value["sea"] = reactive<TilemapData>({
         tileDict: cropEightDirectionTileDict('sea'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
-        paletteWidth: 192,
-        paletteHeight: 256,
-    };
-    tilemapDict.value["seaBorder"] = <TilemapData>{
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
+    tilemapDict.value["seaBorder"] = reactive<TilemapData>({
         tileDict: cropFourDirectoryTileDict('seaBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
-        paletteWidth: 128,
-        paletteHeight: 128,
-    };
-    tilemapDict.value["wastelandRoad"] = <TilemapData>{
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
+    tilemapDict.value["wastelandRoad"] = reactive<TilemapData>({
         tileDict: cropEightDirectionTileDict('wastelandRoad'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
-        paletteWidth: 192,
-        paletteHeight: 256,
-    };
-    tilemapDict.value["wastelandBorder"] = <TilemapData>{
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
+    tilemapDict.value["wastelandBorder"] = reactive<TilemapData>({
         tileDict: cropFourDirectoryTileDict('wastelandBorder'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
-        paletteWidth: 128,
-        paletteHeight: 128,
-    };
+        getPaletteWidth(){
+            return this.horizontalUnitCells * this.unitCellWidth;
+        },
+        getPaletteHeight(){
+            return this.verticalUnitCells * this.unitCellHeight;
+        },
+    });
 
     return {
         tilemapDict,

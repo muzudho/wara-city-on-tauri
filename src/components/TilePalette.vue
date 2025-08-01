@@ -131,8 +131,8 @@
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
-                ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteWidth + 'px;' +   // 横幅。
-                ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteHeight + 8) + 'px;' +   // 横幅。
+                ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
+                ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + 8) + 'px;' +   // 横幅。
                 ' padding: 0; line-height: 0;';
         }
     );
