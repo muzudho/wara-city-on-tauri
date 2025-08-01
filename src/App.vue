@@ -127,13 +127,17 @@
     const board = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
     const mouseDraggingVM = ref(false);
 
+    /**
+     * マップタイルをクリックしたとき。
+     * @param index クリックしたタイルのインデックス。
+     */
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
         if (selectedTilePathVM.value == '') {
             return;
         }
-        // マップタイルを更新
-        board.tileKeyArray.value[index] = selectedTilePathVM.value
+
+        callPaint(index);
     }
 
     function onMapTileMouseDown(_index: number) {
@@ -178,6 +182,23 @@
         //alert(`ソースタイル２をクリックした： tilePath=${tilePath}`)
         selectedTilePathVM.value = tilePath;
         selectedTileDataVM.value = tile;
+    }
+
+    // ################
+    // # サブルーチン #
+    // ################
+
+    /**
+     * Tauriのコマンドを呼び出し。
+     * 文字列を渡すと、指定の操作を実施後の文字列を返す。
+     * @param tileIndex クリックしたタイルのインデックス
+     */
+    async function callPaint(tileIndex: number): Promise<string> {
+        // マップタイルを更新
+        board.tileKeyArray.value[tileIndex] = selectedTilePathVM.value
+
+        //const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
+        return "";
     }
 
 </script>
