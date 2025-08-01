@@ -133,10 +133,11 @@
      */
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
-        if (selectedTilePathVM.value == '') {
-            return;
-        }
+        // if (selectedTilePathVM.value == '') {
+        //     return;
+        // }
 
+        // マップタイルを更新
         callPaint(index);
     }
 
@@ -152,15 +153,18 @@
         if (! mouseDraggingVM.value) {
             return;
         }
+
         // マップタイルを更新
-        board.tileKeyArray.value[index] = selectedTilePathVM.value
+        callPaint(index);
+        // // マップタイルを更新
+        // board.tileKeyArray.value[index] = selectedTilePathVM.value
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++
     // + クライアント領域　＞　タイル・パレット +
     // ++++++++++++++++++++++++++++++++++++++++++
 
-    const selectedTilePathVM = ref('');
+    const selectedTilePathVM = ref('sea_0');  // FIXME: 初期値どうする？
     const selectedTileDataVM = ref<TileData>({  // FIXME: 初期値どうする？
         srcLeft: 0,
         srcTop: 0,
