@@ -113,9 +113,10 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
     dict
 }
 
+// FIXME: 再起関数は、スタックをオーバーフローしてしまう。
 fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard : &mut Vec<bool>, target_tilepath: &str, mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
 
-    /*
+    //*
     // 上のタイルが同じなら塗り潰し
     let up_index = tile_index - board.width_cells;
     if 0 <= up_index && !checkboard[up_index as usize] {
@@ -133,28 +134,31 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
                 dict);
         }        
     }
-    */
+    // */
 
-    /*
+    //*
     // 右のタイルが同じなら塗り潰し
-    let right_index = tile_index + 1;
-    if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
-        let right_tilepath = board.tilepath_array[right_index as usize].clone();
-        if right_tilepath == target_tilepath {
-            dict.insert(right_index, String::from(selected_tilepath));
-            checkboard[right_index as usize] = true;
+    if tile_index%board.width_cells != (board.width_cells-1) {
+        let right_index = tile_index + 1;
+        if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
+            let right_tilepath = board.tilepath_array[right_index as usize].clone();
+            if right_tilepath == target_tilepath {
+                dict.insert(right_index, String::from(selected_tilepath));
+                checkboard[right_index as usize] = true;
 
-            // dict = fill_4_sides(    // 再帰
-            //     right_index,
-            //     selected_tilepath,
-            //     board,
-            //     checkboard,
-            //     target_tilepath,
-            //     dict);
-        }        
+                dict = fill_4_sides(    // 再帰
+                    right_index,
+                    selected_tilepath,
+                    board,
+                    checkboard,
+                    target_tilepath,
+                    dict);
+            }        
+        }
     }
-    */
+    // */
 
+    //*
     // 左のタイルが同じなら塗り潰し
     if tile_index%board.width_cells!=0 {
         let left_index = tile_index - 1;
@@ -174,18 +178,29 @@ fn fill_4_sides(tile_index:i32, selected_tilepath:&str, board:&Board, checkboard
             }        
         }
     }
+    // */
 
-    /*
+    //*
     // 下のタイルが同じなら塗り潰し
-    let down_index = tile_index + board.width_cells;
-    if (down_index as usize) < board.tilepath_array.len() && !checkboard[down_index as usize] {
-        let down_tilepath = board.tilepath_array[down_index as usize].clone();
-        if down_tilepath == target_tilepath {
-            dict.insert(down_index, String::from(selected_tilepath));
-            checkboard[down_index as usize] = true;
-        }        
+    if tile_index%board.height_cells != (board.height_cells-1) {
+        let down_index = tile_index + board.width_cells;
+        if (down_index as usize) < board.tilepath_array.len() && !checkboard[down_index as usize] {
+            let down_tilepath = board.tilepath_array[down_index as usize].clone();
+            if down_tilepath == target_tilepath {
+                dict.insert(down_index, String::from(selected_tilepath));
+                checkboard[down_index as usize] = true;
+
+                dict = fill_4_sides(    // 再帰
+                    down_index,
+                    selected_tilepath,
+                    board,
+                    checkboard,
+                    target_tilepath,
+                    dict);
+            }        
+        }
     }
-    */
+    // */
 
     dict
 }
