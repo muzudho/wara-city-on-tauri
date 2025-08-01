@@ -24,31 +24,6 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
         return this.verticalUnitCells * this.unitCellHeight;
     };
 
-    tilemapDict.value["land"] = reactive<TilemapData>({
-        tileDict: {
-            'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
-            'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
-        },
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-
-    tilemapDict.value["system"] = reactive<TilemapData>({
-        tileDict: {
-            system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
-        },
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-
     // ８方向タイル（無印）を切り抜く
     function cropEightDirectionTileDict(tilemap: string) {
         const tileDict = <TileDict>{};
@@ -137,6 +112,31 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
 
         return tileDict;
     }
+
+    tilemapDict.value["land"] = reactive<TilemapData>({
+        tileDict: {
+            'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
+            'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
+        },
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        getPaletteWidth,
+        getPaletteHeight,
+    });
+
+    tilemapDict.value["system"] = reactive<TilemapData>({
+        tileDict: {
+            system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
+        },
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        getPaletteWidth,
+        getPaletteHeight,
+    });
 
     tilemapDict.value["out"] = reactive<TilemapData>({
         tileDict: cropEightDirectionTileDict('out'),

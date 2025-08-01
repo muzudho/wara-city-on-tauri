@@ -32,14 +32,14 @@
                 <div :style="tileCursorStyle"></div>
 
                 <Tile
-                        v-for="(item, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
+                        v-for="(tile, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
                         :key="key"
-                        :srcLeft="item.srcLeft"
-                        :srcTop="item.srcTop"
-                        :srcWidth="item.srcWidth"
-                        :srcHeight="item.srcHeight"
-                        :tilemapUrl="item.tilemapUrl"
-                        @click="onSrcTileClick(key)"/>
+                        :srcLeft="tile.srcLeft"
+                        :srcTop="tile.srcTop"
+                        :srcWidth="tile.srcWidth"
+                        :srcHeight="tile.srcHeight"
+                        :tilemapUrl="tile.tilemapUrl"
+                        @click="onSrcTileClick(key, tile)"/>
             </v-container>            
         </v-container>
     </vue-draggable-resizable>
@@ -53,8 +53,9 @@
     import 'vue-draggable-resizable/style.css';
 
     // コンポーネント、型、共有データ等。 @はsrcへのエイリアス
-    import { SourceTilemaps } from '@/composables/sourceTilemaps';
     import Tile from '@/components/Tile.vue';
+    import { SourceTilemaps } from '@/composables/sourceTilemaps';
+    import { TileData } from '@/interfaces/tile-data';
 
     // コンポーネントが受け取る引数
     interface Props {
@@ -108,6 +109,11 @@
             return tileAreaHeight.value + bottomMargin;
         }
     );
+    
+    const cursorLeftBorderWidth = 4;
+    const cursorTopBorderHeight = 4;
+    const selectedTileLeft = ref(0 - cursorLeftBorderWidth);
+    const selectedTileTop = ref(0 - cursorTopBorderHeight);
 
     const titlebarStyle = computed(
         function(): string {
@@ -139,12 +145,23 @@
 
     const tileCursorStyle = computed(
         function(): string {
-            return 'position:absolute; top:-4px; left:-4px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;';
+            return `position:absolute; top:${selectedTileTop.value}px; left:${selectedTileLeft.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;
         }
     );
 
-    function onSrcTileClick(name: string) {
-        //alert(`ソースタイルをクリックした： name=${name}`)
+    /**
+     * ソースタイルをクリックしたとき。
+     * @param name フラットなタイル名。
+     */
+    function onSrcTileClick(name: string, tile: TileData) {
+        // カーソルの位置を再設定。
+        selectedTileLeft.value = tile.srcLeft - cursorLeftBorderWidth;
+        selectedTileTop.value = tile.srcTop - cursorTopBorderHeight;
+
+        //alert(`ソースタイルをクリックした： name=${name} selectedTileLeft=${selectedTileLeft.value} selectedTileTop=${selectedTileTop.value}`)
+
+        // TODO そのタイルの横幅、縦幅を取得したい。
+
         // 親に変更を通知
         emit('selectTile', name);
     }

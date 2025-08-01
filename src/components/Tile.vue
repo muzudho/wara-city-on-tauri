@@ -5,6 +5,7 @@
 <script setup lang="ts">
     import { computed } from 'vue';
 
+    // コンポーネントが受け取る引数
     interface Props {
         srcLeft: number;    // 切り抜く矩形のX座標（px）
         srcTop: number;     // 切り抜く矩形のY座標（px）
