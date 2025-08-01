@@ -1,7 +1,7 @@
 import { reactive, ref, Ref } from 'vue';
 
 // 型、共有データ等。 @はsrcへのエイリアス
-import { SourceTilesCollection } from '@/composables/sourceTilesCollection';
+import { SourceTilesCollection } from '@/composables/source-tiles-collection';
 import { TilemapData } from '@/interfaces/tilemap-data';
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';

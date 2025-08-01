@@ -1,33 +1,24 @@
 import { ref, Ref } from 'vue';
 
-// 型、共有データ等
-import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
-import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
-import { TileData } from '@/interfaces/tile-data'; // @はsrcへのエイリアス
+// @はsrcへのエイリアス
+// コンポーザブル
+import { tilemapFilepathDict } from '@/composables/tilemap-filepath-collection';
+
+// 型
+import { TileDict } from '@/types/tile-dict';
+
+// インターフェース
+import { TileData } from '@/interfaces/tile-data';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilesCollection {
     // ファイルパス毎に分割するのではなく、フラットにしたい。
-    tilemapFilepathDict: StringDict;  // 変更がないデータ
     cellWidth: Ref<number>;
     cellHeight: Ref<number>;
     tileDict: Ref<TileDict>;
 
     getTileByPath: (path: string) => TileData;
 }
-
-// モジュールスコープでインスタンスを1つだけ作る（シングルトン）
-const tilemapFilepathDict = <StringDict>{
-    // "/public" フォルダー下のパス
-    'land': '/img/tiles/tilemap_land.png',
-    'out': '/img/tiles/tilemap_out.png',
-    'outBorder': '/img/tiles/tilemap_outBorder.png',
-    'sea': '/img/tiles/tilemap_sea.png',
-    'seaBorder': '/img/tiles/tilemap_seaBorder.png',
-    'system': '/img/tiles/tilemap_system.png',
-    'wastelandRoad': '/img/tiles/tilemap_wastelandRoad.png',
-    'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
-};
 
 export function createSourceTilesCollection(): SourceTilesCollection {
     const cellWidth: Ref<number> = ref(32);     // FIXME: タイルサイズの初期値どうする？
@@ -145,7 +136,6 @@ export function createSourceTilesCollection(): SourceTilesCollection {
     const tileDict = ref<TileDict>(flatTileDict);
 
     return {
-        tilemapFilepathDict,
         cellWidth,
         cellHeight,
         tileDict,

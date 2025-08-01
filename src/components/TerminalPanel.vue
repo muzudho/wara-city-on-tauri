@@ -43,7 +43,7 @@
 
     // 型
     import { Board } from '@/composables/board';
-    import { SourceTilesCollection } from "@/composables/sourceTilesCollection";
+    import { SourceTilesCollection } from "@/composables/source-tiles-collection";
     import { SourceTilemaps } from "@/composables/sourceTilemaps";
 
     // コンポーネントが受け取る引数

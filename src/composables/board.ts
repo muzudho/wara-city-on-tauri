@@ -1,7 +1,7 @@
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
 // 型、共有データ等
-import { SourceTilesCollection } from "@/composables/sourceTilesCollection";
+import { SourceTilesCollection } from "@/composables/source-tiles-collection";
 
 // ボードの設定を管理する型
 export interface Board {

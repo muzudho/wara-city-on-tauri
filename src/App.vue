@@ -69,7 +69,7 @@
 
     // コンポーザブル
     import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
-    import { createSourceTilesCollection } from '@/composables/sourceTilesCollection';
+    import { createSourceTilesCollection } from '@/composables/source-tiles-collection';
     import { createBoard } from '@/composables/board';
 
     // インターフェース
