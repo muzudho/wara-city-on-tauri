@@ -18,18 +18,18 @@
 
             <!-- 選択タイル -->
             <Tile
-                    :srcLeft="0"
-                    :srcTop="0"
-                    :srcWidth="32"
-                    :srcHeight="32"
-                    :tilemapUrl="'/img/tiles/tilemap_sea.png'"
+                    :srcLeft="selectedTileDataVM.srcLeft"
+                    :srcTop="selectedTileDataVM.srcTop"
+                    :srcWidth="selectedTileDataVM.srcWidth"
+                    :srcHeight="selectedTileDataVM.srcHeight"
+                    :tilemapUrl="selectedTileDataVM.tilemapUrl"
                     :style="selectedTileStyle"/>
         </v-container>
     </vue-draggable-resizable>
 </template>
 
 <script setup lang="ts">
-    import { computed } from "vue";
+    import { computed, ref } from "vue";
 
     // ドラッグ可能パネル
     import VueDraggableResizable from 'vue-draggable-resizable';
@@ -37,6 +37,15 @@
 
     // コンポーネント、型、共有データ等。 @はsrcへのエイリアス
     import Tile from '@/components/Tile.vue';
+    import { TileData } from '@/interfaces/tile-data';
+
+    const selectedTileDataVM = ref<TileData>({
+        srcLeft: 0,
+        srcTop: 0,
+        srcWidth: 32,
+        srcHeight: 32,
+        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
+    });
 
     // ##########
     // # パネル #
