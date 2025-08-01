@@ -8,7 +8,6 @@ export interface TilemapData {
     horizontalUnitCells: number,    // 水平方向の単位セル数
     verticalUnitCells: number,      // 垂直方向の単位セル数
 
-    // TODO 以下をメソッドかプロパティにしたい。
     getPaletteWidth(): number;      // パレットとして出力したときの横幅（px）
     getPaletteHeight(): number;     // パレットとして出力したときの縦幅（px）
 }

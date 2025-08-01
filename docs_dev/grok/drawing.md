@@ -56,7 +56,7 @@
         <!-- タイルパレット -->
         <TilePalettePanel
           :srcTileDictDict="srcTilemaps.tileDictDict.value"
-          v-on:changeTilemap="onTilemapChanged"
+          v-on:selectTilemap="onTilemapSelected"
           v-on:selectTile="onSrcTileClicked"
           style="position: absolute; top: 64px; left: 64px; z-index: 10;"
         />
@@ -154,8 +154,8 @@ export default defineComponent({
       // Vue のリアクティビティをトリガー
       this.board.tileKeyArray.value = [...this.board.tileKeyArray.value];
     },
-    onTilemapChanged() {
-      console.log('Tilemap changed');
+    onTilemapSelected() {
+      console.log('Tilemap selected');
     },
     onSrcTileClicked(key: string) {
       // タイルパレットで選択されたキーを更新

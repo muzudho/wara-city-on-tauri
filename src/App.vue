@@ -43,8 +43,8 @@
                 <TilePalettePanel
                         :srcTileCollection="srcTileCollection"
                         :srcTilemapCollection="srcTilemaps"
-                        v-on:changeTilemap="onTilemapChanged"
-                        v-on:selectTile="onSrcTileClicked"
+                        v-on:selectTilemap="onTilemapSelected"
+                        v-on:selectTile="onSrcTileSelected"
                         style="position:fixed; top:170px; left:16px; z-index: 10;"/>
 
                 <!-- ターミナル・ウィンドウ
@@ -173,16 +173,17 @@
         tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
     });
 
-    function onTilemapChanged(_tilePath: string) {
-        //alert(`タイルマップを変更した： tilePath=${tilePath}`)
-        //selectedTilemapKeyVM.value = tilePath
+    function onTilemapSelected(_tilemapName: string, tilePath: string, tile: TileData) {
+        alert(`タイルマップを変更した： タイルマップ名：${_tilemapName} タイルパス=${tilePath} タイル：${tile.srcLeft} ${tile.srcTop}`)
+        selectedTilePathVM.value = tilePath;
+        selectedTileDataVM.value = tile;
     }
 
     /**
      * ソースタイルをクリックしたとき。
      * @param tilePath 
      */
-    function onSrcTileClicked(tilePath: string, tile: TileData) {
+    function onSrcTileSelected(tilePath: string, tile: TileData) {
         //alert(`ソースタイル２をクリックした： tilePath=${tilePath}`)
         selectedTilePathVM.value = tilePath;
         selectedTileDataVM.value = tile;

@@ -100,7 +100,7 @@
     interface Emits {
         // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
         (event: 'selectTile', tilePath: string, tile: TileData): void;
-        (event: 'changeTilemap', value: string): void;
+        (event: 'selectTilemap', tilemapName: string, tilePath: string, tile: TileData): void;
     }
     const emit = defineEmits<Emits>();
     
@@ -194,11 +194,18 @@
         tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
         tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
 
+        const tilemapName = selectedTilemapNameVM.value;
+
+        // TODO: タイルパスをどうやって取得する？
+        const tilePath = getMemoryTilePosition().tliePath;  // FIXME: 🌟エラー。
+
+        const tile = props.srcTileCollection.getTileByPath(tilePath);
+
         // 親に変更を通知
-        emit('changeTilemap', selectedTilemapNameVM.value);
+        emit('selectTilemap', tilemapName, tilePath, tile);
         
         // 親に変更を通知
-        emit('selectTile', getMemoryTilePosition().tliePath, props.srcTileCollection.getTileByPath(getMemoryTilePosition().tliePath));
+        emit('selectTile', tilePath, tile);
     });
 
     const selectedTilemapTileDict = computed(
