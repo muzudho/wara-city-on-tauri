@@ -94,19 +94,27 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         let mut checkboard : Vec<bool> = vec![false; board.tilepath_array.len()];
 
         //*
-        let targetTilepath = board.tilepath_array[tileIndex as usize].clone();
+        let target_tilepath = board.tilepath_array[tileIndex as usize].clone();
 
         dict.insert(tileIndex, String::from(selectedTilepath));
 
         // FIXME: 🌟 作りかけ
 
         // TODO 上下左右にある同じタイルは塗りつぶす
+        dict = fill(
+            tileIndex,
+            selectedTilepath,
+            board,
+            checkboard,
+            target_tilepath,
+            dict);
 
+        /*
         // 右のタイルが同じなら塗り潰し
         let rightIndex = tileIndex + 1;
         if (rightIndex as usize) < board.tilepath_array.len() && !checkboard[rightIndex as usize] {
             let rightTilepath = board.tilepath_array[rightIndex as usize].clone();
-            if rightTilepath == targetTilepath {
+            if rightTilepath == target_tilepath {
                 dict.insert(rightIndex, String::from(selectedTilepath));
                 checkboard[rightIndex as usize] = true;
             }        
@@ -116,7 +124,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         let leftIndex = tileIndex - 1;
         if 0 <= leftIndex && !checkboard[leftIndex as usize] {
             let leftTilepath = board.tilepath_array[leftIndex as usize].clone();
-            if leftTilepath == targetTilepath {
+            if leftTilepath == target_tilepath {
                 dict.insert(leftIndex, String::from(selectedTilepath));
                 checkboard[leftIndex as usize] = true;
             }        
@@ -126,7 +134,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         let upIndex = tileIndex - board.width_cells;
         if 0 <= upIndex && !checkboard[upIndex as usize] {
             let downTilepath = board.tilepath_array[upIndex as usize].clone();
-            if downTilepath == targetTilepath {
+            if downTilepath == target_tilepath {
                 dict.insert(upIndex, String::from(selectedTilepath));
                 checkboard[upIndex as usize] = true;
             }        
@@ -136,11 +144,56 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
         let downIndex = tileIndex + board.width_cells;
         if (downIndex as usize) < board.tilepath_array.len() && !checkboard[downIndex as usize] {
             let downTilepath = board.tilepath_array[downIndex as usize].clone();
-            if downTilepath == targetTilepath {
+            if downTilepath == target_tilepath {
                 dict.insert(downIndex, String::from(selectedTilepath));
                 checkboard[downIndex as usize] = true;
             }        
         }
+         */
+    }
+
+    dict
+}
+
+fn fill(tile_index:i32, selected_tilepath:&str, board:Board, mut checkboard : Vec<bool>, target_tilepath: String, mut dict : HashMap<i32, String>) -> HashMap<i32, String> {
+    // 右のタイルが同じなら塗り潰し
+    let right_index = tile_index + 1;
+    if (right_index as usize) < board.tilepath_array.len() && !checkboard[right_index as usize] {
+        let right_tilepath = board.tilepath_array[right_index as usize].clone();
+        if right_tilepath == target_tilepath {
+            dict.insert(right_index, String::from(selected_tilepath));
+            checkboard[right_index as usize] = true;
+        }        
+    }
+
+    // 左のタイルが同じなら塗り潰し
+    let left_index = tile_index - 1;
+    if 0 <= left_index && !checkboard[left_index as usize] {
+        let left_tilepath = board.tilepath_array[left_index as usize].clone();
+        if left_tilepath == target_tilepath {
+            dict.insert(left_index, String::from(selected_tilepath));
+            checkboard[left_index as usize] = true;
+        }        
+    }
+
+    // 上のタイルが同じなら塗り潰し
+    let up_index = tile_index - board.width_cells;
+    if 0 <= up_index && !checkboard[up_index as usize] {
+        let up_tilepath = board.tilepath_array[up_index as usize].clone();
+        if up_tilepath == target_tilepath {
+            dict.insert(up_index, String::from(selected_tilepath));
+            checkboard[up_index as usize] = true;
+        }        
+    }
+
+    // 下のタイルが同じなら塗り潰し
+    let down_index = tile_index + board.width_cells;
+    if (down_index as usize) < board.tilepath_array.len() && !checkboard[down_index as usize] {
+        let down_tilepath = board.tilepath_array[down_index as usize].clone();
+        if down_tilepath == target_tilepath {
+            dict.insert(down_index, String::from(selected_tilepath));
+            checkboard[down_index as usize] = true;
+        }        
     }
 
     dict
