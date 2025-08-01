@@ -34,25 +34,52 @@
 </template>
 
 <script setup lang="ts">
+
+    // ##############
+    // # インポート #
+    // ##############
     import { invoke } from "@tauri-apps/api/core";
     import { ref } from "vue";
 
-    // ドラッグ可能パネル
+    // ++++++++++++++++++++++++++++++++++++++
+    // + インポート　＞　ドラッグ可能パネル +
+    // ++++++++++++++++++++++++++++++++++++++
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
-    // 型
+    // ++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーザル +
+    // ++++++++++++++++++++++++++++++++
+    //
+    // @はsrcへのエイリアス
+    //
     import { Board } from '@/composables/board';
     import { SourceTileCollection } from "@/composables/source-tile-collection";
-    import { SourceTilemaps } from "@/composables/sourceTilemaps";
+    import { SourceTilemapCollection } from "@/composables/source-tilemap-collection";
 
-    // コンポーネントが受け取る引数
+    // ####################################
+    // # このコンポーネントが受け取る引数 #
+    // ####################################
     interface Props {
         srcTileCollection: SourceTileCollection;
-        srcTilemaps: SourceTilemaps;
+        srcTilemaps: SourceTilemapCollection;
         board: Board;
     }
     const props = defineProps<Props>();
+
+    // ############################
+    // # このコンポーネントの画面 #
+    // ############################
+
+    // ++++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　テキストボックス +
+    // ++++++++++++++++++++++++++++++++++++++++++
+
+    const textVM = ref()
+
+    // ++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　リストボックス +
+    // ++++++++++++++++++++++++++++++++++++++++
 
     interface IOption {
         key: string;
@@ -66,7 +93,10 @@
         {key: "都道府県スプリット1", value: "都道府県スプリット"},
     ]
     const selectedItemVM = ref<string>("")
-    const textVM = ref()
+
+    // ++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　実行ボタン +
+    // ++++++++++++++++++++++++++++++++++++
 
     async function onExecuteButtonClicked() {
         //alert(`［Execute］ボタンを押したぜ。 selectedItemVM.value=${selectedItemVM.value}`)
@@ -115,8 +145,16 @@
         }
     }
 
-    // Tauriのコマンドを呼び出し。
-    // 文字列を渡すと、指定の操作を実施後の文字列を返す。
+    // ################
+    // # サブルーチン #
+    // ################
+
+    /**
+     * Tauriのコマンドを呼び出し。
+     * 文字列を渡すと、指定の操作を実施後の文字列を返す。
+     * @param sourceStr 
+     * @param commandName 
+     */
     async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
         const resultStr = await invoke<string>('translate', {sourceStr: sourceStr, commandName: commandName});
         return resultStr;

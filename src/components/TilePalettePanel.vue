@@ -47,30 +47,99 @@
 </template>
 
 <script setup lang="ts">
+
+    // ##############
+    // # インポート #
+    // ##############
     import { computed, ref, watch } from "vue";
 
-    // ドラッグ可能パネル
+    // ++++++++++++++++++++++++++++++++++++++
+    // + インポート　＞　ドラッグ可能パネル +
+    // ++++++++++++++++++++++++++++++++++++++
     import VueDraggableResizable from 'vue-draggable-resizable';
     import 'vue-draggable-resizable/style.css';
 
-    // コンポーネント、型、共有データ等。 @はsrcへのエイリアス
+    // ++++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーネント +
+    // ++++++++++++++++++++++++++++++++++
+    //
+    // @はsrcへのエイリアス
+    //
     import Tile from '@/components/Tile.vue';
-    import { SourceTilemaps } from '@/composables/sourceTilemaps';
+
+    // ++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーザル +
+    // ++++++++++++++++++++++++++++++++
+    import { SourceTilemapCollection } from '@/composables/source-tilemap-collection';
+
+    // ++++++++++++++++++++++++++++++++++++
+    // + インポート　＞　インターフェース +
+    // ++++++++++++++++++++++++++++++++++++
     import { TileData } from '@/interfaces/tile-data';
 
-    // コンポーネントが受け取る引数
+    // ####################################
+    // # このコンポーネントが受け取る引数 #
+    // ####################################
     interface Props {
-        srcTilemaps: SourceTilemaps;
+        srcTilemaps: SourceTilemapCollection;
     }
     const props = defineProps<Props>();
 
-    // カスタムイベントを定義
+    // ##############################################
+    // # このコンポーネントで起こるカスタムイベント #
+    // ##############################################
     interface Emits {
         // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
         (event: 'selectTile', value: string): void;
         (event: 'changeTilemap', value: string): void;
     }
     const emit = defineEmits<Emits>();
+    
+    // ############################
+    // # このコンポーネントの画面 #
+    // ############################
+
+    /**
+     * パネル・スタイル
+     */
+    const panelStyle = computed(
+        function(): string {
+            const height = titlebarHeight + listboxHeight + tileAreaHeight.value;
+            return `height: ${height}`;   // 横幅。
+        }
+    );
+
+    // ++++++++++++++++
+    // + タイトルバー +
+    // ++++++++++++++++
+
+    const titlebarHeight = 32;
+
+    /**
+     * タイトルバー・スタイル
+     */
+    const titlebarStyle = computed(
+        function(): string {
+            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+        }
+    );
+
+    // ++++++++++++++++++++
+    // + クライアント領域 +
+    // ++++++++++++++++++++
+
+    /**
+     * クライアント領域スタイル
+     */
+    const clientAreaStyle = computed(
+        function(): string {
+            return "background-color: aliceblue;";
+        }
+    );
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイルマップ・リストボックス +
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // タイル選択リストボックス
     interface ListOption {
@@ -89,7 +158,23 @@
         {key: "out", value: "外"},
         {key: "outBorder", value: "外の境界線"},
         {key: "system", value: "システム"},
-    ]
+    ];
+
+    const listboxHeight = 64;
+
+    /**
+     * リストボックス・スタイル
+     */
+    const listboxStyle = computed(
+        function(): string {
+            return `"height: ${listboxHeight}px;`;
+        }
+    );
+
+    // ++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイルエリア +
+    // ++++++++++++++++++++++++++++++++++++++
+
     const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
     /**
      * ［タイルマップ名］の変更を監視。
@@ -108,54 +193,10 @@
         }
     );
 
-    const titlebarHeight = 32;
-    const listboxHeight = 64;
     const tileAreaHeight = computed(
         function(): number {
             const bottomMargin = 8;
             return props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + bottomMargin;
-        }
-    );
-    
-    const cursorLeftBorderWidth = 4;
-    const cursorTopBorderHeight = 4;
-    const selectedTileLeft = ref(0 - cursorLeftBorderWidth);
-    const selectedTileTop = ref(0 - cursorTopBorderHeight);
-
-    /**
-     * パネル・スタイル
-     */
-    const panelStyle = computed(
-        function(): string {
-            const height = titlebarHeight + listboxHeight + tileAreaHeight.value;
-            return `height: ${height}`;   // 横幅。
-        }
-    );
-
-    /**
-     * タイトルバー・スタイル
-     */
-    const titlebarStyle = computed(
-        function(): string {
-            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
-        }
-    );
-
-    /**
-     * クライアント領域スタイル
-     */
-    const clientAreaStyle = computed(
-        function(): string {
-            return "background-color: aliceblue;";
-        }
-    );
-
-    /**
-     * リストボックス・スタイル
-     */
-    const listboxStyle = computed(
-        function(): string {
-            return `"height: ${listboxHeight}px;`;
         }
     );
 
@@ -168,12 +209,6 @@
                 ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
                 ' height:' + tileAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0;';
-        }
-    );
-
-    const tileCursorStyle = computed(
-        function(): string {
-            return `position:absolute; top:${selectedTileTop.value}px; left:${selectedTileLeft.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;
         }
     );
 
@@ -193,6 +228,21 @@
         // 親に変更を通知
         emit('selectTile', name);
     }
+
+    // ++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイルカーソル +
+    // ++++++++++++++++++++++++++++++++++++++++
+
+    const cursorLeftBorderWidth = 4;
+    const cursorTopBorderHeight = 4;
+    const selectedTileLeft = ref(0 - cursorLeftBorderWidth);
+    const selectedTileTop = ref(0 - cursorTopBorderHeight);
+
+    const tileCursorStyle = computed(
+        function(): string {
+            return `position:absolute; top:${selectedTileTop.value}px; left:${selectedTileLeft.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;
+        }
+    );
 </script>
 
 <style scoped>

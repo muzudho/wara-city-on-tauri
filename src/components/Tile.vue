@@ -3,9 +3,15 @@
 </template>
 
 <script setup lang="ts">
+
+    // ##############
+    // # インポート #
+    // ##############
     import { computed } from 'vue';
 
-    // コンポーネントが受け取る引数
+    // ####################################
+    // # このコンポーネントが受け取る引数 #
+    // ####################################
     interface Props {
         srcLeft: number;    // 切り抜く矩形のX座標（px）
         srcTop: number;     // 切り抜く矩形のY座標（px）
@@ -19,6 +25,14 @@
         srcHeight: 32,
     });
 
+    // ############################
+    // # このコンポーネントの画面 #
+    // ############################
+
+    // ++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイル画像 +
+    // ++++++++++++++++++++++++++++++++++++
+
     const tileStyle = computed(() => ({
         width: `${props.srcWidth}px`,
         height: `${props.srcHeight}px`,
@@ -26,6 +40,7 @@
         backgroundPosition: `${-props.srcLeft}px ${-props.srcTop}px`,
         backgroundRepeat: 'no-repeat',
     }));
+
 </script>
 
 <style scoped>

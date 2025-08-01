@@ -7,13 +7,13 @@ import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
 
 // タイルマップの元画像を管理する型
-export interface SourceTilemaps {
+export interface SourceTilemapCollection {
     tilemapDict: Ref<TilemapDict>;
 
     getTilemapByName: (name: string) => TilemapData;
 }
 
-export function createSourceTilemaps(srcTileCollection: SourceTileCollection): SourceTilemaps {
+export function createSourceTilemapCollection(srcTileCollection: SourceTileCollection): SourceTilemapCollection {
     const tilemapDict = ref<TilemapDict>({});
 
     // メソッド定義

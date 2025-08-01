@@ -1,7 +1,8 @@
 <template>
     <v-app>
         <v-main>
-            <v-container class="pa-0" :style="boardStyle">
+            <!-- クライアント領域 -->
+            <v-container class="pa-0" :style="clientAreaStyle">
                 <!-- 単純にタイルを敷き詰めているだけ。 -->
                 <!-- 例えば、以下のようなタグをリピート。
                     <Tile
@@ -59,28 +60,57 @@
 </template>
 
 <script setup lang="ts">
+
+    // ##############
+    // # インポート #
+    // ##############
+
     import { computed, ref } from "vue";
 
-    // コンポーネント
+    // ++++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーネント +
+    // ++++++++++++++++++++++++++++++++++
+    //
+    // @はsrcへのエイリアス
+    //
+
     import Tile from '@/components/Tile.vue';
     import TilePalettePanel from '@/components/TilePalettePanel.vue';
     import TerminalPanel from '@/components/TerminalPanel.vue';
     import BrushPanel from '@/components/BrushPanel.vue';
 
-    // コンポーザブル
-    import { SourceTilemaps, createSourceTilemaps } from '@/composables/sourceTilemaps';
+    // ++++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーザブル +
+    // ++++++++++++++++++++++++++++++++++
+
+    import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { createSourceTilesCollection } from '@/composables/source-tile-collection';
     import { createBoard } from '@/composables/board';
 
-    // インターフェース
+    // ++++++++++++++++++++++++++++++++++++
+    // + インポート　＞　インターフェース +
+    // ++++++++++++++++++++++++++++++++++++
+
     import { TileData } from '@/interfaces/tile-data';
+
+    // ##############
+    // # 共有データ #
+    // ##############
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     const srcTileCollection = createSourceTilesCollection();
-    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileCollection);
-    const board = createBoard(srcTileCollection);
+    const srcTilemaps: SourceTilemapCollection = createSourceTilemapCollection(srcTileCollection);
 
-    const boardStyle = computed(
+    // ############################
+    // # このコンポーネントの画面 #
+    // ############################
+
+    // ++++++++++++++++++++
+    // + クライアント領域 +
+    // ++++++++++++++++++++
+
+    // クライアント領域。マップのタイルが敷き詰めてある。
+    const clientAreaStyle = computed(
         function(): string {
             return '' + //
                 ' max-width: ' + board.widthPixels.value + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
@@ -89,24 +119,20 @@
         }
     );
 
-    const selectedTileFlatNameVM = ref('');
-    const mouseDraggingVM = ref(false);
+    // ++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　マップ +
+    // ++++++++++++++++++++++++++++++++
 
-    const selectedTileDataVM = ref<TileData>({
-        srcLeft: 0,
-        srcTop: 32,
-        srcWidth: 32,
-        srcHeight: 32,
-        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
-    });
+    const board = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+    const mouseDraggingVM = ref(false);
 
     function onMapTileClick(index: number) {
         //alert(`マップタイルをクリックした： index=${index}`)
-        if (selectedTileFlatNameVM.value == '') {
+        if (selectedTilePathVM.value == '') {
             return;
         }
         // マップタイルを更新
-        board.tileKeyArray.value[index] = selectedTileFlatNameVM.value
+        board.tileKeyArray.value[index] = selectedTilePathVM.value
     }
 
     function onMapTileMouseDown(_index: number) {
@@ -122,18 +148,36 @@
             return;
         }
         // マップタイルを更新
-        board.tileKeyArray.value[index] = selectedTileFlatNameVM.value
+        board.tileKeyArray.value[index] = selectedTilePathVM.value
     }
+
+    // ++++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイル・パレット +
+    // ++++++++++++++++++++++++++++++++++++++++++
+
+    const selectedTilePathVM = ref('');
+    const selectedTileDataVM = ref<TileData>({
+        srcLeft: 0,
+        srcTop: 32,
+        srcWidth: 32,
+        srcHeight: 32,
+        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
+    });
 
     function onTilemapChanged(_tilePath: string) {
         //alert(`タイルマップを変更した： tilePath=${tilePath}`)
         //selectedTilemapKeyVM.value = tilePath
     }
 
+    /**
+     * ソースタイルをクリックしたとき。
+     * @param name 
+     */
     function onSrcTileClicked(name: string) {
         //alert(`ソースタイル２をクリックした： name=${name}`)
-        selectedTileFlatNameVM.value = name
+        selectedTilePathVM.value = name
     }
+
 </script>
 
 <style>
