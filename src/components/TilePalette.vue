@@ -29,7 +29,7 @@
             <!-- タイルを敷き詰めるだけ -->
             <v-container :style="tileAreaStyle" style="position: relative;">
                 <!-- タイル・カーソル -->
-                <div style="position:absolute; top:-4px; left:-4px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;"></div>
+                <div :style="tileCursorStyle"></div>
 
                 <Tile
                         v-for="(item, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
@@ -134,6 +134,12 @@
                 ' width:' + props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteWidth + 'px;' +   // 横幅。
                 ' height:' + (props.srcTilemaps.getTilemapByName(selectedTilemapKey.value).paletteHeight + 8) + 'px;' +   // 横幅。
                 ' padding: 0; line-height: 0;';
+        }
+    );
+
+    const tileCursorStyle = computed(
+        function(): string {
+            return 'position:absolute; top:-4px; left:-4px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;';
         }
     );
 

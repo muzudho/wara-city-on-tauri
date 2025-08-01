@@ -108,7 +108,7 @@
         board.tileKeyArray.value[index] = penVM.value
     }
 
-    function onTilemapChanged(key: string) {
+    function onTilemapChanged(_key: string) {
         //alert(`タイルマップを変更した： key=${key}`)
         //selectedTilemapKeyVM.value = key
     }

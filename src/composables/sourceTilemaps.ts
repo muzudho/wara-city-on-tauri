@@ -20,6 +20,10 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
                 'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
                 'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
             },
+            unitCellWidth: 32,
+            unitCellHeight: 32,
+            horizontalUnitCells: 4,
+            verticalUnitCells: 4,
             "paletteWidth": 128,
             "paletteHeight": 128,
         },
@@ -27,6 +31,10 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
             "tileDict": {
                 'system_noImage': srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
             },
+            "unitCellWidth": 32,
+            "unitCellHeight": 32,
+            "horizontalUnitCells": 4,
+            "verticalUnitCells": 4,
             "paletteWidth": 128,
             "paletteHeight": 128,
         },
@@ -123,31 +131,55 @@ export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): S
 
     tilemapDict.value["out"] = {
         "tileDict": cropEightDirectionTileDict('out'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 6,
+        "verticalUnitCells": 8,
         "paletteWidth": 192,
         "paletteHeight": 256,
     };
     tilemapDict.value["outBorder"] = {
         "tileDict": cropFourDirectoryTileDict('outBorder'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 4,
+        "verticalUnitCells": 4,
         "paletteWidth": 128,
         "paletteHeight": 128,
     };
     tilemapDict.value["sea"] = {
         "tileDict": cropEightDirectionTileDict('sea'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 6,
+        "verticalUnitCells": 8,
         "paletteWidth": 192,
         "paletteHeight": 256,
     };
     tilemapDict.value["seaBorder"] = {
         "tileDict": cropFourDirectoryTileDict('seaBorder'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 4,
+        "verticalUnitCells": 4,
         "paletteWidth": 128,
         "paletteHeight": 128,
     };
     tilemapDict.value["wastelandRoad"] = {
         "tileDict": cropEightDirectionTileDict('wastelandRoad'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 6,
+        "verticalUnitCells": 8,
         "paletteWidth": 192,
         "paletteHeight": 256,
     };
     tilemapDict.value["wastelandBorder"] = {
         "tileDict": cropFourDirectoryTileDict('wastelandBorder'),
+        "unitCellWidth": 32,
+        "unitCellHeight": 32,
+        "horizontalUnitCells": 4,
+        "verticalUnitCells": 4,
         "paletteWidth": 128,
         "paletteHeight": 128,
     };

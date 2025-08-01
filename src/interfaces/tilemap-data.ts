@@ -2,7 +2,12 @@ import { TileDict } from '@/types/tile-dict'; // @はsrcへのエイリアス
 
 // タイルマップ・データ。
 export interface TilemapData {
-    tileDict: TileDict;     // タイル矩形の位置を示す辞書
-    paletteWidth: number;   // パレットとして出力したときの横幅（px）
-    paletteHeight: number;  // パレットとして出力したときの縦幅（px）
+    tileDict: TileDict;             // タイル矩形の位置を示す辞書
+    unitCellWidth: number,          // 単位セルの横幅（px）
+    unitCellHeight: number,         // 単位セルの縦幅（px）
+    horizontalUnitCells: number,    // 水平方向の単位セル数
+    verticalUnitCells: number,      // 垂直方向の単位セル数
+
+    paletteWidth: number;           // パレットとして出力したときの横幅（px）
+    paletteHeight: number;          // パレットとして出力したときの縦幅（px）
 }
