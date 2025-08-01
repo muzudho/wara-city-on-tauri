@@ -13,18 +13,18 @@
                     selectedTilemapKey: {{ selectedTilemapKey }}<br/>
                     <container
                             style="line-height: 12px;"
-                            v-for="key in board.tileKeyArray">
-                            key: {{ key }}<br/>
+                            v-for="tilePath in board.tileKeyArray">
+                            tilePath: {{ tilePath }}<br/>
                     </container>
                 -->
                 <Tile
-                        v-for="(key, index) in board.tileKeyArray.value"
+                        v-for="(tilePath, index) in board.tileKeyArray.value"
                         :key="index"
-                        :srcLeft="srcTilesCollection.getTileByPath(key).srcLeft"
-                        :srcTop="srcTilesCollection.getTileByPath(key).srcTop"
-                        :srcWidth="srcTilesCollection.getTileByPath(key).srcWidth"
-                        :srcHeight="srcTilesCollection.getTileByPath(key).srcHeight"
-                        :tilemapUrl="srcTilesCollection.getTileByPath(key).tilemapUrl"
+                        :srcLeft="srcTilesCollection.getTileByPath(tilePath).srcLeft"
+                        :srcTop="srcTilesCollection.getTileByPath(tilePath).srcTop"
+                        :srcWidth="srcTilesCollection.getTileByPath(tilePath).srcWidth"
+                        :srcHeight="srcTilesCollection.getTileByPath(tilePath).srcHeight"
+                        :tilemapUrl="srcTilesCollection.getTileByPath(tilePath).tilemapUrl"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
                         @mouseup="onMapTileMouseUp(index)"
@@ -125,9 +125,9 @@
         board.tileKeyArray.value[index] = selectedTileFlatNameVM.value
     }
 
-    function onTilemapChanged(_key: string) {
-        //alert(`タイルマップを変更した： key=${key}`)
-        //selectedTilemapKeyVM.value = key
+    function onTilemapChanged(_tilePath: string) {
+        //alert(`タイルマップを変更した： tilePath=${tilePath}`)
+        //selectedTilemapKeyVM.value = tilePath
     }
 
     function onSrcTileClicked(name: string) {

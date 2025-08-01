@@ -17,7 +17,7 @@ export interface SourceTilesCollection {
     unitCellHeight: Ref<number>;    // 単位セルの縦幅
     tileDict: Ref<TileDict>;
 
-    getTileByPath: (path: string) => TileData;
+    getTileByPath: (tilePath: string) => TileData;
 }
 
 export function createSourceTilesCollection(): SourceTilesCollection {
@@ -139,9 +139,9 @@ export function createSourceTilesCollection(): SourceTilesCollection {
         unitCellWidth,
         unitCellHeight,
         tileDict,
-        getTileByPath: (name: string)=>{
-            if (name in flatTileDict) {
-                return flatTileDict[name];
+        getTileByPath: (tilePath: string)=>{
+            if (tilePath in flatTileDict) {
+                return flatTileDict[tilePath];
             }
             return flatTileDict['system_noImage'];   // 画像無しマーク画像
         },
