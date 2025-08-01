@@ -13,9 +13,9 @@ use std::collections::HashMap;
 struct Board {
     width_cells: i32,        // number -> i32
     height_cells: i32,       // number -> i32
-    area_cells: i32,         // number -> i32
-    width_pixels: i32,       // number -> i32
-    height_pixels: i32,      // number -> i32
+    _area_cells: i32,         // number -> i32
+    _width_pixels: i32,       // number -> i32
+    _height_pixels: i32,      // number -> i32
     tilepath_array: Vec<String>, // string[] -> Vec<String>
 }
 
@@ -100,7 +100,7 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
 
         // FIXME: 🌟 Rust は高速でも、TypeScript の方が高速ではない？ JSON受け渡しが遅い？
         loop {
-            if tile_index_buffer.is_empty() || 500 < dict.len() {   // 500 までは速い
+            if tile_index_buffer.is_empty() || 100 < dict.len() {   // 100 ぐらいなら速い
                 break;
             }
 

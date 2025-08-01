@@ -167,7 +167,7 @@
     const optionsVM = <Array<ListOption>>[
         // アルファベット順ではなく、使いやすい順に並べる。
         {key: "dot", value: "１マスずつ"},
-        {key: "fill", value: "塗り潰し（１回につき500マスまで）"},
+        {key: "fill", value: "塗り潰し（１塗りにつき１００マスまで）"},
     ];
     const selectedDrawingMethodNameVM = ref<string>(props.drawingMethodName)
 
