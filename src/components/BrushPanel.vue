@@ -28,7 +28,7 @@
             <!-- 描き方選択リスト -->
             <v-select
                     v-bind:items="optionsVM"
-                    v-model="selectedDrawingNameVM"                    
+                    v-model="selectedDrawingMethodNameVM"                    
                     label="描き方"
                     item-title="value"
                     item-value="key"
@@ -45,7 +45,7 @@
     // ##############
     // # インポート #
     // ##############
-    import { computed, ref } from "vue";
+    import { computed, ref, watch } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
     // + インポート　＞　ドラッグ可能パネル +
@@ -72,8 +72,18 @@
     // ################################
     interface Props {
         selectedTileData: TileData;
+        drawingMethodName: string;
     }
     const props = defineProps<Props>();
+
+    // ##############################################
+    // # このコンポーネントで起こるカスタムイベント #
+    // ##############################################
+    interface Emits {
+        // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
+        (event: 'selectDrawingMethodName', drawingMethodName: string): void;
+    }
+    const emit = defineEmits<Emits>();
 
     // ############################
     // # このコンポーネントの画面 #
@@ -159,7 +169,7 @@
         {key: "dot", value: "１マスずつ"},
         {key: "fill", value: "塗り潰し"},
     ];
-    const selectedDrawingNameVM = ref<string>("dot")     // FIXME: 初期値どうする？
+    const selectedDrawingMethodNameVM = ref<string>(props.drawingMethodName)
 
     const listboxHeight = 64;
 
@@ -171,6 +181,14 @@
             return `"height: ${listboxHeight}px;`;
         }
     );
+
+    /**
+     * ［描き方］リストボックスの変更を監視。
+     */
+    watch(selectedDrawingMethodNameVM, () => {
+        // 親に変更を通知
+        emit('selectDrawingMethodName', selectedDrawingMethodNameVM.value);
+    });
 
 </script>
 

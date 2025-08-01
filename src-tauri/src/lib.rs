@@ -90,19 +90,22 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
     
     // 塗り潰し
     } else if drawingName == "fill" {
-        /*
+        //*
         let targetTilepath = board.tilepath_array[tileIndex as usize].clone();
 
         dict.insert(tileIndex, String::from(selectedTilepath));
 
         // FIXME: 作りかけ
+        dict.insert(2, String::from(selectedTilepath));
+        dict.insert(3, String::from(selectedTilepath));
+
         // TODO 上下左右にある同じタイルは塗りつぶす
-        let downIndex = tileIndex+board.width_cells;
+        let downIndex = tileIndex + board.width_cells;
         let downTilepath = board.tilepath_array[downIndex as usize].clone();
         if downTilepath == targetTilepath {
             dict.insert(downIndex, String::from(selectedTilepath));
         }        
-         */
+        // */
     }
 
     dict

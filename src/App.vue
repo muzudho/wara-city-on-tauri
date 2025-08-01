@@ -35,7 +35,9 @@
                 <!-- ブラシ・ウィンドウ
                 -->
                 <BrushPanel
-                        :selectedTileData="selectedTileDataVM"
+                        v-bind:selectedTileData="selectedTileDataVM"
+                        v-bind:drawingMethodName="selectedDrawingMethodNameVM"
+                        v-on:selectDrawingMethodName="onSelectedDrawingMethodNameSelected"
                         style="position:fixed; top:16px; left:16px; z-index: 30;"/>
 
                 <!-- タイル・パレット・ウィンドウ
@@ -140,7 +142,7 @@
 
         // マップタイルを更新
         callPaint(
-            "dot", // FIXME: 🌟
+            selectedDrawingMethodNameVM.value,
             index);
     }
 
@@ -159,10 +161,18 @@
 
         // マップタイルを更新
         callPaint(
-            "dot", // FIXME: 🌟
+            selectedDrawingMethodNameVM.value,
             index);
-        // // マップタイルを更新
-        // board.tilepathArray.value[index] = selectedTilePathVM.value
+    }
+
+    // ++++++++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　ブラシ・パネル +
+    // ++++++++++++++++++++++++++++++++++++++++
+
+    const selectedDrawingMethodNameVM = ref<string>("dot")     // FIXME: 初期値どうする？
+
+    function onSelectedDrawingMethodNameSelected(drawingMethodName: string) {
+        selectedDrawingMethodNameVM.value = drawingMethodName;
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++
