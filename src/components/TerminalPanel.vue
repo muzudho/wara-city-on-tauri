@@ -103,7 +103,6 @@
 
         if (selectedItemVM.value == 'マップJSON出力1'){
 
-            // TODO 🌟 外部からパラメーターを取得したい。
             let jsonText = '{\n'
             jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
             jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;

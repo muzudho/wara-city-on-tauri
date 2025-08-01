@@ -5,6 +5,7 @@ import { SourceTileCollection } from '@/composables/source-tile-collection';
 import { TilemapData } from '@/interfaces/tilemap-data';
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
+import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemapCollection {
@@ -115,13 +116,18 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
 
     tilemapDict.value["land"] = reactive<TilemapData>({
         tileDict: {
-            'land_wasteland': srcTileCollection.tileDict.value["land_wasteland"],       // 荒地
-            'land_vocantLand': srcTileCollection.tileDict.value["land_vocantLand"],     // 空き地
+            land_wasteland: srcTileCollection.tileDict.value["land_wasteland"],       // 荒地
+            land_vocantLand: srcTileCollection.tileDict.value["land_vocantLand"],     // 空き地
         },
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "land_wasteland", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -134,6 +140,11 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "system_noImage", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -144,6 +155,11 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "out_0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -153,6 +169,11 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "outBorder_A0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -162,6 +183,11 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "sea_0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -171,15 +197,25 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "seaBorder_A0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
-    tilemapDict.value["wastelandRoad"] = reactive<TilemapData>({
+    tilemapDict.value["wastelandRoad"] = reactive<TilemapData>({    // 荒地の道
         tileDict: cropEightDirectionTileDict('wastelandRoad'),
         unitCellWidth: 32,
         unitCellHeight: 32,
         horizontalUnitCells: 6,
         verticalUnitCells: 8,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "wastelandRoad_0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });
@@ -189,6 +225,11 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         unitCellHeight: 32,
         horizontalUnitCells: 4,
         verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "wastelandBorder_A0", // FIXME: 🌟自動設定できないか？
+        },
         getPaletteWidth,
         getPaletteHeight,
     });

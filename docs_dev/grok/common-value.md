@@ -1,4 +1,4 @@
-🌟 次のような変数を複数の Vue コンポーネントで読み書きを共有したいんだが、どう書くのがすっきりするんだぜ（＾～＾）？
+次のような変数を複数の Vue コンポーネントで読み書きを共有したいんだが、どう書くのがすっきりするんだぜ（＾～＾）？
 
     const boardWidthVM = ref(10);
     const boardHeight = 10;
@@ -151,7 +151,15 @@ const { boardWidth, boardHeight, unitCellWidth, unitCellHeight, boardArea } = bo
 どっちの方法がプロジェクトに合いそうか、教えてくれよ（＾～＾）！ もっと具体的な要件があれば、コードをさらにカスタマイズするぜ！
 
 
-🌟 それを TypeScript で書いてくれだぜ（＾～＾）
+
+
+
+
+
+
+
+
+それを TypeScript で書いてくれだぜ（＾～＾）
 
 
 おっ、TypeScriptでスッキリ書きたいんだな！😎 Vue 3 + TypeScriptで、さっきの**Composables**と**Pinia**の両方の方法をTypeScriptで書き直すぜ。型安全で読みやすく、かつクリーンなコードにするよ！以下に実装例をまとめる。

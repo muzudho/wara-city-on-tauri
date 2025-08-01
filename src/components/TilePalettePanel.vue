@@ -195,10 +195,7 @@
         tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
 
         const tilemapName = selectedTilemapNameVM.value;
-
-        // TODO: タイルパスをどうやって取得する？
-        const tilePath = getMemoryTilePosition().tliePath;  // FIXME: 🌟エラー。
-
+        const tilePath = getMemoryTilePosition().tliePath;
         const tile = props.srcTileCollection.getTileByPath(tilePath);
 
         // 親に変更を通知
@@ -264,9 +261,12 @@
     const memoryTilePositionDict = <Record<string, TileCursorPosition>>{};
     function getMemoryTilePosition(): TileCursorPosition {
         if (!(selectedTilemapNameVM.value in memoryTilePositionDict)){
+            const initialTileCursorPosition = props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).initialTileCursorPosition;
+            // 初期値をコピー
             memoryTilePositionDict[selectedTilemapNameVM.value] = <TileCursorPosition>{
-                xCells: 0,
-                yCells: 0,
+                xCells: initialTileCursorPosition.xCells,
+                yCells: initialTileCursorPosition.yCells,
+                tliePath: initialTileCursorPosition.tliePath,
             };
         }
         return memoryTilePositionDict[selectedTilemapNameVM.value];
