@@ -201,6 +201,9 @@
 
         // 親に変更を通知
         emit('changeTilemap', selectedTilemapNameVM.value);
+        
+        // 親に変更を通知
+        emit('selectTile', getMemoryTilePosition().tliePath, props.srcTileCollection.getTileByPath(getMemoryTilePosition().tliePath));
     });
 
     const selectedTilemapTileDict = computed(
@@ -236,6 +239,7 @@
         // カーソルの位置を再設定。
         setMemoryTilePosition(
                 selectedTilemapNameVM.value,
+                tilePath,
                 tile.srcLeft / props.srcTileCollection.unitCellWidth.value,
                 tile.srcTop / props.srcTileCollection.unitCellHeight.value);
         tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
@@ -265,10 +269,11 @@
         }
         return memoryTilePositionDict[selectedTilemapNameVM.value];
     }
-    function setMemoryTilePosition(tilemapName: string, xCells: number, yCells: number) {
+    function setMemoryTilePosition(tilemapName: string, tilePath: string, xCells: number, yCells: number) {
         memoryTilePositionDict[tilemapName] = <TileCursorPosition>{
             xCells: xCells,
             yCells: yCells,
+            tliePath: tilePath,
         };
     }
 

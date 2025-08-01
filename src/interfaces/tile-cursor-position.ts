@@ -2,4 +2,5 @@
 export interface TileCursorPosition {
     xCells: number;
     yCells: number;
+    tliePath: string;
 }
