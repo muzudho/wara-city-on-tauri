@@ -18,7 +18,7 @@
 
             <!-- タイル選択リスト -->
             <v-select
-                    v-model="selectedTilemapKeyVM"
+                    v-model="selectedTilemapNameVM"
                     v-bind:items="optionsVM"
                     label="タイルマップ名"
                     item-title="value"
@@ -33,7 +33,7 @@
                 <div :style="tileCursorStyle"></div>
 
                 <Tile
-                        v-for="(tile, key) in props.srcTilemapCollection.getTilemapByName(selectedTilemapKey).tileDict"
+                        v-for="(tile, key) in selectedTilemapTileDict"
                         :key="key"
                         :srcLeft="tile.srcLeft"
                         :srcTop="tile.srcTop"
@@ -78,6 +78,11 @@
     // ++++++++++++++++++++++++++++++++++++
     import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
     import { TileData } from '@/interfaces/tile-data';
+
+    // ++++++++++++++++++++++
+    // + インポート　＞　型 +
+    // ++++++++++++++++++++++
+    import { TileDict } from '@/types/tile-dict';
 
     // ####################################
     // # このコンポーネントが受け取る引数 #
@@ -178,28 +183,36 @@
     // + クライアント領域　＞　タイルエリア +
     // ++++++++++++++++++++++++++++++++++++++
 
-    const selectedTilemapKeyVM = ref<string>("sea")     // FIXME: 初期値どうする？
+    const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
     /**
      * ［タイルマップ名］の変更を監視。
      */
-    watch(selectedTilemapKeyVM, () => {
-        // TODO タイルカーソルの位置を復元したい。
+    watch(selectedTilemapNameVM, () => {
+        //alert(`選択マップ名=${selectedTilemapNameVM.value} カーソルx位置=${getMemoryTilePosition().xCells} y位置=${getMemoryTilePosition().yCells}`);
+        // let text = "";
+        // Object.entries(memoryTilePositionDict).forEach(([tliemapName, tilePos]) => {
+        //     text += `タイルマップ名: ${tliemapName}, カーソル位置記憶: ${tilePos.xCells}, ${tilePos.yCells}\n`;
+        // });
+        // text += `タイルカーソルスタイル： ${tileCursorStyle.value}\n`;
+        // alert(text);
 
-        // 
+        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
+        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
 
         // 親に変更を通知
-        emit('changeTilemap', selectedTilemapKeyVM.value);
+        emit('changeTilemap', selectedTilemapNameVM.value);
     });
-    const selectedTilemapKey = computed(
-        function(): string {
-            return selectedTilemapKeyVM.value
+
+    const selectedTilemapTileDict = computed(
+        function(): TileDict {
+            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).tileDict;
         }
     );
 
     const tileAreaHeight = computed(
         function(): number {
             const bottomMargin = 8;
-            return props.srcTilemapCollection.getTilemapByName(selectedTilemapKey.value).getPaletteHeight() + bottomMargin;
+            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).getPaletteHeight() + bottomMargin;
         }
     );
 
@@ -209,7 +222,7 @@
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
-                ' width:' + props.srcTilemapCollection.getTilemapByName(selectedTilemapKey.value).getPaletteWidth() + 'px;' +   // 横幅。
+                ' width:' + props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).getPaletteWidth() + 'px;' +   // 横幅。
                 ' height:' + tileAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0;';
         }
@@ -221,12 +234,12 @@
      */
     function onSrcTileClick(tilePath: string, tile: TileData) {
         // カーソルの位置を再設定。
-        currentTileCursorPosition.value.xCells = tile.srcLeft / props.srcTileCollection.unitCellWidth.value;
-        currentTileCursorPosition.value.yCells = tile.srcTop / props.srcTileCollection.unitCellHeight.value;
-
-        //alert(`ソースタイルをクリックした： name=${name} selectedTileLeft=${selectedTileLeft.value} selectedTileTop=${selectedTileTop.value}`)
-
-        // TODO そのタイルの横幅、縦幅を取得したい。
+        setMemoryTilePosition(
+                selectedTilemapNameVM.value,
+                tile.srcLeft / props.srcTileCollection.unitCellWidth.value,
+                tile.srcTop / props.srcTileCollection.unitCellHeight.value);
+        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
+        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
 
         // 親に変更を通知
         emit('selectTile', tilePath, tile);
@@ -236,35 +249,32 @@
     // + クライアント領域　＞　タイルカーソル +
     // ++++++++++++++++++++++++++++++++++++++++
 
-    // TODO 選択しているタイルマップ毎に位置を記憶したい。
-    const tilcCursorPositionDict = ref<Record<string, TileCursorPosition>>({});
-    const currentTileCursorPosition = computed(
-        function(): TileCursorPosition {
-            if (!(selectedTilemapKey.value in tilcCursorPositionDict)){
-                tilcCursorPositionDict.value[selectedTilemapKey.value] = {
-                    xCells: 0,
-                    yCells: 0,
-                };
-            }
-            return tilcCursorPositionDict.value[selectedTilemapKey.value];
-        }
-    );
-
     const cursorLeftBorderWidth = 4;
     const cursorTopBorderHeight = 4;
-    const selectedTileLeft = computed(
-        function(): number {
-            return currentTileCursorPosition.value.xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
+    const tileCursorLeftVM = ref(0 - cursorLeftBorderWidth);
+    const tileCursorTopVM = ref(0 - cursorTopBorderHeight);
+
+    // 選択しているタイルマップ毎に位置を記憶する。
+    const memoryTilePositionDict = <Record<string, TileCursorPosition>>{};
+    function getMemoryTilePosition(): TileCursorPosition {
+        if (!(selectedTilemapNameVM.value in memoryTilePositionDict)){
+            memoryTilePositionDict[selectedTilemapNameVM.value] = <TileCursorPosition>{
+                xCells: 0,
+                yCells: 0,
+            };
         }
-    );
-    const selectedTileTop = computed(
-        function(): number{
-            return currentTileCursorPosition.value.yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
-        }
-    );
+        return memoryTilePositionDict[selectedTilemapNameVM.value];
+    }
+    function setMemoryTilePosition(tilemapName: string, xCells: number, yCells: number) {
+        memoryTilePositionDict[tilemapName] = <TileCursorPosition>{
+            xCells: xCells,
+            yCells: yCells,
+        };
+    }
+
     const tileCursorStyle = computed(
         function(): string {
-            return `position:absolute; top:${selectedTileTop.value}px; left:${selectedTileLeft.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;
+            return `position:absolute; top:${tileCursorTopVM.value}px; left:${tileCursorLeftVM.value}px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;`;
         }
     );
 </script>
