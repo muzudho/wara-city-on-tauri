@@ -27,7 +27,10 @@
             </v-select>
 
             <!-- タイルを敷き詰めるだけ -->
-            <v-container :style="tileAreaStyle">
+            <v-container :style="tileAreaStyle" style="position: relative;">
+                <!-- タイル・カーソル -->
+                <div style="position:absolute; top:-4px; left:-4px; width:40px; height:40px; border-style: dashed; border-color: rgba(0, 0, 255, 0.5); border-width: 4px;"></div>
+
                 <Tile
                         v-for="(item, key) in props.srcTilemaps.getTilemapByName(selectedTilemapKey).tileDict"
                         :key="key"
