@@ -90,7 +90,7 @@
     // ##############################################
     interface Emits {
         // イベント名と、変更通知メソッドの引数と、そのメソッドの戻り値。
-        (event: 'selectTile', value: string): void;
+        (event: 'selectTile', tilePath: string, tile: TileData): void;
         (event: 'changeTilemap', value: string): void;
     }
     const emit = defineEmits<Emits>();
@@ -214,9 +214,9 @@
 
     /**
      * ソースタイルをクリックしたとき。
-     * @param name フラットなタイル名。
+     * @param tilePath フラットなタイル名。
      */
-    function onSrcTileClick(name: string, tile: TileData) {
+    function onSrcTileClick(tilePath: string, tile: TileData) {
         // カーソルの位置を再設定。
         selectedTileLeft.value = tile.srcLeft - cursorLeftBorderWidth;
         selectedTileTop.value = tile.srcTop - cursorTopBorderHeight;
@@ -226,7 +226,7 @@
         // TODO そのタイルの横幅、縦幅を取得したい。
 
         // 親に変更を通知
-        emit('selectTile', name);
+        emit('selectTile', tilePath, tile);
     }
 
     // ++++++++++++++++++++++++++++++++++++++++

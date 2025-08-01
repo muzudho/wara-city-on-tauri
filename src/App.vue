@@ -156,9 +156,9 @@
     // ++++++++++++++++++++++++++++++++++++++++++
 
     const selectedTilePathVM = ref('');
-    const selectedTileDataVM = ref<TileData>({
+    const selectedTileDataVM = ref<TileData>({  // FIXME: 初期値どうする？
         srcLeft: 0,
-        srcTop: 32,
+        srcTop: 0,
         srcWidth: 32,
         srcHeight: 32,
         tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
@@ -171,11 +171,12 @@
 
     /**
      * ソースタイルをクリックしたとき。
-     * @param name 
+     * @param tilePath 
      */
-    function onSrcTileClicked(name: string) {
-        //alert(`ソースタイル２をクリックした： name=${name}`)
-        selectedTilePathVM.value = name
+    function onSrcTileClicked(tilePath: string, tile: TileData) {
+        //alert(`ソースタイル２をクリックした： tilePath=${tilePath}`)
+        selectedTilePathVM.value = tilePath;
+        selectedTileDataVM.value = tile;
     }
 
 </script>
