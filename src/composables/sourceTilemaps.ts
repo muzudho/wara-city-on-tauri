@@ -14,31 +14,32 @@ export interface SourceTilemaps {
 }
 
 export function createSourceTilemaps(srcTileRectangles: SourceTileRectangles): SourceTilemaps {
-    const tilemapDict = ref<TilemapDict>({
-        land : {
-            tileDict: {
-                'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
-                'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
-            },
-            unitCellWidth: 32,
-            unitCellHeight: 32,
-            horizontalUnitCells: 4,
-            verticalUnitCells: 4,
-            paletteWidth: 128,
-            paletteHeight: 128,
+    const tilemapDict = ref<TilemapDict>({});
+
+    tilemapDict.value["land"] = {
+        tileDict: {
+            'land_wasteland': srcTileRectangles.tileDict.value["land_wasteland"],       // 荒地
+            'land_vocantLand': srcTileRectangles.tileDict.value["land_vocantLand"],     // 空き地
         },
-        system: {
-            tileDict: {
-                system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
-            },
-            unitCellWidth: 32,
-            unitCellHeight: 32,
-            horizontalUnitCells: 4,
-            verticalUnitCells: 4,
-            paletteWidth: 128,
-            paletteHeight: 128,
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        paletteWidth: 128,
+        paletteHeight: 128,
+    };
+
+    tilemapDict.value["system"] = {
+        tileDict: {
+            system_noImage: srcTileRectangles.tileDict.value["system_noImage"],   // 画像無しマーク
         },
-    });
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        paletteWidth: 128,
+        paletteHeight: 128,
+    };
 
     // ８方向タイル（無印）を切り抜く
     function cropEightDirectionTileDict(tilemap: string) {
