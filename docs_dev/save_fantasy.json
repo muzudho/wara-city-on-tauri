@@ -1,8 +1,8 @@
 {
     "widthCells": 96,
     "heightCells": 96,
-    "cellWidth": 32,
-    "cellHeight": 32,
+    "unitCellWidth": 32,
+    "unitCellHeight": 32,
     "tileList": [
         "out_255",
         "out_255",

@@ -48,7 +48,7 @@
 
     // コンポーネントが受け取る引数
     interface Props {
-        srcTileRectangles: SourceTilesCollection;
+        srcTilesCollection: SourceTilesCollection;
         srcTilemaps: SourceTilemaps;
         board: Board;
     }
@@ -77,8 +77,8 @@
             let jsonText = '{\n'
             jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
             jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;
-            jsonText += `    "cellWidth": ${props.srcTileRectangles.cellWidth.value},\n`;
-            jsonText += `    "cellHeight": ${props.srcTileRectangles.cellHeight.value},\n`;
+            jsonText += `    "unitCellWidth": ${props.srcTilesCollection.unitCellWidth.value},\n`;
+            jsonText += `    "unitCellHeight": ${props.srcTilesCollection.unitCellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
             props.board.tileKeyArray.value.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;

@@ -20,11 +20,11 @@
                 <Tile
                         v-for="(key, index) in board.tileKeyArray.value"
                         :key="index"
-                        :srcLeft="srcTileRectangles.getTileByPath(key).srcLeft"
-                        :srcTop="srcTileRectangles.getTileByPath(key).srcTop"
-                        :srcWidth="srcTileRectangles.getTileByPath(key).srcWidth"
-                        :srcHeight="srcTileRectangles.getTileByPath(key).srcHeight"
-                        :tilemapUrl="srcTileRectangles.getTileByPath(key).tilemapUrl"
+                        :srcLeft="srcTilesCollection.getTileByPath(key).srcLeft"
+                        :srcTop="srcTilesCollection.getTileByPath(key).srcTop"
+                        :srcWidth="srcTilesCollection.getTileByPath(key).srcWidth"
+                        :srcHeight="srcTilesCollection.getTileByPath(key).srcHeight"
+                        :tilemapUrl="srcTilesCollection.getTileByPath(key).tilemapUrl"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
                         @mouseup="onMapTileMouseUp(index)"
@@ -48,7 +48,7 @@
                 <!-- ターミナル・ウィンドウ
                 -->
                 <TerminalPanel
-                        :srcTileRectangles="srcTileRectangles"
+                        :srcTilesCollection="srcTilesCollection"
                         :srcTilemaps="srcTilemaps"
                         :board="board"
                         style="position:fixed; top:16px; left:240px; z-index: 20;"/>
@@ -76,9 +76,9 @@
     import { TileData } from '@/interfaces/tile-data';
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
-    const srcTileRectangles = createSourceTilesCollection();
-    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTileRectangles);
-    const board = createBoard(srcTileRectangles);
+    const srcTilesCollection = createSourceTilesCollection();
+    const srcTilemaps: SourceTilemaps = createSourceTilemaps(srcTilesCollection);
+    const board = createBoard(srcTilesCollection);
 
     const boardStyle = computed(
         function(): string {

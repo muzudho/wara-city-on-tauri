@@ -1,8 +1,8 @@
 {
     "widthCells": 10,
     "heightCells": 10,
-    "cellWidth": 32,
-    "cellHeight": 32,
+    "unitCellWidth": 32,
+    "unitCellHeight": 32,
     "tileList": [
         "sea_255",
         "sea_255",

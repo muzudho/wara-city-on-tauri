@@ -13,13 +13,13 @@ export interface Board {
     tileKeyArray: Ref<Array<string>>;
 }
 
-export function createBoard(srcTileRectangles: SourceTilesCollection): Board {
+export function createBoard(srcTilesCollection: SourceTilesCollection): Board {
     // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
     const widthCells: Ref<number> = ref(96);
     const heightCells: Ref<number> = ref(96);
     const areaCells: ComputedRef<number> = computed(() => widthCells.value * heightCells.value);
-    const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTileRectangles.cellWidth.value);
-    const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTileRectangles.cellHeight.value);
+    const widthPixels: ComputedRef<number> = computed(() => widthCells.value * srcTilesCollection.unitCellWidth.value);
+    const heightPixels: ComputedRef<number> = computed(() => heightCells.value * srcTilesCollection.unitCellHeight.value);
 
     // 海で埋め尽くす。
     const rawArray = <Array<string>>[];

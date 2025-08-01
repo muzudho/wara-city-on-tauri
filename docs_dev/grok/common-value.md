@@ -3,8 +3,8 @@
     const boardWidthVM = ref(10);
     const boardHeight = 10;
     const boardArea = boardWidthVM.value * boardHeight;
-    const cellWidth = 32;
-    const cellHeight = 32;
+    const unitCellWidth = 32;
+    const unitCellHeight = 32;
 
 
 Vue 3で複数のコンポーネント間で変数を共有し、読み書きをスッキリ管理するには、**Composables**や**Pinia**（状態管理ライブラリ）を使うのが現代的でクリーンな方法だぜ！😎 以下に、状況に応じたアプローチを説明するよ。
@@ -20,15 +20,15 @@ import { ref, computed } from 'vue';
 export function useBoardConfig() {
   const boardWidth = ref(10);
   const boardHeight = ref(10); // 必要ならrefに変更
-  const cellWidth = ref(32);
-  const cellHeight = ref(32);
+  const unitCellWidth = ref(32);
+  const unitCellHeight = ref(32);
   const boardArea = computed(() => boardWidth.value * boardHeight.value);
 
   return {
     boardWidth,
     boardHeight,
-    cellWidth,
-    cellHeight,
+    unitCellWidth,
+    unitCellHeight,
     boardArea,
   };
 }
@@ -39,7 +39,7 @@ export function useBoardConfig() {
 <script setup>
 import { useBoardConfig } from '@/composables/useBoardConfig';
 
-const { boardWidth, boardHeight, cellWidth, cellHeight, boardArea } = useBoardConfig();
+const { boardWidth, boardHeight, unitCellWidth, unitCellHeight, boardArea } = useBoardConfig();
 </script>
 
 <template>
@@ -80,8 +80,8 @@ export const useBoardStore = defineStore('board', {
   state: () => ({
     boardWidth: ref(10),
     boardHeight: ref(10),
-    cellWidth: ref(32),
-    cellHeight: ref(32),
+    unitCellWidth: ref(32),
+    unitCellHeight: ref(32),
   }),
   getters: {
     boardArea: (state) => state.boardWidth * state.boardHeight,
@@ -114,7 +114,7 @@ app.mount('#app');
 import { useBoardStore } from '@/stores/board';
 
 const boardStore = useBoardStore();
-const { boardWidth, boardHeight, cellWidth, cellHeight, boardArea } = boardStore;
+const { boardWidth, boardHeight, unitCellWidth, unitCellHeight, boardArea } = boardStore;
 </script>
 
 <template>
@@ -168,23 +168,23 @@ import { ref, computed, Ref, ComputedRef } from 'vue';
 interface BoardConfig {
   boardWidth: Ref<number>;
   boardHeight: Ref<number>;
-  cellWidth: Ref<number>;
-  cellHeight: Ref<number>;
+  unitCellWidth: Ref<number>;
+  unitCellHeight: Ref<number>;
   boardArea: ComputedRef<number>;
 }
 
 export function useBoardConfig(): BoardConfig {
   const boardWidth: Ref<number> = ref(10);
   const boardHeight: Ref<number> = ref(10);
-  const cellWidth: Ref<number> = ref(32);
-  const cellHeight: Ref<number> = ref(32);
+  const unitCellWidth: Ref<number> = ref(32);
+  const unitCellHeight: Ref<number> = ref(32);
   const boardArea: ComputedRef<number> = computed(() => boardWidth.value * boardHeight.value);
 
   return {
     boardWidth,
     boardHeight,
-    cellWidth,
-    cellHeight,
+    unitCellWidth,
+    unitCellHeight,
     boardArea,
   };
 }
@@ -195,7 +195,7 @@ export function useBoardConfig(): BoardConfig {
 <script setup lang="ts">
 import { useBoardConfig } from '@/composables/useBoardConfig';
 
-const { boardWidth, boardHeight, cellWidth, cellHeight, boardArea } = useBoardConfig();
+const { boardWidth, boardHeight, unitCellWidth, unitCellHeight, boardArea } = useBoardConfig();
 </script>
 
 <template>
@@ -234,8 +234,8 @@ import { ref, computed, Ref, ComputedRef } from 'vue';
 interface BoardState {
   boardWidth: Ref<number>;
   boardHeight: Ref<number>;
-  cellWidth: Ref<number>;
-  cellHeight: Ref<number>;
+  unitCellWidth: Ref<number>;
+  unitCellHeight: Ref<number>;
 }
 
 // ストアの定義
@@ -243,8 +243,8 @@ export const useBoardStore = defineStore('board', {
   state: (): BoardState => ({
     boardWidth: ref(10),
     boardHeight: ref(10),
-    cellWidth: ref(32),
-    cellHeight: ref(32),
+    unitCellWidth: ref(32),
+    unitCellHeight: ref(32),
   }),
   getters: {
     boardArea: (state): ComputedRef<number> => computed(() => state.boardWidth.value * state.boardHeight.value),
@@ -277,7 +277,7 @@ app.mount('#app');
 import { useBoardStore } from '@/stores/board';
 
 const boardStore = useBoardStore();
-const { boardWidth, boardHeight, cellWidth, cellHeight, boardArea } = boardStore;
+const { boardWidth, boardHeight, unitCellWidth, unitCellHeight, boardArea } = boardStore;
 </script>
 
 <template>

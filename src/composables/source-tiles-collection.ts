@@ -13,19 +13,19 @@ import { TileData } from '@/interfaces/tile-data';
 // タイルマップの元画像を管理する型
 export interface SourceTilesCollection {
     // ファイルパス毎に分割するのではなく、フラットにしたい。
-    cellWidth: Ref<number>;
-    cellHeight: Ref<number>;
+    unitCellWidth: Ref<number>;     // 単位セルの横幅
+    unitCellHeight: Ref<number>;    // 単位セルの縦幅
     tileDict: Ref<TileDict>;
 
     getTileByPath: (path: string) => TileData;
 }
 
 export function createSourceTilesCollection(): SourceTilesCollection {
-    const cellWidth: Ref<number> = ref(32);     // FIXME: タイルサイズの初期値どうする？
-    const cellHeight: Ref<number> = ref(32);
+    const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
+    const unitCellHeight: Ref<number> = ref(32);
 
     function makeTile(y: number, x: number, tilemap: string) {
-        return {srcTop:y*cellHeight.value, srcLeft:x*cellWidth.value, srcWidth:cellWidth.value, srcHeight:cellHeight.value, tilemapUrl:tilemapFilepathDict[tilemap]};
+        return {srcTop:y*unitCellHeight.value, srcLeft:x*unitCellWidth.value, srcWidth:unitCellWidth.value, srcHeight:unitCellHeight.value, tilemapUrl:tilemapFilepathDict[tilemap]};
     }
 
     const flatTileDict = <TileDict>{
@@ -136,8 +136,8 @@ export function createSourceTilesCollection(): SourceTilesCollection {
     const tileDict = ref<TileDict>(flatTileDict);
 
     return {
-        cellWidth,
-        cellHeight,
+        unitCellWidth,
+        unitCellHeight,
         tileDict,
         getTileByPath: (name: string)=>{
             if (name in flatTileDict) {
