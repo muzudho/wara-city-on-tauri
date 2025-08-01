@@ -76,6 +76,7 @@
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
     // ++++++++++++++++++++++++++++++++++++
+    import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
     import { TileData } from '@/interfaces/tile-data';
 
     // ####################################
@@ -220,10 +221,8 @@
      */
     function onSrcTileClick(tilePath: string, tile: TileData) {
         // カーソルの位置を再設定。
-        selectedTileHorizontalCells.value = tile.srcLeft / props.srcTileCollection.unitCellWidth.value;
-        selectedTileVerticalCells.value = tile.srcTop / props.srcTileCollection.unitCellHeight.value;
-        // selectedTileLeft.value = tile.srcLeft - cursorLeftBorderWidth;
-        // selectedTileTop.value = tile.srcTop - cursorTopBorderHeight;
+        currentTileCursorPosition.value.xCells = tile.srcLeft / props.srcTileCollection.unitCellWidth.value;
+        currentTileCursorPosition.value.yCells = tile.srcTop / props.srcTileCollection.unitCellHeight.value;
 
         //alert(`ソースタイルをクリックした： name=${name} selectedTileLeft=${selectedTileLeft.value} selectedTileTop=${selectedTileTop.value}`)
 
@@ -238,19 +237,29 @@
     // ++++++++++++++++++++++++++++++++++++++++
 
     // TODO 選択しているタイルマップ毎に位置を記憶したい。
+    const tilcCursorPositionDict = ref<Record<string, TileCursorPosition>>({});
+    const currentTileCursorPosition = computed(
+        function(): TileCursorPosition {
+            if (!(selectedTilemapKey.value in tilcCursorPositionDict)){
+                tilcCursorPositionDict.value[selectedTilemapKey.value] = {
+                    xCells: 0,
+                    yCells: 0,
+                };
+            }
+            return tilcCursorPositionDict.value[selectedTilemapKey.value];
+        }
+    );
 
     const cursorLeftBorderWidth = 4;
     const cursorTopBorderHeight = 4;
-    const selectedTileHorizontalCells = ref(0);
-    const selectedTileVerticalCells = ref(0);
     const selectedTileLeft = computed(
         function(): number {
-            return selectedTileHorizontalCells.value * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
+            return currentTileCursorPosition.value.xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
         }
     );
     const selectedTileTop = computed(
         function(): number{
-            return selectedTileVerticalCells.value * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
+            return currentTileCursorPosition.value.yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
         }
     );
     const tileCursorStyle = computed(
