@@ -23,7 +23,7 @@
                     :srcTop="props.selectedTileData.srcTop"
                     :srcWidth="props.selectedTileData.srcWidth"
                     :srcHeight="props.selectedTileData.srcHeight"
-                    :tilemapUrl="props.selectedTileData.tilemapUrl"
+                    :tilemapUrl="getTilemapUrlByName(newTilepath(props.selectedTilepath).getTilemapName())"
                     :style="selectedTileStyle"/>
             
             <!-- 描き方選択リスト -->
@@ -60,7 +60,15 @@
     //
     // @はsrcへのエイリアス
     //
+
     import Tile from '@/components/Tile.vue';
+
+    // ++++++++++++++++++++++++++++++++++
+    // + インポート　＞　コンポーザブル +
+    // ++++++++++++++++++++++++++++++++++
+
+    import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
+    import { newTilepath } from '@/composables/tilepath';
 
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
@@ -72,6 +80,7 @@
     // # コンポーネントが受け取る引数 #
     // ################################
     interface Props {
+        selectedTilepath: string;
         selectedTileData: TileData;
         drawingMethodName: string;
     }

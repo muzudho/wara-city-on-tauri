@@ -38,6 +38,7 @@
                 <!-- ブラシ・ウィンドウ
                 -->
                 <BrushPanel
+                        v-bind:selectedTilepath="selectedTilePathVM"
                         v-bind:selectedTileData="selectedTileDataVM"
                         v-bind:drawingMethodName="selectedDrawingMethodNameVM"
                         v-on:selectDrawingMethodName="onSelectedDrawingMethodNameSelected"
