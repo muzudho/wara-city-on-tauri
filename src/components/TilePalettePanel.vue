@@ -242,14 +242,14 @@
 
     const selectedTilemapTileDict = computed(
         function(): TileDict {
-            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).tileDict;
+            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).value.tileDict;
         }
     );
 
     const tileAreaHeight = computed(
         function(): number {
             const bottomMargin = 8;
-            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).getPaletteHeight() + bottomMargin;
+            return props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).value.getPaletteHeight() + bottomMargin;
         }
     );
 
@@ -259,7 +259,7 @@
     const tileAreaStyle = computed(
         function(): string {
             return '' + //
-                ' width:' + props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).getPaletteWidth() + 'px;' +   // 横幅。
+                ' width:' + props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).value.getPaletteWidth() + 'px;' +   // 横幅。
                 ' height:' + tileAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0;';
         }
@@ -296,7 +296,7 @@
     const memoryTilePositionDict = <Record<string, TileCursorPosition>>{};
     function getMemoryTilePosition(): TileCursorPosition {
         if (!(selectedTilemapNameVM.value in memoryTilePositionDict)){
-            const initialTileCursorPosition = props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).initialTileCursorPosition;
+            const initialTileCursorPosition = props.srcTilemapCollection.getTilemapByName(selectedTilemapNameVM.value).value.initialTileCursorPosition;
             // 初期値をコピー
             memoryTilePositionDict[selectedTilemapNameVM.value] = <TileCursorPosition>{
                 xCells: initialTileCursorPosition.xCells,

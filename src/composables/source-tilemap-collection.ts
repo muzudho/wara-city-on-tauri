@@ -35,7 +35,7 @@ import { TilemapDict } from '@/types/tilemap-dict';
 export interface SourceTilemapCollection {
     tilemapDict: Ref<TilemapDict>;
 
-    getTilemapByName: (name: string) => TilemapData;
+    getTilemapByName: (name: string) => Ref<TilemapData>;
 }
 
 export function createSourceTilemapCollection(srcTileCollection: SourceTileCollection): SourceTilemapCollection {
@@ -263,11 +263,12 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         getTilemapByName: (name: string)=>{
             if (name in tilemapDict.value) {
                 //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)
-                return tilemapDict.value[name];
+
+                return ref<TilemapData>(tilemapDict.value[name]);   // FIXME 🌟 こんな書き方でいいのか？
             }
 
             alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
-            return <TilemapData>{};
+            return <Ref<TilemapData>>{};    // FIXME 🌟 こんな書き方でいいのか？
         },
     };
 }
