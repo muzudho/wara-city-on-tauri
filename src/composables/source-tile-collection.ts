@@ -32,19 +32,12 @@ export interface SourceTileCollection {
     getTileByPath: (tilePath: string) => TileData;
 }
 
-/*
-interface TileInJson {
-    srcTop: number;
-    srcLeft: number;
-    srcWidth: number;
-    srcHeight: number;
-}
+type TileCollection = Record<string, TileData>;
 
-type TileCollection = Record<string, TileInJson>;
-*/
-
-/*
-// 非同期処理を組み込むのは難しい。
+/**
+ * 非同期処理なので、反映が遅れることに注意。
+ * @returns 
+ */
 async function loadTileCollection(): Promise<TileCollection | null> {
     try {
         const response = await fetch("/json/system/source-tile-collection.json");
@@ -56,7 +49,6 @@ async function loadTileCollection(): Promise<TileCollection | null> {
         return null;
     }
 }
-*/
 
 /**
  * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
@@ -86,12 +78,11 @@ export function createSourceTilesCollection(): SourceTileCollection {
         srcHeight: 32,
     };
 
-    /*
-    // TODO JSONファイルを読み込む。
-    // FIXME: 🌟 非同期処理は動かない
+    // FIXME: 🌟 非同期に JSON ファイルを読み込むので、画面への反映が遅れる。
+    // FIXME: 🌟 辞書の場合、変更通知が送られない？
     loadTileCollection().then((tileCollection) => {
         //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
-        const dict1 : Record<string, TileInJson> = tileCollection ?? {
+        const dict1 : Record<string, TileData> = tileCollection ?? {
             "": {
                 srcTop: 0,
                 srcLeft: 0,
@@ -101,7 +92,7 @@ export function createSourceTilesCollection(): SourceTileCollection {
         };
 
         Object.entries(dict1).forEach(([tilepath, tile]) => {
-            alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
+            //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
             flatTileDict[tilepath] = <TileData>{
                 srcTop: tile.srcTop,
                 srcLeft: tile.srcLeft,
@@ -110,7 +101,6 @@ export function createSourceTilesCollection(): SourceTileCollection {
             };
         });
     });
-    */
 
     // ８方向タイル（無印）
     function makeEightBorderTilemap(tilemap: string) {

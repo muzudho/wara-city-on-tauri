@@ -1,7 +1,7 @@
 {
-    "land_wasteland": {
+    "land_forest": {
         "srcTop": 0,
-        "srcLeft": 0,
+        "srcLeft": 64,
         "srcWidth": 32,
         "srcHeight": 32
     }
