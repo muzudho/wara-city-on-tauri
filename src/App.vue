@@ -31,9 +31,6 @@
                         @mouseup="onMapTileMouseUp(index)"
                         @mousemove="onMapTileMouseMove(index)"
                         style="z-index: 1;"/>
-                <!--
-                        :tilemapUrl="srcTileCollection.getTileByPath(tilePath).tilemapUrl"
-                -->
 
                 <!-- ブラシ・ウィンドウ
                 -->
@@ -191,7 +188,6 @@
         srcTop: 0,
         srcWidth: 32,
         srcHeight: 32,
-        tilemapUrl: "/img/tiles/tilemap_sea.png", // タイルマップ画像のURL
     });
 
     function onTilemapSelected(_tilemapName: string, tilePath: string, tile: TileData) {

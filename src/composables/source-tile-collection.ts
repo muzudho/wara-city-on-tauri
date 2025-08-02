@@ -42,8 +42,8 @@ export function createSourceTilesCollection(): SourceTileCollection {
     const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: Ref<number> = ref(32);
 
-    function makeTile(y: number, x: number, tilemap: string) {
-        return {srcTop:y*unitCellHeight.value, srcLeft:x*unitCellWidth.value, srcWidth:unitCellWidth.value, srcHeight:unitCellHeight.value, tilemapUrl:tilemapFilepathDict[tilemap]};
+    function makeTile(y: number, x: number, tilemapName: string) {
+        return {srcTop:y*unitCellHeight.value, srcLeft:x*unitCellWidth.value, srcWidth:unitCellWidth.value, srcHeight:unitCellHeight.value};
     }
 
     const flatTileDict = <TileDict>{
