@@ -32,14 +32,14 @@ export interface SourceTileCollection {
     getTileByPath: (tilePath: string) => TileData;
 }
 
-interface Tile {
+interface TileInJson {
     srcTop: number;
     srcLeft: number;
     srcWidth: number;
     srcHeight: number;
 }
 
-type TileCollection = Record<string,Tile>;
+type TileCollection = Record<string, TileInJson>;
 
 async function loadTileCollection(): Promise<TileCollection | null> {
     try {
@@ -76,9 +76,10 @@ export function createSourceTilesCollection(): SourceTileCollection {
     }
 
     // TODO JSONファイルを読み込む。
+    // FIXME: 🌟 動かない
     loadTileCollection().then((tileCollection) => {
         //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
-        const dict1 : Record<string,Tile> = tileCollection ?? {
+        const dict1 : Record<string, TileInJson> = tileCollection ?? {
             "": {
                 srcTop: 0,
                 srcLeft: 0,
@@ -88,7 +89,13 @@ export function createSourceTilesCollection(): SourceTileCollection {
         };
 
         Object.entries(dict1).forEach(([tilepath, tile]) => {
-            flatTileDict[tilepath] = tile;
+            //flatTileDict[tilepath] = tile;
+            flatTileDict[tilepath] = <TileData>{
+                srcTop: tile.srcTop,
+                srcLeft: tile.srcLeft,
+                srcWidth: tile.srcWidth,
+                srcHeight: tile.srcHeight,
+            };
             //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
         });
     });
