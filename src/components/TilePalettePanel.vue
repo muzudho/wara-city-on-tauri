@@ -109,13 +109,16 @@
     // # このコンポーネントの画面 #
     // ############################
 
+    // ++++++++++
+    // + パネル +
+    // ++++++++++
+
     /**
      * パネル・スタイル
      */
     const panelStyle = computed(
         function(): string {
-            const height = titlebarHeight + listboxHeight + tileAreaHeight.value;
-            return `height: ${height}`;   // 横幅。
+            return `height: ${titlebarHeight + listboxHeight + tileAreaHeight.value}`;   // 横幅。
         }
     );
 

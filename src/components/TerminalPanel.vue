@@ -5,7 +5,8 @@
             :y="0"
             :draggable="true"
             :resizable="true"
-            :parent="false">
+            :parent="false"
+            :style="panelStyle">
         
         <!-- ウィンドウ・タイトル -->
         <v-container :style="titlebarStyle">
@@ -18,9 +19,10 @@
 
             <!-- FIXME: テキストエリアは可変サイズのため、縦幅を取得する方法が分からない。 -->
             <v-textarea
-                v-model="textVM"/>
+                v-model="textVM"
+                :style="textareaStyle"/>
 
-            <v-row no-gutters>
+            <v-row no-gutters :style="listboxAreaStyle">
                 <v-col class="pa-0">
                     <v-select
                             v-model="selectedItemVM"
@@ -75,6 +77,19 @@
     // # このコンポーネントの画面 #
     // ############################
 
+    // ++++++++++
+    // + パネル +
+    // ++++++++++
+
+    /**
+     * パネル・スタイル
+     */
+    const panelStyle = computed(
+        function(): string {
+            return `height: ${titlebarHeight + textAreaHeight.value + listboxAreaHeight.value}`;   // 横幅。
+        }
+    );
+
     // ++++++++++++++++
     // + タイトルバー +
     // ++++++++++++++++
@@ -118,7 +133,8 @@
         function(): string {
             return "" + //
                 ` display: ${clientAreaDisplayVM.value};` + //
-                "padding:0; background-color: aliceblue;";
+                ` height: ${textAreaHeight.value + listboxAreaHeight.value};` + //
+                " padding:0; background-color: aliceblue;";
         }
     );
 
@@ -127,10 +143,23 @@
     // ++++++++++++++++++++++++++++++++++++++++++
 
     const textVM = ref()
+    const textAreaHeight = ref(100);
+
+    /**
+     * テキストエリア・スタイル
+     */
+    const textareaStyle = computed(
+        function(): string {
+            return "" + //
+                ` height: ${textAreaHeight.value};`;
+        }
+    );
 
     // ++++++++++++++++++++++++++++++++++++++++
     // + クライアント領域　＞　リストボックス +
     // ++++++++++++++++++++++++++++++++++++++++
+
+    const listboxAreaHeight = ref(64);
 
     interface IOption {
         key: string;
@@ -144,6 +173,16 @@
         {key: "都道府県スプリット1", value: "都道府県スプリット"},
     ]
     const selectedItemVM = ref<string>("")
+
+    /**
+     * リストボックス領域スタイル
+     */
+    const listboxAreaStyle = computed(
+        function(): string {
+            return "" + //
+                ` height: ${listboxAreaHeight.value};`;
+        }
+    );
 
     // ++++++++++++++++++++++++++++++++++++
     // + クライアント領域　＞　実行ボタン +

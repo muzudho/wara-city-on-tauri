@@ -99,8 +99,7 @@
      */
     const panelStyle = computed(
         function(): string {
-            const height = titlebarHeight + clientAreaHeight.value;
-            return `height: ${height}`;   // 横幅。
+            return `height: ${titlebarHeight + clientAreaHeight.value}`;   // 横幅。
         }
     );
 
