@@ -2,6 +2,8 @@
 // # インポート #
 // ##############
 
+import { Ref } from 'vue';
+
 // ++++++++++++++++++++++++++++++++++++
 // + インポート　＞　インターフェース +
 // ++++++++++++++++++++++++++++++++++++
@@ -15,4 +17,4 @@ import { TilemapData } from '@/interfaces/tilemap-data';
 // # エクスポート #
 // ################
 
-export type TilemapDict = Record<string, TilemapData>;
+export type TilemapDict = Record<string, Ref<TilemapData>>;
