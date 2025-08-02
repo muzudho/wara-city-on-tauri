@@ -34,14 +34,15 @@
                 <div :style="tileCursorStyle"></div>
 
                 <Tile
-                        v-for="(tile, key) in selectedTilemapTileDict"
-                        :key="key"
+                        v-for="(tile, tilepath) in selectedTilemapTileDict"
+                        :key="tilepath"
                         :srcLeft="tile.srcLeft"
                         :srcTop="tile.srcTop"
                         :srcWidth="tile.srcWidth"
                         :srcHeight="tile.srcHeight"
-                        :tilemapUrl="tile.tilemapUrl"
-                        @click="onSrcTileClick(key, tile)"/>
+                        :tilemapUrl="getTilemapUrlByName(newTilepath(tilepath).getTilemapName())"
+                        @click="onSrcTileClick(tilepath, tile)"/>
+
             </v-container>            
         </v-container>
     </vue-draggable-resizable>
@@ -73,6 +74,8 @@
     // ++++++++++++++++++++++++++++++++
     import { SourceTileCollection } from '@/composables/source-tile-collection';
     import { SourceTilemapCollection } from '@/composables/source-tilemap-collection';
+    import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
+    import { newTilepath } from '@/composables/tilepath';
 
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
