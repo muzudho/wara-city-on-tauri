@@ -4,13 +4,13 @@
 
 // タイルパスを管理する型
 export interface Tilepath {
-    value: String;
+    value: string;
 
-    getTilemapName: () => String;
-    getTileName: () => String;
+    getTilemapName: () => string;
+    getTileName: () => string;
 }
 
-export function newTilepath(value: String): Tilepath {
+export function newTilepath(value: string): Tilepath {
     return <Tilepath>{
         value,
         getTilemapName: () => {

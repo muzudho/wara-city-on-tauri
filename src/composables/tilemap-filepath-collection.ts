@@ -21,3 +21,12 @@ export const tilemapFilepathDict = <StringDict>{
     'wastelandRoad': '/img/tiles/tilemap_wastelandRoad.png',
     'wastelandBorder': '/img/tiles/tilemap_wastelandBorder.png',
 };
+
+export function getTilemapUrlByName(name: string): string {
+    if (name in tilemapFilepathDict) {
+        return tilemapFilepathDict[name];
+    }
+
+    alert(`ERROR: "${name}" という名前のタイルマップは未登録です。`);
+    return "";  // エラー。
+}

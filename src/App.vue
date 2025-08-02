@@ -25,12 +25,15 @@
                         :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
                         :srcWidth="srcTileCollection.getTileByPath(tilePath).srcWidth"
                         :srcHeight="srcTileCollection.getTileByPath(tilePath).srcHeight"
-                        :tilemapUrl="srcTileCollection.getTileByPath(tilePath).tilemapUrl"
+                        :tilemapUrl="getTilemapUrlByName(newTilepath(tilePath).getTilemapName())"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
                         @mouseup="onMapTileMouseUp(index)"
                         @mousemove="onMapTileMouseMove(index)"
                         style="z-index: 1;"/>
+                <!--
+                        :tilemapUrl="srcTileCollection.getTileByPath(tilePath).tilemapUrl"
+                -->
 
                 <!-- ブラシ・ウィンドウ
                 -->
@@ -87,9 +90,11 @@
     // + インポート　＞　コンポーザブル +
     // ++++++++++++++++++++++++++++++++++
 
-    import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
-    import { createSourceTilesCollection } from '@/composables/source-tile-collection';
     import { createBoard, toPlainBoard } from '@/composables/board';
+    import { createSourceTilesCollection } from '@/composables/source-tile-collection';
+    import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
+    import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
+    import { newTilepath } from '@/composables/tilepath';
 
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
