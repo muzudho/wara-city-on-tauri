@@ -10,11 +10,11 @@
 
         <!-- ウィンドウ・タイトル -->
         <v-container :style="titlebarStyle">
-            Tile palette
+            <span class="window-title">Tile palette</span>
         </v-container>
 
         <!-- クライアント領域 -->
-        <v-container class="pa-0" :style="clientAreaStyle">
+        <v-container :style="clientAreaStyle">
 
             <!-- タイル選択リスト -->
             <v-select
@@ -129,7 +129,7 @@
      */
     const titlebarStyle = computed(
         function(): string {
-            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+            return `padding:0; color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
         }
     );
 
@@ -137,12 +137,25 @@
     // + クライアント領域 +
     // ++++++++++++++++++++
 
+    const clientAreaDisplayVM = ref('block');
+
+    const clientAreaHeight = computed(
+        function(): number {
+            return listboxHeight +      // タイルマップ名リストボックス
+                tileAreaHeight.value +  // タイル領域
+                16;                      // ボトム・マージン
+        }
+    );
+
     /**
      * クライアント領域スタイル
      */
     const clientAreaStyle = computed(
         function(): string {
-            return "background-color: aliceblue;";
+            return "" + //
+                ` display: ${clientAreaDisplayVM.value};` + //
+                ` height: ${clientAreaHeight.value}px;` +   // 縦幅。
+                " padding:0; background-color: aliceblue;";
         }
     );
 
@@ -287,4 +300,7 @@
 </script>
 
 <style scoped>
+    span.window-title {
+        position:absolute; top:16px; left:16px;
+    }
 </style>

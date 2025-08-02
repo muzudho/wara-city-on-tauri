@@ -8,13 +8,16 @@
             :parent="false">
         
         <!-- ウィンドウ・タイトル -->
-        <v-container style="color: black; background-color: lightgray; height: 32px;">
-            Terminal
+        <v-container :style="titlebarStyle">
+            <span class="window-title">Terminal</span>
         </v-container>
 
-        <v-container class="pa-0" style="background-color: aliceblue;">
+        <!-- クライアント領域 -->
+        <v-container :style="clientAreaStyle">
 
-            <v-textarea v-model="textVM"></v-textarea>
+            <!-- FIXME: テキストエリアは可変サイズのため、縦幅を取得する方法が分からない。 -->
+            <v-textarea
+                v-model="textVM"/>
 
             <v-row no-gutters>
                 <v-col class="pa-0">
@@ -39,7 +42,7 @@
     // # インポート #
     // ##############
     import { invoke } from "@tauri-apps/api/core";
-    import { ref } from "vue";
+    import { computed, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
     // + インポート　＞　ドラッグ可能パネル +
@@ -70,6 +73,36 @@
     // ############################
     // # このコンポーネントの画面 #
     // ############################
+
+    // ++++++++++++++++
+    // + タイトルバー +
+    // ++++++++++++++++
+
+    const titlebarHeight = 32;
+
+    /**
+     * タイトルバー・スタイル
+     */
+    const titlebarStyle = computed(
+        function(): string {
+            return `padding:0; color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+        }
+    );
+
+    // ++++++++++++++++++++
+    // + クライアント領域 +
+    // ++++++++++++++++++++
+
+    const clientAreaDisplayVM = ref('block');
+
+    /**
+     * クライアント領域スタイル
+     */
+    const clientAreaStyle = computed(
+        function(): string {
+            return "padding:0; background-color: aliceblue;";
+        }
+    );
 
     // ++++++++++++++++++++++++++++++++++++++++++
     // + クライアント領域　＞　テキストボックス +
@@ -161,4 +194,7 @@
 </script>
 
 <style scoped>
+    span.window-title {
+        position:absolute; top:16px; left:16px;
+    }
 </style>

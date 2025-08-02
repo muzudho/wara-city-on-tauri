@@ -9,13 +9,13 @@
             :style="panelStyle">
 
         <!-- ウィンドウ・タイトル -->
-        <v-container :style="titlebarStyle" style="padding:0;">
-            <span style="position:absolute; top:16px; left:16px;">Brush</span>
+        <v-container :style="titlebarStyle">
+            <span class="window-title">Brush</span>
             <v-btn style="position:absolute; right:4px; top:4px; padding: 0px; min-width:20px; height:20px;" @click="onTitlebarSizeButtonClicked">{{ titlebarSizeButtonTextVM }}</v-btn>
         </v-container>
 
         <!-- クライアント領域 -->
-        <v-container class="pa-0" :style="clientAreaStyle">
+        <v-container :style="clientAreaStyle">
 
             <!-- 選択タイル -->
             <Tile
@@ -116,7 +116,7 @@
      */
     const titlebarStyle = computed(
         function(): string {
-            return `color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
+            return `padding:0; color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
         }
     );
 
@@ -133,6 +133,7 @@
             titlebarSizeButtonTextVM.value = "＿";
         }
     }
+
     // ++++++++++++++++++++
     // + クライアント領域 +
     // ++++++++++++++++++++
@@ -141,7 +142,7 @@
 
     const clientAreaHeight = computed(
         function(): number {
-            return selectedTileHeight + 2*selectedTileMargin + // 選択タイル
+            return tileRowHeight + 2*tileRowMargin + // タイル行
                 listboxHeight;  // 描き方選択リストボックス
         }
     );
@@ -151,19 +152,19 @@
      */
     const clientAreaStyle = computed(
         function(): string {
-            return '' + //
+            return "" + //
                 ` display: ${clientAreaDisplayVM.value};` + //
-                ' height:' + clientAreaHeight.value + 'px;' +   // 縦幅。
+                ` height: ${clientAreaHeight.value}px;` +   // 縦幅。
                 ' padding: 0; line-height: 0; background-color: aliceblue;';
         }
     );
 
-    // ++++++++++++++++++++++++++++++++++++
-    // + クライアント領域　＞　選択タイル +
-    // ++++++++++++++++++++++++++++++++++++
+    // ++++++++++++++++++++++++++++++++++
+    // + クライアント領域　＞　タイル行 +
+    // ++++++++++++++++++++++++++++++++++
 
-    const selectedTileHeight = 32;
-    const selectedTileMargin = 8;
+    const tileRowHeight = 32;
+    const tileRowMargin = 8;
 
     /**
      * 選択タイル・スタイル
@@ -172,8 +173,8 @@
         function(): string {
             return '' + //
                 ` width: 32px;` + //
-                ` height: ${selectedTileHeight}px;` + //
-                ` margin: ${selectedTileMargin}px;` + //
+                ` height: ${tileRowHeight}px;` + //
+                ` margin: ${tileRowMargin}px;` + //
                 ' padding: 0; line-height: 0; background-color: aliceblue;';
         }
     );
@@ -211,4 +212,7 @@
 </script>
 
 <style scoped>
+    span.window-title {
+        position:absolute; top:16px; left:16px;
+    }
 </style>
