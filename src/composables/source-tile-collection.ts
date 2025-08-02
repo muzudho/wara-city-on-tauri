@@ -63,17 +63,26 @@ export function createSourceTilesCollection(): SourceTileCollection {
         return {srcTop:y*unitCellHeight.value, srcLeft:x*unitCellWidth.value, srcWidth:unitCellWidth.value, srcHeight:unitCellHeight.value};
     }
 
-    const flatTileDict = <TileDict>{
-        land_vocantLand: makeTile(0, 1),    // 空き地
-
-        // システム
-        system_noImage: makeTile(0, 1),    // 画像無しマーク
-    }
+    const tileDict : Ref<TileDict> = ref<TileDict>({});
 
     // 荒地
-    flatTileDict["land_wasteland"] = <TileData>{
+    tileDict.value["land_wasteland"] = <TileData>{
         srcTop: 0,
         srcLeft: 0,
+        srcWidth: 32,
+        srcHeight: 32,
+    };
+    // 空き地
+    tileDict.value["land_vocantLand"] = <TileData>{
+        srcTop: 0,
+        srcLeft: 32,
+        srcWidth: 32,
+        srcHeight: 32,
+    };
+    // システム
+    tileDict.value["system_noImage"] = <TileData>{  // 画像無しマーク
+        srcTop: 0,
+        srcLeft: 32,
         srcWidth: 32,
         srcHeight: 32,
     };
@@ -93,7 +102,7 @@ export function createSourceTilesCollection(): SourceTileCollection {
 
         Object.entries(dict1).forEach(([tilepath, tile]) => {
             //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
-            flatTileDict[tilepath] = <TileData>{
+            tileDict.value[tilepath] = <TileData>{
                 srcTop: tile.srcTop,
                 srcLeft: tile.srcLeft,
                 srcWidth: tile.srcWidth,
@@ -191,24 +200,22 @@ export function createSourceTilesCollection(): SourceTileCollection {
         return rawDict;
     }
 
-    Object.assign(flatTileDict, makeEightBorderTilemap('out'));
-    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('outBorder'));
-    Object.assign(flatTileDict, makeEightBorderTilemap('sea'));
-    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('seaBorder'));
-    Object.assign(flatTileDict, makeEightBorderTilemap('wastelandRoad'));
-    Object.assign(flatTileDict, makeFourDirectionBorderTilemap('wastelandBorder'));
-
-    const tileDict = ref<TileDict>(flatTileDict);
+    Object.assign(tileDict.value, makeEightBorderTilemap('out'));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder'));
+    Object.assign(tileDict.value, makeEightBorderTilemap('sea'));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder'));
+    Object.assign(tileDict.value, makeEightBorderTilemap('wastelandRoad'));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('wastelandBorder'));
 
     return {
         unitCellWidth,
         unitCellHeight,
         tileDict,
         getTileByPath: (tilePath: string)=>{
-            if (tilePath in flatTileDict) {
-                return flatTileDict[tilePath];
+            if (tilePath in tileDict.value) {
+                return tileDict.value[tilePath];
             }
-            return flatTileDict['system_noImage'];   // 画像無しマーク画像
+            return tileDict.value['system_noImage'];   // 画像無しマーク画像
         },
     };
 }
