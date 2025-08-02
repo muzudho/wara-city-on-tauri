@@ -32,6 +32,7 @@ export interface SourceTileCollection {
     getTileByPath: (tilePath: string) => TileData;
 }
 
+/*
 interface TileInJson {
     srcTop: number;
     srcLeft: number;
@@ -40,7 +41,10 @@ interface TileInJson {
 }
 
 type TileCollection = Record<string, TileInJson>;
+*/
 
+/*
+// 非同期処理を組み込むのは難しい。
 async function loadTileCollection(): Promise<TileCollection | null> {
     try {
         const response = await fetch("/json/system/source-tile-collection.json");
@@ -52,6 +56,7 @@ async function loadTileCollection(): Promise<TileCollection | null> {
         return null;
     }
 }
+*/
 
 /**
  * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
@@ -67,21 +72,13 @@ export function createSourceTilesCollection(): SourceTileCollection {
     }
 
     const flatTileDict = <TileDict>{
-        // 旧仕様
-        //land_wasteland: makeTile(0, 0),    // 荒地
-        // land_wasteland: {
-        //     srcTop: 0,
-        //     srcLeft: 0,
-        //     srcWidth: 32,
-        //     srcHeight: 32
-        // },
-
         land_vocantLand: makeTile(0, 1),    // 空き地
 
         // システム
         system_noImage: makeTile(0, 1),    // 画像無しマーク
     }
 
+    // 荒地
     flatTileDict["land_wasteland"] = <TileData>{
         srcTop: 0,
         srcLeft: 0,
@@ -89,8 +86,9 @@ export function createSourceTilesCollection(): SourceTileCollection {
         srcHeight: 32,
     };
 
+    /*
     // TODO JSONファイルを読み込む。
-    // FIXME: 🌟 動かない
+    // FIXME: 🌟 非同期処理は動かない
     loadTileCollection().then((tileCollection) => {
         //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
         const dict1 : Record<string, TileInJson> = tileCollection ?? {
@@ -112,6 +110,7 @@ export function createSourceTilesCollection(): SourceTileCollection {
             };
         });
     });
+    */
 
     // ８方向タイル（無印）
     function makeEightBorderTilemap(tilemap: string) {
