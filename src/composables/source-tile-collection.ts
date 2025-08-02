@@ -68,12 +68,26 @@ export function createSourceTilesCollection(): SourceTileCollection {
 
     const flatTileDict = <TileDict>{
         // 旧仕様
-        land_wasteland: makeTile(0, 0),    // 荒地
+        //land_wasteland: makeTile(0, 0),    // 荒地
+        // land_wasteland: {
+        //     srcTop: 0,
+        //     srcLeft: 0,
+        //     srcWidth: 32,
+        //     srcHeight: 32
+        // },
+
         land_vocantLand: makeTile(0, 1),    // 空き地
 
         // システム
         system_noImage: makeTile(0, 1),    // 画像無しマーク
     }
+
+    flatTileDict["land_wasteland"] = <TileData>{
+        srcTop: 0,
+        srcLeft: 0,
+        srcWidth: 32,
+        srcHeight: 32,
+    };
 
     // TODO JSONファイルを読み込む。
     // FIXME: 🌟 動かない
@@ -89,14 +103,13 @@ export function createSourceTilesCollection(): SourceTileCollection {
         };
 
         Object.entries(dict1).forEach(([tilepath, tile]) => {
-            //flatTileDict[tilepath] = tile;
+            alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
             flatTileDict[tilepath] = <TileData>{
                 srcTop: tile.srcTop,
                 srcLeft: tile.srcLeft,
                 srcWidth: tile.srcWidth,
                 srcHeight: tile.srcHeight,
             };
-            //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
         });
     });
 
