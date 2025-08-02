@@ -48,11 +48,11 @@ export function createSourceTilesCollection(): SourceTileCollection {
 
     const flatTileDict = <TileDict>{
         // 旧仕様
-        'land_wasteland': makeTile(0, 0, 'land'),    // 荒地
-        'land_vocantLand': makeTile(0, 1, 'land'),    // 空き地
+        land_wasteland: makeTile(0, 0, 'land'),    // 荒地
+        land_vocantLand: makeTile(0, 1, 'land'),    // 空き地
 
         // システム
-        'system_noImage': makeTile(0, 1, 'system'),    // 画像無しマーク
+        system_noImage: makeTile(0, 1, 'system'),    // 画像無しマーク
     }
 
     // ８方向タイル（無印）
