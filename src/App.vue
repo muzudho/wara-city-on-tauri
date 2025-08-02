@@ -42,6 +42,8 @@
                         style="position:fixed; top:16px; left:16px; z-index: 30;"/>
 
                 <!-- タイル・パレット・ウィンドウ
+
+                    TODO 🌟 タイルや、タイルマップのコレクションは、イベントによって、後から渡すようにできないか？ ref とか defineExpose が使えるのでは？
                 -->
                 <TilePalettePanel
                         :srcTileCollection="srcTileCollection"
@@ -105,6 +107,7 @@
     // ##############
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
+    // TODO 🌟 タイルの読み込みを非同期にできないか？
     const srcTileCollection = createSourceTilesCollection();
     const srcTilemaps: SourceTilemapCollection = createSourceTilemapCollection(srcTileCollection);
 
