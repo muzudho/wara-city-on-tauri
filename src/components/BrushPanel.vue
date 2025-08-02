@@ -9,8 +9,9 @@
             :style="panelStyle">
 
         <!-- ウィンドウ・タイトル -->
-        <v-container :style="titlebarStyle">
-            Brush
+        <v-container :style="titlebarStyle" style="padding:0;">
+            <span style="position:absolute; top:16px; left:16px;">Brush</span>
+            <v-btn style="position:absolute; right:4px; top:4px; padding: 0px; min-width:20px; height:20px;" @click="onTitlebarSizeButtonClicked">{{ titlebarSizeButtonTextVM }}</v-btn>
         </v-container>
 
         <!-- クライアント領域 -->
@@ -108,6 +109,7 @@
     // ++++++++++++++++
 
     const titlebarHeight = 32;
+    const titlebarSizeButtonTextVM = ref("＿");
 
     /**
      * タイトルバー・スタイル
@@ -118,9 +120,24 @@
         }
     );
 
+    /**
+     * タイトルバーのサイズボタンをクリックしたとき。
+     */
+    function onTitlebarSizeButtonClicked(){
+        //alert("タイトルバーのサイズボタンをクリックしたとき。");
+        if (clientAreaDisplayVM.value == "block") {
+            clientAreaDisplayVM.value = "none";
+            titlebarSizeButtonTextVM.value = "□";
+        } else {
+            clientAreaDisplayVM.value = "block";
+            titlebarSizeButtonTextVM.value = "＿";
+        }
+    }
     // ++++++++++++++++++++
     // + クライアント領域 +
     // ++++++++++++++++++++
+
+    const clientAreaDisplayVM = ref('block');
 
     const clientAreaHeight = computed(
         function(): number {
@@ -135,6 +152,7 @@
     const clientAreaStyle = computed(
         function(): string {
             return '' + //
+                ` display: ${clientAreaDisplayVM.value};` + //
                 ' height:' + clientAreaHeight.value + 'px;' +   // 縦幅。
                 ' padding: 0; line-height: 0; background-color: aliceblue;';
         }
