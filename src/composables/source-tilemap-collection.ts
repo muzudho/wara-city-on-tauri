@@ -142,6 +142,7 @@ export function createSourceTilemapCollection(srcTileCollection: SourceTileColle
         tileDict: {
             land_wasteland: srcTileCollection.tileDict.value["land_wasteland"],       // 荒地
             land_vocantLand: srcTileCollection.tileDict.value["land_vocantLand"],     // 空き地
+            //land_forest: srcTileCollection.tileDict.value["land_forest"],     // FIXME: 🌟 JSON ファイルから読み取る
         },
         unitCellWidth: 32,
         unitCellHeight: 32,
