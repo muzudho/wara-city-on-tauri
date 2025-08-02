@@ -11,6 +11,7 @@
         <!-- ウィンドウ・タイトル -->
         <v-container :style="titlebarStyle">
             <span class="window-title">Tile palette</span>
+            <v-btn class="size-button" @click="onTitlebarSizeButtonClicked">{{ titlebarSizeButtonTextVM }}</v-btn>
         </v-container>
 
         <!-- クライアント領域 -->
@@ -123,6 +124,7 @@
     // ++++++++++++++++
 
     const titlebarHeight = 32;
+    const titlebarSizeButtonTextVM = ref("＿");
 
     /**
      * タイトルバー・スタイル
@@ -132,6 +134,20 @@
             return `padding:0; color: black; background-color: lightgray; height: ${titlebarHeight}px;`;
         }
     );
+
+    /**
+     * タイトルバーのサイズボタンをクリックしたとき。
+     */
+    function onTitlebarSizeButtonClicked(){
+        //alert("タイトルバーのサイズボタンをクリックしたとき。");
+        if (clientAreaDisplayVM.value == "block") {
+            clientAreaDisplayVM.value = "none";
+            titlebarSizeButtonTextVM.value = "□";
+        } else {
+            clientAreaDisplayVM.value = "block";
+            titlebarSizeButtonTextVM.value = "＿";
+        }
+    }
 
     // ++++++++++++++++++++
     // + クライアント領域 +
@@ -302,5 +318,8 @@
 <style scoped>
     span.window-title {
         position:absolute; top:16px; left:16px;
+    }
+    button.size-button {
+        position:absolute; right:4px; top:4px; padding: 0px; min-width:20px; height:20px;
     }
 </style>

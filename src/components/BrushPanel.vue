@@ -11,7 +11,7 @@
         <!-- ウィンドウ・タイトル -->
         <v-container :style="titlebarStyle">
             <span class="window-title">Brush</span>
-            <v-btn style="position:absolute; right:4px; top:4px; padding: 0px; min-width:20px; height:20px;" @click="onTitlebarSizeButtonClicked">{{ titlebarSizeButtonTextVM }}</v-btn>
+            <v-btn class="size-button" @click="onTitlebarSizeButtonClicked">{{ titlebarSizeButtonTextVM }}</v-btn>
         </v-container>
 
         <!-- クライアント領域 -->
@@ -214,5 +214,8 @@
 <style scoped>
     span.window-title {
         position:absolute; top:16px; left:16px;
+    }
+    button.size-button {
+        position:absolute; right:4px; top:4px; padding: 0px; min-width:20px; height:20px;
     }
 </style>
