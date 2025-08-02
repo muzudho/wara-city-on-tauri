@@ -316,6 +316,9 @@
     },
 
     "": {
-
+        "srcTop": 0,
+        "srcLeft": 0,
+        "srcWidth": 0,
+        "srcHeight": 0
     }
 }

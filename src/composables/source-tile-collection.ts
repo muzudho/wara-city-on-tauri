@@ -32,11 +32,33 @@ export interface SourceTileCollection {
     getTileByPath: (tilePath: string) => TileData;
 }
 
+interface Tile {
+    srcTop: number;
+    srcLeft: number;
+    srcWidth: number;
+    srcHeight: number;
+}
+
+type TileCollection = Record<string,Tile>;
+
+async function loadTileCollection(): Promise<TileCollection | null> {
+    try {
+        const response = await fetch("/json/system/source-tile-collection.json");
+        if (!response.ok) throw new Error("Failed to fetch JSON");
+        const data: TileCollection = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}
+
 /**
  * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
  * @returns 
  */
 export function createSourceTilesCollection(): SourceTileCollection {
+
     const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: Ref<number> = ref(32);
 
@@ -52,6 +74,24 @@ export function createSourceTilesCollection(): SourceTileCollection {
         // システム
         system_noImage: makeTile(0, 1),    // 画像無しマーク
     }
+
+    // TODO JSONファイルを読み込む。
+    loadTileCollection().then((tileCollection) => {
+        //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
+        const dict1 : Record<string,Tile> = tileCollection ?? {
+            "": {
+                srcTop: 0,
+                srcLeft: 0,
+                srcWidth: 0,
+                srcHeight: 0,
+            }
+        };
+
+        Object.entries(dict1).forEach(([tilepath, tile]) => {
+            flatTileDict[tilepath] = tile;
+            //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
+        });
+    });
 
     // ８方向タイル（無印）
     function makeEightBorderTilemap(tilemap: string) {
