@@ -1,5 +1,13 @@
+// ##############
+// # インポート #
+// ##############
+
 // 型
 import { StringDict } from '@/types/string-dict'; // @はsrcへのエイリアス
+
+// ################
+// # エクスポート #
+// ################
 
 // モジュールスコープでインスタンスを1つだけ作る（シングルトン）
 export const tilemapFilepathDict = <StringDict>{

@@ -1,7 +1,21 @@
+// ##############
+// # インポート #
+// ##############
+
 import { ref, computed, Ref, ComputedRef } from 'vue';
 
-// 型、共有データ等
+// ++++++++++++++++++++++++++++++++
+// + インポート　＞　コンポーザル +
+// ++++++++++++++++++++++++++++++++
+//
+// @はsrcへのエイリアス
+//
+
 import { SourceTileCollection } from "@/composables/source-tile-collection";
+
+// ################
+// # エクスポート #
+// ################
 
 // ボードの設定を管理する型
 export interface Board {

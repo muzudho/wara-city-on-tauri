@@ -1,3 +1,7 @@
+// ##############
+// # インポート #
+// ##############
+
 import { createApp } from "vue";
 import App from "./App.vue";
 import 'vuetify/styles'; // VuetifyのCSSをインポート

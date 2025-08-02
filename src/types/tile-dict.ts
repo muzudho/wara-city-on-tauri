@@ -1,4 +1,18 @@
-// TODO tilemap-dict に変更したい。
-import { TileData } from '@/interfaces/tile-data'; // @はsrcへのエイリアス
+// ##############
+// # インポート #
+// ##############
+
+// ++++++++++++++++++++++++++++++++++++
+// + インポート　＞　インターフェース +
+// ++++++++++++++++++++++++++++++++++++
+//
+// @はsrcへのエイリアス
+//
+
+import { TileData } from '@/interfaces/tile-data';
+
+// ################
+// # エクスポート #
+// ################
 
 export type TileDict = Record<string, TileData>;

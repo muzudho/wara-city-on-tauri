@@ -1,11 +1,35 @@
+// ##############
+// # インポート #
+// ##############
+
 import { reactive, ref, Ref } from 'vue';
 
-// 型、共有データ等。 @はsrcへのエイリアス
+// ++++++++++++++++++++++++++++++++
+// + インポート　＞　コンポーザル +
+// ++++++++++++++++++++++++++++++++
+//
+// @はsrcへのエイリアス
+//
+
 import { SourceTileCollection } from '@/composables/source-tile-collection';
+
+// ++++++++++++++++++++++++++++++++++++
+// + インポート　＞　インターフェース +
+// ++++++++++++++++++++++++++++++++++++
+
 import { TilemapData } from '@/interfaces/tilemap-data';
+import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
+
+// ++++++++++++++++++++++
+// + インポート　＞　型 +
+// ++++++++++++++++++++++
+
 import { TileDict } from '@/types/tile-dict';
 import { TilemapDict } from '@/types/tilemap-dict';
-import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
+
+// ################
+// # エクスポート #
+// ################
 
 // タイルマップの元画像を管理する型
 export interface SourceTilemapCollection {

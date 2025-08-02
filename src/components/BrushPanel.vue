@@ -186,6 +186,7 @@
         // アルファベット順ではなく、使いやすい順に並べる。
         {key: "dot", value: "１マスずつ描く"},
         {key: "fill", value: "塗り潰し（１塗りにつき１００マスまで）"},
+        {key: "border", value: "１マスずつ描く（境界線の自動接続）"},
     ];
     const selectedDrawingMethodNameVM = ref<string>(props.drawingMethodName)
 

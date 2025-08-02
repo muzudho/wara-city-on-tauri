@@ -1,3 +1,18 @@
-import { TilemapData } from '@/interfaces/tilemap-data'; // @はsrcへのエイリアス
+// ##############
+// # インポート #
+// ##############
+
+// ++++++++++++++++++++++++++++++++++++
+// + インポート　＞　インターフェース +
+// ++++++++++++++++++++++++++++++++++++
+//
+// @はsrcへのエイリアス
+//
+
+import { TilemapData } from '@/interfaces/tilemap-data';
+
+// ################
+// # エクスポート #
+// ################
 
 export type TilemapDict = Record<string, TilemapData>;

@@ -220,7 +220,12 @@
             {
                 drawingName: drawingName,
                 tileIndex: tileIndex,
+
+                // TODO: 選択タイルが境界線かどうか、種類も渡したい。
                 selectedTilepath: selectedTilePathVM.value,
+
+                // TODO: マップ上のタイルが、境界線にどう影響するか、どのように Rust 側で判定する？
+                // タイルパスと、タイル属性の紐づきを丸ごと Rust 側に投げるか？
                 board: toPlainBoard(board),
             });
         
