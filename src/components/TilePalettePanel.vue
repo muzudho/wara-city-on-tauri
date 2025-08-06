@@ -26,18 +26,6 @@
                     item-value="key"
                     class="ma-0"
                     :style="listboxStyle"/>
-            <!--
-            -->
-            <!--
-            <v-select
-                    v-model="selectedTilemapNameVM"
-                    v-bind:items="optionsVM"
-                    label="タイルマップ名"
-                    item-title="value"
-                    item-value="key"
-                    class="ma-0"
-                    :style="listboxStyle"/>
-            -->
 
             <!-- タイルを敷き詰めるだけ -->
             <v-container :style="tileAreaStyle" style="position: relative;">
@@ -91,7 +79,6 @@
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
     // ++++++++++++++++++++++++++++++++++++
-    //import { ListOption } from '@/interfaces/list-option';
     import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
     import { TileData } from '@/interfaces/tile-data';
 
@@ -197,20 +184,6 @@
     // + クライアント領域　＞　タイルマップ選択リストボックス +
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    /*
-    const optionsVM = <Array<ListOption>>[
-        //{key: "", value: ""},
-        // アルファベット順ではなく、使いやすい順に並べる。
-        {key: "sea", value: "海"},
-        {key: "seaBorder", value: "海の境界線"},
-        {key: "land", value: "陸"},
-        {key: "wastelandRoad", value: "荒地の道"},
-        {key: "wastelandBorder", value: "荒地の境界線"},
-        {key: "out", value: "外"},
-        {key: "outBorder", value: "外の境界線"},
-        {key: "system", value: "システム"},
-    ];
-    // */
     const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
 
     const listboxHeight = 64;
