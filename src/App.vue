@@ -72,7 +72,7 @@
     // ##############
 
     import { invoke } from "@tauri-apps/api/core";
-    import { computed, ref } from "vue";
+    import { computed, onMounted, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++
     // + インポート　＞　コンポーネント +
@@ -110,6 +110,23 @@
     // TODO 🌟 タイルの読み込みを非同期にできないか？
     const srcTileCollection = createSourceTilesCollection();
     const srcTilemaps: SourceTilemapCollection = createSourceTilemapCollection(srcTileCollection);
+
+    // ##############
+    // # 起動時処理 #
+    // ##############
+
+    const startConfigContent = ref<string>('読み込み中...')
+
+    onMounted(async () => {
+        try {
+            // Rust言語（バックグラウンド相当）の関数を呼び出し
+            startConfigContent.value = await invoke('read_start_config');
+            alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfigContent.value, null, "    ")}`);
+                  
+        } catch (error) {
+            alert(`ゲームを正常に起動できませんでした。\n起動時エラー： ${error}`);
+        }
+    });    
 
     // ############################
     // # このコンポーネントの画面 #
