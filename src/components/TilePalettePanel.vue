@@ -18,7 +18,6 @@
         <v-container :style="clientAreaStyle">
 
             <!-- タイル選択リスト -->
-            <!--
             <v-select
                     v-model="selectedTilemapNameVM"
                     v-bind:items="startConfig?.tilePalettePanel.tilemapNameList ?? []"
@@ -27,7 +26,9 @@
                     item-value="key"
                     class="ma-0"
                     :style="listboxStyle"/>
+            <!--
             -->
+            <!--
             <v-select
                     v-model="selectedTilemapNameVM"
                     v-bind:items="optionsVM"
@@ -36,7 +37,6 @@
                     item-value="key"
                     class="ma-0"
                     :style="listboxStyle"/>
-            <!--
             -->
 
             <!-- タイルを敷き詰めるだけ -->
@@ -91,7 +91,7 @@
     // ++++++++++++++++++++++++++++++++++++
     // + インポート　＞　インターフェース +
     // ++++++++++++++++++++++++++++++++++++
-    import { ListOption } from '@/interfaces/list-option';
+    //import { ListOption } from '@/interfaces/list-option';
     import { TileCursorPosition } from '@/interfaces/tile-cursor-position';
     import { TileData } from '@/interfaces/tile-data';
 
@@ -197,7 +197,7 @@
     // + クライアント領域　＞　タイルマップ選択リストボックス +
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    //*
+    /*
     const optionsVM = <Array<ListOption>>[
         //{key: "", value: ""},
         // アルファベット順ではなく、使いやすい順に並べる。
