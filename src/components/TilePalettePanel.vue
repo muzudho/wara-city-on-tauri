@@ -18,6 +18,16 @@
         <v-container :style="clientAreaStyle">
 
             <!-- タイル選択リスト -->
+            <!--
+            <v-select
+                    v-model="selectedTilemapNameVM"
+                    v-bind:items="startConfig?.tilePalettePanel.tilemapNameList ?? []"
+                    label="タイルマップ名"
+                    item-title="value"
+                    item-value="key"
+                    class="ma-0"
+                    :style="listboxStyle"/>
+            -->
             <v-select
                     v-model="selectedTilemapNameVM"
                     v-bind:items="optionsVM"
@@ -25,8 +35,9 @@
                     item-title="value"
                     item-value="key"
                     class="ma-0"
-                    :style="listboxStyle">
-            </v-select>
+                    :style="listboxStyle"/>
+            <!--
+            -->
 
             <!-- タイルを敷き詰めるだけ -->
             <v-container :style="tileAreaStyle" style="position: relative;">
@@ -95,6 +106,7 @@
     interface Props {
         srcTileCollection: SourceTileCollection;
         srcTilemapCollection: SourceTilemapCollection;
+        startConfig: any | null;
     }
     const props = defineProps<Props>();
 
@@ -185,6 +197,7 @@
     // + クライアント領域　＞　タイルマップ選択リストボックス +
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    //*
     const optionsVM = <Array<ListOption>>[
         //{key: "", value: ""},
         // アルファベット順ではなく、使いやすい順に並べる。
@@ -197,6 +210,7 @@
         {key: "outBorder", value: "外の境界線"},
         {key: "system", value: "システム"},
     ];
+    // */
     const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
 
     const listboxHeight = 64;
