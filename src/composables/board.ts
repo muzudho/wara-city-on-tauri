@@ -42,13 +42,13 @@ export function toPlainBoard(board: Board) {
 }
 */
 
-export function createEmptyBoard(srcTileCollection: SourceTileCollection): Reactive<Board> {
+export function createEmptyBoard(srcTileCollection: Reactive<SourceTileCollection>): Reactive<Board> {
     // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
     const widthCells: number = 96;
     const heightCells: number = 96;
     const areaCells: ComputedRef<number> = computed(() => widthCells * heightCells);
-    const widthPixels: ComputedRef<number> = computed(() => widthCells * srcTileCollection.unitCellWidth.value);
-    const heightPixels: ComputedRef<number> = computed(() => heightCells * srcTileCollection.unitCellHeight.value);
+    const widthPixels: ComputedRef<number> = computed(() => widthCells * srcTileCollection.unitCellWidth);
+    const heightPixels: ComputedRef<number> = computed(() => heightCells * srcTileCollection.unitCellHeight);
 
     // 海で埋め尽くす。
     const tilepathArray: string[] = [];

@@ -2,7 +2,7 @@
 // # インポート #
 // ##############
 
-import { ref, Ref } from 'vue';
+import { Reactive, reactive, ref, Ref } from 'vue';
 
 // ++++++++++++++++++++++
 // + インポート　＞　型 +
@@ -54,7 +54,7 @@ async function loadTileCollection(): Promise<TileCollection | null> {
  * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
  * @returns 
  */
-export function createEmptySourceTilesCollection(): SourceTileCollection {
+export function createEmptySourceTilesCollection(): Reactive<SourceTileCollection> {
 
     const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: Ref<number> = ref(32);
@@ -207,7 +207,7 @@ export function createEmptySourceTilesCollection(): SourceTileCollection {
     Object.assign(tileDict.value, makeEightBorderTilemap('wastelandRoad'));
     Object.assign(tileDict.value, makeFourDirectionBorderTilemap('wastelandBorder'));
 
-    return {
+    return reactive<SourceTileCollection>({
         unitCellWidth,
         unitCellHeight,
         tileDict,
@@ -217,5 +217,5 @@ export function createEmptySourceTilesCollection(): SourceTileCollection {
             }
             return tileDict.value['system_noImage'];   // 画像無しマーク画像
         },
-    };
+    });
 }

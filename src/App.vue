@@ -95,8 +95,8 @@
     import { Board, createEmptyBoard } from '@/composables/board';
     // { , toPlainBoard }
     import { paint } from '@/composables/paint';
-    import { createEmptySourceTilesCollection } from '@/composables/source-tile-collection';
-    import { SourceTilemapCollection, createEmptySourceTilemapCollection } from '@/composables/source-tilemap-collection';
+    import { createEmptySourceTilesCollection, SourceTileCollection } from '@/composables/source-tile-collection';
+    import { createEmptySourceTilemapCollection, SourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
     import { newTilepath } from '@/composables/tilepath';
 
@@ -114,7 +114,7 @@
 
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     // TODO 🌟 タイルの読み込みを非同期にできないか？
-    const srcTileCollection = createEmptySourceTilesCollection();
+    const srcTileCollection : Reactive<SourceTileCollection> = createEmptySourceTilesCollection();
     const srcTilemaps: SourceTilemapCollection = createEmptySourceTilemapCollection(srcTileCollection);
 
     // NOTE: Reactive にするオブジェクトは、null ではなく、空オブジェクトで初期化します。

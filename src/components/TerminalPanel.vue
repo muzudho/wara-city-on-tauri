@@ -67,7 +67,7 @@
     // # このコンポーネントが受け取る引数 #
     // ####################################
     interface Props {
-        srcTileCollection: SourceTileCollection;
+        srcTileCollection: Reactive<SourceTileCollection>;
         srcTilemaps: SourceTilemapCollection;
         board: Reactive<Board>;
     }
@@ -196,8 +196,8 @@
             let jsonText = '{\n'
             jsonText += `    "widthCells": ${props.board.widthCells},\n`;
             jsonText += `    "heightCells": ${props.board.heightCells},\n`;
-            jsonText += `    "unitCellWidth": ${props.srcTileCollection.unitCellWidth.value},\n`;
-            jsonText += `    "unitCellHeight": ${props.srcTileCollection.unitCellHeight.value},\n`;
+            jsonText += `    "unitCellWidth": ${props.srcTileCollection.unitCellWidth},\n`;
+            jsonText += `    "unitCellHeight": ${props.srcTileCollection.unitCellHeight},\n`;
             jsonText += '    "tileList": [\n';
             props.board.tilepathArray.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;

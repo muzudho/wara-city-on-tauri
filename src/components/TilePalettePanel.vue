@@ -52,7 +52,7 @@
     // ##############
     // # インポート #
     // ##############
-    import { computed, ref, watch } from "vue";
+    import { computed, Reactive, ref, watch } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
     // + インポート　＞　ドラッグ可能パネル +
@@ -91,7 +91,7 @@
     // # このコンポーネントが受け取る引数 #
     // ####################################
     interface Props {
-        srcTileCollection: SourceTileCollection;
+        srcTileCollection: Reactive<SourceTileCollection>;
         srcTilemapCollection: SourceTilemapCollection;
         startConfig: any | null;
     }
@@ -213,8 +213,8 @@
         // text += `タイルカーソルスタイル： ${tileCursorStyle.value}\n`;
         // alert(text);
 
-        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
-        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
+        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth - cursorLeftBorderWidth;
+        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight - cursorTopBorderHeight;
 
         const tilemapName = selectedTilemapNameVM.value;
         const tilePath = getMemoryTilePosition().tliePath;
@@ -261,10 +261,10 @@
         setMemoryTilePosition(
                 selectedTilemapNameVM.value,
                 tilePath,
-                tile.srcLeft / props.srcTileCollection.unitCellWidth.value,
-                tile.srcTop / props.srcTileCollection.unitCellHeight.value);
-        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth.value - cursorLeftBorderWidth;
-        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight.value - cursorTopBorderHeight;
+                tile.srcLeft / props.srcTileCollection.unitCellWidth,
+                tile.srcTop / props.srcTileCollection.unitCellHeight);
+        tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth - cursorLeftBorderWidth;
+        tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight - cursorTopBorderHeight;
 
         // 親に変更を通知
         emit('selectTile', tilePath, tile);
