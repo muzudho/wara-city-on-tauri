@@ -69,7 +69,7 @@
     interface Props {
         srcTileCollection: SourceTileCollection;
         srcTilemaps: SourceTilemapCollection;
-        board: Reactive<Board> | null;
+        board: Reactive<Board>;
     }
     const props = defineProps<Props>();
 
@@ -194,12 +194,12 @@
         if (selectedItemVM.value == 'マップJSON出力1'){
 
             let jsonText = '{\n'
-            jsonText += `    "widthCells": ${props.board?.widthCells},\n`;
-            jsonText += `    "heightCells": ${props.board?.heightCells},\n`;
+            jsonText += `    "widthCells": ${props.board.widthCells},\n`;
+            jsonText += `    "heightCells": ${props.board.heightCells},\n`;
             jsonText += `    "unitCellWidth": ${props.srcTileCollection.unitCellWidth.value},\n`;
             jsonText += `    "unitCellHeight": ${props.srcTileCollection.unitCellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
-            props.board?.tilepathArray.forEach((tileKey: string, _index: number) => {
+            props.board.tilepathArray.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""\n'; // 番兵

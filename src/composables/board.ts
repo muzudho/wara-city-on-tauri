@@ -41,7 +41,7 @@ export function toPlainBoard(board: Board) {
 }
 */
 
-export function createBoard(srcTileCollection: SourceTileCollection): Reactive<Board> {
+export function createEmptyBoard(srcTileCollection: SourceTileCollection): Reactive<Board> {
     // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
     const widthCells: Ref<number> = ref(96);
     const heightCells: Ref<number> = ref(96);

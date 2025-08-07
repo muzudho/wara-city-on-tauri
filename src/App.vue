@@ -19,7 +19,7 @@
                     </container>
                 -->
                 <Tile
-                        v-for="(tilePath, index) in (board?.tilepathArray ?? {})"
+                        v-for="(tilePath, index) in board.tilepathArray"
                         :key="index"
                         :srcLeft="srcTileCollection.getTileByPath(tilePath).srcLeft"
                         :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
@@ -92,7 +92,7 @@
     // + インポート　＞　コンポーザブル +
     // ++++++++++++++++++++++++++++++++++
 
-    import { Board, createBoard } from '@/composables/board';
+    import { Board, createEmptyBoard } from '@/composables/board';
     // { , toPlainBoard }
     import { paint } from '@/composables/paint';
     import { createSourceTilesCollection } from '@/composables/source-tile-collection';
@@ -121,8 +121,8 @@
 
     const startConfig = ref<any | null>();   // 読み込む前と、読み込んだ後の２状態がある。
 
-    // TODO データを後から読み込みたい。
-    const board : Reactive<Board> | null = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+    // NOTE: Reactive にするオブジェクトは、null ではなく、空オブジェクトで初期化します。
+    const board : Reactive<Board> = createEmptyBoard(srcTileCollection);   // 盤。いわゆるマップ。
 
     onMounted(async () => {
         try {
@@ -131,7 +131,7 @@
             //alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfig.value, null, "    ")}`);
             
             // TODO データを後から読み込みたい。
-            //board = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+            //board.reloadBoard();
 
         } catch (error) {
             alert(`ゲームを正常に起動できませんでした。\n起動時エラー： ${error}`);
@@ -150,8 +150,8 @@
     const clientAreaStyle = computed(
         function(): string {
             return '' + //
-                ' max-width: ' + (board?.widthPixels ?? 1) + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
-                ' width:' + (board?.widthPixels ?? 1) + 'px;' +   // 横幅。
+                ' max-width: ' + board.widthPixels + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
+                ' width:' + board.widthPixels + 'px;' +   // 横幅。
                 ' line-height: 0;'
         }
     );
