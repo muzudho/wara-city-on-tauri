@@ -43,8 +43,26 @@ export interface SourceTilemapCollection {
  * @param srcTileCollection 
  * @returns 
  */
-export function createEmptySourceTilemapCollection2(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
+export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
     const tilemapDict = ref<TilemapDict>({});
+
+    tilemapDict.value["system"] = reactive<TilemapData>({
+        tileDict: {
+            system_default: srcTileCollection.tileDict["system_default"],   // 未設定時の代替画像
+            system_noImage: srcTileCollection.tileDict["system_noImage"],   // 画像無しマーク
+        },
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "system_defalut", // FIXME: 🌟自動設定できないか？
+        },
+        getPaletteWidth,
+        getPaletteHeight,
+    });
 
     return reactive<SourceTilemapCollection>({
         tilemapDict,
@@ -61,16 +79,46 @@ export function createEmptySourceTilemapCollection2(srcTileCollection: Reactive<
     });
 }
 
-export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
-    const tilemapDict = ref<TilemapDict>({});
+// 準備中
+export function loadSourceTilemapCollection(srcTilemaps: Reactive<SourceTilemapCollection>, srcTileCollection: Reactive<SourceTileCollection>){
 
-    // メソッド定義
-    const getPaletteWidth = function (this: TilemapData) {
-        return this.horizontalUnitCells * this.unitCellWidth;
-    };
-    const getPaletteHeight = function (this: TilemapData) {
-        return this.verticalUnitCells * this.unitCellHeight;
-    };
+    srcTilemaps.tilemapDict["land"] = reactive<TilemapData>({
+        tileDict: {
+            land_wasteland: srcTileCollection.tileDict["land_wasteland"],       // 荒地
+            land_vocantLand: srcTileCollection.tileDict["land_vocantLand"],     // 空き地
+            //land_forest: srcTileCollection.tileDict["land_forest"],     // FIXME: 🌟 JSON ファイルから読み取る
+        },
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 4,
+        verticalUnitCells: 4,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "land_wasteland", // FIXME: 🌟自動設定できないか？
+        },
+        getPaletteWidth,
+        getPaletteHeight,
+    });
+
+    srcTilemaps.tilemapDict["out"] = reactive<TilemapData>({
+        tileDict: cropEightDirectionTileDict('out').value,
+        unitCellWidth: 32,
+        unitCellHeight: 32,
+        horizontalUnitCells: 6,
+        verticalUnitCells: 8,
+        initialTileCursorPosition: <TileCursorPosition>{
+            xCells: 0,
+            yCells: 0,
+            tliePath: "out_0", // FIXME: 🌟自動設定できないか？
+        },
+        getPaletteWidth,
+        getPaletteHeight,
+    });
+}
+
+export function createEmptySourceTilemapCollection2(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
+    const tilemapDict = ref<TilemapDict>({});
 
     // ８方向タイル（無印）を切り抜く
     function cropEightDirectionTileDict(tilemap: string) : Ref<TileDict> {
@@ -297,3 +345,15 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
         },
     });
 }
+
+// ################
+// # サブルーチン #
+// ################
+
+// メソッド定義
+const getPaletteWidth = function (this: TilemapData) {
+    return this.horizontalUnitCells * this.unitCellWidth;
+};
+const getPaletteHeight = function (this: TilemapData) {
+    return this.verticalUnitCells * this.unitCellHeight;
+};
