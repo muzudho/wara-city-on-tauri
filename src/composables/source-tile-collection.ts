@@ -131,7 +131,7 @@ export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promi
     const unitCellWidth: number = 32;     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: number = 32;
 
-    Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
+    //Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder', unitCellWidth, unitCellHeight));
