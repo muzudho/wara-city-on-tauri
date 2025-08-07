@@ -133,8 +133,8 @@ export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promi
 
     //Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
     //Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder', unitCellWidth, unitCellHeight));
+    // Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
+    // Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeEightBorderTilemap('wastelandRoad', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeFourDirectionBorderTilemap('wastelandBorder', unitCellWidth, unitCellHeight));
 }
