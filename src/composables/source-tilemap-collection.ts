@@ -38,7 +38,7 @@ export interface SourceTilemapCollection {
     getTilemapByName: (name: string) => Ref<TilemapData>;
 }
 
-export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<SourceTileCollection>): SourceTilemapCollection {
+export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
     const tilemapDict = ref<TilemapDict>({});
 
     // メソッド定義
@@ -259,7 +259,7 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
         getPaletteHeight,
     });
 
-    return {
+    return reactive<SourceTilemapCollection>({
         tilemapDict,
         getTilemapByName: (name: string)=>{
             if (name in tilemapDict.value) {
@@ -271,5 +271,5 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
             alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
             return <Ref<TilemapData>>{};    // FIXME 🌟 こんな書き方でいいのか？
         },
-    };
+    });
 }

@@ -115,7 +115,7 @@
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     // TODO 🌟 タイルの読み込みを非同期にできないか？
     const srcTileCollection : Reactive<SourceTileCollection> = createEmptySourceTilesCollection();
-    const srcTilemaps: SourceTilemapCollection = createEmptySourceTilemapCollection(srcTileCollection);
+    const srcTilemaps: Reactive<SourceTilemapCollection> = createEmptySourceTilemapCollection(srcTileCollection);
 
     // NOTE: Reactive にするオブジェクトは、null ではなく、空オブジェクトで初期化します。
     const board : Reactive<Board> = createEmptyBoard(srcTileCollection);   // 盤。いわゆるマップ。

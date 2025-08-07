@@ -68,7 +68,7 @@
     // ####################################
     interface Props {
         srcTileCollection: Reactive<SourceTileCollection>;
-        srcTilemaps: SourceTilemapCollection;
+        srcTilemaps: Reactive<SourceTilemapCollection>;
         board: Reactive<Board>;
     }
     const props = defineProps<Props>();

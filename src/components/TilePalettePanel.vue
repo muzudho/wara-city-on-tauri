@@ -92,7 +92,7 @@
     // ####################################
     interface Props {
         srcTileCollection: Reactive<SourceTileCollection>;
-        srcTilemapCollection: SourceTilemapCollection;
+        srcTilemapCollection: Reactive<SourceTilemapCollection>;
         startConfig: any | null;
     }
     const props = defineProps<Props>();
