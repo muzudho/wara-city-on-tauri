@@ -1,0 +1,1171 @@
+{
+    "#comment" : "このJSONファイルは直接編集せず、次のURLにあるPythonスクリプトを編集して、スクリプトを実行して生成してください。 https://github.com/muzudho/generate-json-on-python/tree/main/wara_city_on_tauri",
+
+
+    "land_wasteland": {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "land_vocantLand": {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "land_forest": {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+
+
+    "out_0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_49" : {
+        "top": 0,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_64" : {
+        "top": 0,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_80" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_96" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_98" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_113" : {
+        "top": 32,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_114" : {
+        "top": 32,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_115" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_128" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_144" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_152" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_160" : {
+        "top": 64,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_176" : {
+        "top": 64,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_177" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_184" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_185" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_192" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_196" : {
+        "top": 96,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_208" : {
+        "top": 96,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_212" : {
+        "top": 128,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_216" : {
+        "top": 128,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_220" : {
+        "top": 128,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_224" : {
+        "top": 128,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_226" : {
+        "top": 128,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_228" : {
+        "top": 128,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_230" : {
+        "top": 160,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_240" : {
+        "top": 160,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_241" : {
+        "top": 160,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_242" : {
+        "top": 160,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_243" : {
+        "top": 160,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_244" : {
+        "top": 160,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_245" : {
+        "top": 192,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_246" : {
+        "top": 192,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_247" : {
+        "top": 192,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_248" : {
+        "top": 192,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_249" : {
+        "top": 192,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "out_250" : {
+        "top": 192,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "out_251" : {
+        "top": 224,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "out_252" : {
+        "top": 224,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "out_253" : {
+        "top": 224,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "out_254" : {
+        "top": 224,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "out_255" : {
+        "top": 224,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+
+
+    "outBorder_A0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A64" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A80" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A96" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A128" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A144" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A160" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A176" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A192" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A208" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A224" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "outBorder_A240" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+
+
+
+
+    "sea_0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_49" : {
+        "top": 0,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_64" : {
+        "top": 0,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_80" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_96" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_98" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_113" : {
+        "top": 32,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_114" : {
+        "top": 32,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_115" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_128" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_144" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_152" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_160" : {
+        "top": 64,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_176" : {
+        "top": 64,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_177" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_184" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_185" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_192" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_196" : {
+        "top": 96,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_208" : {
+        "top": 96,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_212" : {
+        "top": 128,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_216" : {
+        "top": 128,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_220" : {
+        "top": 128,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_224" : {
+        "top": 128,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_226" : {
+        "top": 128,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_228" : {
+        "top": 128,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_230" : {
+        "top": 160,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_240" : {
+        "top": 160,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_241" : {
+        "top": 160,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_242" : {
+        "top": 160,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_243" : {
+        "top": 160,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_244" : {
+        "top": 160,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_245" : {
+        "top": 192,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_246" : {
+        "top": 192,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_247" : {
+        "top": 192,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_248" : {
+        "top": 192,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_249" : {
+        "top": 192,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "sea_250" : {
+        "top": 192,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "sea_251" : {
+        "top": 224,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "sea_252" : {
+        "top": 224,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "sea_253" : {
+        "top": 224,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "sea_254" : {
+        "top": 224,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "sea_255" : {
+        "top": 224,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+
+
+    "seaBorder_A0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A64" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A80" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A96" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A128" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A144" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A160" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A176" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A192" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A208" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A224" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "seaBorder_A240" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+
+
+    "wastelandRoad_0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_49" : {
+        "top": 0,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_64" : {
+        "top": 0,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_80" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_96" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_98" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_113" : {
+        "top": 32,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_114" : {
+        "top": 32,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_115" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_128" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_144" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_152" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_160" : {
+        "top": 64,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_176" : {
+        "top": 64,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_177" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_184" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_185" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_192" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_196" : {
+        "top": 96,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_208" : {
+        "top": 96,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_212" : {
+        "top": 128,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_216" : {
+        "top": 128,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_220" : {
+        "top": 128,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_224" : {
+        "top": 128,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_226" : {
+        "top": 128,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_228" : {
+        "top": 128,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_230" : {
+        "top": 160,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_240" : {
+        "top": 160,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_241" : {
+        "top": 160,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_242" : {
+        "top": 160,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_243" : {
+        "top": 160,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_244" : {
+        "top": 160,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_245" : {
+        "top": 192,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_246" : {
+        "top": 192,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_247" : {
+        "top": 192,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_248" : {
+        "top": 192,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_249" : {
+        "top": 192,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_250" : {
+        "top": 192,
+        "left": 160,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_251" : {
+        "top": 224,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_252" : {
+        "top": 224,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_253" : {
+        "top": 224,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_254" : {
+        "top": 224,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandRoad_255" : {
+        "top": 224,
+        "left": 128,
+        "width": 32,
+        "height": 32
+    },
+
+
+    "wastelandBorder_A0" : {
+        "top": 0,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A16" : {
+        "top": 0,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A32" : {
+        "top": 0,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A48" : {
+        "top": 0,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A64" : {
+        "top": 32,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A80" : {
+        "top": 32,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A96" : {
+        "top": 32,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A112" : {
+        "top": 32,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A128" : {
+        "top": 64,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A144" : {
+        "top": 64,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A160" : {
+        "top": 64,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A176" : {
+        "top": 64,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A192" : {
+        "top": 96,
+        "left": 0,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A208" : {
+        "top": 96,
+        "left": 32,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A224" : {
+        "top": 96,
+        "left": 64,
+        "width": 32,
+        "height": 32
+    },
+    "wastelandBorder_A240" : {
+        "top": 96,
+        "left": 96,
+        "width": 32,
+        "height": 32
+    }
+}
