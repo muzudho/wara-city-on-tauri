@@ -91,7 +91,9 @@
     // + インポート　＞　コンポーザブル +
     // ++++++++++++++++++++++++++++++++++
 
-    import { createBoard, toPlainBoard } from '@/composables/board';
+    import { createBoard } from '@/composables/board';
+    // { , toPlainBoard }
+    import { paint } from '@/composables/paint';
     import { createSourceTilesCollection } from '@/composables/source-tile-collection';
     import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
@@ -239,18 +241,31 @@
     async function callPaint(drawingName: string, tileIndex: number): Promise<string> {
 
         // 更新のレシピを返す。
-        const indexAndTilepathDict : Record<number, string> = await invoke<Record<number, string>>('paintRs',
-            {
-                drawingName: drawingName,
-                tileIndex: tileIndex,
+        const indexAndTilepathDict : Record<number, string> = paint({
+            drawingName: drawingName,
+            tileIndex: tileIndex,
 
-                // TODO: 選択タイルが境界線かどうか、種類も渡したい。
-                selectedTilepath: selectedTilePathVM.value,
+            // TODO: 選択タイルが境界線かどうか、種類も渡したい。
+            selectedTilepath: selectedTilePathVM.value,
 
-                // TODO: マップ上のタイルが、境界線にどう影響するか、どのように Rust 側で判定する？
-                // タイルパスと、タイル属性の紐づきを丸ごと Rust 側に投げるか？
-                board: toPlainBoard(board),
-            });
+            // TODO: マップ上のタイルが、境界線にどう影響するか、どのように Rust 側で判定する？
+            // タイルパスと、タイル属性の紐づきを丸ごと Rust 側に投げるか？
+            board: board,
+        });
+
+        // // 更新のレシピを返す。
+        // const indexAndTilepathDict : Record<number, string> = await invoke<Record<number, string>>('paintRs',
+        //     {
+        //         drawingName: drawingName,
+        //         tileIndex: tileIndex,
+
+        //         // TODO: 選択タイルが境界線かどうか、種類も渡したい。
+        //         selectedTilepath: selectedTilePathVM.value,
+
+        //         // TODO: マップ上のタイルが、境界線にどう影響するか、どのように Rust 側で判定する？
+        //         // タイルパスと、タイル属性の紐づきを丸ごと Rust 側に投げるか？
+        //         board: toPlainBoard(board),
+        //     });
         
         // // デバッグ表示
         // let text = "";
