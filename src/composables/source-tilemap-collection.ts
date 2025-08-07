@@ -84,7 +84,7 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
  * @param srcTilemaps 
  * @param srcTileCollection 
  */
-export function loadSourceTilemapCollection(startConfig: any, srcTilemaps: Reactive<SourceTilemapCollection>, srcTileCollection: Reactive<SourceTileCollection>){
+export function loadSourceTilemapCollection(_startConfig: any, srcTilemaps: Reactive<SourceTilemapCollection>, srcTileCollection: Reactive<SourceTileCollection>){
 
     // TODO 設定ファイルから読み取りたい。
     // startConfig
