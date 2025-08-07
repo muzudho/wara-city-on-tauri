@@ -97,13 +97,6 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
         srcHeight: 32,
     };
 
-    Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeEightBorderTilemap('wastelandRoad', unitCellWidth, unitCellHeight));
-    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('wastelandBorder', unitCellWidth, unitCellHeight));
-
     return reactive<SourceTileCollection>({
         unitCellWidth,
         unitCellHeight,
@@ -134,6 +127,16 @@ export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promi
             };
         });
     }
+
+    const unitCellWidth: number = 32;     // FIXME: 単位セルのサイズの初期値どうする？
+    const unitCellHeight: number = 32;
+
+    Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder', unitCellWidth, unitCellHeight));
+    Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('seaBorder', unitCellWidth, unitCellHeight));
+    Object.assign(tileDict.value, makeEightBorderTilemap('wastelandRoad', unitCellWidth, unitCellHeight));
+    Object.assign(tileDict.value, makeFourDirectionBorderTilemap('wastelandBorder', unitCellWidth, unitCellHeight));
 }
 
 // ################
