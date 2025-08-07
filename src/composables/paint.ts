@@ -2,6 +2,12 @@
 // # インポート #
 // ##############
 
+import { Reactive } from "vue";
+
+// ++++++++++++++++++++++++++++++++++
+// + インポート　＞　コンポーザブル +
+// ++++++++++++++++++++++++++++++++++
+
 import { Board } from '@/composables/board';
 
 // ############
@@ -23,7 +29,7 @@ export function paint(
             drawingName: string,
             tileIndex: number,
             selectedTilepath: string,
-            board: Board,
+            board: Reactive<Board>,
         }) : Record<number, string> {
     const dict : Record<number, string> = {};
 
@@ -34,12 +40,12 @@ export function paint(
     // 塗り潰し
     } else if (drawingName == "fill") {
 
-        const checkboard : boolean[] = new Array(board.tilepathArray.value.length).fill(false);
+        const checkboard : boolean[] = new Array(board.tilepathArray.length).fill(false);
         const tileIndexBuffer : number[] = Array();
         const nextTileIndexBuffer : number[] = Array();
 
         tileIndexBuffer.push(tileIndex);
-        const targetTilepath = board.tilepathArray.value[tileIndex].slice();
+        const targetTilepath = board.tilepathArray[tileIndex].slice();
 
         // NOTE: 再帰関数はスタック・オーバーフローするタイミングが読めないので、ただのループで実装する。
         // FIXME: 🌟 Rust は高速でも、TypeScript の方が高速ではない？ JSON受け渡しが遅い？
@@ -82,44 +88,44 @@ export function paint(
 function add_4_sides(
         tileIndex: number,
         next_tile_index_buffer: number[],
-        board: Board,
+        board: Reactive<Board>,
         checkboard : boolean[],
         targetTilepath: string
 ) {
 
     // 上のタイルが同じなら塗り潰し
-    const upIndex = tileIndex - board.widthCells.value;
+    const upIndex = tileIndex - board.widthCells;
     if (0 <= upIndex && !checkboard[upIndex]) {
-        if (targetTilepath == board.tilepathArray.value[upIndex]) {
+        if (targetTilepath == board.tilepathArray[upIndex]) {
             next_tile_index_buffer.push(upIndex);
         }
     }
 
     // 右のタイルが同じなら塗り潰し
-    if (tileIndex%board.widthCells.value != (board.widthCells.value-1)) {
+    if (tileIndex%board.widthCells != (board.widthCells-1)) {
         const rightIndex = tileIndex + 1;
-        if (rightIndex < board.tilepathArray.value.length && !checkboard[rightIndex]) {
-            if (targetTilepath == board.tilepathArray.value[rightIndex]) {
+        if (rightIndex < board.tilepathArray.length && !checkboard[rightIndex]) {
+            if (targetTilepath == board.tilepathArray[rightIndex]) {
                 next_tile_index_buffer.push(rightIndex);
             }
         }
     }
 
     // 左のタイルが同じなら塗り潰し
-    if (tileIndex%board.widthCells.value!=0) {
+    if (tileIndex%board.widthCells!=0) {
         const leftIndex = tileIndex - 1;
         if (!checkboard[leftIndex]) {
-            if (targetTilepath == board.tilepathArray.value[leftIndex]) {
+            if (targetTilepath == board.tilepathArray[leftIndex]) {
                 next_tile_index_buffer.push(leftIndex);
             }
         }
     }
 
     // 下のタイルが同じなら塗り潰し
-    if (tileIndex%board.heightCells.value != (board.heightCells.value-1)) {
-        const downIndex = tileIndex + board.widthCells.value;
-        if (downIndex < board.tilepathArray.value.length && !checkboard[downIndex]) {
-            if (targetTilepath == board.tilepathArray.value[downIndex]) {
+    if (tileIndex%board.heightCells != (board.heightCells-1)) {
+        const downIndex = tileIndex + board.widthCells;
+        if (downIndex < board.tilepathArray.length && !checkboard[downIndex]) {
+            if (targetTilepath == board.tilepathArray[downIndex]) {
                 next_tile_index_buffer.push(downIndex);
             }
         }

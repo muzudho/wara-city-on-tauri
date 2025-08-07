@@ -2,7 +2,7 @@
 // # インポート #
 // ##############
 
-import { ref, computed, Ref, ComputedRef } from 'vue';
+import { computed, ComputedRef, Reactive, reactive, Ref, ref } from 'vue';
 
 // ++++++++++++++++++++++++++++++++
 // + インポート　＞　コンポーザル +
@@ -27,6 +27,7 @@ export interface Board {
     tilepathArray: Ref<Array<string>>;
 }
 
+/*
 // Tauriコマンドに渡せるよう、Ref の中身を取り出す。
 export function toPlainBoard(board: Board) {
     return {
@@ -38,8 +39,9 @@ export function toPlainBoard(board: Board) {
         tilepathArray: board.tilepathArray.value, // string[]
     };
 }
+*/
 
-export function createBoard(srcTileCollection: SourceTileCollection): Board {
+export function createBoard(srcTileCollection: SourceTileCollection): Reactive<Board> {
     // FIXME: マップサイズの初期値どうする？ 128x128 だと、初期化が遅いようだ。
     const widthCells: Ref<number> = ref(96);
     const heightCells: Ref<number> = ref(96);
@@ -55,12 +57,12 @@ export function createBoard(srcTileCollection: SourceTileCollection): Board {
 
     const tilepathArray = ref<Array<string>>(rawArray);
 
-    return {
+    return reactive<Board>({
         widthCells,
         heightCells,
         areaCells,
         widthPixels,
         heightPixels,
         tilepathArray,
-    };
+    });
 }

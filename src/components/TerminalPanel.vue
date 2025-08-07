@@ -45,7 +45,7 @@
     // # インポート #
     // ##############
     import { invoke } from "@tauri-apps/api/core";
-    import { computed, ref } from "vue";
+    import { computed, Reactive, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
     // + インポート　＞　ドラッグ可能パネル +
@@ -69,7 +69,7 @@
     interface Props {
         srcTileCollection: SourceTileCollection;
         srcTilemaps: SourceTilemapCollection;
-        board: Board;
+        board: Reactive<Board> | null;
     }
     const props = defineProps<Props>();
 
@@ -194,12 +194,12 @@
         if (selectedItemVM.value == 'マップJSON出力1'){
 
             let jsonText = '{\n'
-            jsonText += `    "widthCells": ${props.board.widthCells.value},\n`;
-            jsonText += `    "heightCells": ${props.board.heightCells.value},\n`;
+            jsonText += `    "widthCells": ${props.board?.widthCells},\n`;
+            jsonText += `    "heightCells": ${props.board?.heightCells},\n`;
             jsonText += `    "unitCellWidth": ${props.srcTileCollection.unitCellWidth.value},\n`;
             jsonText += `    "unitCellHeight": ${props.srcTileCollection.unitCellHeight.value},\n`;
             jsonText += '    "tileList": [\n';
-            props.board.tilepathArray.value.forEach((tileKey: string, _index: number) => {
+            props.board?.tilepathArray.forEach((tileKey: string, _index: number) => {
                 jsonText += `        "${tileKey}",\n`;
             });
             jsonText += '        ""\n'; // 番兵
@@ -209,6 +209,10 @@
             textVM.value = jsonText;
 
         } else if (selectedItemVM.value == 'マップJSON入力1'){
+
+            if (props.board == null) {
+                return;
+            }
 
             // TODO マップJSON入力
             //const jsonString = '{"tile1": {"srcLeft": 10, "srcTop": 20}}';
@@ -220,8 +224,8 @@
                 //alert(`result=${result}`);
 
                 // 配列全体をそのまま入れ替えると、値の変更通知機能が失われてしまうので、要素を１つずつ入れる。
-                for(let i=0; i<props.board.areaCells.value; i+=1){
-                    props.board.tilepathArray.value[i] = result["tileList"][i];    // 配列から、タイルのキー名を取り出し、代入
+                for(let i=0; i<props.board.areaCells; i+=1){
+                    props.board.tilepathArray[i] = result["tileList"][i];    // 配列から、タイルのキー名を取り出し、代入
                 }
             } catch (error) {
                 alert(`エラー：${error}`);

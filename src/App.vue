@@ -19,7 +19,7 @@
                     </container>
                 -->
                 <Tile
-                        v-for="(tilePath, index) in board.tilepathArray.value"
+                        v-for="(tilePath, index) in (board?.tilepathArray ?? {})"
                         :key="index"
                         :srcLeft="srcTileCollection.getTileByPath(tilePath).srcLeft"
                         :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
@@ -73,7 +73,8 @@
     // ##############
 
     import { invoke } from "@tauri-apps/api/core";
-    import { computed, onMounted, ref } from "vue";
+    import { computed, onMounted, Reactive, ref } from "vue";
+    // { , Ref }
 
     // ++++++++++++++++++++++++++++++++++
     // + インポート　＞　コンポーネント +
@@ -120,12 +121,18 @@
 
     const startConfig = ref<any | null>();   // 読み込む前と、読み込んだ後の２状態がある。
 
+    // TODO データを後から読み込みたい。
+    const board : Reactive<Board> | null = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+
     onMounted(async () => {
         try {
             // Rust言語（バックグラウンド相当）の関数を呼び出し
             startConfig.value = await invoke('read_start_config');
             //alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfig.value, null, "    ")}`);
-                  
+            
+            // TODO データを後から読み込みたい。
+            //board = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+
         } catch (error) {
             alert(`ゲームを正常に起動できませんでした。\n起動時エラー： ${error}`);
         }
@@ -143,8 +150,8 @@
     const clientAreaStyle = computed(
         function(): string {
             return '' + //
-                ' max-width: ' + (board?.widthPixels.value ?? 1) + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
-                ' width:' + (board?.widthPixels.value ?? 1) + 'px;' +   // 横幅。
+                ' max-width: ' + (board?.widthPixels ?? 1) + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
+                ' width:' + (board?.widthPixels ?? 1) + 'px;' +   // 横幅。
                 ' line-height: 0;'
         }
     );
@@ -152,9 +159,6 @@
     // ++++++++++++++++++++++++++++++++
     // + クライアント領域　＞　マップ +
     // ++++++++++++++++++++++++++++++++
-
-    // TODO データを後から読み込みたい。
-    const board : Board | null = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
 
     const mouseDraggingVM = ref(false);
 
@@ -287,7 +291,7 @@
         // レシピ通り更新。
         Object.entries(indexAndTilepathDict).forEach(([tileIndex2, tilepath]) => {
             const tileIndex3 = Number(tileIndex2);
-            board.tilepathArray.value[tileIndex3] = tilepath;
+            board.tilepathArray[tileIndex3] = tilepath;
         });
 
         return "";
