@@ -14,9 +14,7 @@ export function toPlainBoard(board: Board) {
     };
 }
 */
-```
 
-```ts
     // const unitCellWidth: number = 32;     // FIXME: 単位セルのサイズの初期値どうする？
     // const unitCellHeight: number = 32;
 
@@ -129,4 +127,21 @@ function makeTile(y: number, x: number, unitCellWidth: number, unitCellHeight: n
     return {srcTop:y*unitCellHeight, srcLeft:x*unitCellWidth, srcWidth:unitCellWidth, srcHeight:unitCellHeight};
 }
 */
+
+
+    // ################
+    // # サブルーチン #
+    // ################
+
+    /**
+     * Tauriのコマンドを呼び出し。
+     * 文字列を渡すと、指定の操作を実施後の文字列を返す。
+     * @param sourceStr 
+     * @param commandName 
+     */
+    async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
+        const resultStr = await invoke<string>('translateRs', {sourceStr: sourceStr, commandName: commandName});
+        return resultStr;
+    }
+
 ```

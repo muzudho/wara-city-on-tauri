@@ -44,7 +44,7 @@
     // ##############
     // # インポート #
     // ##############
-    import { invoke } from "@tauri-apps/api/core";
+    //import { invoke } from "@tauri-apps/api/core";
     import { computed, Reactive, ref } from "vue";
 
     // ++++++++++++++++++++++++++++++++++++++
@@ -233,24 +233,7 @@
 
             textVM.value = JSON.stringify(result, null, '    ');
 
-        } else {
-            textVM.value = await callTranslate(textVM.value, selectedItemVM.value)
         }
-    }
-
-    // ################
-    // # サブルーチン #
-    // ################
-
-    /**
-     * Tauriのコマンドを呼び出し。
-     * 文字列を渡すと、指定の操作を実施後の文字列を返す。
-     * @param sourceStr 
-     * @param commandName 
-     */
-    async function callTranslate(sourceStr: string, commandName: string): Promise<string> {
-        const resultStr = await invoke<string>('translateRs', {sourceStr: sourceStr, commandName: commandName});
-        return resultStr;
     }
 </script>
 

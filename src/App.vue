@@ -125,7 +125,6 @@
     onMounted(async () => {
         try {
             // Rust言語（バックグラウンド相当）の関数を呼び出し
-            //startConfig.value = await invoke('read_start_config');
             startConfig.value = await invoke('read_bundle_text_file', {'fileName': 'start-config.json'});
             //alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfig.value, null, "    ")}`);
             
