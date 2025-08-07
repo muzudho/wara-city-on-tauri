@@ -25,8 +25,8 @@ import { TileData } from '@/interfaces/tile-data';
 
 // タイルマップの元画像を管理する型
 export interface SourceTileCollection {
-    unitCellWidth: Ref<number>;     // 単位セルの横幅
-    unitCellHeight: Ref<number>;    // 単位セルの縦幅
+    unitCellWidth: number;     // 単位セルの横幅
+    unitCellHeight: number;    // 単位セルの縦幅
     tileDict: Ref<TileDict>;        // フラットにタイルが入っている辞書
 
     getTileByPath: (tilePath: string) => TileData;
@@ -56,11 +56,11 @@ async function loadTileCollection(): Promise<TileCollection | null> {
  */
 export function createEmptySourceTilesCollection(): Reactive<SourceTileCollection> {
 
-    const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
-    const unitCellHeight: Ref<number> = ref(32);
+    const unitCellWidth: number = 32;     // FIXME: 単位セルのサイズの初期値どうする？
+    const unitCellHeight: number = 32;
 
     function makeTile(y: number, x: number) {
-        return {srcTop:y*unitCellHeight.value, srcLeft:x*unitCellWidth.value, srcWidth:unitCellWidth.value, srcHeight:unitCellHeight.value};
+        return {srcTop:y*unitCellHeight, srcLeft:x*unitCellWidth, srcWidth:unitCellWidth, srcHeight:unitCellHeight};
     }
 
     const tileDict : Ref<TileDict> = ref<TileDict>({});
