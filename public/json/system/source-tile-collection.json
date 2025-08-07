@@ -5,6 +5,12 @@
         "srcWidth": 32,
         "srcHeight": 32
     },
+    "land_vocantLand": {
+        "srcTop": 0,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
     "land_forest": {
         "srcTop": 0,
         "srcLeft": 64,

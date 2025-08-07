@@ -74,7 +74,7 @@ export function createEmptySourceTilesCollection2(): Reactive<SourceTileCollecti
 }
 
 /**
- * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
+ * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。システム・タイルマップはハードコーディングする。
  * @returns 
  */
 export function createEmptySourceTilesCollection(): Reactive<SourceTileCollection> {
@@ -83,23 +83,7 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
     const unitCellHeight: number = 32;
     const tileDict : Ref<TileDict> = ref<TileDict>({});
 
-    /*
-    // 荒地
-    tileDict.value["land_wasteland"] = <TileData>{
-        srcTop: 0,
-        srcLeft: 0,
-        srcWidth: 32,
-        srcHeight: 32,
-    };
-    */
-    // 空き地
-    tileDict.value["land_vocantLand"] = <TileData>{
-        srcTop: 0,
-        srcLeft: 32,
-        srcWidth: 32,
-        srcHeight: 32,
-    };
-    // システム
+    // システム・タイルマップはハードコーディング
     tileDict.value["system_default"] = <TileData>{  // 未設定時の代替画像
         srcTop: 0,
         srcLeft: 0,
@@ -150,40 +134,6 @@ export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promi
             };
         });
     }
-    /*
-    loadSourceTileCollectionJsonFile().then((tileCollection) => {
-        //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
-        // const tileCollection2 : Record<string, TileData> = tileCollection ?? {
-        //     "": {
-        //         srcTop: 0,
-        //         srcLeft: 0,
-        //         srcWidth: 0,
-        //         srcHeight: 0,
-        //     }
-        // };
-        if (tileCollection != null){
-            Object.entries(tileCollection).forEach(([tilepath, tile]) => {
-                //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
-                tileDict.value[tilepath] = <TileData>{
-                    srcTop: tile.srcTop,
-                    srcLeft: tile.srcLeft,
-                    srcWidth: tile.srcWidth,
-                    srcHeight: tile.srcHeight,
-                };
-            });
-        }
-    });
-    */
-
-    /*
-    // 荒地
-    tileDict.value["land_wasteland"] = <TileData>{
-        srcTop: 0,
-        srcLeft: 0,
-        srcWidth: 32,
-        srcHeight: 32,
-    };
-    */
 }
 
 // ################
