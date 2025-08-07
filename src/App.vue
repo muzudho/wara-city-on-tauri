@@ -91,7 +91,7 @@
     // + インポート　＞　コンポーザブル +
     // ++++++++++++++++++++++++++++++++++
 
-    import { createBoard } from '@/composables/board';
+    import { Board, createBoard } from '@/composables/board';
     // { , toPlainBoard }
     import { paint } from '@/composables/paint';
     import { createSourceTilesCollection } from '@/composables/source-tile-collection';
@@ -153,7 +153,9 @@
     // + クライアント領域　＞　マップ +
     // ++++++++++++++++++++++++++++++++
 
-    const board = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+    // TODO データを後から読み込みたい。
+    const board : Board | null = createBoard(srcTileCollection);   // 盤。いわゆるマップ。
+
     const mouseDraggingVM = ref(false);
 
     /**
