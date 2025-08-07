@@ -184,7 +184,8 @@
     // + クライアント領域　＞　タイルマップ選択リストボックス +
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
+    //const selectedTilemapNameVM = ref<string>("sea")     // FIXME: 初期値どうする？
+    const selectedTilemapNameVM = ref<string>("system")     // FIXME: 初期値どうする？
 
     const listboxHeight = 64;
 

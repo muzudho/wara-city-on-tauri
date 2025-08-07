@@ -308,8 +308,14 @@
         "srcHeight": 32
     },
 
+    "system_default": {
+        "srcTop": 0,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
     "system_noImage": {
-        "srcTop": 224,
+        "srcTop": 0,
         "srcLeft": 32,
         "srcWidth": 32,
         "srcHeight": 32

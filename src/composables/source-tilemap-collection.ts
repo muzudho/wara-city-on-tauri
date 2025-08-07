@@ -182,6 +182,7 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
 
     tilemapDict.value["system"] = reactive<TilemapData>({
         tileDict: {
+            system_default: srcTileCollection.tileDict["system_default"],   // 未設定時の代替画像
             system_noImage: srcTileCollection.tileDict["system_noImage"],   // 画像無しマーク
         },
         unitCellWidth: 32,
@@ -191,7 +192,7 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
         initialTileCursorPosition: <TileCursorPosition>{
             xCells: 0,
             yCells: 0,
-            tliePath: "system_noImage", // FIXME: 🌟自動設定できないか？
+            tliePath: "system_defalut", // FIXME: 🌟自動設定できないか？
         },
         getPaletteWidth,
         getPaletteHeight,

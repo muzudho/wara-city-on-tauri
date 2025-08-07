@@ -80,6 +80,12 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
         srcHeight: 32,
     };
     // システム
+    tileDict.value["system_default"] = <TileData>{  // 未設定時の代替画像
+        srcTop: 0,
+        srcLeft: 0,
+        srcWidth: 32,
+        srcHeight: 32,
+    };
     tileDict.value["system_noImage"] = <TileData>{  // 画像無しマーク
         srcTop: 0,
         srcLeft: 32,
