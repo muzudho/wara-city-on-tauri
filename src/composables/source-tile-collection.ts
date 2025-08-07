@@ -62,16 +62,16 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
 
     // システム・タイルマップはハードコーディング
     tileDict.value["system_default"] = <TileData>{  // 未設定時の代替画像
-        srcTop: 0,
-        srcLeft: 0,
-        srcWidth: 32,
-        srcHeight: 32,
+        top: 0,
+        left: 0,
+        width: 32,
+        height: 32,
     };
     tileDict.value["system_noImage"] = <TileData>{  // 画像無しマーク
-        srcTop: 0,
-        srcLeft: 32,
-        srcWidth: 32,
-        srcHeight: 32,
+        top: 0,
+        left: 32,
+        width: 32,
+        height: 32,
     };
 
     return reactive<SourceTileCollection>({
@@ -98,10 +98,10 @@ export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promi
         Object.entries(tileCollection).forEach(([tilepath, tile]) => {
             //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
             tileDict.value[tilepath] = <TileData>{
-                srcTop: tile.srcTop,
-                srcLeft: tile.srcLeft,
-                srcWidth: tile.srcWidth,
-                srcHeight: tile.srcHeight,
+                top: tile.top,
+                left: tile.left,
+                width: tile.width,
+                height: tile.height,
             };
         });
     }

@@ -21,10 +21,10 @@
                 <Tile
                         v-for="(tilePath, index) in board.tilepathArray"
                         :key="index"
-                        :srcLeft="srcTileCollection.getTileByPath(tilePath).srcLeft"
-                        :srcTop="srcTileCollection.getTileByPath(tilePath).srcTop"
-                        :srcWidth="srcTileCollection.getTileByPath(tilePath).srcWidth"
-                        :srcHeight="srcTileCollection.getTileByPath(tilePath).srcHeight"
+                        :srcLeft="srcTileCollection.getTileByPath(tilePath).left"
+                        :srcTop="srcTileCollection.getTileByPath(tilePath).top"
+                        :srcWidth="srcTileCollection.getTileByPath(tilePath).width"
+                        :srcHeight="srcTileCollection.getTileByPath(tilePath).height"
                         :tilemapUrl="getTilemapUrlByName(newTilepath(tilePath).getTilemapName())"
                         @click="onMapTileClick(index)"
                         @mousedown="onMapTileMouseDown(index)"
@@ -213,10 +213,10 @@
 
     const selectedTilePathVM = ref('sea_0');  // FIXME: 初期値どうする？
     const selectedTileDataVM = ref<TileData>({  // FIXME: 初期値どうする？
-        srcLeft: 0,
-        srcTop: 0,
-        srcWidth: 32,
-        srcHeight: 32,
+        left: 0,
+        top: 0,
+        width: 32,
+        height: 32,
     });
 
     function onTilemapSelected(_tilemapName: string, tilePath: string, tile: TileData) {

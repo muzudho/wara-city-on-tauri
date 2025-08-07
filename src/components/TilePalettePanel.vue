@@ -35,10 +35,10 @@
                 <Tile
                         v-for="(tile, tilepath) in selectedTilemapTileDict"
                         :key="tilepath"
-                        :srcLeft="tile.srcLeft"
-                        :srcTop="tile.srcTop"
-                        :srcWidth="tile.srcWidth"
-                        :srcHeight="tile.srcHeight"
+                        :srcLeft="tile.left"
+                        :srcTop="tile.top"
+                        :srcWidth="tile.width"
+                        :srcHeight="tile.height"
                         :tilemapUrl="getTilemapUrlByName(newTilepath(tilepath).getTilemapName())"
                         @click="onSrcTileClick(tilepath, tile)"/>
 
@@ -262,8 +262,8 @@
         setMemoryTilePosition(
                 selectedTilemapNameVM.value,
                 tilePath,
-                tile.srcLeft / props.srcTileCollection.unitCellWidth,
-                tile.srcTop / props.srcTileCollection.unitCellHeight);
+                tile.left / props.srcTileCollection.unitCellWidth,
+                tile.top / props.srcTileCollection.unitCellHeight);
         tileCursorLeftVM.value = getMemoryTilePosition().xCells * props.srcTileCollection.unitCellWidth - cursorLeftBorderWidth;
         tileCursorTopVM.value = getMemoryTilePosition().yCells * props.srcTileCollection.unitCellHeight - cursorTopBorderHeight;
 

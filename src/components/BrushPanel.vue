@@ -19,10 +19,10 @@
 
             <!-- 選択タイル -->
             <Tile
-                    :srcLeft="props.selectedTileData.srcLeft"
-                    :srcTop="props.selectedTileData.srcTop"
-                    :srcWidth="props.selectedTileData.srcWidth"
-                    :srcHeight="props.selectedTileData.srcHeight"
+                    :srcLeft="props.selectedTileData.left"
+                    :srcTop="props.selectedTileData.top"
+                    :srcWidth="props.selectedTileData.width"
+                    :srcHeight="props.selectedTileData.height"
                     :tilemapUrl="getTilemapUrlByName(newTilepath(props.selectedTilepath).getTilemapName())"
                     :style="selectedTileStyle"/>
             
