@@ -38,6 +38,29 @@ export interface SourceTilemapCollection {
     getTilemapByName: (name: string) => Ref<TilemapData>;
 }
 
+/**
+ * TODO 準備中。
+ * @param srcTileCollection 
+ * @returns 
+ */
+export function createEmptySourceTilemapCollection2(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
+    const tilemapDict = ref<TilemapDict>({});
+
+    return reactive<SourceTilemapCollection>({
+        tilemapDict,
+        getTilemapByName: (name: string)=>{
+            if (name in tilemapDict.value) {
+                //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)
+
+                return ref<TilemapData>(tilemapDict.value[name]);   // FIXME 🌟 こんな書き方でいいのか？
+            }
+
+            alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
+            return <Ref<TilemapData>>{};    // FIXME 🌟 こんな書き方でいいのか？
+        },
+    });
+}
+
 export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
     const tilemapDict = ref<TilemapDict>({});
 

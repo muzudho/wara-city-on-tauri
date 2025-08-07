@@ -74,7 +74,6 @@
 
     import { invoke } from "@tauri-apps/api/core";
     import { computed, onMounted, Reactive, ref } from "vue";
-    // { , Ref }
 
     // ++++++++++++++++++++++++++++++++++
     // + インポート　＞　コンポーネント +
@@ -93,7 +92,6 @@
     // ++++++++++++++++++++++++++++++++++
 
     import { Board, createEmptyBoard } from '@/composables/board';
-    // { , toPlainBoard }
     import { paint } from '@/composables/paint';
     import { createEmptySourceTilesCollection, SourceTileCollection } from '@/composables/source-tile-collection';
     import { createEmptySourceTilemapCollection, SourceTilemapCollection } from '@/composables/source-tilemap-collection';
