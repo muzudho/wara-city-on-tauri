@@ -1,4 +1,7 @@
 {
+    "#comment" : "このJSONファイルは直接編集せず、次のURLにあるPythonスクリプトを編集して、スクリプトを実行して生成してください。 https://github.com/muzudho/generate-json-on-python/tree/main/wara_city_on_tauri",
+
+
     "land_wasteland": {
         "srcTop": 0,
         "srcLeft": 0,
@@ -778,6 +781,388 @@
         "srcHeight": 32
     },
     "seaBorder_A240" : {
+        "srcTop": 96,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+
+
+    "wastelandRoad_0" : {
+        "srcTop": 0,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_16" : {
+        "srcTop": 0,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_32" : {
+        "srcTop": 0,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_48" : {
+        "srcTop": 0,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_49" : {
+        "srcTop": 0,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_64" : {
+        "srcTop": 0,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_80" : {
+        "srcTop": 32,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_96" : {
+        "srcTop": 32,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_98" : {
+        "srcTop": 32,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_112" : {
+        "srcTop": 32,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_113" : {
+        "srcTop": 32,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_114" : {
+        "srcTop": 32,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_115" : {
+        "srcTop": 64,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_128" : {
+        "srcTop": 64,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_144" : {
+        "srcTop": 64,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_152" : {
+        "srcTop": 64,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_160" : {
+        "srcTop": 64,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_176" : {
+        "srcTop": 64,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_177" : {
+        "srcTop": 96,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_184" : {
+        "srcTop": 96,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_185" : {
+        "srcTop": 96,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_192" : {
+        "srcTop": 96,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_196" : {
+        "srcTop": 96,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_208" : {
+        "srcTop": 96,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_212" : {
+        "srcTop": 128,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_216" : {
+        "srcTop": 128,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_220" : {
+        "srcTop": 128,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_224" : {
+        "srcTop": 128,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_226" : {
+        "srcTop": 128,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_228" : {
+        "srcTop": 128,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_230" : {
+        "srcTop": 160,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_240" : {
+        "srcTop": 160,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_241" : {
+        "srcTop": 160,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_242" : {
+        "srcTop": 160,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_243" : {
+        "srcTop": 160,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_244" : {
+        "srcTop": 160,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_245" : {
+        "srcTop": 192,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_246" : {
+        "srcTop": 192,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_247" : {
+        "srcTop": 192,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_248" : {
+        "srcTop": 192,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_249" : {
+        "srcTop": 192,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_250" : {
+        "srcTop": 192,
+        "srcLeft": 160,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_251" : {
+        "srcTop": 224,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_252" : {
+        "srcTop": 224,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_253" : {
+        "srcTop": 224,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_254" : {
+        "srcTop": 224,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandRoad_255" : {
+        "srcTop": 224,
+        "srcLeft": 128,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+
+
+    "wastelandBorder_A0" : {
+        "srcTop": 0,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A16" : {
+        "srcTop": 0,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A32" : {
+        "srcTop": 0,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A48" : {
+        "srcTop": 0,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A64" : {
+        "srcTop": 32,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A80" : {
+        "srcTop": 32,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A96" : {
+        "srcTop": 32,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A112" : {
+        "srcTop": 32,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A128" : {
+        "srcTop": 64,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A144" : {
+        "srcTop": 64,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A160" : {
+        "srcTop": 64,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A176" : {
+        "srcTop": 64,
+        "srcLeft": 96,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A192" : {
+        "srcTop": 96,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A208" : {
+        "srcTop": 96,
+        "srcLeft": 32,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A224" : {
+        "srcTop": 96,
+        "srcLeft": 64,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
+    "wastelandBorder_A240" : {
         "srcTop": 96,
         "srcLeft": 96,
         "srcWidth": 32,
