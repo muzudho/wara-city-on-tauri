@@ -1,4 +1,10 @@
 {
+    "land_wasteland": {
+        "srcTop": 0,
+        "srcLeft": 0,
+        "srcWidth": 32,
+        "srcHeight": 32
+    },
     "land_forest": {
         "srcTop": 0,
         "srcLeft": 64,

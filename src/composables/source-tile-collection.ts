@@ -83,6 +83,7 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
     const unitCellHeight: number = 32;
     const tileDict : Ref<TileDict> = ref<TileDict>({});
 
+    /*
     // 荒地
     tileDict.value["land_wasteland"] = <TileData>{
         srcTop: 0,
@@ -90,6 +91,7 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
         srcWidth: 32,
         srcHeight: 32,
     };
+    */
     // 空き地
     tileDict.value["land_vocantLand"] = <TileData>{
         srcTop: 0,
@@ -158,6 +160,15 @@ export function loadSourceTilesCollection(tileDict : Ref<TileDict>): void {
             });
         }
     });
+
+    // 荒地
+    tileDict.value["land_wasteland"] = <TileData>{
+        srcTop: 0,
+        srcLeft: 0,
+        srcWidth: 32,
+        srcHeight: 32,
+    };
+
 }
 
 // ################
