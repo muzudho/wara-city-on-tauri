@@ -11,5 +11,316 @@
             {"key": "outBorder", "value": "外の境界線"},
             {"key": "system", "value": "システム"}
         ]
+    },
+    "sourceTileCollection" : {
+        "land_wasteland": {
+            "srcTop": 0,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "land_vocantLand": {
+            "srcTop": 0,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_0" : {
+            "srcTop": 0,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_16" : {
+            "srcTop": 0,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_32" : {
+            "srcTop": 0,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_48" : {
+            "srcTop": 0,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_49" : {
+            "srcTop": 0,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_64" : {
+            "srcTop": 0,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_80" : {
+            "srcTop": 32,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_96" : {
+            "srcTop": 32,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_98" : {
+            "srcTop": 32,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_112" : {
+            "srcTop": 32,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_113" : {
+            "srcTop": 32,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_114" : {
+            "srcTop": 32,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_115" : {
+            "srcTop": 64,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_128" : {
+            "srcTop": 64,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_144" : {
+            "srcTop": 64,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_152" : {
+            "srcTop": 64,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_160" : {
+            "srcTop": 64,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_176" : {
+            "srcTop": 64,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_177" : {
+            "srcTop": 96,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_184" : {
+            "srcTop": 96,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_185" : {
+            "srcTop": 96,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_192" : {
+            "srcTop": 96,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_196" : {
+            "srcTop": 96,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_208" : {
+            "srcTop": 96,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_212" : {
+            "srcTop": 128,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_216" : {
+            "srcTop": 128,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_220" : {
+            "srcTop": 128,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_224" : {
+            "srcTop": 128,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_226" : {
+            "srcTop": 128,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_228" : {
+            "srcTop": 128,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_230" : {
+            "srcTop": 160,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_240" : {
+            "srcTop": 160,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_241" : {
+            "srcTop": 160,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_242" : {
+            "srcTop": 160,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_243" : {
+            "srcTop": 160,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_244" : {
+            "srcTop": 160,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_245" : {
+            "srcTop": 192,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_246" : {
+            "srcTop": 192,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_247" : {
+            "srcTop": 192,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_248" : {
+            "srcTop": 192,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_249" : {
+            "srcTop": 192,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_250" : {
+            "srcTop": 192,
+            "srcLeft": 160,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "out_251" : {
+            "srcTop": 224,
+            "srcLeft": 0,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_252" : {
+            "srcTop": 224,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_253" : {
+            "srcTop": 224,
+            "srcLeft": 64,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_254" : {
+            "srcTop": 224,
+            "srcLeft": 96,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+        "out_255" : {
+            "srcTop": 224,
+            "srcLeft": 128,
+            "srcWidth": 32,
+            "srcHeight": 32
+        },
+
+        "system_noImage": {
+            "srcTop": 224,
+            "srcLeft": 32,
+            "srcWidth": 32,
+            "srcHeight": 32
+        }
     }
 }
