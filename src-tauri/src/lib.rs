@@ -5,7 +5,7 @@ use csv::Reader;
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::fs::File;
-use std::collections::HashMap;
+//use std::collections::HashMap;
 use serde_json::Value;
 //use tauri::command;
 
@@ -97,6 +97,7 @@ fn translateRs(sourceStr:&str, commandName: &str) -> String {
     sourceStr.to_string()
 }
 
+/*
 #[tauri::command]
 #[allow(non_snake_case)]
 fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) -> HashMap<i32, String> {
@@ -153,7 +154,9 @@ fn paintRs(drawingName:&str, tileIndex:i32, selectedTilepath:&str, board:Board) 
 
     dict
 }
+*/
 
+/*
 fn add_4_sides(
         tile_index: i32,
         next_tile_index_buffer: &mut Vec<i32>,
@@ -200,6 +203,7 @@ fn add_4_sides(
         }
     }
 }
+ */
 
 pub fn get_pref(line: &str) -> &'static str {
     // 47都道府県のリスト
@@ -232,7 +236,7 @@ pub fn run() {
             greetRs,
             read_start_config,
             translateRs,
-            paintRs,
+            //paintRs,
             readCsvRs
         ])
         .run(tauri::generate_context!())
