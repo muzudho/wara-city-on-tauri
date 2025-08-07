@@ -143,8 +143,8 @@
     const clientAreaStyle = computed(
         function(): string {
             return '' + //
-                ' max-width: ' + board.widthPixels.value + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
-                ' width:' + board.widthPixels.value + 'px;' +   // 横幅。
+                ' max-width: ' + (board?.widthPixels.value ?? 1) + 'px;' + // NOTE: max-width が 1200px ぐらいしかないような気がする。増やしておく。
+                ' width:' + (board?.widthPixels.value ?? 1) + 'px;' +   // 横幅。
                 ' line-height: 0;'
         }
     );
@@ -242,7 +242,14 @@
      */
     async function callPaint(drawingName: string, tileIndex: number): Promise<string> {
 
-        // 更新のレシピを返す。
+        if (board == null) {
+            return "board is null.";
+        }
+
+        /**
+         * 更新のレシピを返す。
+         * @returns エラーメッセージ
+         */
         const indexAndTilepathDict : Record<number, string> = paint({
             drawingName: drawingName,
             tileIndex: tileIndex,
