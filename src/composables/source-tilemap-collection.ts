@@ -39,7 +39,7 @@ export interface SourceTilemapCollection {
 }
 
 /**
- * TODO 準備中。
+ * 空のタイルマップ・コレクション作成。（システム・タイルマップは入っている）
  * @param srcTileCollection 
  * @returns 
  */
@@ -79,7 +79,11 @@ export function createEmptySourceTilemapCollection(srcTileCollection: Reactive<S
     });
 }
 
-// 準備中
+/**
+ * タイル読込。
+ * @param srcTilemaps 
+ * @param srcTileCollection 
+ */
 export function loadSourceTilemapCollection(srcTilemaps: Reactive<SourceTilemapCollection>, srcTileCollection: Reactive<SourceTileCollection>){
 
     srcTilemaps.tilemapDict["land"] = reactive<TilemapData>({
@@ -191,148 +195,6 @@ export function loadSourceTilemapCollection(srcTilemaps: Reactive<SourceTilemapC
         getPaletteHeight,
     });
 }
-
-/*
-export function createEmptySourceTilemapCollection2(srcTileCollection: Reactive<SourceTileCollection>): Reactive<SourceTilemapCollection> {
-    const tilemapDict = ref<TilemapDict>({});
-
-    tilemapDict.value["land"] = reactive<TilemapData>({
-        tileDict: {
-            land_wasteland: srcTileCollection.tileDict["land_wasteland"],       // 荒地
-            land_vocantLand: srcTileCollection.tileDict["land_vocantLand"],     // 空き地
-            //land_forest: srcTileCollection.tileDict["land_forest"],     // FIXME: 🌟 JSON ファイルから読み取る
-        },
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "land_wasteland", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-
-    tilemapDict.value["system"] = reactive<TilemapData>({
-        tileDict: {
-            system_default: srcTileCollection.tileDict["system_default"],   // 未設定時の代替画像
-            system_noImage: srcTileCollection.tileDict["system_noImage"],   // 画像無しマーク
-        },
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "system_defalut", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-
-    tilemapDict.value["out"] = reactive<TilemapData>({
-        tileDict: cropEightDirectionTileDict(srcTileCollection, 'out').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 6,
-        verticalUnitCells: 8,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "out_0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-    tilemapDict.value["outBorder"] = reactive<TilemapData>({
-        tileDict: cropFourDirectoryTileDict(srcTileCollection, 'outBorder').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "outBorder_A0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-    tilemapDict.value["sea"] = reactive<TilemapData>({
-        tileDict: cropEightDirectionTileDict(srcTileCollection, 'sea').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 6,
-        verticalUnitCells: 8,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "sea_0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-    tilemapDict.value["seaBorder"] = reactive<TilemapData>({
-        tileDict: cropFourDirectoryTileDict(srcTileCollection, 'seaBorder').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "seaBorder_A0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-    tilemapDict.value["wastelandRoad"] = reactive<TilemapData>({    // 荒地の道
-        tileDict: cropEightDirectionTileDict(srcTileCollection, 'wastelandRoad').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 6,
-        verticalUnitCells: 8,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "wastelandRoad_0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-    tilemapDict.value["wastelandBorder"] = reactive<TilemapData>({
-        tileDict: cropFourDirectoryTileDict(srcTileCollection, 'wastelandBorder').value,
-        unitCellWidth: 32,
-        unitCellHeight: 32,
-        horizontalUnitCells: 4,
-        verticalUnitCells: 4,
-        initialTileCursorPosition: <TileCursorPosition>{
-            xCells: 0,
-            yCells: 0,
-            tliePath: "wastelandBorder_A0", // FIXME: 🌟自動設定できないか？
-        },
-        getPaletteWidth,
-        getPaletteHeight,
-    });
-
-    return reactive<SourceTilemapCollection>({
-        tilemapDict,
-        getTilemapByName: (name: string)=>{
-            if (name in tilemapDict.value) {
-                //alert(`DEBUG: "${name}"というタイルマップに切り替えます。`)
-
-                return ref<TilemapData>(tilemapDict.value[name]);   // FIXME 🌟 こんな書き方でいいのか？
-            }
-
-            alert(`ERROR: "${name}"というタイルマップが見つかりません。`)
-            return <Ref<TilemapData>>{};    // FIXME 🌟 こんな書き方でいいのか？
-        },
-    });
-}
-*/
 
 // ################
 // # サブルーチン #
