@@ -133,21 +133,34 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
     });
 }
 
-export function loadSourceTilesCollection(tileDict : Ref<TileDict>): void {
+export async function loadSourceTilesCollection(tileDict : Ref<TileDict>): Promise<void> {
 
     // FIXME: 🌟 非同期に JSON ファイルを読み込むので、画面への反映が遅れる。
     // FIXME: 🌟 辞書の場合、変更通知が送られない？
+    const tileCollection : TileCollection | null = await loadSourceTileCollectionJsonFile();
+
+    if (tileCollection != null) {
+        Object.entries(tileCollection).forEach(([tilepath, tile]) => {
+            //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
+            tileDict.value[tilepath] = <TileData>{
+                srcTop: tile.srcTop,
+                srcLeft: tile.srcLeft,
+                srcWidth: tile.srcWidth,
+                srcHeight: tile.srcHeight,
+            };
+        });
+    }
+    /*
     loadSourceTileCollectionJsonFile().then((tileCollection) => {
         //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
-        /*
-        const tileCollection2 : Record<string, TileData> = tileCollection ?? {
-            "": {
-                srcTop: 0,
-                srcLeft: 0,
-                srcWidth: 0,
-                srcHeight: 0,
-            }
-        };*/
+        // const tileCollection2 : Record<string, TileData> = tileCollection ?? {
+        //     "": {
+        //         srcTop: 0,
+        //         srcLeft: 0,
+        //         srcWidth: 0,
+        //         srcHeight: 0,
+        //     }
+        // };
         if (tileCollection != null){
             Object.entries(tileCollection).forEach(([tilepath, tile]) => {
                 //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
@@ -160,7 +173,9 @@ export function loadSourceTilesCollection(tileDict : Ref<TileDict>): void {
             });
         }
     });
+    */
 
+    /*
     // 荒地
     tileDict.value["land_wasteland"] = <TileData>{
         srcTop: 0,
@@ -168,7 +183,7 @@ export function loadSourceTilesCollection(tileDict : Ref<TileDict>): void {
         srcWidth: 32,
         srcHeight: 32,
     };
-
+    */
 }
 
 // ################
