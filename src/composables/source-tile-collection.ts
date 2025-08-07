@@ -111,30 +111,6 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
         srcHeight: 32,
     };
 
-    // FIXME: 🌟 非同期に JSON ファイルを読み込むので、画面への反映が遅れる。
-    // FIXME: 🌟 辞書の場合、変更通知が送られない？
-    loadSourceTileCollectionJsonFile().then((tileCollection) => {
-        //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
-        const dict1 : Record<string, TileData> = tileCollection ?? {
-            "": {
-                srcTop: 0,
-                srcLeft: 0,
-                srcWidth: 0,
-                srcHeight: 0,
-            }
-        };
-
-        Object.entries(dict1).forEach(([tilepath, tile]) => {
-            //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
-            tileDict.value[tilepath] = <TileData>{
-                srcTop: tile.srcTop,
-                srcLeft: tile.srcLeft,
-                srcWidth: tile.srcWidth,
-                srcHeight: tile.srcHeight,
-            };
-        });
-    });
-
     Object.assign(tileDict.value, makeEightBorderTilemap('out', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeFourDirectionBorderTilemap('outBorder', unitCellWidth, unitCellHeight));
     Object.assign(tileDict.value, makeEightBorderTilemap('sea', unitCellWidth, unitCellHeight));
@@ -152,6 +128,35 @@ export function createEmptySourceTilesCollection(): Reactive<SourceTileCollectio
             }
             return tileDict.value['system_noImage'];   // 画像無しマーク画像
         },
+    });
+}
+
+export function loadSourceTilesCollection(tileDict : Ref<TileDict>): void {
+
+    // FIXME: 🌟 非同期に JSON ファイルを読み込むので、画面への反映が遅れる。
+    // FIXME: 🌟 辞書の場合、変更通知が送られない？
+    loadSourceTileCollectionJsonFile().then((tileCollection) => {
+        //alert(`A tileCollection=${JSON.stringify(tileCollection)}`);
+        /*
+        const tileCollection2 : Record<string, TileData> = tileCollection ?? {
+            "": {
+                srcTop: 0,
+                srcLeft: 0,
+                srcWidth: 0,
+                srcHeight: 0,
+            }
+        };*/
+        if (tileCollection != null){
+            Object.entries(tileCollection).forEach(([tilepath, tile]) => {
+                //alert(`tilepath=${tilepath} srcTop=${tile.srcTop} srcLeft=${tile.srcLeft} srcWidth=${tile.srcWidth} srcHeight=${tile.srcHeight}`);
+                tileDict.value[tilepath] = <TileData>{
+                    srcTop: tile.srcTop,
+                    srcLeft: tile.srcLeft,
+                    srcWidth: tile.srcWidth,
+                    srcHeight: tile.srcHeight,
+                };
+            });
+        }
     });
 }
 

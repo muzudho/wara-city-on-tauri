@@ -93,7 +93,7 @@
 
     import { Board, createEmptyBoard } from '@/composables/board';
     import { paint } from '@/composables/paint';
-    import { createEmptySourceTilesCollection, SourceTileCollection } from '@/composables/source-tile-collection';
+    import { createEmptySourceTilesCollection, loadSourceTilesCollection, SourceTileCollection } from '@/composables/source-tile-collection';
     import { createEmptySourceTilemapCollection, loadSourceTilemapCollection, SourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
     import { newTilepath } from '@/composables/tilepath';
@@ -129,6 +129,7 @@
             //alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfig.value, null, "    ")}`);
             
             // TODO データを後から読み込みたい。
+            loadSourceTilesCollection(ref(srcTileCollection.tileDict));     // FIXME: こんな書き方でいいのか？
             loadSourceTilemapCollection(startConfig, srcTilemaps, srcTileCollection);
             //board.reloadBoard();
 
