@@ -1,4 +1,4 @@
-# wara-city-on-tauri
+# wara-city-tauri-desktopapp
 
 わらシティ（＾～＾）  
 

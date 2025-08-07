@@ -1,8 +1,8 @@
 {
     "$schema": "https://schema.tauri.app/config/2",
-    "productName": "wara-city-on-tauri",
+    "productName": "wara-city-tauri-desktopapp",
     "version": "0.1.0",
-    "identifier": "com.warabenture.wara-city-on-tauri",
+    "identifier": "com.warabenture.wara-city-tauri-desktopapp",
     "build": {
         "beforeDevCommand": "pnpm dev",
         "devUrl": "http://localhost:1420",
