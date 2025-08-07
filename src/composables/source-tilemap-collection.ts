@@ -38,7 +38,7 @@ export interface SourceTilemapCollection {
     getTilemapByName: (name: string) => Ref<TilemapData>;
 }
 
-export function createSourceTilemapCollection(srcTileCollection: SourceTileCollection): SourceTilemapCollection {
+export function createEmptySourceTilemapCollection(srcTileCollection: SourceTileCollection): SourceTilemapCollection {
     const tilemapDict = ref<TilemapDict>({});
 
     // メソッド定義

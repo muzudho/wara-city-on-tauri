@@ -54,7 +54,7 @@ async function loadTileCollection(): Promise<TileCollection | null> {
  * FIXME: 外部ファイル（JSON）を読み込む形式に変更したい。
  * @returns 
  */
-export function createSourceTilesCollection(): SourceTileCollection {
+export function createEmptySourceTilesCollection(): SourceTileCollection {
 
     const unitCellWidth: Ref<number> = ref(32);     // FIXME: 単位セルのサイズの初期値どうする？
     const unitCellHeight: Ref<number> = ref(32);

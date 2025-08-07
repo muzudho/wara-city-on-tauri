@@ -95,8 +95,8 @@
     import { Board, createEmptyBoard } from '@/composables/board';
     // { , toPlainBoard }
     import { paint } from '@/composables/paint';
-    import { createSourceTilesCollection } from '@/composables/source-tile-collection';
-    import { SourceTilemapCollection, createSourceTilemapCollection } from '@/composables/source-tilemap-collection';
+    import { createEmptySourceTilesCollection } from '@/composables/source-tile-collection';
+    import { SourceTilemapCollection, createEmptySourceTilemapCollection } from '@/composables/source-tilemap-collection';
     import { getTilemapUrlByName } from '@/composables/tilemap-filepath-collection';
     import { newTilepath } from '@/composables/tilepath';
 
@@ -110,19 +110,19 @@
     // # 共有データ #
     // ##############
 
+    const startConfig = ref<any | null>();   // 読み込む前と、読み込んだ後の２状態がある。
+
     // 盤情報は、ゲーム内のターミナル・ウィンドウと共有できる変数にしたい。
     // TODO 🌟 タイルの読み込みを非同期にできないか？
-    const srcTileCollection = createSourceTilesCollection();
-    const srcTilemaps: SourceTilemapCollection = createSourceTilemapCollection(srcTileCollection);
+    const srcTileCollection = createEmptySourceTilesCollection();
+    const srcTilemaps: SourceTilemapCollection = createEmptySourceTilemapCollection(srcTileCollection);
+
+    // NOTE: Reactive にするオブジェクトは、null ではなく、空オブジェクトで初期化します。
+    const board : Reactive<Board> = createEmptyBoard(srcTileCollection);   // 盤。いわゆるマップ。
 
     // ##############
     // # 起動時処理 #
     // ##############
-
-    const startConfig = ref<any | null>();   // 読み込む前と、読み込んだ後の２状態がある。
-
-    // NOTE: Reactive にするオブジェクトは、null ではなく、空オブジェクトで初期化します。
-    const board : Reactive<Board> = createEmptyBoard(srcTileCollection);   // 盤。いわゆるマップ。
 
     onMounted(async () => {
         try {
