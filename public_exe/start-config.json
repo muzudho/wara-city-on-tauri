@@ -1,5 +1,7 @@
 {
-    "test": "スタート設定（＾▽＾）",
+    "#comment": "スタート設定（＾▽＾）",
+
+    
     "tilePalettePanel" : {
         "tilemapNameList" : [
             {"key": "sea", "value": "海"},

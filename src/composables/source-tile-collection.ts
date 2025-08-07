@@ -40,7 +40,7 @@ type TileCollection = Record<string, TileData>;
  */
 async function loadSourceTileCollectionJsonFile(): Promise<TileCollection | null> {
     try {
-        const response = await fetch("/json/system/source-tile-collection.json");
+        const response = await fetch("/json/system/source-tile-collection.json");   // Tauriでは、publicフォルダに置いたファイルにアクセスできる。
         if (!response.ok) throw new Error("Failed to fetch JSON");
         const data: TileCollection = await response.json();
         return data;
