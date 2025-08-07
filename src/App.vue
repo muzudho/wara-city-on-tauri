@@ -129,7 +129,7 @@
             //alert(`DEBUG: ファイル読み取り練習中： ${JSON.stringify(startConfig.value, null, "    ")}`);
             
             // TODO データを後から読み込みたい。
-            loadSourceTilemapCollection(srcTilemaps, srcTileCollection);
+            loadSourceTilemapCollection(startConfig, srcTilemaps, srcTileCollection);
             //board.reloadBoard();
 
         } catch (error) {
